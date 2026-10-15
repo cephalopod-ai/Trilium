@@ -131,3 +131,35 @@ describe("revocable MCP policy", () => {
         expect(mockSql.transactional).not.toHaveBeenCalled();
     });
 });
+
+describe("native per-invocation approval", () => {
+    it("awaits approval before a transaction and rechecks revocation after the wait", async () => {
+        let allowed = true;
+        let resolveApproval: ((value: boolean) => void) | undefined;
+        const approval = vi.fn(() => new Promise<boolean>(resolve => { resolveApproval = resolve; }));
+        await createMcpServer(() => allowed, approval);
+        const mutate = registered.find(entry => entry.name === "mutate_tool");
+        expect(mutate).toBeDefined();
+        const pending = mutate?.callback({ content: "synthetic" });
+        expect(mutateExecute).not.toHaveBeenCalled();
+        expect(mockSql.transactional).not.toHaveBeenCalled();
+        allowed = false;
+        resolveApproval?.(true);
+        expect(await pending).toMatchObject({ isError: true });
+        expect(mutateExecute).not.toHaveBeenCalled();
+        expect(mockSql.transactional).not.toHaveBeenCalled();
+    });
+    it("distinguishes a denied operation from a successfully applied write", async () => {
+        const approval = vi.fn().mockResolvedValueOnce(false).mockResolvedValueOnce(true);
+        const observe = vi.fn();
+        await createMcpServer(() => true, approval, observe);
+        const mutate = registered.find(entry => entry.name === "mutate_tool");
+        expect(await mutate?.callback({})).toMatchObject({ isError: true });
+        expect(mutateExecute).not.toHaveBeenCalled();
+        expect(await mutate?.callback({ value: "synthetic" })).not.toHaveProperty("isError");
+        expect(mutateExecute).toHaveBeenCalledTimes(1);
+        expect(mockSql.transactional).toHaveBeenCalledTimes(1);
+        expect(observe.mock.calls[0][2]).toMatchObject({ isError: true });
+        expect(observe.mock.calls[1]).toEqual(["mutate_tool", { value: "synthetic" }, { content: [{ type: "text", text: '{"ok":"mutate"}' }] }]);
+    });
+});

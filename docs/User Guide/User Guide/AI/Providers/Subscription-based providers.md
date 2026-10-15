@@ -5,6 +5,8 @@ In a nutshell, subscription-based providers work by either reusing your existing
 
 See also the dedicated <a class="reference-link" href="../Privacy.md">Privacy</a> section to better understand what data is being sent to a cloud provider.
 
+For additional compatible ACP runtimes without Gosling, see <a class="reference-link" href="Native%20CLI%20and%20ACP%20agents.md">Native CLI and ACP agents</a>.
+
 ## Claude Code
 
 To use a subscription:

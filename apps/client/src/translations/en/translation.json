@@ -4248,7 +4248,17 @@
     "gosling_runtime_unsupported": "runtime tools cannot enforce bounded permissions",
     "gosling_endpoint": "Endpoint: {{location}}",
     "gosling_reasoning_default": "Gosling default",
-    "gosling_auth_required": "Gosling reported authentication required; reauthenticate in Gosling and retry"
+    "gosling_auth_required": "Gosling reported authentication required; reauthenticate in Gosling and retry",
+    "native_agent_description": "Use native CLI and ACP adapters directly. Gosling is not required; authenticate using each CLI.",
+    "native_agent_help": "Discover installed Claude ACP, Vibe, Pi, Gemini and Cursor adapters. The existing Claude Code, Copilot, Codex and Antigravity cards also run directly. Model listings do not establish subscription entitlement. Executables and credentials stay on this host.",
+    "native_agent_refresh": "Refresh native agents and models",
+    "native_agent_inventory_error": "Native agent discovery failed. Check executable paths and native CLI sign-in on the Trilium host.",
+    "native_agent_available": "Installed; model discovery succeeded",
+    "native_agent_no_notes": "This adapter has no verified bounded note-tool support. Note access must remain off.",
+    "native_agent_permissions": "Native agent session permissions",
+    "native_agent_handoff": "Start a new native agent session with visible history on the next turn",
+    "native_agent_reasoning_default": "CLI default",
+    "native_agent_privacy": "Transport stays on this computer. The native CLI may use an external endpoint; check its configuration. Trilium does not start inference until you send a message."
   },
   "common": {
     "save": "Save",

@@ -17,6 +17,8 @@ To protect your notes from unauthorized access, the MCP server requires authenti
 
 To configure authentication, first create an <a class="reference-link" href="../Advanced%20Usage/ETAPI%20(REST%20API).md">ETAPI (REST API)</a> token by going to <a class="reference-link" href="../Basic%20Concepts%20and%20Features/UI%20Elements/Options.md">Options</a> → _ETAPI_. Then follow the instructions in <a class="reference-link" href="../Basic%20Concepts%20and%20Features/UI%20Elements/Options.md">Options</a> → _AI / LLM_, by looking at the _How to connect an assistant_ section under MCP.
 
+The private endpoints used by <a class="reference-link" href="Providers/Native%20CLI%20and%20ACP%20agents.md">Native CLI and ACP agents</a> are separate from this public MCP setting. They expose bounded note tools to an individual chat and require a once-only approval for each operation. The public server can remain off.
+
 ## Third-party alternatives
 
 The following are alternatives to Trilium's built-in MCP feature. Since Trilium's AI implementation is still experimental, its tooling might not be as mature as external tools.

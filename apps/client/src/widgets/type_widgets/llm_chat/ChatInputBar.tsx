@@ -468,7 +468,7 @@ export default function ChatInputBar({
                             onWebSearchChoose={chooseWebSearch}
                             disabled={chat.isStreaming}
                         />
-                        {!currentModel?.reasoningEfforts?.length && currentModel?.provider !== "gosling" && (
+                        {!currentModel?.reasoningEfforts?.length && currentModel?.provider !== "gosling" && currentModel?.provider !== "acp-agent" && (
                             <CapabilityToggle
                                 icon="bx bx-brain"
                                 label={t("llm_chat.extended_thinking")}

@@ -27,21 +27,25 @@ import { getLog } from "@triliumnext/core";
 import { randomBytes } from "crypto";
 import http from "http";
 
-import { createMcpServer, type McpToolPolicy } from "../../mcp/mcp_server.js";
+import { createMcpServer, type McpToolPolicy, type McpToolApproval, type McpToolObserver } from "../../mcp/mcp_server.js";
 
 /** Decides one hook request from its JSON body; the result is sent back as JSON. */
 export type AcpHookHandler = (payload: unknown) => unknown | Promise<unknown>;
 
 const scopedPolicies = new Map<string, McpToolPolicy>();
+const scopedApprovals = new Map<string, McpToolApproval>();
+const scopedObservers = new Map<string, McpToolObserver>();
 
 /** Each turn receives a revocable capability, independent of the legacy ACP endpoint. */
-export async function createScopedAcpMcpEndpoint(allowed: McpToolPolicy) {
+export async function createScopedAcpMcpEndpoint(allowed: McpToolPolicy, beforeExecute?: McpToolApproval, observe?: McpToolObserver) {
     const started = await startOnce();
     const path = `/scope-${randomBytes(32).toString("hex")}`;
     scopedPolicies.set(path, allowed);
+    if (beforeExecute) scopedApprovals.set(path, beforeExecute);
+    if (observe) scopedObservers.set(path, observe);
     return {
         url: `${new URL(started.mcpUrl).origin}${path}`,
-        revoke: () => { scopedPolicies.delete(path); }
+        revoke: () => { scopedPolicies.delete(path); scopedApprovals.delete(path); scopedObservers.delete(path); }
     };
 }
 
@@ -72,6 +76,8 @@ export async function getAcpHookEndpointUrl(name: string, handler: AcpHookHandle
 export async function resetAcpMcpEndpointForTests(): Promise<void> {
     hookHandlers.clear();
     scopedPolicies.clear();
+    scopedApprovals.clear();
+    scopedObservers.clear();
     if (endpoint) {
         const started = await endpoint.catch(() => undefined);
         endpoint = undefined;
@@ -112,7 +118,7 @@ async function startEndpoint(): Promise<{ mcpUrl: string; hookUrl: string }> {
             const scoped = req.url ? scopedPolicies.get(req.url) : undefined;
             const policy: McpToolPolicy | undefined = scoped && ((name, def) =>
                 scopedPolicies.get(req.url ?? "") === scoped && scoped(name, def));
-            void handleRequest(req, res, scoped ? req.url ?? "" : mcpPath, boundHost, policy);
+            void handleRequest(req, res, scoped ? req.url ?? "" : mcpPath, boundHost, policy, req.url ? scopedApprovals.get(req.url) : undefined, req.url ? scopedObservers.get(req.url) : undefined);
         }
     });
     listener = server;
@@ -173,7 +179,9 @@ async function handleRequest(
     res: http.ServerResponse,
     secretPath: string,
     boundHost: string,
-    policy?: McpToolPolicy
+    policy?: McpToolPolicy,
+    beforeExecute?: McpToolApproval,
+    observe?: McpToolObserver
 ): Promise<void> {
     try {
         if (req.url !== secretPath) {
@@ -182,7 +190,7 @@ async function handleRequest(
         }
 
         // Stateless per-request server+transport, mirroring the public /mcp route.
-        const mcpServer = await createMcpServer(policy);
+        const mcpServer = await createMcpServer(policy, beforeExecute, observe);
         const transport = new StreamableHTTPServerTransport({
             sessionIdGenerator: undefined,
             enableDnsRebindingProtection: true,

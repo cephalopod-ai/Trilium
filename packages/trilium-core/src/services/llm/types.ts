@@ -70,6 +70,7 @@ export interface ModelInfo {
     /** The attachment kinds the model reads natively; see `LlmModelInfo`. */
     attachmentKinds?: LlmAttachmentKind[];
     gosling?: import("@triliumnext/commons").GoslingModelState;
+    nativeAgent?: import("@triliumnext/commons").LlmModelInfo["nativeAgent"];
 }
 
 export interface LlmProvider {

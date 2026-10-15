@@ -86,8 +86,8 @@ describe("runChat", () => {
         expect((state.chatConfig as { webSearch?: unknown }).webSearch).toBeUndefined();
     });
 
-    it("never uses another provider to name a Gosling chat", async () => {
-        state.providerName = "gosling";
+    it.each(["gosling", "acp-agent"])("never uses another provider to name a %s chat", async provider => {
+        state.providerName = provider;
         state.chunkNative = true;
         state.chunks = [{ type: "done" }];
         await collect(HELLO, { chatNoteId: "synthetic-chat" });

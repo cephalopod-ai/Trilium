@@ -1,6 +1,8 @@
 # Gosling
 Gosling is a generic provider gateway for Trilium chat notes: **Trilium chat → local Gosling ACP process → selected Gosling provider/model**. Gosling owns provider authentication, agent execution, permissions and tools. Trilium owns the chat, selected note context and note operations.
 
+For direct native CLI wrappers without Gosling, see <a class="reference-link" href="Native%20CLI%20and%20ACP%20agents.md">Native CLI and ACP agents</a>.
+
 ## Setup
 
 1.  Build the companion Gosling revision with bounded client tool policy v1 (`cargo build -p gosling-cli` from the Gosling checkout, after `source bin/activate-hermit`). Use a build that includes the features your providers require.

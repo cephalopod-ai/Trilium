@@ -124,7 +124,7 @@ const REMOTE_MODELS = [
         name: `6 Luna (${effort})`,
         description: "Fast and affordable model for easier tasks."
     })),
-    ...["low", "medium", "high", "xhigh", "max", "ultra"].map(effort => ({
+    ...["low", "medium", "high", "xhigh", "max", "ultra", "unrecognized"].map(effort => ({
         modelId: `gpt-5.6-terra[${effort}]`,
         name: `5.6 Terra (${effort})`,
         description: "Older balanced model for straightforward work."
@@ -256,8 +256,8 @@ describe("buildCodexModelList", () => {
         expect(models).toEqual([
             { id: "default", name: "Default", pricing: { input: 0, output: 0 }, isDefault: true, isSubscription: true },
             { id: "gpt-6-luna", name: "GPT-6 Luna", pricing: { input: 0, output: 0 }, isSubscription: true, reasoningEfforts: ["low", "medium", "high", "xhigh", "max"], defaultReasoningEffort: "medium" },
-            // `ultra` is no level Trilium can name, so it is left out. An "Older" model is no legacy one.
-            { id: "gpt-5.6-terra", name: "GPT-5.6 Terra", pricing: { input: 0, output: 0 }, isSubscription: true, reasoningEfforts: ["low", "medium", "high", "xhigh", "max"], defaultReasoningEffort: "medium" },
+            // `ultra` is supported; the unrecognized level is excluded. An "Older" model is no legacy one.
+            { id: "gpt-5.6-terra", name: "GPT-5.6 Terra", pricing: { input: 0, output: 0 }, isSubscription: true, reasoningEfforts: ["low", "medium", "high", "xhigh", "max", "ultra"], defaultReasoningEffort: "medium" },
             // Sorted weakest first, defaulting to the lightest without medium.
             { id: "gpt-5.5", name: "GPT-5.5", pricing: { input: 0, output: 0 }, isSubscription: true, isLegacy: true, reasoningEfforts: ["low", "high"], defaultReasoningEffort: "low" }
         ]);

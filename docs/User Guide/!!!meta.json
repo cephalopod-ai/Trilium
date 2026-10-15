@@ -10767,6 +10767,41 @@
                                     "format": "markdown",
                                     "dataFileName": "Gosling.md",
                                     "attachments": []
+                                },
+                                {
+                                    "isClone": false,
+                                    "noteId": "2Jpa8xX7DgZq",
+                                    "notePath": [
+                                        "pOsGYCXsbNQG",
+                                        "GBBMSlVSOIGP",
+                                        "bkPZAMT7d2sR",
+                                        "2Jpa8xX7DgZq"
+                                    ],
+                                    "title": "Native CLI and ACP agents",
+                                    "notePosition": 30,
+                                    "prefix": null,
+                                    "isExpanded": false,
+                                    "type": "text",
+                                    "mime": "text/html",
+                                    "attributes": [
+                                        {
+                                            "type": "label",
+                                            "name": "shareAlias",
+                                            "value": "native-cli-and-acp-agents",
+                                            "isInheritable": false,
+                                            "position": 10
+                                        },
+                                        {
+                                            "type": "label",
+                                            "name": "iconClass",
+                                            "value": "bx bx-bot",
+                                            "isInheritable": false,
+                                            "position": 20
+                                        }
+                                    ],
+                                    "format": "markdown",
+                                    "dataFileName": "Native CLI and ACP agents.md",
+                                    "attachments": []
                                 }
                             ]
                         },

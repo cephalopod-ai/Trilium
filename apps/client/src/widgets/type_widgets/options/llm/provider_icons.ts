@@ -30,6 +30,7 @@ import serperIcon from "./icons/serper.svg?url";
 import tavilyIcon from "./icons/tavily.svg?url";
 
 export const PROVIDER_ICONS: Record<string, string> = {
+    "acp-agent": openAiCompatibleIcon,
     anthropic: anthropicIcon,
     "antigravity-agent": antigravityIcon,
     brave: braveIcon,

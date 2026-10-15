@@ -60,3 +60,7 @@ For custom endpoints, the pricing of the models is not known so the cost of a co
 ## Gosling gateway
 
 The <a class="reference-link" href="Providers/Gosling.md">Gosling</a> integration routes chat notes through one local ACP gateway to providers configured in Gosling. Credentials and execution stay in Gosling; endpoint locality and enforceable tool capabilities are shown separately. It requires the companion bounded-client-policy build.
+
+## Direct native agents
+
+<a class="reference-link" href="Providers/Native%20CLI%20and%20ACP%20agents.md">Native CLI and ACP agents</a> runs compatible CLI wrappers directly from Trilium without Gosling. It discovers native models, retains native authentication and requires once-only Trilium note approvals. Unsupported runtime permission boundaries remain unavailable.

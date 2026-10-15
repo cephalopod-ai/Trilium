@@ -2,6 +2,7 @@ import { LLM_REASONING_EFFORTS, type LlmCitation, type LlmPermissionRequest, typ
 import { RefObject } from "preact";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 
+import { t } from "../../../services/i18n.js";
 import server from "../../../services/server.js";
 import { streamChatCompletion } from "../../../services/llm_chat.js";
 import { type ModelOption, type ModelProviderGroup, readSearchProviders, readSelectedModels, resolveSelectedModel, resolveWebSearch, unreadableAttachments } from "../../../services/llm_providers.js";
@@ -284,7 +285,7 @@ export function useLlmChat(
     const setChatNoteId = useCallback((noteId: string | undefined) => {
         if (chatNoteIdRef.current !== noteId) {
             // A reused note widget must not carry execution authority into another chat.
-            if (selectedProviderRef.current === "gosling") {
+            if ((selectedProviderRef.current === "gosling" || selectedProviderRef.current === "acp-agent")) {
                 abortControllerRef.current?.abort();
                 abortControllerRef.current = null;
                 setIsStreaming(false);
@@ -665,7 +666,7 @@ export function useLlmChat(
             contextNoteId,
             chatNoteId: chatNoteIdRef.current
         };
-        if (supportsExtendedThinking && selectedModelProvider !== "gosling") {
+        if (supportsExtendedThinking && (selectedModelProvider !== "gosling" && selectedModelProvider !== "acp-agent")) {
             streamOptions.enableExtendedThinking = enableExtendedThinking;
         }
         if (reasoningEffort && matchedModel?.reasoningEfforts?.length) {
@@ -674,15 +675,15 @@ export function useLlmChat(
 
         const abortController = new AbortController();
         abortControllerRef.current = abortController;
-        const isCurrentTurn = () => selectedModelProvider !== "gosling"
+        const isCurrentTurn = () => (selectedModelProvider !== "gosling" && selectedModelProvider !== "acp-agent")
             || abortControllerRef.current === abortController;
         const incompleteGoslingActivity = (): StoredMessage[] => {
-            if (selectedModelProvider !== "gosling" || !contentBlocks.length) return [];
+            if ((selectedModelProvider !== "gosling" && selectedModelProvider !== "acp-agent") || !contentBlocks.length) return [];
             const activity: ContentBlock[] = contentBlocks.map(block => block.type === "tool_call"
                 ? { ...block, toolCall: { ...block.toolCall, stopped: !block.toolCall.result, inputStreaming: undefined } }
                 : block);
             return [{ id: randomString(), role: "assistant", createdAt: new Date().toISOString(),
-                content: [{ type: "text", content: "Incomplete Gosling turn. Partial output and tool activity follow; only successful tool results establish applied changes.\n\n" }, ...activity] }];
+                content: [{ type: "text", content: "Incomplete agent turn. Partial output and tool activity follow; only successful tool results establish applied changes.\n\n" }, ...activity] }];
         };
 
         /** Shared cleanup: finalize collected content and reset streaming state. */
@@ -732,7 +733,7 @@ export function useLlmChat(
             streamOptions,
             {
                 onPermission: permission => {
-                    if (permission.chatNoteId === chatNoteIdRef.current) {
+                    if (isCurrentTurn() && permission.chatNoteId === chatNoteIdRef.current) {
                         setGoslingPermissions(current => [...current, permission]);
                     }
                 },
@@ -886,9 +887,9 @@ export function useLlmChat(
             if (!isCurrentTurn()) return;
             // AbortError is expected when user stops generation
             if (e instanceof DOMException && e.name === "AbortError") {
-                if (selectedModelProvider === "gosling") {
+                if ((selectedModelProvider === "gosling" || selectedModelProvider === "acp-agent")) {
                     setMessages([...conversation, ...incompleteGoslingActivity(), {
-                        id: randomString(), role: "assistant", content: "Gosling turn interrupted. Partial output was not completed. Start a new session before retrying.",
+                        id: randomString(), role: "assistant", content: "Agent turn interrupted. Partial output was not completed. Start a new session before retrying.",
                         createdAt: new Date().toISOString(), type: "error"
                     }]);
                     setTargetBlocks([]);
@@ -1020,7 +1021,7 @@ export function useLlmChat(
         goslingHandoff, setGoslingHandoff,
         goslingPermissions, goslingSessionInfo,
         answerGoslingPermission: async (requestId, optionId) => {
-            await server.post("gosling/permission", { chatNoteId: chatNoteIdRef.current, requestId, optionId });
+            await server.post(`${selectedProviderRef.current === "acp-agent" ? "native-agents" : "gosling"}/permission`, { chatNoteId: chatNoteIdRef.current, requestId, optionId });
             setGoslingPermissions(current => current.filter(request => request.requestId !== requestId));
         },
         revokeGoslingAccess: async () => {
@@ -1029,7 +1030,7 @@ export function useLlmChat(
             setGoslingAllowWrites(false);
             setGoslingExtensions([]);
             abortControllerRef.current?.abort();
-            await server.post("gosling/revoke", { chatNoteId: chatNoteIdRef.current });
+            await server.post(`${selectedProviderRef.current === "acp-agent" ? "native-agents" : "gosling"}/revoke`, { chatNoteId: chatNoteIdRef.current });
         },
         // State
         messages,
@@ -1072,8 +1073,10 @@ export function useLlmChat(
         setSelectedModel: selectModel,
         setEnableWebSearch,
         setEnableNoteTools: value => {
-            if (!value && selectedProvider === "gosling" && chatNoteIdRef.current) {
-                void server.post("gosling/revoke", { chatNoteId: chatNoteIdRef.current });
+            if (!value && (selectedProvider === "gosling" || selectedProvider === "acp-agent") && chatNoteIdRef.current) {
+                abortControllerRef.current?.abort();
+                void server.post(`${selectedProviderRef.current === "acp-agent" ? "native-agents" : "gosling"}/revoke`, { chatNoteId: chatNoteIdRef.current })
+                    .catch(() => setGoslingSessionInfo(t("llm.gosling_decision_error")));
             }
             enableNoteToolsRef.current = value;
             setEnableNoteTools(value);

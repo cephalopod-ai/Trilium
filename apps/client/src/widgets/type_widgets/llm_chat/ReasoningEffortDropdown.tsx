@@ -20,8 +20,8 @@ export default function ReasoningEffortDropdown({ model, value, onChange, disabl
     disabled?: boolean;
 }) {
     const effective = effectiveReasoningEffort(model, value);
-    const goslingDefault = model.provider === "gosling" && value === undefined && !model.defaultReasoningEffort;
-    const label = goslingDefault ? t("llm.gosling_reasoning_default") : t(`llm_chat.reasoning_effort_levels.${effective}`);
+    const goslingDefault = (model.provider === "gosling" || model.provider === "acp-agent") && value === undefined && !model.defaultReasoningEffort;
+    const label = goslingDefault ? t(model.provider === "acp-agent" ? "llm.native_agent_reasoning_default" : "llm.gosling_reasoning_default") : t(`llm_chat.reasoning_effort_levels.${effective}`);
 
     return (
         <Dropdown

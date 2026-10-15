@@ -21,9 +21,10 @@ export default function GoslingControls({
     const selected = chat.availableModels.find(
         (model) => model.id === chat.selectedModel && model.providerId === chat.selectedProviderId
     );
-    const active = selected?.provider === "gosling" || chat.selectedProvider === "gosling";
+    const native = selected?.provider === "acp-agent" || chat.selectedProvider === "acp-agent";
+    const active = native || selected?.provider === "gosling" || chat.selectedProvider === "gosling";
     useEffect(() => {
-        if (!active) return;
+        if (!active || native) { setExtensions([]); return; }
         let disposed = false;
         server
             .get<{ name: string }[]>("gosling/extensions")
@@ -36,7 +37,7 @@ export default function GoslingControls({
         return () => {
             disposed = true;
         };
-    }, [active]);
+    }, [active, native]);
     if (!active) return null;
     const state = selected?.gosling;
     const perform = (operation: Promise<void>) => {
@@ -47,7 +48,7 @@ export default function GoslingControls({
         <div className="gosling-controls">
             <div>
                 {selected?.name} ·{" "}
-                {t("llm.gosling_endpoint", { location: state?.endpointLocation ?? "unknown" })}
+                {t("llm.gosling_endpoint", { location: selected?.nativeAgent?.endpointLocation ?? state?.endpointLocation ?? "unknown" })}
             </div>
             {state?.unavailableReason && <div role="alert">{state.unavailableReason}</div>}
             {state?.authenticationRequired && (
@@ -56,10 +57,11 @@ export default function GoslingControls({
             {state?.authenticationExpired && (
                 <div role="status">{t("llm.gosling_auth_expired")}</div>
             )}
-            <div className="gosling-guidance">{t("llm.gosling_privacy")}</div>
+            <div className="gosling-guidance">{t(native ? "llm.native_agent_privacy" : "llm.gosling_privacy")}</div>
             {chat.goslingSessionInfo && <div role="status">{chat.goslingSessionInfo}</div>}
+            {native && selected?.nativeAgent?.notes === false && <div role="status">{t("llm.native_agent_no_notes")}</div>}
             <details>
-                <summary>{t("llm.gosling_permissions")}</summary>
+                <summary>{t(native ? "llm.native_agent_permissions" : "llm.gosling_permissions")}</summary>
                 <FormCheckbox
                     name="gosling-writes"
                     currentValue={chat.goslingAllowWrites}
@@ -71,10 +73,10 @@ export default function GoslingControls({
                     name="gosling-handoff"
                     currentValue={chat.goslingHandoff}
                     disabled={chat.isStreaming}
-                    label={t("llm.gosling_handoff")}
+                    label={t(native ? "llm.native_agent_handoff" : "llm.gosling_handoff")}
                     onChange={chat.setGoslingHandoff}
                 />
-                <p>{t("llm.gosling_extensions_help")}</p>
+                {!native && <p>{t("llm.gosling_extensions_help")}</p>}
                 {extensions.map((extension) => (
                     <FormCheckbox
                         key={extension.name}

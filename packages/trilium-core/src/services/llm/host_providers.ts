@@ -33,6 +33,7 @@ export const HOST_PROVIDED_TYPES = {
     "antigravity-agent": "Google Antigravity",
     /** A ChatGPT plan's Codex usage through the Codex ACP adapter, signed in from the provider screen. */
     "codex-agent": "OpenAI Codex",
+    "acp-agent": "Native CLI / ACP agents",
     gosling: "Gosling"
 } as const;
 

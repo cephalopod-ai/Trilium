@@ -77,6 +77,12 @@ describe("ReasoningEffortDropdown", () => {
         expect(onChange).toHaveBeenCalledWith("low");
     });
 
+    it("shows the native CLI default without selecting the strongest reported level", () => {
+        const { host } = renderDropdown({ ...PRO, provider: "acp-agent", defaultReasoningEffort: undefined }, undefined);
+        expect(host.querySelector("button")?.textContent).toBe("llm.native_agent_reasoning_default");
+        expect(host.querySelectorAll(".menu .bx-check")).toHaveLength(0);
+    });
+
     it("reads like the model picker: a combobox naming the level in effect", () => {
         const button = renderDropdown(FLASH, "low").host.querySelector("button");
         expect(button?.classList.contains("llm-chat-model-select")).toBe(true);

@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from "preact/hooks";
 import { t } from "../../../../services/i18n";
 import { fetchProviderModels, type ProviderModelsQuery } from "../../../../services/llm_chat";
 import { formatModelCost } from "../../../../services/llm_model_cost";
+import NativeAgentInventory from "./NativeAgentInventory.js";
 import GoslingInventory from "./GoslingInventory.js";
 import FormCheckbox from "../../../react/FormCheckbox";
 import NoItems from "../../../react/NoItems";
@@ -40,6 +41,7 @@ interface ModelSelectionProps {
 export default function ModelSelection(props: ModelSelectionProps) {
     const [generation, setGeneration] = useState(0);
     return <>
+        {props.query.provider === "acp-agent" && <NativeAgentInventory onRefresh={() => setGeneration(value => value + 1)} />}
         {props.query.provider === "gosling" && <GoslingInventory onRefresh={() => setGeneration(value => value + 1)} />}
         <ModelSelectionList key={generation} {...props} />
     </>;

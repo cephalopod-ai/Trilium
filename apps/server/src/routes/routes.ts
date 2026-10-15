@@ -21,6 +21,7 @@ import databaseRoute from "./api/database.js";
 import etapiTokensApiRoutes from "./api/etapi_tokens.js";
 import filesRoute from "./api/files.js";
 // API routes
+import * as nativeAgentsRoute from "./api/native_agents.js";
 import * as goslingRoute from "./api/gosling.js";
 import llmChatRoute from "./api/llm_chat.js";
 import loginApiRoute from "./api/login.js";
@@ -161,7 +162,10 @@ function register(app: express.Application) {
 
     apiRoute(GET, "/api/database/check-integrity", databaseRoute.checkIntegrity);
 
-    // Gosling uses host processes and is unavailable in the standalone browser build.
+    // Native agents and Gosling use host processes and are unavailable in the standalone browser build.
+    asyncApiRoute(PST, "/api/native-agents/inventory", nativeAgentsRoute.inventory);
+    asyncApiRoute(PST, "/api/native-agents/revoke", nativeAgentsRoute.revoke);
+    asyncApiRoute(PST, "/api/native-agents/permission", goslingRoute.permission);
     asyncApiRoute(PST, "/api/gosling/inventory", goslingRoute.inventory);
     asyncApiRoute(GET, "/api/gosling/extensions", goslingRoute.extensions);
     asyncApiRoute(PST, "/api/gosling/revoke", goslingRoute.revoke);

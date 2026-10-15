@@ -237,3 +237,7 @@ When upgrading to v0.102.0, your Chat notes will be preserved, but instead of th
 Given the recent advancements of the AI scene, we decided to give the LLM integration another try. v0.103.0 introduces a completely new chat system.
 
 One of the key changes that lead to the reimplementation is that now we are using a library ([Vercel AI](https://github.com/vercel/ai)) to manage the inner mechanism and the differences between LLM providers instead of having to implement it on our own.
+
+## Native agent runtimes
+
+<a class="reference-link" href="AI/Providers/Native%20CLI%20and%20ACP%20agents.md">Native CLI and ACP agents</a> connects chat notes directly to compatible installed agent CLIs, without Gosling. Model discovery, native authentication, bounded note access and once-only approvals are described in its setup guide.

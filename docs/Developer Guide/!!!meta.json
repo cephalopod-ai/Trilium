@@ -3001,6 +3001,40 @@
                             "format": "markdown",
                             "dataFileName": "Gosling ACP integration.md",
                             "attachments": []
+                        },
+                        {
+                            "isClone": false,
+                            "noteId": "466L4Y5GFNQI",
+                            "notePath": [
+                                "jdjRLhLV3TtI",
+                                "HMrVxa1lJBKv",
+                                "466L4Y5GFNQI"
+                            ],
+                            "title": "Native ACP adapters",
+                            "notePosition": 40,
+                            "prefix": null,
+                            "isExpanded": false,
+                            "type": "text",
+                            "mime": "text/html",
+                            "attributes": [
+                                {
+                                    "type": "label",
+                                    "name": "shareAlias",
+                                    "value": "native-acp-adapters",
+                                    "isInheritable": false,
+                                    "position": 10
+                                },
+                                {
+                                    "type": "label",
+                                    "name": "iconClass",
+                                    "value": "bx bx-bot",
+                                    "isInheritable": false,
+                                    "position": 20
+                                }
+                            ],
+                            "format": "markdown",
+                            "dataFileName": "Native ACP adapters.md",
+                            "attachments": []
                         }
                     ]
                 }

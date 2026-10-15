@@ -89,7 +89,7 @@ export async function* runChat(
             yield chunk;
         }
 
-        if (provider.name !== "gosling") {
+        if (provider.name !== "gosling" && provider.name !== "acp-agent") {
             await generateTitleForFirstTurn(messages, config);
         }
     } catch (error) {

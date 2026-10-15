@@ -212,6 +212,17 @@ describe("the connection step", () => {
         expect(nextButton()?.disabled).toBe(false);
     });
 
+    it("offers direct native ACP agents without requesting credentials or a gateway", () => {
+        open();
+        const native = providerCard("Native CLI / ACP agents");
+        expect(native).toBeDefined();
+        act(() => native?.click());
+        expect(textBoxes()).toHaveLength(0);
+        expect(nextButton()?.disabled).toBe(false);
+        finish();
+        expect(mocks.onSave).toHaveBeenCalledWith(expect.objectContaining({ provider: "acp-agent", apiKey: "" }));
+    });
+
     it("shows such a provider's description one paragraph at a time", () => {
         open();
         act(() => providerCard("Google Antigravity")?.click());

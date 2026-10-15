@@ -187,6 +187,7 @@ export interface LlmModelInfo {
      */
     attachmentKinds?: LlmAttachmentKind[];
     gosling?: GoslingModelState;
+    nativeAgent?: { profileId: string; modelId: string; endpointLocation: "unknown"; notes: boolean };
 }
 
 /** An attachment a model reads natively: an image, or a file such as a PDF. */
