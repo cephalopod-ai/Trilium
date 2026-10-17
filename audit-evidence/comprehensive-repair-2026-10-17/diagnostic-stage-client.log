@@ -1,0 +1,65 @@
+
+ RUN  v5.0.3 <repo>/apps/client
+
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:104 > useLlmChat > turns a content-free completion into a retryable error without retrying automatically 16ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:120 > useLlmChat > provides the latest messages and note access to a synchronous save snapshot 5ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:132 > useLlmChat > focuses the input at once when it is ready, or as soon as it registers 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:147 > useLlmChat > selects the default model with its provider and annotates model costs 2ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:164 > useLlmChat > groups models per provider, keeping a provider with no selected models as an empty group 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:182 > useLlmChat > sends with the provider recorded at model selection 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:198 > useLlmChat > sends the chosen search provider, unless the model runs its own agent loop 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:221 > useLlmChat > holds back a message whose attachments the model cannot read, until the model changes 2ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:250 > useLlmChat > resolves the provider by model ID for chats saved before selectedProvider existed 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:270 > useLlmChat > tracks what the next request will carry: reported usage, a restored transcript, and the unsent draft 2ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:321 > useLlmChat > counts no tokens for a turn whose provider reports only the model 5ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:345 > useLlmChat > keeps, saves and sends the reasoning effort, only for a model that has levels 2ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:389 > useLlmChat > round-trips the selected provider through getContent 3ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:405 > useLlmChat > keeps thoughts in stream order inside the reply, and never sends them back 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:452 > useLlmChat > resets Gosling execution authority when the chat note changes 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:465 > useLlmChat > keeps what a turn waits on until the turn ends 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/services/bulk_action.spec.ts [ src/services/bulk_action.spec.ts ]
+ FAIL  src/widgets/react/ActionButton.mobile.spec.tsx [ src/widgets/react/ActionButton.mobile.spec.tsx ]
+TypeError: Class extends value undefined is not a constructor or null
+ ❯ src/widgets/note_context_aware_widget.ts:9:38
+      7|  * This widget allows for changing and updating depending on the activ…
+      8|  */
+      9| class NoteContextAwareWidget extends BasicWidget {
+       |                                      ^
+     10|     noteContext?: NoteContext;
+     11|
+ ❯ src/widgets/react/hooks.tsx:37:1
+ ❯ src/widgets/react/HelpTooltipButton.tsx:7:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/widgets/react/ActionButton.spec.tsx [ src/widgets/react/ActionButton.spec.tsx ]
+TypeError: Class extends value undefined is not a constructor or null
+ ❯ src/widgets/note_context_aware_widget.ts:9:38
+      7|  * This widget allows for changing and updating depending on the activ…
+      8|  */
+      9| class NoteContextAwareWidget extends BasicWidget {
+       |                                      ^
+     10|     noteContext?: NoteContext;
+     11|
+ ❯ src/widgets/react/hooks.tsx:37:1
+ ❯ src/widgets/react/ActionButton.tsx:9:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  3 failed | 1 passed (4)
+      Tests  16 passed (16)
+   Start at  09:04:48
+   Duration  960ms (environment 48%, transform 30%, import 9%, setup 6%, tests 6%, worker 1%)
+
+JUNIT report written to <repo>/apps/client/test-output/vitest/junit.xml
+ HTML  Report is generated
+       You can run npx vite preview --outDir .vitest to see the test results.
+Error: ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL
+
+  × "pnpm recursive exec" failed in <repo>/apps/
+  │ client
+

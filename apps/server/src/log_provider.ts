@@ -21,6 +21,7 @@ const requestBlacklist = [
 
 export default class ServerLogService extends FileBasedLogService {
     private logFile: fs.WriteStream | undefined;
+    private retryLogFileAt = 0;
 
     constructor() {
         super();
@@ -41,8 +42,30 @@ export default class ServerLogService extends FileBasedLogService {
     }
 
     protected override openLogFile(fileName: string): void {
-        const logPath = path.join(dataDir.LOG_DIR, fileName);
-        this.logFile = fs.createWriteStream(logPath, { flags: "a" });
+        if (Date.now() < this.retryLogFileAt) return;
+        try {
+            const stream = fs.createWriteStream(path.join(dataDir.LOG_DIR, fileName), { flags: "a" });
+            this.logFile = stream;
+            this.retryLogFileAt = 0;
+            stream.on("error", (error) => {
+                // An old stream can fail while a rotation has already opened its replacement.
+                if (this.logFile === stream) {
+                    this.logFile = undefined;
+                    this.handleLogFileError(error);
+                }
+                stream.destroy();
+            });
+        } catch (error) {
+            this.logFile = undefined;
+            this.handleLogFileError(error);
+        }
+    }
+
+    private handleLogFileError(error: unknown): void {
+        this.retryLogFileAt = Date.now() + 30_000;
+        // Never feed an I/O failure back into the failed logger. Normal entries still echo
+        // to stdout, and the next write after the backoff tries the current day's file.
+        console.error("Unable to write the Trilium log file; retrying in 30 seconds.", error);
     }
 
     protected override closeLogFile(): void {
@@ -53,7 +76,15 @@ export default class ServerLogService extends FileBasedLogService {
     }
 
     protected override writeEntry(entry: string): void {
-        this.logFile?.write(entry);
+        if (!this.logFile && this.retryLogFileAt) this.openLogFile(this.getLogFileName());
+        try {
+            this.logFile?.write(entry);
+        } catch (error) {
+            const stream = this.logFile;
+            this.logFile = undefined;
+            this.handleLogFileError(error);
+            stream?.destroy();
+        }
     }
 
     protected override echoToConsole(str: string): void {

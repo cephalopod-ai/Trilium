@@ -9,6 +9,8 @@ If you experience an UI issue, the frontend may have entered an inconsistent sta
 
 If the issue persists or appears to be a backend problem, restart the entire application. For the desktop (Electron) build, simply close and reopen the window. If you're using a Docker build, restart the container.
 
+A panel that fails during rendering shows an error and a _Retry_ button. Retry redraws that panel; other mounted panels remain available. If retry also fails, reload the frontend and include the error details when reporting the problem.
+
 ## Reporting Bugs
 
 Reporting bugs is highly valuable. Here are some tips:

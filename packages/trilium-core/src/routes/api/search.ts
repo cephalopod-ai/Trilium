@@ -53,7 +53,7 @@ function searchAndExecute(req: Request<{ noteId: string }>) {
 
     const { searchResultNoteIds } = searchService.searchFromNote(note);
 
-    bulkActionService.executeActionsFromNote(note, searchResultNoteIds);
+    return bulkActionService.executeActionsFromNote(note, searchResultNoteIds);
 }
 
 /**

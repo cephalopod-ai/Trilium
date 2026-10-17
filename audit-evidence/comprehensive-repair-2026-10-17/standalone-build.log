@@ -1,0 +1,2050 @@
+$ cross-env NODE_OPTIONS=--max-old-space-size=4096 vite build
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.mts:20:26). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+vite v8.3.4 building client environment for production...
+transforming...
+[plugin rolldown:vite-resolve] Module "path" has been externalized for browser compatibility, imported by "<repo>/node_modules/mime-types/index.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "stream" has been externalized for browser compatibility, imported by "<repo>/node_modules/sax/lib/sax.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "timers" has been externalized for browser compatibility, imported by "<repo>/node_modules/xml2js/lib/parser.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "fs" has been externalized for browser compatibility, imported by "<repo>/node_modules/officeparser/dist/OfficeTemplate.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "fs" has been externalized for browser compatibility, imported by "<repo>/node_modules/officeparser/dist/OfficeParser.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "child_process" has been externalized for browser compatibility, imported by "<repo>/node_modules/officeparser/dist/generators/PdfGenerator.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "crypto" has been externalized for browser compatibility, imported by "<repo>/node_modules/officeparser/dist/crypto/ooxmlCrypto.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "url" has been externalized for browser compatibility, imported by "<repo>/node_modules/officeparser/dist/utils/moduleLoader.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "url" has been externalized for browser compatibility, imported by "<repo>/node_modules/officeparser/dist/parsers/PdfParser.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "crypto" has been externalized for browser compatibility, imported by "<repo>/node_modules/officeparser/dist/crypto/odfCrypto.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "bootstrap/scss/functions";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    ../../packages/share-theme/src/content/bootstrap.scss 4:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+5 │ @import "bootstrap/scss/variables";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+6 │ @import "bootstrap/scss/variables-dark";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    ../../packages/share-theme/src/content/bootstrap.scss 6:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+7 │ @import "bootstrap/scss/maps";
+  │         ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    ../../packages/share-theme/src/content/bootstrap.scss 7:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+8 │ @import "bootstrap/scss/mixins";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    ../../packages/share-theme/src/content/bootstrap.scss 8:9  root stylesheet
+
+[plugin rolldown:vite-resolve] Module "os" has been externalized for browser compatibility, imported by "<repo>/node_modules/officeparser/dist/parsers/pdf/pdfProcess.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "child_process" has been externalized for browser compatibility, imported by "<repo>/node_modules/officeparser/dist/parsers/pdf/pdfProcess.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($arg == "$value"): $value; else: $arg)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+58 │       $_args: append($_args, if($arg == "$key", $key, if($arg == "$value", $value, $arg)));
+   │                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 58:55    @import
+    ../../packages/share-theme/src/content/bootstrap.scss 4:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($arg == "$key"): $key; else: if($arg == "$value", $value, $arg))
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+58 │       $_args: append($_args, if($arg == "$key", $key, if($arg == "$value", $value, $arg)));
+   │                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 58:30    @import
+    ../../packages/share-theme/src/content/bootstrap.scss 4:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($l1 > $l2): divide($l1 + 0.05, $l2 + 0.05); else: divide($l2 + 0.05, $l1 + 0.05))
+
+More info: https://sass-lang.com/d/if-function
+
+    ╷
+177 │   @return if($l1 > $l2, divide($l1 + .05, $l2 + .05), divide($l2 + .05, $l1 + .05));
+    │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 177:11   @import
+    ../../packages/share-theme/src/content/bootstrap.scss 4:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass(divide($value, 255) < 0.04045): divide(divide($value, 255), 12.92); else: nth($_luminance-list, $value + 1))
+
+More info: https://sass-lang.com/d/if-function
+
+    ╷
+191 │     $value: if(divide($value, 255) < .04045, divide(divide($value, 255), 12.92), nth($_luminance-list, $value + 1));
+    │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 191:13   @import
+    ../../packages/share-theme/src/content/bootstrap.scss 4:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($weight > 0): shade-color($color, $weight); else: tint-color($color, -$weight))
+
+More info: https://sass-lang.com/d/if-function
+
+    ╷
+217 │   @return if($weight > 0, shade-color($color, $weight), tint-color($color, -$weight));
+    │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 217:11   @import
+    ../../packages/share-theme/src/content/bootstrap.scss 4:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.mix instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+207 │   @return mix(white, $color, $weight);
+    │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 207:11   tint-color()
+    ../../node_modules/bootstrap/scss/_variables.scss 79:12    @import
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.mix instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+212 │   @return mix(black, $color, $weight);
+    │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 212:11   shade-color()
+    ../../node_modules/bootstrap/scss/_variables.scss 84:12    @import
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.mix instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+    ╷
+342 │ $light-bg-subtle:         mix($gray-100, $white) !default;
+    │                           ^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    ../../node_modules/bootstrap/scss/_variables.scss 342:27   @import
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use math.unit instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+11 │     @if $prev-num == null or unit($num) == "%" or unit($prev-num) == "%" {
+   │                              ^^^^^^^^^^
+   ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 11:30    -assert-ascending()
+    ../../node_modules/bootstrap/scss/_variables.scss 494:1    @import
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use math.unit instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+11 │     @if $prev-num == null or unit($num) == "%" or unit($prev-num) == "%" {
+   │                                                   ^^^^^^^^^^^^^^^
+   ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 11:51    -assert-ascending()
+    ../../node_modules/bootstrap/scss/_variables.scss 494:1    @import
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: red() is deprecated. Suggestion:
+
+color.channel($color, "red", $space: rgb)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+185 │     "r": red($color),
+    │          ^^^^^^^^^^^
+    ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 185:10   luminance()
+    ../../node_modules/bootstrap/scss/_functions.scss 174:8    contrast-ratio()
+    ../../node_modules/bootstrap/scss/_functions.scss 159:22   color-contrast()
+    ../../node_modules/bootstrap/scss/_variables.scss 846:42   @import
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: green() is deprecated. Suggestion:
+
+color.channel($color, "green", $space: rgb)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+186 │     "g": green($color),
+    │          ^^^^^^^^^^^^^
+    ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 186:10   luminance()
+    ../../node_modules/bootstrap/scss/_functions.scss 174:8    contrast-ratio()
+    ../../node_modules/bootstrap/scss/_functions.scss 159:22   color-contrast()
+    ../../node_modules/bootstrap/scss/_variables.scss 846:42   @import
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: blue() is deprecated. Suggestion:
+
+color.channel($color, "blue", $space: rgb)
+
+More info: https://sass-lang.com/d/color-functions
+
+    ╷
+187 │     "b": blue($color)
+    │          ^^^^^^^^^^^^
+    ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 187:10   luminance()
+    ../../node_modules/bootstrap/scss/_functions.scss 174:8    contrast-ratio()
+    ../../node_modules/bootstrap/scss/_functions.scss 159:22   color-contrast()
+    ../../node_modules/bootstrap/scss/_variables.scss 846:42   @import
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: red() is deprecated. Suggestion:
+
+color.channel($color, "red", $space: rgb)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+37 │   @return red($value), green($value), blue($value);
+   │           ^^^^^^^^^^^
+   ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 37:11    to-rgb()
+    ../../node_modules/bootstrap/scss/_variables.scss 846:31   @import
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: green() is deprecated. Suggestion:
+
+color.channel($color, "green", $space: rgb)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+37 │   @return red($value), green($value), blue($value);
+   │                        ^^^^^^^^^^^^^
+   ╵
+    ../../node_modules/bootstrap/scss/_functions.scss 37:24    to-rgb()
+    ../../node_modules/bootstrap/scss/_variables.scss 846:31   @import
+    ../../packages/share-theme/src/content/bootstrap.scss 5:9  root stylesheet
+
+[EVAL] Use of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+    ╭─[ ../../packages/trilium-core/src/services/script.ts:89:10 ]
+    │
+ 89 │        return eval(`const apiContext = this;\r\n(${script}\r\n)()`);
+    │               ──┬─
+    │                 ╰─── Use of direct `eval` here.
+    │
+    │ Help: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+────╯
+
+[INEFFECTIVE_DYNAMIC_IMPORT] ../../packages/trilium-core/src/services/script.ts is dynamically imported by ../../packages/trilium-core/src/becca/entities/bnote.ts but also statically imported by ../../packages/trilium-core/src/index.ts, ../../packages/trilium-core/src/routes/api/script.ts, ../../packages/trilium-core/src/routes/custom.ts, ../../packages/trilium-core/src/services/bulk_actions.ts, ../../packages/trilium-core/src/services/handlers.ts, ..., dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] ../../packages/trilium-core/src/services/options_init.ts is dynamically imported by ../../packages/trilium-core/src/becca/becca_loader.ts, ../../packages/trilium-core/src/services/sql_init.ts but also statically imported by ../../packages/trilium-core/src/index.ts, ../../packages/trilium-core/src/services/options.ts, dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] ../../packages/trilium-core/src/services/sql_init.ts is dynamically imported by ../../packages/trilium-core/src/services/sql/index.ts but also statically imported by ../../packages/trilium-core/src/becca/becca_loader.ts, ../../packages/trilium-core/src/index.ts, ../../packages/trilium-core/src/routes/api/fonts.ts, ../../packages/trilium-core/src/routes/api/setup.ts, ../../packages/trilium-core/src/routes/api/sync.ts, ..., dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] ../../packages/trilium-core/src/becca/becca_loader.ts is dynamically imported by ../../packages/trilium-core/src/services/sql_init.ts but also statically imported by ../../packages/trilium-core/src/index.ts, ../../packages/trilium-core/src/migrations/0220__migrate_images_to_attachments.ts, ../../packages/trilium-core/src/migrations/0233__migrate_geo_map_to_collection.ts, ../../packages/trilium-core/src/migrations/0234__migrate_ai_chat_to_code.ts, ../../packages/trilium-core/src/migrations/0240__migrate_board_status_to_select.ts, ..., dynamic import will not move module into another chunk.
+
+WARNING: 155 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+✓ 6467 modules transformed.
+rendering chunks...
+[vite-plugin-static-copy] Copied 2 items.
+[vite-plugin-static-copy] Copied 121 items.
+[vite-plugin-static-copy] Copied 84 items.
+[vite-plugin-static-copy] Copied 14 items.
+[vite-plugin-static-copy] Copied 126 items.
+[vite-plugin-static-copy] Copied 234 items.
+computing gzip size...
+dist/share/assets/scripts.js                                               0.03 kB
+dist/assets/empty-Cb7pBNdN.js                                              0.08 kB
+dist/assets/__vite-browser-external-B-9uoaPj.js                            0.10 kB
+dist/assets/plaintext-YB8mb-y7.js                                          0.10 kB
+dist/assets/__vite-optional-peer-dep_pdf-lib_officeparser-BdItHXbL.js      0.17 kB
+dist/assets/zip_provider-D23qfrb0.js                                       0.18 kB
+dist/assets/erb-DptdJbGO.js                                                0.18 kB
+dist/assets/sqlite3-worker1-C-290BOg.js                                    0.22 kB
+dist/assets/0241__drop_clipper_globe_icon-oCkq-jP5.js                      0.29 kB
+dist/assets/0234__migrate_ai_chat_to_code-C1H-FJcQ.js                      0.30 kB
+dist/assets/markdown-CxP4TajC.js                                           0.30 kB
+dist/assets/ebnf-BmerogBf.js                                               0.36 kB
+dist/assets/dockerfile-C0zufGsU.js                                         0.40 kB
+dist/assets/brainfuck-CkSV9Luo.js                                          0.41 kB
+dist/assets/0242__repair_metadata_columns-kZBsAwsW.js                      0.49 kB
+dist/assets/0220__migrate_images_to_attachments-D13ZWCtz.js                0.50 kB
+dist/assets/properties-C_5_0OWv.js                                         0.53 kB
+dist/assets/backup_provider-BRxwhSHv.js                                    0.54 kB
+dist/assets/0239__disable_totp_when_mfa_was_turned_off-DkiN-gkq.js         0.56 kB
+dist/assets/image_provider-DQcuxfwi.js                                     0.56 kB
+dist/assets/platform_provider-mWCzi51E.js                                  0.57 kB
+dist/assets/diff-BhdZizse.js                                               0.58 kB
+dist/assets/json-B2jsaOQ3.js                                               0.58 kB
+dist/assets/cls_provider-B7OPwHI5.js                                       0.59 kB
+dist/assets/en-m1k4xUs8.js                                                 0.59 kB
+dist/assets/smalltalk-DSQwiuj1.js                                          0.60 kB
+dist/assets/kdl-BfX7czKs.js                                                0.61 kB
+dist/assets/0233__migrate_geo_map_to_collection-Bngj64qX.js                0.62 kB
+dist/assets/parse_from_csv-CIybdErS.js                                     0.65 kB
+dist/assets/protobuf-DGOW1qT8.js                                           0.67 kB
+dist/assets/route_paths-_0mBv-ym.js                                        0.72 kB
+dist/assets/dylan-Ces2ajEG.js                                              0.78 kB
+dist/assets/terraform-DAB1qFgk.js                                          0.79 kB
+dist/assets/http-DdjbPXam.js                                               0.80 kB
+dist/assets/setup_marker-BD_Cqbnr.js                                       0.80 kB
+dist/assets/gherkin-rwiNOa74.js                                            0.86 kB
+dist/assets/ini-B1CroMsf.js                                                0.92 kB
+dist/assets/haml-lM-YLvZH.js                                               1.05 kB
+dist/assets/skills-C50OEPOI.js                                             1.10 kB
+dist/assets/sml-Bqj0DVIt.js                                                1.11 kB
+dist/assets/lisp-RAPfxQzG.js                                               1.12 kB
+dist/assets/q-B3koHNzP.js                                                  1.12 kB
+dist/assets/elm-BOkolQqs.js                                                1.14 kB
+dist/assets/tr-C-etjUUL.js                                                 1.17 kB
+dist/assets/id-tRp0sxzs.js                                                 1.17 kB
+dist/assets/ro-BKA9YMHz.js                                                 1.18 kB
+dist/assets/dos-CkzhKpTD.js                                                1.18 kB
+dist/assets/it-BmZ0pi5Z.js                                                 1.18 kB
+dist/assets/es-268sYb8X.js                                                 1.21 kB
+dist/assets/ocaml-B-P1Uyq8.js                                              1.21 kB
+dist/assets/fr-DRZ1lpuF.js                                                 1.22 kB
+dist/assets/pt-br-BjuRzL7-.js                                              1.24 kB
+dist/assets/en-gb-X68MEQN_.js                                              1.25 kB
+dist/assets/ga-BhVHeWnw.js                                                 1.25 kB
+dist/assets/messaging_provider-B4cvUPy5.js                                 1.25 kB
+dist/assets/pt-BgIOToYo.js                                                 1.25 kB
+dist/assets/ja-wrVJgJbd.js                                                 1.30 kB
+dist/assets/ko-CoD7--iw.js                                                 1.33 kB
+dist/assets/vi-_hyGCQcN.js                                                 1.34 kB
+dist/assets/go-CYstVVJV.js                                                 1.44 kB
+dist/assets/zh-tw-rHjktuGU.js                                              1.46 kB
+dist/assets/de-C3MeV26K.js                                                 1.47 kB
+dist/assets/nim-CIjAYzi8.js                                                1.47 kB
+dist/assets/nginx-B1pH5dXO.js                                              1.49 kB
+dist/assets/zh-cn-B1mi8iQX.js                                              1.50 kB
+dist/assets/vbscript-BEcnabyT.js                                           1.58 kB
+dist/assets/src-Byzg58Wr.js                                                1.64 kB
+dist/assets/tcl-jTbWtEMB.js                                                1.68 kB
+dist/assets/openai-CgLQc72G.js                                             1.69 kB
+dist/assets/hi-BOVVw_cb.js                                                 1.69 kB
+dist/assets/pl-BD4AdbGz.js                                                 1.69 kB
+dist/assets/vhdl-CBExTSm4.js                                               1.71 kB
+dist/assets/rpm-specfile-2DY80MPK.js                                       1.72 kB
+dist/assets/cs-Bk-foa4g.js                                                 1.74 kB
+dist/assets/django-Dxj7e8BX.js                                             1.74 kB
+dist/assets/ar-CqDWQztB.js                                                 1.76 kB
+dist/assets/request-BWo6WHUB.js                                            1.77 kB
+dist/assets/cypher-CQV5Z9Tp.js                                             1.80 kB
+dist/assets/0216__move_content_into_blobs-D_25Rbnf.js                      1.82 kB
+dist/assets/yaml-DjOhhVLG.js                                               1.83 kB
+dist/assets/xml-COl5yFSC.js                                                1.86 kB
+dist/assets/lua-1dXYaL-H.js                                                1.88 kB
+dist/assets/request_provider-c8hxRZh-.js                                   1.88 kB
+dist/assets/groovy-DooJTrjr.js                                             1.96 kB
+dist/assets/scala-C9lP4FWY.js                                              2.04 kB
+dist/assets/markdown-D6FrnlqJ.js                                           2.08 kB
+dist/assets/delphi-BBrq2NNZ.js                                             2.09 kB
+dist/assets/haxe-qGz9CBa_.js                                               2.10 kB
+dist/assets/haskell-DUkhXIda.js                                            2.13 kB
+dist/assets/image_inspect-Dd_62Vs5.js                                      2.14 kB
+dist/assets/twig-XiECWmVT.js                                               2.21 kB
+dist/assets/security_settings-DlOk8cC7.js                                  2.26 kB
+dist/assets/uk-DQyxPGWQ.js                                                 2.26 kB
+dist/assets/dart-J8B5SPwa.js                                               2.32 kB
+dist/assets/ru-CA2p_XpS.js                                                 2.34 kB
+dist/assets/elixir-B0Uhr6Wm.js                                             2.39 kB
+dist/assets/mipsasm-CElFSg8P.js                                            2.42 kB
+dist/assets/d-CXnZM-Nf.js                                                  2.42 kB
+dist/assets/erlang-BjYI8dhz.js                                             2.47 kB
+dist/assets/cmake-CgP6gB4W.js                                              2.48 kB
+dist/assets/icon-color-C-NfXqOj.js                                         2.60 kB
+dist/assets/ttcn3-wg1DAnJo.js                                              2.61 kB
+dist/assets/vbnet-BiMsFFN_.js                                              2.61 kB
+dist/assets/objectivec-C3Sm-y0Z.js                                         2.61 kB
+dist/assets/backup-download-DurQCAWI.js                                    2.65 kB
+dist/assets/java-hadZU9j1.js                                               2.73 kB
+dist/assets/rust-PilKO08d.js                                               2.75 kB
+dist/assets/coffeescript-BOCawkiF.js                                       2.83 kB
+dist/assets/bridged_request_provider-BJuUllrW.js                           2.86 kB
+dist/assets/bash-Bh8-jXQQ.js                                               2.86 kB
+dist/assets/r-DNWPCnjT.js                                                  2.90 kB
+dist/assets/html-CANfRuG1.js                                               2.92 kB
+dist/share/assets/tree.js                                                  2.94 kB
+dist/src/tree.js                                                           2.94 kB
+dist/assets/log_provider-k8x3lwF0.js                                       3.00 kB
+dist/assets/llm-DV-bAnkg.js                                                3.13 kB
+dist/assets/nix-CPccytYV.js                                                3.16 kB
+dist/assets/livescript-6evLt_jL.js                                         3.20 kB
+dist/assets/scheme-BXgVOBG5.js                                             3.27 kB
+dist/assets/kotlin-DgSK8bu-.js                                             3.32 kB
+dist/assets/python-Bd0ZoXW2.js                                             3.35 kB
+dist/assets/latex-ifxXhTOO.js                                              3.40 kB
+dist/assets/0240__migrate_board_status_to_select-CqiDXTAk.js               3.41 kB
+dist/assets/julia-YW2bOFH8.js                                              3.52 kB
+dist/assets/crystal-DyGSoxxU.js                                            3.58 kB
+dist/assets/ruby-BYb_wwBz.js                                               3.80 kB
+dist/assets/sas-BmB49Sd3.js                                                3.91 kB
+dist/assets/csharp-ydzT-3WP.js                                             3.92 kB
+dist/assets/fsharp-TnUO3Qg3.js                                             3.97 kB
+dist/assets/cobol-B2LjW4vk.js                                              4.00 kB
+dist/assets/local-Dg5xDzfg.js                                              4.01 kB
+dist/assets/database_restore-CfYp6qnP.js                                   4.06 kB
+dist/assets/puppet-DEWZKVv3.js                                             4.07 kB
+dist/assets/clojure-CR7dvLJ4.js                                            4.13 kB
+dist/assets/perl-a1xgDmtd.js                                               4.21 kB
+dist/assets/powershell-BUe16zE4.js                                         4.35 kB
+dist/assets/c-CvWfJNou.js                                                  4.56 kB
+dist/assets/chat-roH2n7vu.js                                               4.61 kB
+dist/assets/abap-B8bu2zVF.js                                               4.70 kB
+dist/assets/fortran-78Y4-ED1.js                                            4.79 kB
+dist/src/KaTeX_Size4-Regular-Dl5lxZxV.woff2                                4.92 kB
+dist/assets/verilog-D1zyG95I.js                                            5.13 kB
+dist/src/KaTeX_Size2-Regular-Dy4dx90m.woff2                                5.20 kB
+dist/assets/xquery-DEE0Ciil.js                                             5.31 kB
+dist/src/KaTeX_Size1-Regular-mCD8mA8B.woff2                                5.46 kB
+dist/assets/sql-gB-ldsDX.js                                                5.60 kB
+dist/assets/cpp-D1KCbSrK.js                                                5.62 kB
+dist/assets/zip_export_provider_factory-CGYpD39x.js                        6.00 kB
+dist/assets/nsis-CkfgFHG8.js                                               6.09 kB
+dist/assets/php-Bbj7VlYY.js                                                6.13 kB
+dist/index.html                                                            6.34 kB │ gzip:     2.46 kB
+dist/assets/javascript-Bs6aZFVt.js                                         6.35 kB
+dist/assets/render_to_xlsx-gj366wcj.js                                     6.50 kB
+dist/src/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2                          6.90 kB
+dist/src/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2                             6.91 kB
+dist/assets/translation_provider-BXuWkZY9.js                               7.03 kB
+dist/assets/mirc-CtPKzlTI.js                                               7.51 kB
+dist/assets/typescript-pZKPY75l.js                                         7.60 kB
+dist/assets/swift-D0dFRBDa.js                                              8.08 kB
+dist/assets/local-server-worker-w4T4VqLt.js                                8.22 kB
+dist/assets/schema-BQnz4Y61.js                                             8.71 kB
+dist/assets/dayjs.min-DB4QV0Qw.js                                          9.21 kB
+dist/src/KaTeX_Script-Regular-D3wIWfF6.woff2                               9.64 kB
+dist/src/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2                           10.34 kB
+dist/assets/browser_routes-CTk1FaYS.js                                    10.71 kB
+dist/src/KaTeX_Fraktur-Regular-CTYiF6lA.woff2                             11.31 kB
+dist/src/KaTeX_Fraktur-Bold-CL6g_b3V.woff2                                11.34 kB
+dist/assets/parse_from_xlsx-C6vQ-k2S.js                                   11.37 kB
+dist/src/KaTeX_SansSerif-Italic-C3H0VqGB.woff2                            12.02 kB
+dist/assets/css-wYWNlWu-.js                                               12.12 kB
+dist/src/KaTeX_SansSerif-Bold-D1sUS0GD.woff2                              12.21 kB
+dist/assets/stylus-BrdrCq2o.js                                            12.53 kB
+dist/assets/less-DQPYwrP7.js                                              13.15 kB
+dist/assets/scss-D9Xx-aur.js                                              13.22 kB
+dist/assets/share_provider-BkkG8qmk.js                                    13.46 kB
+dist/src/KaTeX_Typewriter-Regular-CO6r4hn1.woff2                          13.56 kB
+dist/assets/zip-MSNhoKNq.js                                               16.24 kB
+dist/src/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2                             16.40 kB
+dist/src/KaTeX_Math-Italic-t53AETM-.woff2                                 16.44 kB
+dist/src/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2                             16.78 kB
+dist/src/KaTeX_Main-Italic-NWA7e6Wa.woff2                                 16.98 kB
+dist/assets/zip_provider-D8EfPDc-.js                                      17.60 kB
+dist/src/Assistant-SemiBold-SCI4bEL9.woff2                                20.21 kB
+dist/src/Assistant-Regular-DVxZuzxb.woff2                                 20.23 kB
+dist/src/Assistant-Medium-DrcxCXg3.woff2                                  20.32 kB
+dist/src/Assistant-Bold-gm-uSS1B.woff2                                    20.38 kB
+dist/assets/deepseek-j9bSoiXx.js                                          24.39 kB
+dist/assets/experimental-decision-BTslmhrK.js                             24.75 kB
+dist/src/KaTeX_Main-Bold-Cx986IdX.woff2                                   25.32 kB
+dist/src/KaTeX_Main-Regular-B22Nviop.woff2                                26.27 kB
+dist/src/KaTeX_AMS-Regular-BQhdFMY1.woff2                                 28.07 kB
+dist/assets/llm_skills-OHzGx3ig.js                                        39.46 kB
+dist/assets/src-ieNavfaD.js                                               43.48 kB
+dist/assets/web-CzWexYan.js                                               43.70 kB
+dist/src/JetBrainsMono-Light-BL81f-mh.woff2                               59.11 kB
+dist/assets/render_to_html-BImQaz5b.js                                    62.76 kB
+dist/assets/source-OA1fVCUz.js                                            64.25 kB
+dist/assets/in_app_help_provider-CqFgTmCm.js                              86.33 kB
+dist/src/share_theme.json                                                 90.48 kB │ gzip:    19.54 kB
+dist/assets/share-BGkrwhDL.js                                             93.66 kB
+dist/assets/crypto_provider-D6RUS7Gv.js                                   95.98 kB
+dist/assets/mathematica-B4C1kURJ.js                                      109.87 kB
+dist/assets/share_theme-pq4xR94M.js                                      124.79 kB
+dist/assets/anthropic-iRYVWDx4.js                                        126.34 kB
+dist/assets/google-Jg76n7Ws.js                                           145.99 kB
+dist/assets/dist-Cv943MzB.js                                             177.43 kB
+dist/assets/sql_provider-DbvDL-Qf.js                                     200.42 kB
+dist/assets/tools-BHvS89AH.js                                            201.63 kB
+dist/assets/src-BNeJaWNn.js                                              259.63 kB
+dist/assets/base_provider-JwmYAwPz.js                                    263.87 kB
+dist/src/Inter-VariableFont_opsz_wght-BrXsWJWV.woff2                     349.43 kB
+dist/src/en-BBCtHYvz.json                                                428.22 kB │ gzip:    72.07 kB
+dist/assets/maplibre-gl-worker-B-SVrDfv.js                               507.99 kB
+dist/assets/exceljs_augmentation-DDZU7hOI.js                             931.60 kB
+dist/assets/officeparser_entry-CVXu2Fwo.js                             1,005.84 kB
+dist/assets/abstract_provider-9Q0ffSsc.js                              1,575.05 kB
+dist/src/ChatPreview-D9nEKyG2.css                                          0.03 kB │ gzip:     0.05 kB
+dist/src/react_utils-suOZGCOK.css                                          0.03 kB │ gzip:     0.05 kB
+dist/share/assets/scripts.css                                              0.03 kB │ gzip:     0.05 kB
+dist/src/Button-D7vka9XA.css                                               0.04 kB │ gzip:     0.06 kB
+dist/src/Book-CG4TjD5X.css                                                 0.05 kB │ gzip:     0.07 kB
+dist/src/markdown_import-CGtbzFgj.css                                      0.06 kB │ gzip:     0.08 kB
+dist/src/DatabaseFileBadges-Bac5cg6o.css                                   0.06 kB │ gzip:     0.08 kB
+dist/src/NoteMap-DbjLvv7s.css                                              0.06 kB │ gzip:     0.08 kB
+dist/src/CodeEmbed-MDVZrP0I.css                                            0.07 kB │ gzip:     0.07 kB
+dist/src/icon_glyphs-ZPLhje_K.css                                          0.07 kB │ gzip:     0.08 kB
+dist/src/Render-Dw6bjCaj.css                                               0.08 kB │ gzip:     0.08 kB
+dist/src/TextEmbedEditor-DSARjgB4.css                                      0.09 kB │ gzip:     0.09 kB
+dist/src/NoteLink-Cmg1A7kK.css                                             0.10 kB │ gzip:     0.08 kB
+dist/src/BlobStub-B9cSqPSY.css                                             0.10 kB │ gzip:     0.10 kB
+dist/src/presentation-m0aNYu2Q.css                                         0.11 kB │ gzip:     0.10 kB
+dist/src/Image-CZkGFrO2.css                                                0.13 kB │ gzip:     0.10 kB
+dist/src/IconPack-Vng7oufD.css                                             0.13 kB │ gzip:     0.10 kB
+dist/src/Modal-B2OINckH.css                                                0.15 kB │ gzip:     0.11 kB
+dist/src/lightbox-EYgfNlun.css                                             0.16 kB │ gzip:     0.12 kB
+dist/src/info-C7sPUAvR.css                                                 0.17 kB │ gzip:     0.12 kB
+dist/src/SiblingNavigator-DMKHOSK8.css                                     0.17 kB │ gzip:     0.13 kB
+dist/src/ProtectedSession-INMQmK43.css                                     0.17 kB │ gzip:     0.13 kB
+dist/src/IconPackPreview-X79h0_rx.css                                      0.17 kB │ gzip:     0.14 kB
+dist/src/confirm-BZgDW73C.css                                              0.18 kB │ gzip:     0.15 kB
+dist/src/set_password-D8ETttLz.css                                         0.21 kB │ gzip:     0.14 kB
+dist/src/zoom_pan_keyboard-CnKbc7Fy.css                                    0.21 kB │ gzip:     0.16 kB
+dist/src/SegmentedChoice-CCaMzynz.css                                      0.21 kB │ gzip:     0.15 kB
+dist/src/LlmChat-C61uagcp.css                                              0.24 kB │ gzip:     0.16 kB
+dist/src/WebView-BCa91S-E.css                                              0.25 kB │ gzip:     0.15 kB
+dist/src/Mermaid-AZrskCCO.css                                              0.30 kB │ gzip:     0.20 kB
+dist/src/code_mime_types_list-CzOBiavx.css                                 0.32 kB │ gzip:     0.20 kB
+dist/src/SetupForm-e1BmkvK-.css                                            0.33 kB │ gzip:     0.20 kB
+dist/src/MaskedIcon-DfBTAU-q.css                                           0.33 kB │ gzip:     0.16 kB
+dist/src/editing-D5ArUfXx.css                                              0.37 kB │ gzip:     0.20 kB
+dist/src/OptionsSection-BLJ_-SD6.css                                       0.37 kB │ gzip:     0.18 kB
+dist/src/NoteMap-Cuc4aeJH.css                                              0.39 kB │ gzip:     0.23 kB
+dist/src/SidebarHelp-B8tQ41x4.css                                          0.39 kB │ gzip:     0.22 kB
+dist/src/NoItems-BZO7nv01.css                                              0.40 kB │ gzip:     0.24 kB
+dist/src/export-Dr_e5r8m.css                                               0.41 kB │ gzip:     0.20 kB
+dist/src/SettingsSearch-CMMOWlDU.css                                       0.43 kB │ gzip:     0.21 kB
+dist/src/NoteList-xSzBouqX.css                                             0.43 kB │ gzip:     0.21 kB
+dist/src/TablePrintView-CrbzORFv.css                                       0.49 kB │ gzip:     0.18 kB
+dist/src/branch_prefix-De4Zoeb-.css                                        0.50 kB │ gzip:     0.24 kB
+dist/src/delete_notes-6V_S1Sp1.css                                         0.54 kB │ gzip:     0.26 kB
+dist/src/tool_call_details-DzuO6iHa.css                                    0.55 kB │ gzip:     0.21 kB
+dist/src/TabStrip-CQEcFPfx.css                                             0.55 kB │ gzip:     0.28 kB
+dist/src/data-CFHHACg9.css                                                 0.59 kB │ gzip:     0.33 kB
+dist/src/TemplateDropdown-CqKzubxw.css                                     0.59 kB │ gzip:     0.29 kB
+dist/src/bulk_actions-ByMVunC8.css                                         0.61 kB │ gzip:     0.26 kB
+dist/src/TemplateSelectionCard-DIt8Y4ov.css                                0.62 kB │ gzip:     0.23 kB
+dist/src/RenderErrorCard-CbovxcnF.css                                      0.64 kB │ gzip:     0.28 kB
+dist/src/shortcut_hint_button-CsPLfIoc.css                                 0.65 kB │ gzip:     0.30 kB
+dist/src/ocr_text-BU-JSQI6.css                                             0.65 kB │ gzip:     0.30 kB
+dist/src/Collapsible-Db86WodX.css                                          0.66 kB │ gzip:     0.26 kB
+dist/src/sort_child_notes-B7LPEj2_.css                                     0.69 kB │ gzip:     0.21 kB
+dist/src/footnotes-BedJhV-j.css                                            0.70 kB │ gzip:     0.30 kB
+dist/src/note_view-B7yYvxH5.css                                            0.72 kB │ gzip:     0.29 kB
+dist/src/NoteDetail-DxsU5W4V.css                                           0.73 kB │ gzip:     0.34 kB
+dist/src/MarkdownCommons-BFGqoXYW.css                                      0.73 kB │ gzip:     0.23 kB
+dist/src/hooks-CfifXjTi.css                                                0.74 kB │ gzip:     0.32 kB
+dist/src/CollectionProperties-DoRVgJF-.css                                 0.78 kB │ gzip:     0.37 kB
+dist/src/Admonition-PXKN4APS.css                                           0.80 kB │ gzip:     0.31 kB
+dist/src/GhostPopover-B2-bT0S6.css                                         0.82 kB │ gzip:     0.30 kB
+dist/src/live_print-6OrkPTSL.css                                           0.82 kB │ gzip:     0.26 kB
+dist/src/Doc-DfbY2Chw.css                                                  0.86 kB │ gzip:     0.35 kB
+dist/src/login-Esazbxzr.css                                                0.87 kB │ gzip:     0.29 kB
+dist/src/block_reference_read_only-CAQCcgc2.css                            0.89 kB │ gzip:     0.24 kB
+dist/src/scroll_fade-tv1NQu4O.css                                          0.98 kB │ gzip:     0.32 kB
+dist/src/TreePopupEditor-CcsU8_A_.css                                      0.98 kB │ gzip:     0.33 kB
+dist/src/CodeBlock-gDed6_jV.css                                            1.00 kB │ gzip:     0.48 kB
+dist/src/NoteMap-CCsPxhNX.css                                              1.01 kB │ gzip:     0.41 kB
+dist/src/ImageViewer-B943DiY1.css                                          1.03 kB │ gzip:     0.39 kB
+dist/src/OptionsRow-BXH6l8_c.css                                           1.14 kB │ gzip:     0.45 kB
+dist/src/SelectableCard-F4uBGgMB.css                                       1.15 kB │ gzip:     0.43 kB
+dist/src/PromotedAttributes-DC8q2AFA.css                                   1.18 kB │ gzip:     0.43 kB
+dist/src/Markdown-B6gnkHfn.css                                             1.35 kB │ gzip:     0.47 kB
+dist/src/FormAutocomplete-CfxqCHyz.css                                     1.37 kB │ gzip:     0.52 kB
+dist/src/SidebarChat-vBLsx1Ej.css                                          1.37 kB │ gzip:     0.47 kB
+dist/src/EventDatesEditor-DxO-4rn-.css                                     1.42 kB │ gzip:     0.44 kB
+dist/src/OverlayToolbar-CQHw1Po3.css                                       1.44 kB │ gzip:     0.48 kB
+dist/src/Code-D8T1-i2U.css                                                 1.44 kB │ gzip:     0.50 kB
+dist/src/print_preview-cmEy06Xe.css                                        1.45 kB │ gzip:     0.46 kB
+dist/src/table-Dc3IX82O.css                                                1.50 kB │ gzip:     0.58 kB
+dist/src/Empty-CIvjgo7h.css                                                1.58 kB │ gzip:     0.57 kB
+dist/src/OverlayPanel-CAKihMjT.css                                         1.63 kB │ gzip:     0.59 kB
+dist/src/search_field_editor-BsoP0v2N.css                                  1.72 kB │ gzip:     0.60 kB
+dist/src/note_card-Btrq6f7i.css                                            1.75 kB │ gzip:     0.41 kB
+dist/src/values_input-R6y2ygwM.css                                         1.76 kB │ gzip:     0.58 kB
+dist/src/i18n-CAMHLqFA.css                                                 1.76 kB │ gzip:     0.65 kB
+dist/src/image_compression_dialog-Dv6sENdT.css                             1.90 kB │ gzip:     0.61 kB
+dist/src/TranscriptView-DCU6pzkG.css                                       1.94 kB │ gzip:     0.68 kB
+dist/src/SqlConsole-Dx4SKNCc.css                                           1.95 kB │ gzip:     0.53 kB
+dist/src/Slider-BniXXl4X.css                                               1.99 kB │ gzip:     0.50 kB
+dist/src/AddProviderModal-DnehADwY.css                                     2.00 kB │ gzip:     0.62 kB
+dist/src/multicolumn-Ef6VWmxO.css                                          2.07 kB │ gzip:     0.54 kB
+dist/src/note_attributes-CoqP4sUa.css                                      2.18 kB │ gzip:     0.66 kB
+dist/src/EmbeddedNotePane-dhITeqqI.css                                     2.26 kB │ gzip:     0.65 kB
+dist/src/EventPopover-DMivgWvW.css                                         2.30 kB │ gzip:     0.70 kB
+dist/src/local-bridge-DM_A8gcz.css                                         2.31 kB │ gzip:     0.86 kB
+dist/src/EditableText-fpo690CR.css                                         2.60 kB │ gzip:     0.55 kB
+dist/src/jump_to_note-nCzbkIdt.css                                         2.71 kB │ gzip:     0.80 kB
+dist/src/NoteBadges-BAKWpkmR.css                                           2.73 kB │ gzip:     0.76 kB
+dist/src/Badge-CoHpjdEE.css                                                2.76 kB │ gzip:     0.77 kB
+dist/src/ReadOnlyText-Cb145nXs.css                                         2.86 kB │ gzip:     0.65 kB
+dist/src/TitleRow-CC3YqlLF.css                                             2.91 kB │ gzip:     0.81 kB
+dist/src/attribute_detail-CTS_BXWX.css                                     3.16 kB │ gzip:     0.99 kB
+dist/src/Popover-Bh97p6li.css                                              3.18 kB │ gzip:     0.68 kB
+dist/src/SplitEditor-C9YIwZHq.css                                          3.23 kB │ gzip:     0.77 kB
+dist/src/ColorPicker-DWFGnfAd.css                                          3.44 kB │ gzip:     1.86 kB
+dist/src/IconPicker-NowRIkla.css                                           3.46 kB │ gzip:     1.05 kB
+dist/src/item_picker-B1LXkk-S.css                                          3.47 kB │ gzip:     0.88 kB
+dist/src/label_value_input-D2Tap9Dr.css                                    3.73 kB │ gzip:     1.18 kB
+dist/src/SortableCard-DVuZPwT3.css                                         3.90 kB │ gzip:     0.98 kB
+dist/src/tabs-BP55TRWH.css                                                 3.97 kB │ gzip:     0.84 kB
+dist/src/MediaPreview-Bo7oXdFi.css                                         4.16 kB │ gzip:     1.06 kB
+dist/src/OverlayControlGroup-C3VbSnVh.css                                  4.36 kB │ gzip:     0.84 kB
+dist/src/import_dialog-Bsoe3o1M.css                                        4.39 kB │ gzip:     1.10 kB
+dist/src/CanvasDrawing-BUpGt4aK.css                                        4.40 kB │ gzip:     1.28 kB
+dist/src/File-CqbZUziz.css                                                 4.71 kB │ gzip:     1.24 kB
+dist/src/setup-CB5xemPm.css                                                4.78 kB │ gzip:     1.05 kB
+dist/src/NoteAutocomplete-GEqLSeJD.css                                     4.86 kB │ gzip:     1.38 kB
+dist/src/revisions-Bvrnjb1J.css                                            4.88 kB │ gzip:     1.12 kB
+dist/src/src-Dv7-3FzG.css                                                  4.96 kB │ gzip:     1.18 kB
+dist/src/RelationMap-_plR-g8M.css                                          5.18 kB │ gzip:     1.35 kB
+dist/src/AttributeList-nsdvRSpN.css                                        5.57 kB │ gzip:     1.22 kB
+dist/src/note_tree-C3WvzhlM.css                                            5.60 kB │ gzip:     1.54 kB
+dist/src/OptionsDialog-CwE3q9cc.css                                        5.73 kB │ gzip:     1.23 kB
+dist/src/mobile_layout-BecBIZ6N.css                                        6.00 kB │ gzip:     1.52 kB
+dist/src/Attachment-CDEc-cIE.css                                           6.10 kB │ gzip:     1.44 kB
+dist/src/Card-yM4g_qFa.css                                                 6.98 kB │ gzip:     1.71 kB
+dist/src/app_context-C9yJiFZD.css                                          7.24 kB │ gzip:     1.86 kB
+dist/src/dashboard-ByQ98EeU.css                                            9.19 kB │ gzip:     2.02 kB
+dist/src/SetupPage-DsvdRWW-.css                                            9.24 kB │ gzip:     2.10 kB
+dist/src/todo_lists-DQ1JgDHT.css                                           9.97 kB │ gzip:     2.03 kB
+dist/src/useLlmChat-Bjd3qexY.css                                          10.21 kB │ gzip:     2.33 kB
+dist/src/print-Bf2y2J3l.css                                               11.81 kB │ gzip:     2.86 kB
+dist/src/ListOrGridView-xo0w5NvP.css                                      12.34 kB │ gzip:     2.46 kB
+dist/src/desktop_layout-DkRUW00i.css                                      13.32 kB │ gzip:     2.79 kB
+dist/src/ChatMessage-cay2BhbS.css                                         13.58 kB │ gzip:     2.99 kB
+dist/src/Menu-d28dtrL0.css                                                14.31 kB │ gzip:     2.96 kB
+dist/src/about-DUge1Kj3.css                                               14.54 kB │ gzip:     3.44 kB
+dist/src/ck-content-C9OAc5Dg.css                                          16.44 kB │ gzip:     3.03 kB
+dist/src/calendar-FX04ujTx.css                                            19.50 kB │ gzip:     4.27 kB
+dist/src/math-CE1RhIeZ.css                                                27.15 kB │ gzip:     7.48 kB
+dist/src/MindMap-DhJtCMkl.css                                             27.22 kB │ gzip:     5.75 kB
+dist/src/tabulator-CSsg0U7d.css                                           34.38 kB │ gzip:     4.79 kB
+dist/src/ContentWidget-A3sqS6rN.css                                       34.77 kB │ gzip:     6.59 kB
+dist/src/board-Bx2dTXQB.css                                               34.83 kB │ gzip:     5.86 kB
+dist/src/layout_commons-Dkc5KO0D.css                                      50.51 kB │ gzip:     9.12 kB
+dist/src/app_globals-spd1n0TO.css                                         52.81 kB │ gzip:     9.43 kB
+dist/src/src-Mwh94p6p.css                                                 73.51 kB │ gzip:    17.19 kB
+dist/src/geomap-LagiAfKZ.css                                              94.62 kB │ gzip:    13.05 kB
+dist/src/scripts.css                                                     106.04 kB │ gzip:    22.62 kB
+dist/src/Spreadsheet-DvUpKSv-.css                                        129.61 kB │ gzip:    19.30 kB
+dist/src/Canvas-C5cWeoxy.css                                             142.55 kB │ gzip:    22.49 kB
+dist/src/bootstrap-Cz5YPQsD.css                                          230.01 kB │ gzip:    30.67 kB
+dist/src/bootstrap.rtl-Cd5X6DXj.css                                      230.02 kB │ gzip:    30.68 kB
+dist/src/src-CKBwKoga.css                                                324.62 kB │ gzip:    52.98 kB
+dist/src/mhchem-DmkmUE_6.js                                                0.02 kB │ gzip:     0.04 kB
+dist/src/univer_hyphenation_pattern-DOwCrGXH.js                            0.03 kB │ gzip:     0.05 kB
+dist/src/ck-content-B_b_pkjf.js                                            0.03 kB │ gzip:     0.03 kB
+dist/src/multicolumn-DShJ7281.js                                           0.03 kB │ gzip:     0.03 kB
+dist/src/local-bridge-DDJ3ogpA.js                                          0.03 kB │ gzip:     0.05 kB
+dist/src/dist-c01fgMBL.js                                                  0.04 kB │ gzip:     0.06 kB
+dist/src/dist-CdmEisP0.js                                                  0.04 kB │ gzip:     0.06 kB
+dist/src/Menu-Dlxv5bcd.js                                                  0.04 kB │ gzip:     0.06 kB
+dist/src/froca-D4gN-nCk.js                                                 0.04 kB │ gzip:     0.06 kB
+dist/src/toast-BmDXdZES.js                                                 0.04 kB │ gzip:     0.06 kB
+dist/src/search-C0OIE_TR.js                                                0.04 kB │ gzip:     0.06 kB
+dist/src/server-CoAJr4Ol.js                                                0.04 kB │ gzip:     0.06 kB
+dist/src/NoteMap-Djg-TI59.js                                               0.04 kB │ gzip:     0.06 kB
+dist/src/dist-C0G69etG.js                                                  0.04 kB │ gzip:     0.06 kB
+dist/src/options-BYQ7mFbV.js                                               0.04 kB │ gzip:     0.06 kB
+dist/src/daygrid-CSN_OKyV.js                                               0.04 kB │ gzip:     0.06 kB
+dist/src/javascript-C8q4ZItq.js                                            0.05 kB │ gzip:     0.07 kB
+dist/src/auto-render-BCaD_ZvL.js                                           0.05 kB │ gzip:     0.07 kB
+dist/src/MediaPreview-DEdXW95d.js                                          0.05 kB │ gzip:     0.07 kB
+dist/src/bundle-BDMN-8u8.js                                                0.05 kB │ gzip:     0.07 kB
+dist/src/dialog-CIIcwx9m.js                                                0.05 kB │ gzip:     0.07 kB
+dist/src/mermaid.core-DQ8NU7o9.js                                          0.05 kB │ gzip:     0.07 kB
+dist/src/i18n-DQ8sJTFa.js                                                  0.05 kB │ gzip:     0.07 kB
+dist/src/RenderErrorCard-bPcp97ft.js                                       0.05 kB │ gzip:     0.07 kB
+dist/src/mark-BLb9DwqK.js                                                  0.05 kB │ gzip:     0.07 kB
+dist/src/tree_context_menu-CyujeNsJ.js                                     0.05 kB │ gzip:     0.07 kB
+dist/src/IconPicker-Bd61zWMv.js                                            0.06 kB │ gzip:     0.07 kB
+dist/src/css-CGcVI67g.js                                                   0.06 kB │ gzip:     0.07 kB
+dist/src/dist-BtHrSo_C.js                                                  0.06 kB │ gzip:     0.07 kB
+dist/src/File-9clqNpqi.js                                                  0.06 kB │ gzip:     0.08 kB
+dist/src/backend_scripting-B7fTUlou.js                                     0.06 kB │ gzip:     0.08 kB
+dist/src/persistence-XM04iKU1.js                                           0.06 kB │ gzip:     0.08 kB
+dist/src/typescript-DD1m_lG_.js                                            0.06 kB │ gzip:     0.08 kB
+dist/src/Canvas-CyeF2Lps.js                                                0.06 kB │ gzip:     0.07 kB
+dist/src/attribute_detail-Rk4cnqgb.js                                      0.06 kB │ gzip:     0.07 kB
+dist/src/Code-iDJ_LqFV.js                                                  0.06 kB │ gzip:     0.08 kB
+dist/src/app_context-CIXsF3OD.js                                           0.06 kB │ gzip:     0.08 kB
+dist/src/import-BUyhqFYm.js                                                0.06 kB │ gzip:     0.08 kB
+dist/src/ListOrGridView-BPjMjiv_.js                                        0.07 kB │ gzip:     0.07 kB
+dist/src/native_window-Bq49tEBg.js                                         0.07 kB │ gzip:     0.08 kB
+dist/src/ContentWidget-Cu3OXwRF.js                                         0.07 kB │ gzip:     0.09 kB
+dist/src/ImageViewer-By8VH9tn.js                                           0.07 kB │ gzip:     0.08 kB
+dist/src/render-CjU8Lvpr.js                                                0.07 kB │ gzip:     0.08 kB
+dist/src/ReadOnlyText-9YkJ8OaV.js                                          0.07 kB │ gzip:     0.08 kB
+dist/src/jsx-runtime-BkUDpndi.js                                           0.07 kB │ gzip:     0.09 kB
+dist/src/trilium_log_highlighter-DAoYcwhI.js                               0.07 kB │ gzip:     0.08 kB
+dist/src/PdfViewer-CcaXn7We.js                                             0.08 kB │ gzip:     0.09 kB
+dist/src/app_globals-BQ_Jn7Y1.js                                           0.09 kB │ gzip:     0.10 kB
+dist/src/TextEmbed-Blta70zk.js                                             0.09 kB │ gzip:     0.09 kB
+dist/src/jquery.module-BBzcz_AN.js                                         0.09 kB │ gzip:     0.09 kB
+dist/src/bulk_action-DTpYLDPG.js                                           0.09 kB │ gzip:     0.10 kB
+dist/src/44c8e1c1-BLlA2T7O.js                                              0.10 kB │ gzip:     0.10 kB
+dist/src/pie-XZMESJXO-Dot5dfKq.js                                          0.10 kB │ gzip:     0.11 kB
+dist/src/prod-xVd0pXo5.js                                                  0.10 kB │ gzip:     0.11 kB
+dist/src/info-OHQRW6UA-vNA4W1BY.js                                         0.10 kB │ gzip:     0.11 kB
+dist/src/radar-ABXABTNO-B-JNDxsg.js                                        0.10 kB │ gzip:     0.11 kB
+dist/src/packet-JDAUHWVQ-B8hYuedA.js                                       0.10 kB │ gzip:     0.11 kB
+dist/src/plaintext-YB8mb-y7.js                                             0.10 kB │ gzip:     0.11 kB
+dist/src/cynefin-EF2NZ3EQ-B22Il0Q0.js                                      0.10 kB │ gzip:     0.11 kB
+dist/src/treemap-SAJKECNS-BtKhU7nu.js                                      0.10 kB │ gzip:     0.11 kB
+dist/src/wardley-7MLQ67FV-zgQ1s-nD.js                                      0.10 kB │ gzip:     0.11 kB
+dist/src/Button-Dwu6dEgV.js                                                0.10 kB │ gzip:     0.10 kB
+dist/src/array-BifhSqXX.js                                                 0.10 kB │ gzip:     0.11 kB
+dist/src/gitGraph-VSP46ZUC-TdWHDRg-.js                                     0.10 kB │ gzip:     0.11 kB
+dist/src/railroad-I3PHUGI6-CZyDVcgN.js                                     0.10 kB │ gzip:     0.11 kB
+dist/src/treeView-D4JQ5SDB-C4nFWZ36.js                                     0.10 kB │ gzip:     0.11 kB
+dist/src/colors-Cg5Vh3br.js                                                0.10 kB │ gzip:     0.12 kB
+dist/src/percentages-BXMCSKIN-Bzkq50EA.js                                  0.10 kB │ gzip:     0.11 kB
+dist/src/content_languages-BLp4C-QV.js                                     0.11 kB │ gzip:     0.11 kB
+dist/src/railroad-peg-JR7BVNR7-Cx8B3Fw_.js                                 0.11 kB │ gzip:     0.11 kB
+dist/src/architecture-WOLXFQ4H-O--ui1FL.js                                 0.11 kB │ gzip:     0.11 kB
+dist/src/railroad-abnf-LNEFI6M7-Vj_R5cg2.js                                0.11 kB │ gzip:     0.11 kB
+dist/src/railroad-ebnf-DWYD2UWJ-CUdwkvqU.js                                0.11 kB │ gzip:     0.11 kB
+dist/src/eventmodeling-K75KTNOO-CXHQFMgp.js                                0.11 kB │ gzip:     0.12 kB
+dist/src/channel-Bdf0bdfV.js                                               0.11 kB │ gzip:     0.12 kB
+dist/src/LoadingSpinner-Drl54_o3.js                                        0.12 kB │ gzip:     0.13 kB
+dist/src/math-B-UlSKn4.js                                                  0.12 kB │ gzip:     0.11 kB
+dist/src/IconPackPreview-BDv2owzY.js                                       0.12 kB │ gzip:     0.11 kB
+dist/src/math-DTG8t56j.js                                                  0.12 kB │ gzip:     0.11 kB
+dist/src/image-GAAHSSAO-BLU1hpdM.js                                        0.12 kB │ gzip:     0.12 kB
+dist/src/src-DsE-3KpF.js                                                   0.13 kB │ gzip:     0.14 kB
+dist/src/block_reference_read_only-Dv9lpVfR.js                             0.14 kB │ gzip:     0.13 kB
+dist/src/init-C-OQMol4.js                                                  0.14 kB │ gzip:     0.12 kB
+dist/src/FormText-Dc4G4RFQ.js                                              0.14 kB │ gzip:     0.14 kB
+dist/src/subset-shared.chunk-CzZ1g4Vz.js                                   0.14 kB │ gzip:     0.13 kB
+dist/src/client-D2avvgYj.js                                                0.14 kB │ gzip:     0.13 kB
+dist/src/chunk-Y2CYZVJY-DsF7k-Jl.js                                        0.15 kB │ gzip:     0.14 kB
+dist/src/NoteList-09xDIf3D.js                                              0.17 kB │ gzip:     0.13 kB
+dist/src/MaskedIcon-DcbyjYqv.js                                            0.18 kB │ gzip:     0.16 kB
+dist/src/en-US-DwAXRba0.js                                                 0.18 kB │ gzip:     0.15 kB
+dist/src/attachment_actions-vFAaXZmm.js                                    0.18 kB │ gzip:     0.14 kB
+dist/src/erb-DptdJbGO.js                                                   0.18 kB │ gzip:     0.17 kB
+dist/src/chunk-2Q5K7J3B-C1jixKkw.js                                        0.19 kB │ gzip:     0.16 kB
+dist/src/src-B9w-VeSz.js                                                   0.19 kB │ gzip:     0.15 kB
+dist/src/markdown_renderer-DDgzwMtN.js                                     0.19 kB │ gzip:     0.17 kB
+dist/src/zh-CN-DQAM3AjW.js                                                 0.19 kB │ gzip:     0.19 kB
+dist/src/zh-TW-CDzrTSIF.js                                                 0.19 kB │ gzip:     0.19 kB
+dist/src/es-ES-gvUKGMJr.js                                                 0.19 kB │ gzip:     0.17 kB
+dist/src/ko-KR-kpEYuuUx.js                                                 0.20 kB │ gzip:     0.19 kB
+dist/src/vi-VN-B902rSWd.js                                                 0.20 kB │ gzip:     0.19 kB
+dist/src/fr-FR-CltAYvk5.js                                                 0.20 kB │ gzip:     0.18 kB
+dist/src/chunk-JWPE2WC7-DVXcaiue.js                                        0.22 kB │ gzip:     0.17 kB
+dist/src/ja-JP-DFy9r8u0.js                                                 0.22 kB │ gzip:     0.20 kB
+dist/src/en-gb-Do6nsdc6.js                                                 0.24 kB │ gzip:     0.19 kB
+dist/src/zh-tw-BhPOcea7.js                                                 0.26 kB │ gzip:     0.22 kB
+dist/src/ko-YGl3rj_e.js                                                    0.26 kB │ gzip:     0.22 kB
+dist/src/chunk-XXDRQBXY-CfgeC7-C.js                                        0.28 kB │ gzip:     0.23 kB
+dist/src/ja-B9GNK_Or.js                                                    0.29 kB │ gzip:     0.25 kB
+dist/src/EditableText-sw3R-ga-.js                                          0.29 kB │ gzip:     0.21 kB
+dist/src/zh-cn-5Mea9jIG.js                                                 0.29 kB │ gzip:     0.25 kB
+dist/src/content_renderer-CSC1aNO5.js                                      0.29 kB │ gzip:     0.22 kB
+dist/src/ru-RU-DHlMaMiQ.js                                                 0.29 kB │ gzip:     0.23 kB
+dist/src/NoItems-C3ObEo2U.js                                               0.30 kB │ gzip:     0.22 kB
+dist/src/diff-ChtP43wD.js                                                  0.30 kB │ gzip:     0.23 kB
+dist/src/tr-keKnllbV.js                                                    0.30 kB │ gzip:     0.22 kB
+dist/src/shortcut_kbd-BeziTTxL.js                                          0.30 kB │ gzip:     0.22 kB
+dist/src/pt-CpiXP0oF.js                                                    0.31 kB │ gzip:     0.23 kB
+dist/src/react_utils-BeoOmAef.js                                           0.31 kB │ gzip:     0.22 kB
+dist/src/id-C2pPGn9D.js                                                    0.31 kB │ gzip:     0.23 kB
+dist/src/FormTextArea-Cc57M_mY.js                                          0.31 kB │ gzip:     0.23 kB
+dist/src/cs-Bt11qN90.js                                                    0.32 kB │ gzip:     0.25 kB
+dist/src/Slider-DJ0JkQxy.js                                                0.33 kB │ gzip:     0.26 kB
+dist/src/it-PHyF1Zhy.js                                                    0.33 kB │ gzip:     0.24 kB
+dist/src/pl-DUvkeyB0.js                                                    0.33 kB │ gzip:     0.24 kB
+dist/src/fr-5sL2DSKf.js                                                    0.33 kB │ gzip:     0.25 kB
+dist/src/collection_view-D74P77Al.js                                       0.33 kB │ gzip:     0.24 kB
+dist/src/ro-J_kgyS1F.js                                                    0.34 kB │ gzip:     0.25 kB
+dist/src/ar-CzRPEXNg.js                                                    0.34 kB │ gzip:     0.25 kB
+dist/src/vi-CXBKwtzg.js                                                    0.35 kB │ gzip:     0.28 kB
+dist/src/chunk-Z6ETV63D-BnhQjKFF.js                                        0.35 kB │ gzip:     0.27 kB
+dist/src/subset-worker.chunk-D4w07nYk.js                                   0.35 kB │ gzip:     0.27 kB
+dist/src/ebnf-BmerogBf.js                                                  0.36 kB │ gzip:     0.26 kB
+dist/src/chunk-5VM5RSS4-ZNzvKenW.js                                        0.36 kB │ gzip:     0.27 kB
+dist/src/NoteMap-BCym6Umv.js                                               0.37 kB │ gzip:     0.27 kB
+dist/src/NoteMapGraph-CjWSVfut.js                                          0.38 kB │ gzip:     0.27 kB
+dist/src/min-DKkL9U9e.js                                                   0.38 kB │ gzip:     0.16 kB
+dist/src/constants-BzYULO4O.js                                             0.39 kB │ gzip:     0.22 kB
+dist/src/dockerfile-C0zufGsU.js                                            0.40 kB │ gzip:     0.31 kB
+dist/src/ru-MNkX0bTl.js                                                    0.40 kB │ gzip:     0.30 kB
+dist/src/hooks-XARt13EN.js                                                 0.41 kB │ gzip:     0.26 kB
+dist/src/brainfuck-CkSV9Luo.js                                             0.41 kB │ gzip:     0.25 kB
+dist/src/debounce-Fqb6O6Tb.js                                              0.43 kB │ gzip:     0.24 kB
+dist/src/uk-Dujf3PxB.js                                                    0.43 kB │ gzip:     0.32 kB
+dist/src/utils-DVBZ-p1Z.js                                                 0.43 kB │ gzip:     0.28 kB
+dist/src/file-open-7c801643-DZtJT5zp.js                                    0.44 kB │ gzip:     0.31 kB
+dist/src/chunk-OD3NTWWA-tWtUB_cI.js                                        0.45 kB │ gzip:     0.31 kB
+dist/src/icon_picker-BirUCvbX.js                                           0.45 kB │ gzip:     0.31 kB
+dist/src/chunk-VTWWFHGB-CErZyUMc.js                                        0.45 kB │ gzip:     0.31 kB
+dist/src/chunk-3M4EKCLJ-DOMgvaXT.js                                        0.46 kB │ gzip:     0.31 kB
+dist/src/chunk-VZTHESGH-BsQ8KQ39.js                                        0.46 kB │ gzip:     0.31 kB
+dist/src/chunk-VPELOWWC-Dw8jWE1Y.js                                        0.46 kB │ gzip:     0.31 kB
+dist/src/floating_layers-BM5aXWyZ.js                                       0.46 kB │ gzip:     0.21 kB
+dist/src/SetupForm-ChpY9kWI.js                                             0.48 kB │ gzip:     0.32 kB
+dist/src/hi-_Xd_YySD.js                                                    0.48 kB │ gzip:     0.32 kB
+dist/src/DirectoryLink-BP8-NQlC.js                                         0.49 kB │ gzip:     0.30 kB
+dist/src/LinkButton-Dc2jKwSl.js                                            0.50 kB │ gzip:     0.33 kB
+dist/src/chunk-53FOQ5SW-f76P46nL.js                                        0.50 kB │ gzip:     0.35 kB
+dist/src/isEmpty-CqVngOQc.js                                               0.50 kB │ gzip:     0.30 kB
+dist/src/deleted_fnote-KaKmHWVS.js                                         0.52 kB │ gzip:     0.32 kB
+dist/src/file-open-002ab408-BHUWm0Sh.js                                    0.52 kB │ gzip:     0.32 kB
+dist/src/properties-C_5_0OWv.js                                            0.53 kB │ gzip:     0.31 kB
+dist/src/css-var-50Qv2XnN.js                                               0.55 kB │ gzip:     0.34 kB
+dist/src/FormGroup-BG5g-MpM.js                                             0.56 kB │ gzip:     0.34 kB
+dist/src/note_attributes-CdqzaH93.js                                       0.56 kB │ gzip:     0.36 kB
+dist/src/BlobStub-C8sf9UBW.js                                              0.56 kB │ gzip:     0.38 kB
+dist/src/chunk-KQW6MTUR-DWSWGw5k.js                                        0.56 kB │ gzip:     0.39 kB
+dist/src/diff-BhdZizse.js                                                  0.58 kB │ gzip:     0.30 kB
+dist/src/directory-open-01563666-D4xXyWb_.js                               0.58 kB │ gzip:     0.36 kB
+dist/src/OverlayToolbar-bfbuOZKA.js                                        0.58 kB │ gzip:     0.36 kB
+dist/src/en-CcDeh6_6.js                                                    0.58 kB │ gzip:     0.41 kB
+dist/src/json-PmyKWHmm.js                                                  0.58 kB │ gzip:     0.41 kB
+dist/src/now-fdb1ev71.js                                                   0.59 kB │ gzip:     0.38 kB
+dist/src/chunk-SRAX5OIU-Dhm3gOdh.js                                        0.59 kB │ gzip:     0.39 kB
+dist/src/brainfuck-D5EjA2JK.js                                             0.59 kB │ gzip:     0.32 kB
+dist/src/flowDiagram-OXPTDLAJ-LA7Sewa5.js                                  0.59 kB │ gzip:     0.32 kB
+dist/src/smalltalk-DSQwiuj1.js                                             0.60 kB │ gzip:     0.39 kB
+dist/src/chunk-QNH66VMT-BbxTKInC.js                                        0.60 kB │ gzip:     0.39 kB
+dist/src/kdl-BfX7czKs.js                                                   0.61 kB │ gzip:     0.33 kB
+dist/src/OptionsSection-DstGHhdR.js                                        0.62 kB │ gzip:     0.32 kB
+dist/src/search-CPt3TVSU.js                                                0.62 kB │ gzip:     0.37 kB
+dist/src/es-Tx-0CRTJ.js                                                    0.63 kB │ gzip:     0.37 kB
+dist/src/chunk-J5ZVWO5B-oDCd-gWO.js                                        0.63 kB │ gzip:     0.43 kB
+dist/src/chunk-Z3N5DIM6-D9TMVU7m.js                                        0.64 kB │ gzip:     0.42 kB
+dist/src/en-B4ZKOASM-vBI5Z4D4.js                                           0.64 kB │ gzip:     0.37 kB
+dist/src/infoDiagram-5W2HQ5XZ-CVuMH_hg.js                                  0.65 kB │ gzip:     0.42 kB
+dist/src/NoteList-C3Gm23RG.js                                              0.65 kB │ gzip:     0.38 kB
+dist/src/ascetic-DY7wA7px.js                                               0.65 kB │ gzip:     0.36 kB
+dist/src/grows_upwards-Cd_E8fby.js                                         0.66 kB │ gzip:     0.40 kB
+dist/src/properties-C357ku5U.js                                            0.66 kB │ gzip:     0.34 kB
+dist/src/image_upload-Br0FsOkt.js                                          0.67 kB │ gzip:     0.43 kB
+dist/src/protobuf-DGOW1qT8.js                                              0.67 kB │ gzip:     0.44 kB
+dist/src/file-save-3189631c-CO9S4HFW.js                                    0.69 kB │ gzip:     0.44 kB
+dist/src/MapTypeSwitcher-DYt8RKt7.js                                       0.69 kB │ gzip:     0.39 kB
+dist/src/pt-br-aIGk_y2d.js                                                 0.70 kB │ gzip:     0.39 kB
+dist/src/Book-DRcT4mVp.js                                                  0.70 kB │ gzip:     0.45 kB
+dist/src/note_deletion-g2R_CuQq.js                                         0.70 kB │ gzip:     0.42 kB
+dist/src/IconPack-CxP_fhc0.js                                              0.70 kB │ gzip:     0.43 kB
+dist/src/Doc-C4ZuDfeD.js                                                   0.70 kB │ gzip:     0.44 kB
+dist/src/SettingsSearch-DgecUD4j.js                                        0.72 kB │ gzip:     0.40 kB
+dist/src/FormRadioGroup-CUGAIok4.js                                        0.73 kB │ gzip:     0.40 kB
+dist/src/SelectableCard-CTAO4lvz.js                                        0.74 kB │ gzip:     0.36 kB
+dist/src/utils-B-Ez4vs6.js                                                 0.74 kB │ gzip:     0.43 kB
+dist/src/cmake-84nbDH0I.js                                                 0.75 kB │ gzip:     0.45 kB
+dist/src/Icon-BNgb6n-b.js                                                  0.77 kB │ gzip:     0.43 kB
+dist/src/de-qMqlzPqi.js                                                    0.77 kB │ gzip:     0.43 kB
+dist/src/batch-DBgNfnku.js                                                 0.77 kB │ gzip:     0.47 kB
+dist/src/Admonition-BNHfxfGJ.js                                            0.77 kB │ gzip:     0.37 kB
+dist/src/asciiarmor-C_eisQCp.js                                            0.77 kB │ gzip:     0.40 kB
+dist/src/FormDropdownList-D92AkUB4.js                                      0.78 kB │ gzip:     0.47 kB
+dist/src/dylan-Ces2ajEG.js                                                 0.78 kB │ gzip:     0.48 kB
+dist/src/TabStrip-uZ6HFhTB.js                                              0.78 kB │ gzip:     0.44 kB
+dist/src/llm_model_cost-CyIEjEp5.js                                        0.79 kB │ gzip:     0.49 kB
+dist/src/terraform-DAB1qFgk.js                                             0.79 kB │ gzip:     0.34 kB
+dist/src/share_link-DED8zoaS.js                                            0.79 kB │ gzip:     0.47 kB
+dist/src/http-DdjbPXam.js                                                  0.80 kB │ gzip:     0.42 kB
+dist/src/protobuf-D1ij_kNL.js                                              0.80 kB │ gzip:     0.51 kB
+dist/src/mono-blue-CnLDqPaW.js                                             0.80 kB │ gzip:     0.39 kB
+dist/src/TablePrintView-CcjlQ_vT.js                                        0.80 kB │ gzip:     0.51 kB
+dist/src/zh-TW-BRFK2pXs.js                                                 0.81 kB │ gzip:     0.55 kB
+dist/src/zh-CN-DdmNci1Y.js                                                 0.81 kB │ gzip:     0.55 kB
+dist/src/NoteColorPicker-C5jAnKe-.js                                       0.82 kB │ gzip:     0.48 kB
+dist/src/CodeEmbedEditor-BFLO9yVP.js                                       0.82 kB │ gzip:     0.51 kB
+dist/src/androidstudio-CGeue6j7.js                                         0.82 kB │ gzip:     0.42 kB
+dist/src/isObject-BNleAbAq.js                                              0.83 kB │ gzip:     0.41 kB
+dist/src/OptionsRow-CB1-VakJ.js                                            0.83 kB │ gzip:     0.42 kB
+dist/src/chunk-YK26KJH5-CFTvfUrJ.js                                        0.83 kB │ gzip:     0.46 kB
+dist/src/en-US-BnGRaw3u.js                                                 0.83 kB │ gzip:     0.45 kB
+dist/src/http-CLVgA2GD.js                                                  0.84 kB │ gzip:     0.42 kB
+dist/src/file-save-745eba88-Bwdfz6OZ.js                                    0.85 kB │ gzip:     0.49 kB
+dist/src/gherkin-BXFuf_vg.js                                               0.85 kB │ gzip:     0.44 kB
+dist/src/lightbox-BnAedK16.js                                              0.86 kB │ gzip:     0.54 kB
+dist/src/solr-B78wSQJQ.js                                                  0.86 kB │ gzip:     0.45 kB
+dist/src/highlights_list_options-zJ9goFM-.js                               0.86 kB │ gzip:     0.42 kB
+dist/src/swimlanesDiagram-K3J5GTZL-BURZ4bdf.js                             0.86 kB │ gzip:     0.49 kB
+dist/src/RenderErrorCard-B1DgEl5g.js                                       0.87 kB │ gzip:     0.47 kB
+dist/src/sizeCapture-INFHLROL-3uHXrFqA.js                                  0.87 kB │ gzip:     0.51 kB
+dist/src/dark-p4vF1a24.js                                                  0.87 kB │ gzip:     0.41 kB
+dist/src/shim-C_zhtcJO.js                                                  0.88 kB │ gzip:     0.48 kB
+dist/src/codepen-embed-Bc0xVxQ3.js                                         0.88 kB │ gzip:     0.45 kB
+dist/src/chunk-DUW6YSOI-Dgx8z5s3.js                                        0.89 kB │ gzip:     0.46 kB
+dist/src/vs-9cavt35X.js                                                    0.89 kB │ gzip:     0.44 kB
+dist/src/arta-BstrkfOp.js                                                  0.89 kB │ gzip:     0.42 kB
+dist/src/chunk-24IY7LWP-BnbC-kCW.js                                        0.90 kB │ gzip:     0.48 kB
+dist/src/far-DrvKf6JC.js                                                   0.90 kB │ gzip:     0.42 kB
+dist/src/school-book-RNYL1ayJ.js                                           0.90 kB │ gzip:     0.42 kB
+dist/src/Image-ChOVOgU2.js                                                 0.92 kB │ gzip:     0.54 kB
+dist/src/brown-paper-Bz57i7hD.js                                           0.92 kB │ gzip:     0.45 kB
+dist/src/chunk-KPI5JJXK-CYaUTtMz.js                                        0.92 kB │ gzip:     0.49 kB
+dist/src/ir-black-BvrDBweV.js                                              0.92 kB │ gzip:     0.45 kB
+dist/src/ini-B1CroMsf.js                                                   0.92 kB │ gzip:     0.53 kB
+dist/src/fr-FR-Bnv74fDk.js                                                 0.94 kB │ gzip:     0.52 kB
+dist/src/line-I6KRk0iV.js                                                  0.94 kB │ gzip:     0.47 kB
+dist/src/ProtectedSession-BTZzj-U_.js                                      0.95 kB │ gzip:     0.52 kB
+dist/src/color-brewer-CNG7wP8S.js                                          0.95 kB │ gzip:     0.49 kB
+dist/src/troff-C2dAgh7P.js                                                 0.95 kB │ gzip:     0.43 kB
+dist/src/magula-DvASKs5B.js                                                0.95 kB │ gzip:     0.48 kB
+dist/src/zh-CN-CdBYYacV.js                                                 0.95 kB │ gzip:     0.55 kB
+dist/src/es-ES-CTSH5O4M.js                                                 0.96 kB │ gzip:     0.51 kB
+dist/src/zh-TW-BfnUTJy0.js                                                 0.96 kB │ gzip:     0.55 kB
+dist/src/vi-VN-C05CBUT1.js                                                 0.97 kB │ gzip:     0.56 kB
+dist/src/RawHtml-DSevZFvI.js                                               0.98 kB │ gzip:     0.48 kB
+dist/src/SetupPage-DIkedWoh.js                                             0.98 kB │ gzip:     0.55 kB
+dist/src/en-US-DIEycrNS.js                                                 0.98 kB │ gzip:     0.44 kB
+dist/src/FormSelect-BaouMKq7.js                                            0.99 kB │ gzip:     0.43 kB
+dist/src/gml-ofodogeD.js                                                   1.00 kB │ gzip:     0.44 kB
+dist/src/ko-KR-D5XkxfGL.js                                                 1.00 kB │ gzip:     0.59 kB
+dist/src/debounce-BQF8WH3p.js                                              1.02 kB │ gzip:     0.54 kB
+dist/src/FormCheckbox-BkyS91lH.js                                          1.02 kB │ gzip:     0.59 kB
+dist/src/monokai-mCs09c-u.js                                               1.02 kB │ gzip:     0.45 kB
+dist/src/chunk-ZO67DCNQ-DQMJSBMv.js                                        1.04 kB │ gzip:     0.58 kB
+dist/src/qtcreator-light-Bm8k1Mdu.js                                       1.04 kB │ gzip:     0.42 kB
+dist/src/qtcreator-dark-BQSyzRrL.js                                        1.04 kB │ gzip:     0.43 kB
+dist/src/FormFileUpload-BBWsA42P.js                                        1.04 kB │ gzip:     0.47 kB
+dist/src/toml-BPTmHmyx.js                                                  1.04 kB │ gzip:     0.53 kB
+dist/src/rainbow-BcWuWHki.js                                               1.05 kB │ gzip:     0.47 kB
+dist/src/paraiso-dark-C9PeT47G.js                                          1.05 kB │ gzip:     0.52 kB
+dist/src/paraiso-light-Cvc4_DMx.js                                         1.05 kB │ gzip:     0.52 kB
+dist/src/haml-lM-YLvZH.js                                                  1.05 kB │ gzip:     0.48 kB
+dist/src/chunk-BP2KR52E-CwyHPMMJ.js                                        1.05 kB │ gzip:     0.59 kB
+dist/src/highlights_extract-CASX4pfO.js                                    1.05 kB │ gzip:     0.53 kB
+dist/src/ko-KR-BkOa3LBV.js                                                 1.07 kB │ gzip:     0.56 kB
+dist/src/xt256-E91EDlj0.js                                                 1.07 kB │ gzip:     0.44 kB
+dist/src/rpm-specfile-B3tKd3Or.js                                          1.07 kB │ gzip:     0.59 kB
+dist/src/shortcut_hint_button-CbIGAEuE.js                                  1.07 kB │ gzip:     0.60 kB
+dist/src/options-DTcWLJpA.js                                               1.07 kB │ gzip:     0.55 kB
+dist/src/lioshi-AdfLfUsh.js                                                1.08 kB │ gzip:     0.51 kB
+dist/src/googlecode-BgQ8sV9X.js                                            1.08 kB │ gzip:     0.47 kB
+dist/src/image_attachments-vgemUViE.js                                     1.08 kB │ gzip:     0.63 kB
+dist/src/monokai-sublime-BP59lm4B.js                                       1.09 kB │ gzip:     0.48 kB
+dist/src/arduino-light-C5J5M-Ng.js                                         1.09 kB │ gzip:     0.50 kB
+dist/src/kimbie-dark-C9ElGvzz.js                                           1.10 kB │ gzip:     0.55 kB
+dist/src/kimbie-light-DossgmN-.js                                          1.10 kB │ gzip:     0.55 kB
+dist/src/ja-JP-BnwA8Aq9.js                                                 1.11 kB │ gzip:     0.62 kB
+dist/src/sml-Bqj0DVIt.js                                                   1.11 kB │ gzip:     0.65 kB
+dist/src/protected_session_password-DTq1Afaq.js                            1.11 kB │ gzip:     0.56 kB
+dist/src/tomorrow-night-bright-BiBYuZ5t.js                                 1.11 kB │ gzip:     0.53 kB
+dist/src/lightfair-uMvwjpek.js                                             1.12 kB │ gzip:     0.48 kB
+dist/src/lisp-RAPfxQzG.js                                                  1.12 kB │ gzip:     0.62 kB
+dist/src/q-B3koHNzP.js                                                     1.12 kB │ gzip:     0.72 kB
+dist/src/chunk-F6S3BTY2-CZGFqKcE.js                                        1.12 kB │ gzip:     0.61 kB
+dist/src/content_languages-BH_aAJY-.js                                     1.12 kB │ gzip:     0.64 kB
+dist/src/incorrect_cpu_arch-D-VkK99D.js                                    1.13 kB │ gzip:     0.60 kB
+dist/src/spreadsheet-CTIncYxj.js                                           1.13 kB │ gzip:     0.53 kB
+dist/src/gdscript-B9WdeIAq.js                                              1.14 kB │ gzip:     0.56 kB
+dist/src/obsidian-JC28a0lN.js                                              1.14 kB │ gzip:     0.50 kB
+dist/src/es-ES-B6Dqc35b.js                                                 1.14 kB │ gzip:     0.51 kB
+dist/src/elm-BOkolQqs.js                                                   1.14 kB │ gzip:     0.55 kB
+dist/src/foundation-DjnPbNIn.js                                            1.15 kB │ gzip:     0.53 kB
+dist/src/docco-C3e-ZHeq.js                                                 1.16 kB │ gzip:     0.51 kB
+dist/src/info-C5wN0yg5.js                                                  1.16 kB │ gzip:     0.67 kB
+dist/src/dos-DfZf_1de.js                                                   1.16 kB │ gzip:     0.74 kB
+dist/src/fr-FR-c9aKKXnc.js                                                 1.17 kB │ gzip:     0.52 kB
+dist/src/ordinal-BDEzSJ7C.js                                               1.17 kB │ gzip:     0.56 kB
+dist/src/FormTextBox-Dgr8hPsl.js                                           1.18 kB │ gzip:     0.60 kB
+dist/src/Collapsible-Cqql29-_.js                                           1.18 kB │ gzip:     0.63 kB
+dist/src/tomorrow-night-blue-Cq8oMKuH.js                                   1.18 kB │ gzip:     0.53 kB
+dist/src/pojoaque-BQpSQSy6.js                                              1.19 kB │ gzip:     0.58 kB
+dist/src/tr-ow2Ih4hw.js                                                    1.20 kB │ gzip:     0.71 kB
+dist/src/id-BX72Xx8s.js                                                    1.20 kB │ gzip:     0.69 kB
+dist/src/ro-Zd44Pesh.js                                                    1.20 kB │ gzip:     0.70 kB
+dist/src/splash-BuLZdf1c.js                                                1.20 kB │ gzip:     0.58 kB
+dist/src/it-BMb33-On.js                                                    1.21 kB │ gzip:     0.69 kB
+dist/src/idea-Yu9erQaJ.js                                                  1.21 kB │ gzip:     0.49 kB
+dist/src/ocaml-B-P1Uyq8.js                                                 1.21 kB │ gzip:     0.71 kB
+dist/src/ja-JP-CMePCoBn.js                                                 1.22 kB │ gzip:     0.61 kB
+dist/src/SegmentedChoice-CfRJeDle.js                                       1.22 kB │ gzip:     0.61 kB
+dist/src/note_picker-okKuvRJB.js                                           1.23 kB │ gzip:     0.68 kB
+dist/src/es-BsEk3I15.js                                                    1.23 kB │ gzip:     0.71 kB
+dist/src/sunburst-Uue1tBNd.js                                              1.24 kB │ gzip:     0.53 kB
+dist/src/routeros-Cn4O0wXo.js                                              1.25 kB │ gzip:     0.54 kB
+dist/src/fr-DzADJWnQ.js                                                    1.25 kB │ gzip:     0.71 kB
+dist/src/an-old-hope-DurbH3I5.js                                           1.25 kB │ gzip:     0.66 kB
+dist/src/xcode-CV8Sw8Lx.js                                                 1.26 kB │ gzip:     0.57 kB
+dist/src/pt-br-AwhWpXLZ.js                                                 1.27 kB │ gzip:     0.72 kB
+dist/src/OverlayPanel-DoI4Mzge.js                                          1.27 kB │ gzip:     0.51 kB
+dist/src/en-gb-CjRhB1rt.js                                                 1.28 kB │ gzip:     0.74 kB
+dist/src/ga-kcXCWoEU.js                                                    1.28 kB │ gzip:     0.74 kB
+dist/src/ChatPreview-BdFkWivM.js                                           1.28 kB │ gzip:     0.72 kB
+dist/src/CodeBlock-Cw_9yvPF.js                                             1.28 kB │ gzip:     0.76 kB
+dist/src/TemplateDropdown-Dw8j5wVo.js                                      1.28 kB │ gzip:     0.67 kB
+dist/src/pt-Dur3ediw.js                                                    1.28 kB │ gzip:     0.73 kB
+dist/src/prompt-zUAr1HXC.js                                                1.29 kB │ gzip:     0.70 kB
+dist/src/rolldown-runtime-C0FnF6B9.js                                      1.29 kB │ gzip:     0.71 kB
+dist/src/shades-of-purple-D6V7VLKk.js                                      1.29 kB │ gzip:     0.56 kB
+dist/src/ActionButton-cNLUQ-gb.js                                          1.30 kB │ gzip:     0.80 kB
+dist/src/markdown_import-DdGd-rMK.js                                       1.32 kB │ gzip:     0.74 kB
+dist/src/scroll_fade-B6dKCNli.js                                           1.32 kB │ gzip:     0.71 kB
+dist/src/hybrid-BR7Oaau3.js                                                1.32 kB │ gzip:     0.55 kB
+dist/src/devibeans-COe80LiV.js                                             1.32 kB │ gzip:     0.60 kB
+dist/src/ja-BwHlXYTh.js                                                    1.33 kB │ gzip:     0.69 kB
+dist/src/vi-VN-BLkgjpy1.js                                                 1.33 kB │ gzip:     0.60 kB
+dist/src/ru-RU-BjHKhogg.js                                                 1.33 kB │ gzip:     0.64 kB
+dist/src/atom-one-dark-nV-0olMh.js                                         1.34 kB │ gzip:     0.62 kB
+dist/src/gradient-dark-BDtGftsR.js                                         1.34 kB │ gzip:     0.57 kB
+dist/src/atom-one-light-DCbiHZM3.js                                        1.34 kB │ gzip:     0.62 kB
+dist/src/ko-BtY6_yPP.js                                                    1.36 kB │ gzip:     0.70 kB
+dist/src/tool_call_details-CoFPxGh7.js                                     1.36 kB │ gzip:     0.63 kB
+dist/src/vi-XMQMN9Ak.js                                                    1.36 kB │ gzip:     0.73 kB
+dist/src/gradient-light-CDQMHeex.js                                        1.37 kB │ gzip:     0.59 kB
+dist/src/mention_list_view-6LXuuFAx.js                                     1.38 kB │ gzip:     0.60 kB
+dist/src/mbox-BEMVcqjs.js                                                  1.38 kB │ gzip:     0.65 kB
+dist/src/felipec-Cl1EPpti.js                                               1.38 kB │ gzip:     0.61 kB
+dist/src/TextEmbedEditor-xOpJjGqZ.js                                       1.38 kB │ gzip:     0.74 kB
+dist/src/icon_glyphs-Bxfh6_ZU.js                                           1.38 kB │ gzip:     0.77 kB
+dist/src/en-US-G7wOVHCj.js                                                 1.39 kB │ gzip:     0.65 kB
+dist/src/srcery-IISPh1PL.js                                                1.40 kB │ gzip:     0.66 kB
+dist/src/isbl-editor-light-DM-dR_Fn.js                                     1.40 kB │ gzip:     0.57 kB
+dist/src/utils-VPy7nF8E.js                                                 1.41 kB │ gzip:     0.70 kB
+dist/src/chunk-DBDB3WZW-DpOLgkqY.js                                        1.41 kB │ gzip:     0.79 kB
+dist/src/isbl-editor-dark-Ddq-WLBN.js                                      1.41 kB │ gzip:     0.58 kB
+dist/src/zh-CN-Dhc3NJ-J.js                                                 1.42 kB │ gzip:     0.77 kB
+dist/src/native_window-2HC4YfD0.js                                         1.42 kB │ gzip:     0.67 kB
+dist/src/panda-syntax-light-CyiPssOS.js                                    1.43 kB │ gzip:     0.63 kB
+dist/src/go-CYstVVJV.js                                                    1.44 kB │ gzip:     0.71 kB
+dist/src/nim-BGBfXPIx.js                                                   1.44 kB │ gzip:     0.78 kB
+dist/src/vs2015-DQ5-uFZw.js                                                1.45 kB │ gzip:     0.63 kB
+dist/src/zh-TW-DGQr9p32.js                                                 1.45 kB │ gzip:     0.82 kB
+dist/src/chunk-4S7OKTRW-Bg7nzAWG.js                                        1.46 kB │ gzip:     0.78 kB
+dist/src/context-CrTN9cHf.js                                               1.46 kB │ gzip:     0.75 kB
+dist/src/a11y-dark-BP5lZIhR.js                                             1.46 kB │ gzip:     0.66 kB
+dist/src/a11y-light-C_e81-BU.js                                            1.46 kB │ gzip:     0.65 kB
+dist/src/panda-syntax-dark-lgkIQlWz.js                                     1.47 kB │ gzip:     0.63 kB
+dist/src/upload_attachments-DyJLTp-n.js                                    1.48 kB │ gzip:     0.77 kB
+dist/src/nginx-B1pH5dXO.js                                                 1.49 kB │ gzip:     0.71 kB
+dist/src/yaml-DjjjKWKb.js                                                  1.49 kB │ gzip:     0.71 kB
+dist/src/zh-tw-BwnMaeaD.js                                                 1.49 kB │ gzip:     0.83 kB
+dist/src/de-BjFElQEh.js                                                    1.50 kB │ gzip:     0.82 kB
+dist/src/task_states-R0VHRmF3.js                                           1.50 kB │ gzip:     0.77 kB
+dist/src/directory-open-4ed118d0-1i309Asm.js                               1.51 kB │ gzip:     0.76 kB
+dist/src/intellij-light-DQ9ICHVV.js                                        1.52 kB │ gzip:     0.65 kB
+dist/src/zh-cn-B8u60VCK.js                                                 1.52 kB │ gzip:     0.86 kB
+dist/src/preload-helper-CRzLMJPS.js                                        1.53 kB │ gzip:     0.80 kB
+dist/src/move_to-CD2lDSIg.js                                               1.54 kB │ gzip:     0.83 kB
+dist/src/vbscript-BahAjTwm.js                                              1.55 kB │ gzip:     0.89 kB
+dist/src/Popover-B5nKvstU.js                                               1.56 kB │ gzip:     0.82 kB
+dist/src/custom_fonts-C4LTHcJV.js                                          1.57 kB │ gzip:     0.87 kB
+dist/src/live_print-Bsi_Dg35.js                                            1.59 kB │ gzip:     0.77 kB
+dist/src/rpm-gpDK5sbt.js                                                   1.59 kB │ gzip:     0.81 kB
+dist/src/sieve-tLWDfEkZ.js                                                 1.61 kB │ gzip:     0.76 kB
+dist/src/RightPanelWidget-xe6UpgAH.js                                      1.62 kB │ gzip:     0.94 kB
+dist/src/atom-one-dark-reasonable-D3b3MvUy.js                              1.62 kB │ gzip:     0.68 kB
+dist/src/capacitor_http_handler-BssaANx8.js                                1.63 kB │ gzip:     0.80 kB
+dist/src/1c-light-DFhtbXrJ.js                                              1.63 kB │ gzip:     0.72 kB
+dist/src/src-5grXGmRT.js                                                   1.64 kB │ gzip:     0.92 kB
+dist/src/ko-KR-5XxjGhQg.js                                                 1.64 kB │ gzip:     0.85 kB
+dist/src/nnfx-dark-CIM2bcDj.js                                             1.65 kB │ gzip:     0.68 kB
+dist/src/nnfx-light-XRnEe5Jk.js                                            1.65 kB │ gzip:     0.69 kB
+dist/src/OverlayControlGroup-BmIJMr11.js                                   1.65 kB │ gzip:     0.85 kB
+dist/src/src-Bfnlmd3R.js                                                   1.66 kB │ gzip:     0.69 kB
+dist/src/CalendarProperties-9CPMxALK.js                                    1.66 kB │ gzip:     0.78 kB
+dist/src/factor-LKH5gN8L.js                                                1.66 kB │ gzip:     0.60 kB
+dist/src/tcl-CiO3JXx7.js                                                   1.66 kB │ gzip:     0.93 kB
+dist/src/chunk-TPMEZKFX-mvOucSjo.js                                        1.67 kB │ gzip:     0.74 kB
+dist/src/vhdl-CaU6e6N4.js                                                  1.68 kB │ gzip:     0.94 kB
+dist/src/llm_providers-DzROTkbo.js                                         1.68 kB │ gzip:     0.80 kB
+dist/src/block_reference_read_only-DI0XPryN.js                             1.68 kB │ gzip:     0.86 kB
+dist/src/eiffel-BEjRio4Q.js                                                1.69 kB │ gzip:     0.90 kB
+dist/src/ja-JP-CMp5UXOk.js                                                 1.69 kB │ gzip:     0.88 kB
+dist/src/railroadDiagram-SM67HX2B-DkEqjCb6.js                              1.69 kB │ gzip:     0.78 kB
+dist/src/es-ES-Dqww_3-8.js                                                 1.71 kB │ gzip:     0.75 kB
+dist/src/NoteLink-yRfcd7kb.js                                              1.71 kB │ gzip:     0.92 kB
+dist/src/catppuccin-latte-Cdx1rzDb.js                                      1.72 kB │ gzip:     0.53 kB
+dist/src/hi-Bn-R29LM.js                                                    1.72 kB │ gzip:     0.81 kB
+dist/src/zoom_pan-CwxrLa6R.js                                              1.72 kB │ gzip:     0.91 kB
+dist/src/catppuccin-frappe-Ct_1d0di.js                                     1.72 kB │ gzip:     0.53 kB
+dist/src/catppuccin-macchiato-7WtZorYV.js                                  1.72 kB │ gzip:     0.53 kB
+dist/src/catppuccin-mocha-BB8-E_CA.js                                      1.72 kB │ gzip:     0.53 kB
+dist/src/pl-jNs6uYih.js                                                    1.72 kB │ gzip:     0.94 kB
+dist/src/note_type_chooser-Cao71_ww.js                                     1.73 kB │ gzip:     0.91 kB
+dist/src/django-Dxj7e8BX.js                                                1.74 kB │ gzip:     0.88 kB
+dist/src/z80-Co3PbHdE.js                                                   1.75 kB │ gzip:     0.79 kB
+dist/src/SearchStringEditor-B_kK9FmH.js                                    1.76 kB │ gzip:     0.77 kB
+dist/src/cs-BLPNAwCd.js                                                    1.77 kB │ gzip:     0.88 kB
+dist/src/agate-JhXfW807.js                                                 1.77 kB │ gzip:     0.75 kB
+dist/src/ar-DzlrHHT6.js                                                    1.79 kB │ gzip:     1.01 kB
+dist/src/font-DMVOl4cV.js                                                  1.79 kB │ gzip:     0.91 kB
+dist/src/api-CutrJGKX.js                                                   1.79 kB │ gzip:     0.85 kB
+dist/src/cypher-BaNi7En1.js                                                1.79 kB │ gzip:     1.03 kB
+dist/src/fr-FR-BwVNiRi8.js                                                 1.80 kB │ gzip:     0.77 kB
+dist/src/cybertopia-cherry-CLbTn7Mm.js                                     1.81 kB │ gzip:     0.70 kB
+dist/src/cybertopia-dimmer-C4_HIVpf.js                                     1.81 kB │ gzip:     0.73 kB
+dist/src/cybertopia-icecap-C-RJOTAJ.js                                     1.81 kB │ gzip:     0.71 kB
+dist/src/cybertopia-saturated-Blh1vsCQ.js                                  1.81 kB │ gzip:     0.73 kB
+dist/src/mumps-BSzj6Xyz.js                                                 1.82 kB │ gzip:     0.95 kB
+dist/src/TreePopupEditor-Dk94ytio.js                                       1.82 kB │ gzip:     0.95 kB
+dist/src/ru-RU-CCSxaUnb.js                                                 1.82 kB │ gzip:     0.66 kB
+dist/src/yaml-DjOhhVLG.js                                                  1.83 kB │ gzip:     0.82 kB
+dist/src/Empty-IvypH87N.js                                                 1.84 kB │ gzip:     0.87 kB
+dist/src/vi-VN-D4RG_vWN.js                                                 1.85 kB │ gzip:     0.87 kB
+dist/src/elm-Cshzl8qu.js                                                   1.86 kB │ gzip:     0.81 kB
+dist/src/xml-COl5yFSC.js                                                   1.86 kB │ gzip:     0.76 kB
+dist/src/tabs_read_only-CD88T41e.js                                        1.88 kB │ gzip:     0.93 kB
+dist/src/lua-1dXYaL-H.js                                                   1.88 kB │ gzip:     1.04 kB
+dist/src/abnfDiagram-YUKMZFIV-3rUmPjf6.js                                  1.88 kB │ gzip:     0.91 kB
+dist/src/confirm-B9jW-WaK.js                                               1.88 kB │ gzip:     0.86 kB
+dist/src/Button-B6oCu3pb.js                                                1.89 kB │ gzip:     0.97 kB
+dist/src/mathematica-u8YMmbU0.js                                           1.89 kB │ gzip:     0.80 kB
+dist/src/dockerfile-DJkHQgkl.js                                            1.90 kB │ gzip:     0.65 kB
+dist/src/flip-C-fswmzl.js                                                  1.90 kB │ gzip:     0.85 kB
+dist/src/PdfViewer-DAoBLg8y.js                                             1.92 kB │ gzip:     1.05 kB
+dist/src/content_embed-CSz6nw3S.js                                         1.93 kB │ gzip:     0.93 kB
+dist/src/groovy-DaJmaWG6.js                                                1.94 kB │ gzip:     1.03 kB
+dist/src/chunk-4EA7E6EY-DJzsJRkj.js                                        1.95 kB │ gzip:     0.95 kB
+dist/src/default-B_LACsq-.js                                               1.95 kB │ gzip:     0.87 kB
+dist/src/turtle-Cx3rYX2g.js                                                1.95 kB │ gzip:     0.89 kB
+dist/src/ListPrintView-CUrYvnKx.js                                         1.96 kB │ gzip:     1.05 kB
+dist/src/ebnf-D4c0_ac3.js                                                  1.97 kB │ gzip:     0.80 kB
+dist/src/smalltalk-BLp5-jwC.js                                             1.99 kB │ gzip:     0.85 kB
+dist/src/chunk-7TKQ45FW-nM7mQ7as.js                                        1.99 kB │ gzip:     0.89 kB
+dist/src/code_mime_types_list-_cMmCmRn.js                                  2.00 kB │ gzip:     1.04 kB
+dist/src/grayscale-CACQbO9y.js                                             2.00 kB │ gzip:     0.88 kB
+dist/src/fcl-ClOhbFR7.js                                                   2.02 kB │ gzip:     0.95 kB
+dist/src/utils-9xINh8Id.js                                                 2.03 kB │ gzip:     0.94 kB
+dist/src/rrule-B7JKyb6f.js                                                 2.04 kB │ gzip:     0.91 kB
+dist/src/pegDiagram-BGZESJAR-IAy0pakK.js                                   2.04 kB │ gzip:     0.96 kB
+dist/src/scala-C9lP4FWY.js                                                 2.04 kB │ gzip:     0.87 kB
+dist/src/ntriples-CzMBulkp.js                                              2.05 kB │ gzip:     0.72 kB
+dist/src/zh-TW-BbcUAutc.js                                                 2.06 kB │ gzip:     1.14 kB
+dist/src/zh-CN-CynqddhF.js                                                 2.06 kB │ gzip:     1.14 kB
+dist/src/delphi-BzWcX1gm.js                                                2.07 kB │ gzip:     1.06 kB
+dist/src/markdown-D6FrnlqJ.js                                              2.08 kB │ gzip:     0.90 kB
+dist/src/dtd-DTF72YNO.js                                                   2.09 kB │ gzip:     0.87 kB
+dist/src/clone_to-dS5QVBPn.js                                              2.09 kB │ gzip:     1.09 kB
+dist/src/rose-pine-dawn-DoN1BaL_.js                                        2.09 kB │ gzip:     0.88 kB
+dist/src/ebnfDiagram-VR2GEFS7-BvbsJVx7.js                                  2.09 kB │ gzip:     0.91 kB
+dist/src/octave-D2Q8cUp1.js                                                2.10 kB │ gzip:     1.07 kB
+dist/src/rust-DsgXmV7l.js                                                  2.10 kB │ gzip:     0.93 kB
+dist/src/haxe-qGz9CBa_.js                                                  2.10 kB │ gzip:     0.88 kB
+dist/src/560fbc2a-CIqsTqR2.js                                              2.10 kB │ gzip:     0.79 kB
+dist/src/render_to_csv-BPC_SRit.js                                         2.11 kB │ gzip:     1.17 kB
+dist/src/clone-BOAIrEg5.js                                                 2.12 kB │ gzip:     0.90 kB
+dist/src/haskell-DUkhXIda.js                                               2.13 kB │ gzip:     0.95 kB
+dist/src/yacas-CXXgtw0p.js                                                 2.14 kB │ gzip:     1.08 kB
+dist/src/github-dark-dimmed-6gYgW5_Q.js                                    2.14 kB │ gzip:     0.79 kB
+dist/src/stackoverflow-dark-DIAmH7D7.js                                    2.14 kB │ gzip:     0.77 kB
+dist/src/stackoverflow-light-Cow7Rabe.js                                   2.14 kB │ gzip:     0.78 kB
+dist/src/rose-pine-Bd_H7lSj.js                                             2.15 kB │ gzip:     0.90 kB
+dist/src/rose-pine-moon-BHXevW3_.js                                        2.15 kB │ gzip:     0.90 kB
+dist/src/twig-CP1rWjpH.js                                                  2.16 kB │ gzip:     1.12 kB
+dist/src/dist-Cz2MTljl.js                                                  2.17 kB │ gzip:     0.97 kB
+dist/src/github-BSVC-93U.js                                                2.20 kB │ gzip:     0.81 kB
+dist/src/github-dark-DV3-vle0.js                                           2.20 kB │ gzip:     0.82 kB
+dist/src/ru-RU-C2f9RhWL.js                                                 2.20 kB │ gzip:     0.94 kB
+dist/src/formatters-CfNh9p3b.js                                            2.22 kB │ gzip:     1.02 kB
+dist/src/table_sticky_header_read_only-uydVbvYm.js                         2.22 kB │ gzip:     1.04 kB
+dist/src/pascal-Dp_KdFgX.js                                                2.25 kB │ gzip:     1.17 kB
+dist/src/login-BeCFGM78.js                                                 2.25 kB │ gzip:     1.10 kB
+dist/src/purebasic-B8z0xYw5.js                                             2.25 kB │ gzip:     0.95 kB
+dist/src/simple-mode-DXiLM1-G.js                                           2.27 kB │ gzip:     1.09 kB
+dist/src/path-fybaL0A-.js                                                  2.27 kB │ gzip:     0.98 kB
+dist/src/en-US-AqUmi2Jx.js                                                 2.28 kB │ gzip:     1.02 kB
+dist/src/set_password-3S3kKfjE.js                                          2.28 kB │ gzip:     0.98 kB
+dist/src/apl-gfMMiTNf.js                                                   2.29 kB │ gzip:     1.22 kB
+dist/src/dart-Do_01MLp.js                                                  2.29 kB │ gzip:     1.12 kB
+dist/src/uk-CYO8jaBO.js                                                    2.29 kB │ gzip:     1.13 kB
+dist/src/relation_values_input-B_9bTszZ.js                                 2.30 kB │ gzip:     1.09 kB
+dist/src/commonlisp-DgAKBe0r.js                                            2.31 kB │ gzip:     1.09 kB
+dist/src/item_picker-BYpHiatG.js                                           2.33 kB │ gzip:     1.17 kB
+dist/src/tokyo-night-dark-BVeCwc6B.js                                      2.34 kB │ gzip:     1.03 kB
+dist/src/tokyo-night-light-BPyQ7Q2J.js                                     2.34 kB │ gzip:     1.03 kB
+dist/src/tcl-BGfruO1u.js                                                   2.35 kB │ gzip:     1.22 kB
+dist/src/elixir-DXIHlGsR.js                                                2.37 kB │ gzip:     1.05 kB
+dist/src/ru-B6YbSszP.js                                                    2.37 kB │ gzip:     1.18 kB
+dist/src/SidebarHelp-CrANordA.js                                           2.38 kB │ gzip:     1.14 kB
+dist/src/dist-C_39-VgL.js                                                  2.39 kB │ gzip:     1.49 kB
+dist/src/GhostPopover-BU82-WIx.js                                          2.40 kB │ gzip:     1.18 kB
+dist/src/WebView-DERaJ2Z6.js                                               2.41 kB │ gzip:     1.11 kB
+dist/src/63356524-IPPSPWXw.js                                              2.41 kB │ gzip:     1.07 kB
+dist/src/mipsasm-CElFSg8P.js                                               2.42 kB │ gzip:     1.41 kB
+dist/src/d-CXnZM-Nf.js                                                     2.42 kB │ gzip:     1.13 kB
+dist/src/ko-KR-C09EZ9Sr.js                                                 2.43 kB │ gzip:     1.19 kB
+dist/src/shell-DwuoZtxw.js                                                 2.43 kB │ gzip:     1.20 kB
+dist/src/webidl-D5jiJvOU.js                                                2.44 kB │ gzip:     1.24 kB
+dist/src/bulk_actions-BYXT_T4r.js                                          2.47 kB │ gzip:     1.17 kB
+dist/src/erlang-BjYI8dhz.js                                                2.47 kB │ gzip:     1.13 kB
+dist/src/es-ES-BzUNeLd-.js                                                 2.48 kB │ gzip:     1.10 kB
+dist/src/jinja2-B0MGmaEv.js                                                2.48 kB │ gzip:     1.02 kB
+dist/src/cmake-CgP6gB4W.js                                                 2.48 kB │ gzip:     1.06 kB
+dist/src/pig-AF4Hwhju.js                                                   2.51 kB │ gzip:     1.37 kB
+dist/src/puppet-BZyAS7I4.js                                                2.51 kB │ gzip:     1.19 kB
+dist/src/block_reference-CZckwsou.js                                       2.53 kB │ gzip:     1.15 kB
+dist/src/forth-D6RzAl64.js                                                 2.53 kB │ gzip:     1.32 kB
+dist/src/mermaid-xwXQ8E-U.js                                               2.54 kB │ gzip:     1.35 kB
+dist/src/branch_prefix-DWBpKgWv.js                                         2.55 kB │ gzip:     1.18 kB
+dist/src/launcher_context_menu-DUQS7y8x.js                                 2.56 kB │ gzip:     0.88 kB
+dist/src/vi-VN-93Cb0tZi.js                                                 2.57 kB │ gzip:     1.19 kB
+dist/src/ttcn3-CxatZ6yg.js                                                 2.57 kB │ gzip:     1.22 kB
+dist/src/auto-render-VMRNzbXh.js                                           2.58 kB │ gzip:     1.21 kB
+dist/src/fr-FR-DJfG0VJS.js                                                 2.59 kB │ gzip:     1.15 kB
+dist/src/ja-JP-C-X_VN6X.js                                                 2.59 kB │ gzip:     1.27 kB
+dist/src/objectivec-DLXDdhyK.js                                            2.60 kB │ gzip:     1.43 kB
+dist/src/dist-DXvsyGvu.js                                                  2.60 kB │ gzip:     1.49 kB
+dist/src/vbnet-BiMsFFN_.js                                                 2.61 kB │ gzip:     1.35 kB
+dist/src/SplitEditor-CaBPMrtG.js                                           2.63 kB │ gzip:     1.21 kB
+dist/src/SqlConsole-H5fs7cKH.js                                            2.65 kB │ gzip:     1.31 kB
+dist/src/ReadOnlyText-oBtu8on5.js                                          2.66 kB │ gzip:     1.38 kB
+dist/src/dist-BpDvLUm1.js                                                  2.67 kB │ gzip:     1.08 kB
+dist/src/replacements-CPctMpil.js                                          2.68 kB │ gzip:     0.95 kB
+dist/src/velocity-CqftRsjg.js                                              2.70 kB │ gzip:     1.11 kB
+dist/src/Render-Oaq2eBVY.js                                                2.71 kB │ gzip:     1.29 kB
+dist/src/rust-BIKPVoi6.js                                                  2.72 kB │ gzip:     1.44 kB
+dist/src/java-Dde-Wnb4.js                                                  2.72 kB │ gzip:     1.21 kB
+dist/src/ImageViewer-lzVOIVPQ.js                                           2.75 kB │ gzip:     1.36 kB
+dist/src/go-D9_sU89l.js                                                    2.75 kB │ gzip:     1.30 kB
+dist/src/tiddlywiki-VlUiK86J.js                                            2.76 kB │ gzip:     1.07 kB
+dist/src/DatabaseFileBadges-Cl2aIBAI.js                                    2.77 kB │ gzip:     1.37 kB
+dist/src/modelica-CqHI_q-D.js                                              2.79 kB │ gzip:     1.28 kB
+dist/src/coffeescript-p0dfWXuO.js                                          2.80 kB │ gzip:     1.34 kB
+dist/src/bash-LmRjUKlR.js                                                  2.83 kB │ gzip:     1.56 kB
+dist/src/roundRect-D01gJrlt.js                                             2.87 kB │ gzip:     0.99 kB
+dist/src/oz-BwTct_5T.js                                                    2.88 kB │ gzip:     1.27 kB
+dist/src/CKEditor-TPJi5lOs.js                                              2.90 kB │ gzip:     1.46 kB
+dist/src/r-DNWPCnjT.js                                                     2.90 kB │ gzip:     1.40 kB
+dist/src/r-CxDmU1I4.js                                                     2.92 kB │ gzip:     1.33 kB
+dist/src/jump_to_note-Dq-WZbZv.js                                          2.93 kB │ gzip:     1.49 kB
+dist/src/Badge-DZYbuv9b.js                                                 2.96 kB │ gzip:     1.39 kB
+dist/src/trilium_log_highlighter-B01NoUQ6.js                               2.97 kB │ gzip:     1.12 kB
+dist/src/CodeEmbed-C2VsEqJI.js                                             3.03 kB │ gzip:     1.59 kB
+dist/src/ocr_text-3lEFevdM.js                                              3.05 kB │ gzip:     1.33 kB
+dist/src/react_utils-B6EptMyK.js                                           3.06 kB │ gzip:     1.63 kB
+dist/src/glob_types-CV9Y5EHs.js                                            3.07 kB │ gzip:     1.28 kB
+dist/src/stex-DNzd62Q_.js                                                  3.09 kB │ gzip:     1.17 kB
+dist/src/zoom_pan_keyboard-BGFqtevO.js                                     3.09 kB │ gzip:     1.35 kB
+dist/src/lua-DPCEkfD_.js                                                   3.12 kB │ gzip:     1.40 kB
+dist/src/workbook_model-k4IHvgs6.js                                        3.14 kB │ gzip:     1.42 kB
+dist/src/nix-CR3yefiA.js                                                   3.14 kB │ gzip:     1.52 kB
+dist/src/livescript-ClNaFHRt.js                                            3.15 kB │ gzip:     1.50 kB
+dist/src/night-owl-B7mM1Gr9.js                                             3.17 kB │ gzip:     1.38 kB
+dist/src/cypher-p9eYesGn.js                                                3.18 kB │ gzip:     1.49 kB
+dist/src/tiki-DTszW0OQ.js                                                  3.22 kB │ gzip:     1.25 kB
+dist/src/scheme-BXgVOBG5.js                                                3.27 kB │ gzip:     1.47 kB
+dist/src/llm_chat-CNtUF1lE.js                                              3.30 kB │ gzip:     1.43 kB
+dist/src/export-DY-Zm8hW.js                                                3.31 kB │ gzip:     1.38 kB
+dist/src/vhdl-kS471soi.js                                                  3.31 kB │ gzip:     1.49 kB
+dist/src/dist-TpfzMEzj.js                                                  3.31 kB │ gzip:     1.68 kB
+dist/src/python-gHmu6VPG.js                                                3.31 kB │ gzip:     1.48 kB
+dist/src/kotlin-DgSK8bu-.js                                                3.32 kB │ gzip:     1.40 kB
+dist/src/sparql-Dz-mlCAC.js                                                3.33 kB │ gzip:     1.59 kB
+dist/src/attachment_saves-CmZhGdrM.js                                      3.38 kB │ gzip:     1.35 kB
+dist/src/attachment_actions-ghXYg2EY.js                                    3.40 kB │ gzip:     1.30 kB
+dist/src/latex-ifxXhTOO.js                                                 3.40 kB │ gzip:     1.50 kB
+dist/src/editable_embed-XlKPLo-T.js                                        3.43 kB │ gzip:     1.52 kB
+dist/src/ru-RU-BFAQdzZq.js                                                 3.44 kB │ gzip:     1.37 kB
+dist/src/color-name-DfaNrEqF.js                                            3.47 kB │ gzip:     1.47 kB
+dist/src/arc-SXJSVd7o.js                                                   3.47 kB │ gzip:     1.46 kB
+dist/src/julia-C_UcIgej.js                                                 3.47 kB │ gzip:     1.73 kB
+dist/src/zh-TW-DuG_iL6N.js                                                 3.48 kB │ gzip:     1.58 kB
+dist/src/zh-CN-DydhiY6b.js                                                 3.49 kB │ gzip:     1.58 kB
+dist/src/mscgen-qgSLujhx.js                                                3.49 kB │ gzip:     0.97 kB
+dist/src/_baseSet-BTk2BXfa.js                                              3.51 kB │ gzip:     1.65 kB
+dist/src/chunk-SVEVUXB4-D11rHSKO.js                                        3.52 kB │ gzip:     1.58 kB
+dist/src/Card-OLDdmgYU.js                                                  3.53 kB │ gzip:     1.50 kB
+dist/src/Canvas-B1DhP5KQ.js                                                3.53 kB │ gzip:     1.88 kB
+dist/src/en-US-BAX0JeN2.js                                                 3.54 kB │ gzip:     1.62 kB
+dist/src/zh-CN-DwX2mXot.js                                                 3.54 kB │ gzip:     1.97 kB
+dist/src/zh-TW-FmkSePuH.js                                                 3.55 kB │ gzip:     1.96 kB
+dist/src/crystal-DyGSoxxU.js                                               3.58 kB │ gzip:     1.37 kB
+dist/src/TitleRow-o9fzWtdH.js                                              3.61 kB │ gzip:     1.75 kB
+dist/src/ColorPicker-B2I-3Tcb.js                                           3.61 kB │ gzip:     1.64 kB
+dist/src/render-BqGdPEm7.js                                                3.64 kB │ gzip:     1.81 kB
+dist/src/vb-BthdM_4N.js                                                    3.65 kB │ gzip:     1.81 kB
+dist/src/add_link-DMpQ9iqk.js                                              3.65 kB │ gzip:     1.70 kB
+dist/src/NotePropertyMenu-vGV5Ms8m.js                                      3.66 kB │ gzip:     1.22 kB
+dist/src/values_input-DZCIBvJW.js                                          3.68 kB │ gzip:     1.63 kB
+dist/src/d-DWkQyNnU.js                                                     3.69 kB │ gzip:     1.67 kB
+dist/src/q-B9NhS7L_.js                                                     3.69 kB │ gzip:     1.69 kB
+dist/src/Modal-ihSHik54.js                                                 3.71 kB │ gzip:     1.60 kB
+dist/src/ko-KR-BsJPxhFH.js                                                 3.72 kB │ gzip:     1.58 kB
+dist/src/swift-DKB6_1j6.js                                                 3.76 kB │ gzip:     1.81 kB
+dist/src/ruby-BGpZ3p4_.js                                                  3.78 kB │ gzip:     1.71 kB
+dist/src/en-US-RblAemU6.js                                                 3.81 kB │ gzip:     1.32 kB
+dist/src/coffeescript-De_zI4J0.js                                          3.84 kB │ gzip:     1.69 kB
+dist/src/hooks-hs_nhTgE.js                                                 3.85 kB │ gzip:     1.70 kB
+dist/src/fortran-Bt6PBEDR.js                                               3.86 kB │ gzip:     1.93 kB
+dist/src/sas-DEdPwm2c.js                                                   3.86 kB │ gzip:     1.88 kB
+dist/src/csharp-yYt0Ikks.js                                                3.88 kB │ gzip:     1.59 kB
+dist/src/abap-8U03CmGk.js                                                  3.92 kB │ gzip:     1.99 kB
+dist/src/fsharp-CvvkikEj.js                                                3.92 kB │ gzip:     1.97 kB
+dist/src/sort_child_notes-B32RmXKC.js                                      3.93 kB │ gzip:     1.56 kB
+dist/src/delete_notes-D3cxpk42.js                                          3.95 kB │ gzip:     1.56 kB
+dist/src/print-CobAdWhC.js                                                 3.96 kB │ gzip:     1.86 kB
+dist/src/asn1-DCl_8MCW.js                                                  3.97 kB │ gzip:     1.95 kB
+dist/src/cobol-D-9kql2U.js                                                 3.99 kB │ gzip:     1.95 kB
+dist/src/es-ES-BNJJuuRv.js                                                 4.03 kB │ gzip:     1.46 kB
+dist/src/dylan-S7ucR4pR.js                                                 4.03 kB │ gzip:     1.62 kB
+dist/src/nord-DxLcMGbW.js                                                  4.03 kB │ gzip:     1.11 kB
+dist/src/glob-BClY-_tp.js                                                  4.05 kB │ gzip:     1.79 kB
+dist/src/ja-JP-BQK3TKpj.js                                                 4.05 kB │ gzip:     1.70 kB
+dist/src/editing-juGoSMSc.js                                               4.05 kB │ gzip:     1.80 kB
+dist/src/asterisk-BEn0Cwpx.js                                              4.05 kB │ gzip:     1.73 kB
+dist/src/es-ES-B7zIuq2t.js                                                 4.07 kB │ gzip:     1.84 kB
+dist/src/puppet-DEWZKVv3.js                                                4.07 kB │ gzip:     1.94 kB
+dist/src/livescript-BXxG0Yva.js                                            4.08 kB │ gzip:     1.62 kB
+dist/src/ttcn-cfg-2b4Gb5sE.js                                              4.09 kB │ gzip:     1.72 kB
+dist/src/f728e8d3-CCGN4HUP.js                                              4.11 kB │ gzip:     1.63 kB
+dist/src/groovy-CUpZ7dEl.js                                                4.12 kB │ gzip:     1.74 kB
+dist/src/Dropdown-Cc6eojIr.js                                              4.12 kB │ gzip:     1.88 kB
+dist/src/clojure-CR7dvLJ4.js                                               4.13 kB │ gzip:     2.11 kB
+dist/src/ko-KR-v2WKLf5A.js                                                 4.14 kB │ gzip:     2.10 kB
+dist/src/haskell-BRsoo5mP.js                                               4.15 kB │ gzip:     1.91 kB
+dist/src/vfs.esm-CdQ34z_x.js                                               4.17 kB │ gzip:     1.67 kB
+dist/src/perl-CvqMZYuf.js                                                  4.19 kB │ gzip:     1.91 kB
+dist/src/esm-B2RcFSiW.js                                                   4.22 kB │ gzip:     1.99 kB
+dist/src/fr-FR-Dv8pQkzK.js                                                 4.27 kB │ gzip:     1.90 kB
+dist/src/fr-FR-C_UXsO4C.js                                                 4.28 kB │ gzip:     1.56 kB
+dist/src/recent_changes-CSUFMySo.js                                        4.32 kB │ gzip:     1.89 kB
+dist/src/sass-Rs1Amjm6.js                                                  4.33 kB │ gzip:     1.59 kB
+dist/src/diagram-UMYRVEAY-CnEpwGLz.js                                      4.34 kB │ gzip:     1.89 kB
+dist/src/powershell-BUe16zE4.js                                            4.35 kB │ gzip:     2.16 kB
+dist/src/promoted_attributes-CnoonIOR.js                                   4.36 kB │ gzip:     1.99 kB
+dist/src/SiblingNavigator-DqZhj_1D.js                                      4.36 kB │ gzip:     1.90 kB
+dist/src/ja-JP-Dp28oebv.js                                                 4.39 kB │ gzip:     2.20 kB
+dist/src/vi-VN-CKUvI4nn.js                                                 4.39 kB │ gzip:     2.07 kB
+dist/src/vi-VN-CUX3r6z5.js                                                 4.47 kB │ gzip:     1.67 kB
+dist/src/capacitor_download-DcESfm1B.js                                    4.52 kB │ gzip:     2.01 kB
+dist/src/c-DBVbJFpC.js                                                     4.53 kB │ gzip:     2.03 kB
+dist/src/gas-BHEdbvp9.js                                                   4.55 kB │ gzip:     1.27 kB
+dist/src/CredentialsForm-B_nWCtP_.js                                       4.56 kB │ gzip:     1.90 kB
+dist/src/tslib.es6-BgElsgfY.js                                             4.58 kB │ gzip:     1.78 kB
+dist/src/units-D8GOiDh6.js                                                 4.61 kB │ gzip:     1.73 kB
+dist/src/EmbeddedNotePane-DRU3_ogy.js                                      4.62 kB │ gzip:     2.00 kB
+dist/src/defaultLocale-BFoDCU3G.js                                         4.63 kB │ gzip:     2.12 kB
+dist/src/abap-B8bu2zVF.js                                                  4.70 kB │ gzip:     2.23 kB
+dist/src/treemap-Dzisd3I6.js                                               4.73 kB │ gzip:     1.83 kB
+dist/src/fortran-tuAJdZsI.js                                               4.76 kB │ gzip:     2.28 kB
+dist/src/TextEmbed-CVfIKtDf.js                                             4.81 kB │ gzip:     2.52 kB
+dist/src/mllike-B45xgp2S.js                                                4.82 kB │ gzip:     1.57 kB
+dist/src/ttcn-PPSTk1ow.js                                                  4.84 kB │ gzip:     2.14 kB
+dist/src/EventDatesEditor-BNKn6fBD.js                                      4.87 kB │ gzip:     1.86 kB
+dist/src/dist-B4ISWVCi.js                                                  4.92 kB │ gzip:     2.33 kB
+dist/src/crystal-Bsdphhtm.js                                               5.01 kB │ gzip:     2.10 kB
+dist/src/table_scroll_read_only-lO-FkW1j.js                                5.01 kB │ gzip:     2.29 kB
+dist/src/serif-DxBPpv_u.js                                                 5.03 kB │ gzip:     1.38 kB
+dist/src/FormAutocomplete-pHaNKw_9.js                                      5.05 kB │ gzip:     2.25 kB
+dist/src/ruby-ChfNwlCY.js                                                  5.07 kB │ gzip:     2.15 kB
+dist/src/verilog-Ke-GOEW9.js                                               5.08 kB │ gzip:     2.27 kB
+dist/sw.js                                                                 5.08 kB │ gzip:     2.22 kB
+dist/src/ecl-BVIeWmwY.js                                                   5.11 kB │ gzip:     2.30 kB
+dist/src/simple-DKNmIsDR.js                                                5.12 kB │ gzip:     1.46 kB
+dist/src/night-BXL2oQHo.js                                                 5.13 kB │ gzip:     1.48 kB
+dist/src/solarized-CfDz8zBe.js                                             5.13 kB │ gzip:     1.49 kB
+dist/src/moon-cRknE6eX.js                                                  5.15 kB │ gzip:     1.50 kB
+dist/src/help-DZUFeRUE.js                                                  5.17 kB │ gzip:     1.63 kB
+dist/src/white-DS4H3d8K.js                                                 5.20 kB │ gzip:     1.43 kB
+dist/src/white-contrast-BAWRIqAr.js                                        5.20 kB │ gzip:     1.43 kB
+dist/src/black-contrast-Clbv0jYF.js                                        5.21 kB │ gzip:     1.44 kB
+dist/src/black-CEARv5MI.js                                                 5.21 kB │ gzip:     1.44 kB
+dist/src/PromotedAttributes-BWF-jbnJ.js                                    5.23 kB │ gzip:     2.16 kB
+dist/src/sky-DgR6kGne.js                                                   5.25 kB │ gzip:     1.47 kB
+dist/src/julia-CQfgDRfP.js                                                 5.26 kB │ gzip:     2.16 kB
+dist/src/OptionsDialog-BjX0i7ro.js                                         5.27 kB │ gzip:     2.25 kB
+dist/src/xquery-Dr9rmg8t.js                                                5.28 kB │ gzip:     2.41 kB
+dist/src/app_host-CFR46dDi.js                                              5.30 kB │ gzip:     2.15 kB
+dist/src/IconPicker-CFwPL6Wr.js                                            5.31 kB │ gzip:     2.22 kB
+dist/src/league-BaOaBsAS.js                                                5.37 kB │ gzip:     1.58 kB
+dist/src/mobile-n0hibpGm.js                                                5.38 kB │ gzip:     2.69 kB
+dist/src/beige-BM8GdfY9.js                                                 5.42 kB │ gzip:     1.52 kB
+dist/src/vbscript-D9f6rSsU.js                                              5.43 kB │ gzip:     2.56 kB
+dist/src/chunk-HTAEGDNF-DkiGTC-R.js                                        5.43 kB │ gzip:     2.50 kB
+dist/src/server-CagYMBYx.js                                                5.48 kB │ gzip:     2.33 kB
+dist/src/LlmChat-CCdfovbC.js                                               5.50 kB │ gzip:     2.47 kB
+dist/src/theme-C41OWX7f.js                                                 5.51 kB │ gzip:     2.24 kB
+dist/src/linear-Cp_EK2nM.js                                                5.52 kB │ gzip:     2.25 kB
+dist/src/SidebarChat-CKpYcWdt.js                                           5.53 kB │ gzip:     2.19 kB
+dist/src/xml-D5a14MHW.js                                                   5.54 kB │ gzip:     2.16 kB
+dist/src/sql-DWRKyvJ-.js                                                   5.56 kB │ gzip:     2.40 kB
+dist/src/cpp-N2d8M7Nc.js                                                   5.58 kB │ gzip:     2.52 kB
+dist/src/dracula-DperjyGm.js                                               5.60 kB │ gzip:     1.57 kB
+dist/src/ru-RU-DiEcB4Om.js                                                 5.61 kB │ gzip:     1.88 kB
+dist/src/list-CpwUb2Fp.js                                                  5.78 kB │ gzip:     2.34 kB
+dist/src/label_value_input-DejbGjBQ.js                                     5.79 kB │ gzip:     2.50 kB
+dist/src/blood-ERc9l1bv.js                                                 5.82 kB │ gzip:     1.56 kB
+dist/src/chunk-HJ2JQQFS-DAx2qgt6.js                                        5.82 kB │ gzip:     2.68 kB
+dist/src/Mermaid-DN_kFSHx.js                                               5.83 kB │ gzip:     2.79 kB
+dist/src/mirc-C9zpzAZU.js                                                  5.91 kB │ gzip:     2.70 kB
+dist/src/about-B6Th57pt.js                                                 5.99 kB │ gzip:     2.52 kB
+dist/src/nsis-UYRebJNT.js                                                  6.01 kB │ gzip:     2.84 kB
+dist/src/IconPackPreview-DoS7hqz_.js                                       6.02 kB │ gzip:     2.78 kB
+dist/src/rendering-BPnjuabV.js                                             6.06 kB │ gzip:     2.82 kB
+dist/src/diagram-YEKJPTXX-a1u3Pyqd.js                                      6.07 kB │ gzip:     2.57 kB
+dist/src/php-DuZl5e-L.js                                                   6.10 kB │ gzip:     2.52 kB
+dist/src/i18n-CPbHSvtC.js                                                  6.13 kB │ gzip:     2.32 kB
+dist/src/xquery-BKJx4mf9.js                                                6.15 kB │ gzip:     2.57 kB
+dist/src/cobol-DHLQUbN7.js                                                 6.19 kB │ gzip:     2.98 kB
+dist/src/pieDiagram-CAPJLFHJ-lKQEvYIQ.js                                   6.22 kB │ gzip:     2.59 kB
+dist/src/zh-TW-X3pg4o-O.js                                                 6.24 kB │ gzip:     1.80 kB
+dist/src/python-2D3rIqQv.js                                                6.28 kB │ gzip:     2.67 kB
+dist/src/ru-RU-B249Bc_n.js                                                 6.29 kB │ gzip:     2.32 kB
+dist/src/javascript-DMgQAH-8.js                                            6.31 kB │ gzip:     2.61 kB
+dist/src/scheme-D9qYN0V5.js                                                6.35 kB │ gzip:     2.37 kB
+dist/src/zh-CN-BmLKgPNb.js                                                 6.36 kB │ gzip:     1.81 kB
+dist/src/en-US-la0XZ0ig.js                                                 6.57 kB │ gzip:     1.60 kB
+dist/src/pug-Bt_cQqhG.js                                                   6.60 kB │ gzip:     1.98 kB
+dist/src/mermaid-parser.core-CLdBJllH.js                                   6.66 kB │ gzip:     1.87 kB
+dist/src/merge-BtsbHn-G.js                                                 6.66 kB │ gzip:     2.23 kB
+dist/src/textile-C4jVoHG1.js                                               6.74 kB │ gzip:     2.44 kB
+dist/src/isoWeek-jiY5iIBy.js                                               6.88 kB │ gzip:     2.34 kB
+dist/src/nsis-viPvXFiq.js                                                  7.06 kB │ gzip:     3.08 kB
+dist/src/es-ES-BOrCU-Uo.js                                                 7.15 kB │ gzip:     1.77 kB
+dist/src/dayjs.min-QUnUIOl1.js                                             7.18 kB │ gzip:     3.09 kB
+dist/src/ko-KR-lSbUFxsU.js                                                 7.23 kB │ gzip:     1.95 kB
+dist/src/src-M7gIMUIw.js                                                   7.37 kB │ gzip:     3.29 kB
+dist/src/nginx-8H7HVH4w.js                                                 7.40 kB │ gzip:     2.72 kB
+dist/src/split_editor_mode-gC-LOrYh.js                                     7.40 kB │ gzip:     3.12 kB
+dist/src/mirc-CtPKzlTI.js                                                  7.51 kB │ gzip:     3.16 kB
+dist/src/typescript-Da0fK7fQ.js                                            7.57 kB │ gzip:     3.07 kB
+dist/src/fr-FR-BKOPcs05.js                                                 7.58 kB │ gzip:     1.80 kB
+dist/src/powershell-D8WpQPaX.js                                            7.68 kB │ gzip:     3.28 kB
+dist/src/dist-BwQxt425.js                                                  7.72 kB │ gzip:     4.07 kB
+dist/src/vi-VN-CnLyyq6h.js                                                 7.82 kB │ gzip:     1.92 kB
+dist/src/erlang-BV0c4Hdn.js                                                7.84 kB │ gzip:     2.90 kB
+dist/src/haxe-DjVOVvNP.js                                                  7.86 kB │ gzip:     2.94 kB
+dist/src/print_preview-BRBLVL7M.js                                         7.93 kB │ gzip:     3.04 kB
+dist/src/dist-gEHQyKIr.js                                                  8.01 kB │ gzip:     2.40 kB
+dist/src/NoteDetail-Cfs2Ys3_.js                                            8.01 kB │ gzip:     3.30 kB
+dist/src/dist-CCil791f.js                                                  8.05 kB │ gzip:     2.38 kB
+dist/src/swift-BTn9__hL.js                                                 8.07 kB │ gzip:     3.56 kB
+dist/src/dist-PVSTpOHF.js                                                  8.10 kB │ gzip:     2.38 kB
+dist/src/dist-6WVQ5vUp.js                                                  8.11 kB │ gzip:     2.41 kB
+dist/src/diagram-PFPMY2P6-DV_KWPEb.js                                      8.12 kB │ gzip:     3.65 kB
+dist/src/dist-DIeQuY5I.js                                                  8.14 kB │ gzip:     2.39 kB
+dist/src/dist-BOa5R-aP.js                                                  8.15 kB │ gzip:     2.40 kB
+dist/src/dist-BdSZwFL-.js                                                  8.16 kB │ gzip:     2.43 kB
+dist/src/verilog-CjI9Y6RI.js                                               8.18 kB │ gzip:     3.47 kB
+dist/src/dist-CIzUcDLj.js                                                  8.19 kB │ gzip:     2.40 kB
+dist/src/dist-CYEQOj-q.js                                                  8.19 kB │ gzip:     2.43 kB
+dist/src/dist-vMZtNQD6.js                                                  8.20 kB │ gzip:     2.45 kB
+dist/src/dist-D2kgZCIf.js                                                  8.20 kB │ gzip:     2.42 kB
+dist/src/dist-aRqcGQEV.js                                                  8.21 kB │ gzip:     2.43 kB
+dist/src/dist-C2aQmOzX.js                                                  8.21 kB │ gzip:     2.47 kB
+dist/src/dist-Y18Ux7PO.js                                                  8.22 kB │ gzip:     2.44 kB
+dist/src/dist-D-Cc88hq.js                                                  8.22 kB │ gzip:     2.47 kB
+dist/src/dist-nQG-nzVQ.js                                                  8.22 kB │ gzip:     2.44 kB
+dist/src/dist-KPdjPIHu.js                                                  8.23 kB │ gzip:     2.43 kB
+dist/src/dist-DWOujZ0z.js                                                  8.23 kB │ gzip:     2.42 kB
+dist/src/dist-BPZKDRl6.js                                                  8.26 kB │ gzip:     2.42 kB
+dist/src/TemplateSelectionCard-CdrIuxol.js                                 8.27 kB │ gzip:     3.40 kB
+dist/src/dist-CvkROgTR.js                                                  8.28 kB │ gzip:     2.43 kB
+dist/src/dist-bPDCzf81.js                                                  8.29 kB │ gzip:     2.43 kB
+dist/src/ja-JP-CSeD4ZvF.js                                                 8.31 kB │ gzip:     2.00 kB
+dist/src/dist-CEg8w9wZ.js                                                  8.33 kB │ gzip:     2.48 kB
+dist/src/dist-Cm5YAq7L.js                                                  8.35 kB │ gzip:     2.43 kB
+dist/src/dist-n31qC1HG.js                                                  8.36 kB │ gzip:     2.46 kB
+dist/src/dist-HprONvkH.js                                                  8.37 kB │ gzip:     2.51 kB
+dist/src/libesm-CWf4rMPH.js                                                8.38 kB │ gzip:     3.08 kB
+dist/src/dist-BGewLbxj.js                                                  8.49 kB │ gzip:     2.33 kB
+dist/src/dist-1rsFVITe.js                                                  8.50 kB │ gzip:     2.34 kB
+dist/src/note_view-tPdgQzIG.js                                             8.53 kB │ gzip:     3.90 kB
+dist/src/si-LK-N5RQ5JYF-ROLYABqx.js                                        8.58 kB │ gzip:     3.36 kB
+dist/src/az-AZ-76LH7QW2-8v0TczD5.js                                        8.61 kB │ gzip:     3.59 kB
+dist/src/SortableCard-B4b-pEvY.js                                          8.64 kB │ gzip:     3.65 kB
+dist/src/persistence-B5-H5HE5.js                                           8.65 kB │ gzip:     3.63 kB
+dist/src/dist-BsLKKAPG.js                                                  8.79 kB │ gzip:     2.43 kB
+dist/src/ListOrGridView-8PMIIFwc.js                                        8.80 kB │ gzip:     3.20 kB
+dist/src/multimonth-DanNqh4n.js                                            8.98 kB │ gzip:     3.11 kB
+dist/src/htmldiff.min-BjzVfjNw.js                                          8.99 kB │ gzip:     3.11 kB
+dist/src/zh-HK-E62DVLB3-dcRoFFJT.js                                        9.08 kB │ gzip:     4.10 kB
+dist/src/isArrayLikeObject-CpNOZLZH.js                                     9.10 kB │ gzip:     3.54 kB
+dist/src/data-B1SElxsO.js                                                  9.12 kB │ gzip:     3.61 kB
+dist/src/sas-C2OyD2Y6.js                                                   9.33 kB │ gzip:     4.11 kB
+dist/src/clojure-BflJGmDX.js                                               9.40 kB │ gzip:     4.02 kB
+dist/src/table-C-W8mXcu.js                                                 9.47 kB │ gzip:     3.81 kB
+dist/src/local-bridge-CtnlfZxR.js                                          9.58 kB │ gzip:     3.83 kB
+dist/src/perl-BkSkiI9m.js                                                  9.73 kB │ gzip:     3.50 kB
+dist/src/ru-RU-DU1Ha1D9.js                                                 9.78 kB │ gzip:     2.13 kB
+dist/src/idl-BUZw3wgd.js                                                   9.82 kB │ gzip:     4.40 kB
+dist/src/compat-CNQSl73a.js                                                9.92 kB │ gzip:     4.06 kB
+dist/src/cynefinDiagram-3GCD6N5R-BOSXM_U9.js                               9.94 kB │ gzip:     3.51 kB
+dist/src/f098b4fb-ClzsvAnc.js                                              9.94 kB │ gzip:     2.54 kB
+dist/src/tree_context_menu-HigmvNLS.js                                    10.02 kB │ gzip:     3.11 kB
+dist/src/EventPopover-7z5LCdnf.js                                         10.11 kB │ gzip:     3.77 kB
+dist/src/kk-KZ-P5N5QNE5-D52-yIxL.js                                       10.12 kB │ gzip:     4.19 kB
+dist/src/frontend_script_api-C6Ll4mGr.js                                  10.14 kB │ gzip:     3.68 kB
+dist/src/gherkin-oBAE_ms0.js                                              10.15 kB │ gzip:     5.09 kB
+dist/src/kaa-6HZHGXH3-0hNa4m6s.js                                         10.17 kB │ gzip:     4.18 kB
+dist/src/Attachment-uVIqtMe4.js                                           10.32 kB │ gzip:     4.17 kB
+dist/src/chunk-FVRAUYC3-qYUeUv67.js                                       10.38 kB │ gzip:     4.33 kB
+dist/src/syntax_highlighting-DJ7DfRkT.js                                  10.41 kB │ gzip:     2.37 kB
+dist/src/Trans-CFbErMfX.js                                                10.47 kB │ gzip:     4.54 kB
+dist/src/toast-CwbmVVlU.js                                                10.70 kB │ gzip:     4.31 kB
+dist/src/diagram-ZIFT7M5P-X1u0k36Y.js                                     10.96 kB │ gzip:     4.25 kB
+dist/src/diagram-OVF4WLC6-DegzKxjT.js                                     11.09 kB │ gzip:     3.85 kB
+dist/src/dist-DnRZb_zY.js                                                 11.25 kB │ gzip:     5.16 kB
+dist/src/TranscriptView-h6k1lBVX.js                                       11.40 kB │ gzip:     4.86 kB
+dist/src/dist-BfHigVz8.js                                                 11.55 kB │ gzip:     5.17 kB
+dist/src/main-CYFV_pSM.js                                                 11.93 kB │ gzip:     4.25 kB
+dist/src/utils-B5VZD_1_.js                                                12.03 kB │ gzip:     5.19 kB
+dist/src/css-D8M8GYaw.js                                                  12.03 kB │ gzip:     4.30 kB
+dist/src/jsxRuntime-B7v1B8mF.js                                           12.11 kB │ gzip:     5.13 kB
+dist/src/scripts.js                                                       12.14 kB │ gzip:     4.78 kB
+dist/src/CollectionProperties-Duzm9gju.js                                 12.17 kB │ gzip:     4.36 kB
+dist/src/utils-vPTukWPm.js                                                12.18 kB │ gzip:     4.89 kB
+dist/src/image_compression_dialog-B26YM0I8.js                             12.31 kB │ gzip:     4.00 kB
+dist/src/stylus-ueqB8vk5.js                                               12.44 kB │ gzip:     4.41 kB
+dist/src/lt-LT-XHIRWOB4-B6H0gZ-C.js                                       12.50 kB │ gzip:     5.37 kB
+dist/src/NoteList-CpXmPlep.js                                             12.54 kB │ gzip:     5.07 kB
+dist/src/less-Bp0mgmpG.js                                                 13.06 kB │ gzip:     4.68 kB
+dist/src/scss-gOyOKiXd.js                                                 13.13 kB │ gzip:     4.73 kB
+dist/src/NoteBadges-kxqlqUsk.js                                           13.37 kB │ gzip:     4.46 kB
+dist/src/render_to_html-XY__cIP2.js                                       13.44 kB │ gzip:     5.60 kB
+dist/src/dist-BvvOzCkw.js                                                 13.48 kB │ gzip:     3.10 kB
+dist/src/react-window-BRBIbwkz.js                                         13.61 kB │ gzip:     4.88 kB
+dist/src/sample_diagrams-BblYhXWe.js                                      13.81 kB │ gzip:     5.25 kB
+dist/src/vi-VN-M7AON7JQ-BFEVKFOA.js                                       13.86 kB │ gzip:     5.79 kB
+dist/src/revisions-DK8lYUgq.js                                            14.21 kB │ gzip:     4.99 kB
+dist/src/graphlib-DIH_KtCr.js                                             14.29 kB │ gzip:     5.13 kB
+dist/src/dist-Dyxi-zC9.js                                                 14.33 kB │ gzip:     5.78 kB
+dist/src/da-DK-5WZEPLOC-D55fbhpB.js                                       14.41 kB │ gzip:     6.08 kB
+dist/src/bulk_action-DRA9YUlS.js                                          14.54 kB │ gzip:     3.41 kB
+dist/src/Combination-C8VslKAQ.js                                          14.64 kB │ gzip:     5.74 kB
+dist/src/chunk-NTY3LDVX-DNDX0wEG.js                                       14.86 kB │ gzip:     4.23 kB
+dist/src/dist-CT66Y0F_.js                                                 14.98 kB │ gzip:     5.80 kB
+dist/src/task_states-CxZZOz-d.js                                          15.19 kB │ gzip:     4.37 kB
+dist/src/File-WyAU9zpQ.js                                                 15.52 kB │ gzip:     5.33 kB
+dist/src/th-TH-HPSO5L25-swaKUA2N.js                                       15.52 kB │ gzip:     5.18 kB
+dist/src/chunk-AW2ZBBNX-DnBp0C2M.js                                       15.64 kB │ gzip:     4.35 kB
+dist/src/forma-Bmp3M_0I.js                                                15.70 kB │ gzip:     4.17 kB
+dist/src/nn-NO-6E72VCQL-Dfy734xI.js                                       15.95 kB │ gzip:     6.72 kB
+dist/src/AddProviderModal-CiXB0xjX.js                                     16.13 kB │ gzip:     5.48 kB
+dist/src/dist-B-rXx4jB.js                                                 16.23 kB │ gzip:     7.46 kB
+dist/src/mark-CUh9V-Ab.js                                                 16.70 kB │ gzip:     5.87 kB
+dist/src/nl-NL-IS3SIHDZ-C4-Hez0V.js                                       16.73 kB │ gzip:     6.92 kB
+dist/src/desktop-BDiB7FlY.js                                              16.74 kB │ gzip:     6.89 kB
+dist/src/mobile_layout-D7MqlNTh.js                                        16.86 kB │ gzip:     5.94 kB
+dist/src/javascript-B9I2pbsP.js                                           16.93 kB │ gzip:     5.71 kB
+dist/src/ishikawaDiagram-K3B6WC7H-Cn-WTSDo.js                             17.30 kB │ gzip:     6.52 kB
+dist/src/my-MM-5M5IBNSE-BXTnMvRC.js                                       17.57 kB │ gzip:     5.29 kB
+dist/src/AttributeList-DB5FXNq7.js                                        17.59 kB │ gzip:     5.95 kB
+dist/src/hu-HU-A5ZG7DT2-BBrlHtCw.js                                       18.08 kB │ gzip:     7.58 kB
+dist/src/dist-DFSKpOb2.js                                                 18.24 kB │ gzip:     6.90 kB
+dist/src/fi-FI-Z5N7JZ37-DC3Y34Y8.js                                       18.40 kB │ gzip:     7.53 kB
+dist/src/floating-ui.dom-25Xr3fON.js                                      18.41 kB │ gzip:     7.28 kB
+dist/src/Markdown-D_zFy1Fc.js                                             18.75 kB │ gzip:     7.02 kB
+dist/src/kab-KAB-ZGHBKWFO-BXYUMKRc.js                                     18.78 kB │ gzip:     7.55 kB
+dist/src/zh-TW-RAJ6MFWO-BTknr43S.js                                       18.99 kB │ gzip:     8.86 kB
+dist/src/zh-CN-LNUGB5OW-N0-P-YPg.js                                       19.05 kB │ gzip:     8.87 kB
+dist/src/NoteAutocomplete-BKRAry-2.js                                     19.10 kB │ gzip:     6.56 kB
+dist/src/lv-LV-5QDEKY6T-BTnV-PCT.js                                       19.14 kB │ gzip:     7.79 kB
+dist/src/gl-ES-HMX3MZ6V-4bQs8jWL.js                                       19.39 kB │ gzip:     7.73 kB
+dist/src/tr-TR-DEFEU3FU-Q633YFo2.js                                       19.51 kB │ gzip:     7.96 kB
+dist/src/cs-CZ-2BRQDIVT-Bz62EbC5.js                                       19.52 kB │ gzip:     8.40 kB
+dist/src/editing-DGzLR2dP.js                                              19.56 kB │ gzip:     7.33 kB
+dist/src/pt-PT-UZXXM6DQ-DXzHR8rJ.js                                       19.65 kB │ gzip:     7.79 kB
+dist/src/note_types-DTWRSx9X.js                                           19.65 kB │ gzip:     6.46 kB
+dist/src/id-ID-SAP4L64H-ZZuXM5fX.js                                       19.68 kB │ gzip:     7.68 kB
+dist/src/ca-ES-6MX7JW3Y-QAg3jm2p.js                                       19.79 kB │ gzip:     7.90 kB
+dist/src/oc-FR-POXYY2M6-Cn1eE_Zu.js                                       19.84 kB │ gzip:     7.79 kB
+dist/src/nb-NO-T6EIAALU-BQeWbEx1.js                                       20.10 kB │ gzip:     8.19 kB
+dist/src/CanvasDrawing-BbYo0bod.js                                        20.22 kB │ gzip:     7.54 kB
+dist/src/kanban-definition-P3RFRI5V-BCFbvdlp.js                           20.30 kB │ gzip:     7.16 kB
+dist/src/he-IL-6SHJWFNN-9Ylp6ncb.js                                       20.32 kB │ gzip:     7.54 kB
+dist/src/dist-Dtf-MT7b.js                                                 20.72 kB │ gzip:     9.33 kB
+dist/src/bg-BG-XCXSNQG7-DFFjBv03.js                                       20.76 kB │ gzip:     7.39 kB
+dist/src/dist-BCWMV3AN.js                                                 20.97 kB │ gzip:     9.67 kB
+dist/src/sort-zF9PWazS.js                                                 20.98 kB │ gzip:     7.54 kB
+dist/src/pt-BR-5N22H2LF-CeODeunU.js                                       21.04 kB │ gzip:     8.21 kB
+dist/src/eu-ES-A7QVB2H4-CAoFumRj.js                                       21.20 kB │ gzip:     8.22 kB
+dist/src/search_field_editor-DFBmvSvI.js                                  21.29 kB │ gzip:     7.70 kB
+dist/src/es-ES-U4NZUMDT-D_KzWrdW.js                                       21.35 kB │ gzip:     8.49 kB
+dist/src/sl-SI-NN7IZMDC-DFJxhRNE.js                                       21.36 kB │ gzip:     8.58 kB
+dist/src/sv-SE-XGPEYMSR-CWEjOHYD.js                                       21.51 kB │ gzip:     8.56 kB
+dist/src/dist-D2n0pm2v.js                                                 21.61 kB │ gzip:     4.56 kB
+dist/src/it-IT-JPQ66NNP-D6FUHYuZ.js                                       22.06 kB │ gzip:     8.58 kB
+dist/src/clike-Clf5xocK.js                                                22.07 kB │ gzip:     7.77 kB
+dist/src/sk-SK-C5VTKIMK-NlHjiedH.js                                       22.31 kB │ gzip:     9.11 kB
+dist/src/chunk-6U3AYISY-C6-Mtja1.js                                       22.44 kB │ gzip:     8.62 kB
+dist/src/pl-PL-T2D74RX3-DgfcfsGT.js                                       22.50 kB │ gzip:     9.23 kB
+dist/src/sankeyDiagram-UM26HJRW-QWt-4S43.js                               22.75 kB │ gzip:     8.24 kB
+dist/src/0447fce3-kVZ1Z9Vi.js                                             22.81 kB │ gzip:     7.15 kB
+dist/src/dist-BiMK5A8A.js                                                 22.95 kB │ gzip:    10.42 kB
+dist/src/en-gb-IsO6Qbkg.js                                                23.05 kB │ gzip:     6.04 kB
+dist/src/dist-BS_fZSqM.js                                                 23.07 kB │ gzip:     7.84 kB
+dist/src/ro-RO-JPDTUUEW-BqxNXAVP.js                                       23.15 kB │ gzip:     8.94 kB
+dist/src/journeyDiagram-COXZFDF6-BaKM28kI.js                              23.18 kB │ gzip:     8.16 kB
+dist/src/de-DE-XR44H4JA-DNaOwkE9.js                                       23.34 kB │ gzip:     8.97 kB
+dist/src/ja-JP-DBVTYXUO-DSHejo8t.js                                       23.40 kB │ gzip:     8.79 kB
+dist/src/mindmap-definition-LZFPQGKD-BvKMegFQ.js                          23.43 kB │ gzip:     7.99 kB
+dist/src/fr-FR-RHASNOE6-BH99frB1.js                                       23.45 kB │ gzip:     8.87 kB
+dist/src/stylus-BOVgKnng.js                                               23.51 kB │ gzip:     8.55 kB
+dist/src/bn-BD-2XOGV67Q-KCzfC93t.js                                       23.60 kB │ gzip:     6.68 kB
+dist/src/ko-KR-MTYHY66A-BdMJRRpv.js                                       23.88 kB │ gzip:     9.18 kB
+dist/src/chunk-3YJQHVM4-CXruL7cJ.js                                       24.20 kB │ gzip:     6.57 kB
+dist/src/fa-IR-HGAKTJCU-ddIdgP13.js                                       24.24 kB │ gzip:     8.44 kB
+dist/src/syntax_highlighting-dahwiGWP.js                                  24.53 kB │ gzip:     4.82 kB
+dist/src/calendar-BZnwvWwV.js                                             24.71 kB │ gzip:     9.52 kB
+dist/src/css-DfLGLNt0.js                                                  24.74 kB │ gzip:     8.30 kB
+dist/src/wardleyDiagram-YMQ3BMBF-DOBfliiS.js                              25.20 kB │ gzip:     6.55 kB
+dist/src/ar-SA-G6X2FPQ2-BJ7kJfgn.js                                       25.67 kB │ gzip:     9.12 kB
+dist/src/fuse-BJU2MBW5.js                                                 26.29 kB │ gzip:     9.47 kB
+dist/src/dist-DbAA7J-Q.js                                                 26.69 kB │ gzip:    12.63 kB
+dist/src/MediaPreview-mMeFqyD9.js                                         26.79 kB │ gzip:     9.14 kB
+dist/src/dist-BmrRzSXO.js                                                 26.89 kB │ gzip:     8.81 kB
+dist/src/rough.esm-Dy-Kn_BL.js                                            27.10 kB │ gzip:     8.85 kB
+dist/src/attribute_detail-D5xrCJB9.js                                     27.27 kB │ gzip:     8.07 kB
+dist/src/import_dialog-CVq0fz1W.js                                        27.72 kB │ gzip:     8.91 kB
+dist/src/pa-IN-N4M65BXN-wsiZwueU.js                                       27.98 kB │ gzip:     7.98 kB
+dist/src/RelationMap-DJssjnCK.js                                          28.00 kB │ gzip:    10.40 kB
+dist/src/purify.es-B0LuI4JX.js                                            28.00 kB │ gzip:    11.07 kB
+dist/src/dist-CQrbCxE2.js                                                 28.40 kB │ gzip:    11.53 kB
+dist/src/Menu-BLg-et0Y.js                                                 28.55 kB │ gzip:    10.33 kB
+dist/src/provider_icons-UuUhBPcS.js                                       28.60 kB │ gzip:     9.98 kB
+dist/src/gitGraphDiagram-XJZIOB7I-BSDYWVtL.js                             29.04 kB │ gzip:     8.55 kB
+dist/src/ku-TR-6OUDTVRD-Ky7FAdew.js                                       29.32 kB │ gzip:     9.27 kB
+dist/src/src-DBwnPaVq.js                                                  29.37 kB │ gzip:    10.81 kB
+dist/src/el-GR-BZB4AONW-Chellj6d.js                                       29.67 kB │ gzip:     9.60 kB
+dist/src/timeline-definition-YOQAKGHF-DjUt79gQ.js                         30.49 kB │ gzip:    10.00 kB
+dist/src/erDiagram-O2IAPWRE-DFJD0i8Z.js                                   30.69 kB │ gzip:    10.58 kB
+dist/src/dist-CGfLzcic.js                                                 30.71 kB │ gzip:    12.72 kB
+dist/src/ru-RU-B4JR7IUQ-n637KE87.js                                       30.74 kB │ gzip:     9.86 kB
+dist/src/dist-wtyq3wP4.js                                                 30.83 kB │ gzip:    11.01 kB
+dist/src/requirementDiagram-X7JNWC4A-DLYuWVSx.js                          31.07 kB │ gzip:     9.82 kB
+dist/src/uk-UA-QMV73CPH-BfWne7LV.js                                       31.64 kB │ gzip:    10.10 kB
+dist/src/pica-DsPitfrN.js                                                 31.76 kB │ gzip:    12.46 kB
+dist/src/headless-calendar-BcG4cKh3.js                                    32.02 kB │ gzip:    10.81 kB
+dist/src/dist-Dxol8lyQ.js                                                 32.14 kB │ gzip:    13.01 kB
+dist/src/hi-IN-IWLTKZ5I-Dzr4DvnL.js                                       32.35 kB │ gzip:     9.08 kB
+dist/src/mhchem-fPjemvLN.js                                               33.24 kB │ gzip:     8.27 kB
+dist/src/src-DD3ntMLY.js                                                  33.48 kB │ gzip:    11.66 kB
+dist/src/quadrantDiagram-GDMTTRAM-BdxFHAiM.js                             33.53 kB │ gzip:     9.74 kB
+dist/src/interaction-C4MK89M3.js                                          34.06 kB │ gzip:     9.20 kB
+dist/src/zh-Bp7vp5Mn.js                                                   34.55 kB │ gzip:    11.12 kB
+dist/src/zh-cn-D5O30XZb.js                                                34.74 kB │ gzip:    11.03 kB
+dist/src/ta-IN-2NMHFXQM-D1gPGRIR.js                                       35.27 kB │ gzip:     8.50 kB
+dist/src/hooks-Bc_Uu8Rg.js                                                35.35 kB │ gzip:    11.90 kB
+dist/src/id-C4Fw9-24.js                                                   36.11 kB │ gzip:    10.14 kB
+dist/src/km-KH-HSX4SM5Z-CaYVKl3D.js                                       36.65 kB │ gzip:     9.21 kB
+dist/src/e07fe584-D4p_6LM3.js                                             36.72 kB │ gzip:    11.83 kB
+dist/src/fr-DwuurFG1.js                                                   36.85 kB │ gzip:    10.51 kB
+dist/src/sql-EgGGVXOP.js                                                  36.93 kB │ gzip:    10.97 kB
+dist/src/ChatMessage-CYHsZ1w1.js                                          37.44 kB │ gzip:    11.60 kB
+dist/src/tr-BPg5XMh8.js                                                   37.53 kB │ gzip:    10.87 kB
+dist/src/mermaid.core-BG3CSfHU.js                                         37.74 kB │ gzip:    12.77 kB
+dist/src/chunk-2BW5OAIV--JWPJ91L.js                                       37.87 kB │ gzip:     8.17 kB
+dist/src/cs-D3JyR3oQ.js                                                   38.05 kB │ gzip:    11.16 kB
+dist/src/pl-BWm68i-4.js                                                   38.68 kB │ gzip:    11.30 kB
+dist/src/pt-br-BvbSoFNn.js                                                38.85 kB │ gzip:    10.62 kB
+dist/src/de-T-pXVjag.js                                                   39.06 kB │ gzip:    10.92 kB
+dist/src/ko-dW1JibTk.js                                                   39.26 kB │ gzip:    11.18 kB
+dist/src/dist-tbKOE-Jy.js                                                 39.62 kB │ gzip:    10.79 kB
+dist/src/pt-C4iDhXkn.js                                                   39.63 kB │ gzip:    10.81 kB
+dist/src/ro-CxoNTdTr.js                                                   39.82 kB │ gzip:    11.20 kB
+dist/src/it-CxOR2fYM.js                                                   39.98 kB │ gzip:    10.63 kB
+dist/src/dist-DkROdGNI.js                                                 40.22 kB │ gzip:    16.75 kB
+dist/src/setup-BLD59xpa.js                                                40.22 kB │ gzip:    12.06 kB
+dist/src/blockDiagram-E7TT5TSB-B8wOQ7Ac.js                                40.36 kB │ gzip:    13.10 kB
+dist/src/es-mw404kzr.js                                                   40.52 kB │ gzip:    10.95 kB
+dist/src/useLlmChat-CzLGq5E3.js                                           40.55 kB │ gzip:    14.02 kB
+dist/src/vennDiagram-BLWOH2XV-7Z_gHcBB.js                                 41.20 kB │ gzip:    15.11 kB
+dist/src/ja-8lmghA_j.js                                                   41.39 kB │ gzip:    11.73 kB
+dist/src/stateDiagram-v2-TBUQTH76-CV2wucrN.js                             41.62 kB │ gzip:    13.91 kB
+dist/src/mr-IN-CRQNXWMA-9iKXC6Ya.js                                       42.25 kB │ gzip:    10.67 kB
+dist/src/timegrid-D0W5X9fH.js                                             43.50 kB │ gzip:    11.20 kB
+dist/src/vi-sMDPPFyj.js                                                   43.78 kB │ gzip:    11.19 kB
+dist/src/dist-Cv4xkseO.js                                                 43.88 kB │ gzip:    15.13 kB
+dist/src/dagre-W4DXFKR2-CZ8MNsvW.js                                       44.18 kB │ gzip:    15.70 kB
+dist/src/esm-cB8SdYBg.js                                                  44.30 kB │ gzip:    13.13 kB
+dist/src/xychartDiagram-TAQBALBS-BPMTkWYS.js                              44.52 kB │ gzip:    12.36 kB
+dist/src/dist-r354cmyq.js                                                 44.57 kB │ gzip:    19.32 kB
+dist/src/image-blob-reduce.esm-Fj7y_Tzy.js                                45.38 kB │ gzip:    16.30 kB
+dist/src/index.esm-CnCyI3JJ.js                                            45.59 kB │ gzip:    13.87 kB
+dist/src/calendar-DUv1ZydK.js                                             46.10 kB │ gzip:    14.47 kB
+dist/src/EditableText-DI2SDWqW.js                                         46.16 kB │ gzip:    17.56 kB
+dist/src/chunk-LNGE3PJU-Cz3NAIRA.js                                       46.36 kB │ gzip:    15.52 kB
+dist/src/hi-DiKxMC5D.js                                                   46.82 kB │ gzip:    10.99 kB
+dist/src/src-TwPwOX6K.js                                                  47.06 kB │ gzip:    15.89 kB
+dist/src/froca-DoVSqmfL.js                                                47.40 kB │ gzip:    15.29 kB
+dist/src/ddc31d5e-CRM3g1Wi.js                                             49.21 kB │ gzip:    15.38 kB
+dist/src/lib-BmkTVwwO.js                                                  49.39 kB │ gzip:    20.68 kB
+dist/src/ar-vH0N-Rg0.js                                                   49.54 kB │ gzip:    12.04 kB
+dist/src/classDiagram-v2-K4WV4PDN-X6a3ZJCL.js                             49.77 kB │ gzip:    16.21 kB
+dist/src/chunk-E2ZNV5FY-D-dA9hx6.js                                       51.25 kB │ gzip:    16.63 kB
+dist/src/i18n-Csjp5UZ-.js                                                 51.43 kB │ gzip:    16.77 kB
+dist/src/dist-CO7TX4XO.js                                                 52.31 kB │ gzip:    16.72 kB
+dist/src/uk-C6jbb6O3.js                                                   53.25 kB │ gzip:    12.75 kB
+dist/src/markdown_renderer-B16yiMVE.js                                    53.52 kB │ gzip:    17.14 kB
+dist/src/ru-DF3Zq6Vf.js                                                   55.89 kB │ gzip:    13.18 kB
+dist/src/script_api-Q0bR50k0.js                                           59.84 kB │ gzip:    14.28 kB
+dist/src/chunk-EU5HNXII-BaNI57vH.js                                       62.92 kB │ gzip:    20.44 kB
+dist/src/ganttDiagram-R7TSEDQI-Ba7zeS14.js                                63.01 kB │ gzip:    20.99 kB
+dist/src/c4Diagram-CRA5TL53-DvSQjctv.js                                   65.11 kB │ gzip:    18.64 kB
+dist/src/dist-BoQKjNiz.js                                                 66.78 kB │ gzip:    22.74 kB
+dist/src/dist-Ci2dM41s.js                                                 70.78 kB │ gzip:    26.09 kB
+dist/src/desktop_layout-Co08c1B1.js                                       71.29 kB │ gzip:    22.16 kB
+dist/src/jquery.module-Bd7OLr3v.js                                        78.51 kB │ gzip:    27.84 kB
+dist/src/bootstrap.esm-B2_iEEob.js                                        80.04 kB │ gzip:    23.89 kB
+dist/src/diagram-2UJZ2QOL-BVjQyR35.js                                     80.57 kB │ gzip:    25.22 kB
+dist/src/cose-bilkent-JH36ORCC-qeBm8ona.js                                81.25 kB │ gzip:    21.53 kB
+dist/src/dist-Cb3ps_NS.js                                                 84.42 kB │ gzip:    33.65 kB
+dist/src/board-BO_HlOYE.js                                                86.62 kB │ gzip:    29.57 kB
+dist/src/jszip.min-DLXiKp9Q.js                                            95.94 kB │ gzip:    28.48 kB
+dist/src/dashboard-Bqr5t2gU.js                                            97.49 kB │ gzip:    27.58 kB
+dist/src/dist-CWtOhLcx.js                                                 98.13 kB │ gzip:    28.76 kB
+dist/src/dist-Cn8avY9i.js                                                103.89 kB │ gzip:    34.74 kB
+dist/src/swimlanes-N4OXWK64-BsOjrPFZ.js                                  106.18 kB │ gzip:    36.11 kB
+dist/src/mathematica-FGVCSpsQ.js                                         109.85 kB │ gzip:    35.06 kB
+dist/src/chunk-XC4XBNZT-DLAsJFMR.js                                      115.52 kB │ gzip:    28.95 kB
+dist/src/NoteMap-CiWD2U_8.js                                             116.44 kB │ gzip:    39.13 kB
+dist/src/sequenceDiagram-ZO4K6R2Y-CFRntldK.js                            117.72 kB │ gzip:    31.37 kB
+dist/src/MindMap-CLh59xG_.js                                             118.31 kB │ gzip:    38.18 kB
+dist/src/note_tree--_sBnuJk.js                                           135.61 kB │ gzip:    42.43 kB
+dist/src/dist-uIc8T9rY.js                                                146.81 kB │ gzip:    30.51 kB
+dist/src/architectureDiagram-47P4ROYG-DyOzHHlE.js                        148.91 kB │ gzip:    41.15 kB
+dist/src/layout_commons-DDLv000P.js                                      162.40 kB │ gzip:    49.92 kB
+dist/src/preact_types-DzwMNiKE.js                                        162.67 kB │ gzip:    27.60 kB
+dist/src/Code-Vuz2fZXt.js                                                163.35 kB │ gzip:    52.00 kB
+dist/src/ContentWidget-Cz15BomQ.js                                       166.20 kB │ gzip:    48.84 kB
+dist/src/presentation-Cqgp5We8.js                                        177.50 kB │ gzip:    44.81 kB
+dist/src/usecaseDiagram-VIAY4XPW-D0AwhvqM.js                             187.93 kB │ gzip:    49.27 kB
+dist/src/dist-BwY1AX2i.js                                                197.43 kB │ gzip:    67.52 kB
+dist/src/chunk-VPRB5NB3-CH8qyap-.js                                      212.22 kB │ gzip:    28.82 kB
+dist/src/app_context-DSOyxrT6.js                                         219.30 kB │ gzip:    63.35 kB
+dist/src/dist-B_gT-43o.js                                                232.31 kB │ gzip:    74.55 kB
+dist/src/katex-DJhrJSbw.js                                               258.59 kB │ gzip:    77.43 kB
+dist/src/katex-DneLXh5C.js                                               258.92 kB │ gzip:    77.67 kB
+dist/src/zh-TW-B_y2IbzS.js                                               314.22 kB │ gzip:    58.06 kB
+dist/src/zh-CN-DeEcEOY5.js                                               316.42 kB │ gzip:    56.66 kB
+dist/src/tabulator-DW6o8czu.js                                           345.81 kB │ gzip:    80.75 kB
+dist/src/en-US-0vZqbPzz.js                                               356.29 kB │ gzip:    54.05 kB
+dist/src/ko-KR-CZzHMrLu.js                                               370.80 kB │ gzip:    55.94 kB
+dist/src/es-ES-CnRkUsRg.js                                               382.39 kB │ gzip:    58.12 kB
+dist/src/ja-JP-NtDpgb16.js                                               405.04 kB │ gzip:    60.93 kB
+dist/src/vi-VN-C-P23qoB.js                                               431.27 kB │ gzip:    65.64 kB
+dist/src/cytoscape.esm-CHBj4VkZ.js                                       434.61 kB │ gzip:   137.74 kB
+dist/src/prod-C4VtlBaI.js                                                500.94 kB │ gzip:   148.97 kB
+dist/src/chunk-K2UTITRG-bFPzd21o.js                                      528.72 kB │ gzip:   179.34 kB
+dist/src/fr-FR-DNEf5ikx.js                                               531.85 kB │ gzip:    81.23 kB
+dist/src/ru-RU-CM4IlTgY.js                                               587.80 kB │ gzip:    72.69 kB
+dist/src/chunk-NGNAAXSQ-C2Wy9Xmz.js                                      629.04 kB │ gzip:   127.32 kB
+dist/src/mathlive.min-LVbYz11q.js                                        807.73 kB │ gzip:   222.09 kB
+dist/src/jquery_types-BAKL8Vzv.js                                      1,122.88 kB │ gzip:   118.38 kB
+dist/src/geomap-DxK1GQ0q.js                                            1,263.69 kB │ gzip:   339.27 kB
+dist/src/elk-IJKZMXRS-B1Kumy7X.js                                      1,462.52 kB │ gzip:   455.74 kB
+dist/src/src-xRS3lxGV.js                                               1,644.60 kB │ gzip:   437.54 kB
+dist/src/chunk-EIO257PC-CAhBf1ig.js                                    1,821.03 kB │ gzip:   744.22 kB
+dist/src/ts_lib_files-DBZC-Iwo.js                                      2,795.53 kB │ gzip:   408.03 kB
+dist/src/typescript-B9zDluLv.js                                        3,466.48 kB │ gzip:   974.22 kB
+dist/src/Spreadsheet-BeFu_z2X.js                                       6,462.44 kB │ gzip: 1,722.75 kB
+
+[EVAL] Use of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+    ╭─[ ../client/src/services/bundle.ts:19:10 ]
+    │
+ 19 │        return eval(`const apiContext = this; (async function() { ${bundle.script}\r\n})()`);
+    │               ──┬─
+    │                 ╰─── Use of direct `eval` here.
+    │
+    │ Help: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+────╯
+
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/react-window/dist/react-window.js" may not be preserved when bundling.
+   ╭─[ ../../node_modules/react-window/dist/react-window.js:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-popover/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-popover/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-direction/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-direction/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-hover-card/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-hover-card/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/sonner/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/sonner/dist/index.mjs:1:1 ]
+   │
+ 1 │ 'use client';
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-dropdown-menu/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-dropdown-menu/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/cmdk/dist/index.mjs" may not be preserved when bundling.
+ - module level directive may not be preserved in ../../node_modules/cmdk/dist/index.mjs at 0..13
+  │
+  │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-dialog/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-dialog/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@univerjs/design/node_modules/@radix-ui/react-popover/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@univerjs/design/node_modules/@radix-ui/react-popover/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/jotai/esm/react/utils.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/jotai/esm/react/utils.mjs:1:1 ]
+   │
+ 1 │ 'use client';
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-focus-guards/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-focus-guards/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/jotai/esm/react.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/jotai/esm/react.mjs:1:1 ]
+   │
+ 1 │ 'use client';
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-focus-scope/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-focus-scope/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-presence/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-presence/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-portal/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-portal/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-portal/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-portal/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-presence/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-presence/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-popper/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-popover/node_modules/@radix-ui/react-popper/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-focus-guards/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-focus-guards/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-focus-scope/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-focus-scope/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-popper/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-popper/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-menu/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-menu/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-collection/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-collection/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "../../node_modules/@radix-ui/react-menu/node_modules/@radix-ui/react-roving-focus/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ ../../node_modules/@radix-ui/react-menu/node_modules/@radix-ui/react-roving-focus/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[INEFFECTIVE_DYNAMIC_IMPORT] ../client/src/services/content_renderer.ts is dynamically imported by ../client/src/menus/link_context_menu.ts, ../client/src/services/block_reference.ts but also statically imported by ../client/src/print.tsx, ../client/src/services/content_renderer_text.ts, ../client/src/services/note_tooltip.ts, ../client/src/widgets/collections/legacy/ListOrGridView.tsx, ../client/src/widgets/collections/legacy/ListPrintView.tsx, ..., dynamic import will not move module into another chunk.
+
+[INEFFECTIVE_DYNAMIC_IMPORT] ../client/src/components/app_context.ts is dynamically imported by ../client/src/services/content_renderer.ts, ../client/src/services/froca.ts, ../client/src/services/theme.ts, ../../packages/share-theme/src/content/app_view.ts but also statically imported by ../client/src/components/entrypoints.ts, ../client/src/components/main_tree_executors.ts, ../client/src/components/note_context.ts, ../client/src/components/root_command_executor.ts, ../client/src/components/shortcut_component.ts, ..., dynamic import will not move module into another chunk.
+
+✓ built in 3.56s

@@ -6,6 +6,7 @@ import attributes from "../../services/attributes";
 import bulk_action from "../../services/bulk_action";
 import search from "../../services/search";
 import server from "../../services/server";
+import ws from "../../services/ws";
 import toast from "../../services/toast";
 import { renderInto } from "../../test/render";
 import SearchDefinition from "./SearchDefinition";
@@ -34,7 +35,8 @@ beforeEach(() => {
         resolveSetLabel = resolve;
     }));
     vi.spyOn(search, "runSearchNote").mockResolvedValue({ error: undefined });
-    vi.spyOn(server, "post").mockResolvedValue(undefined);
+    vi.spyOn(server, "post").mockResolvedValue({ applied: 0, skipped: 0, failed: 0, outcomes: [] });
+    ws.waitForMaxKnownEntityChangeId = vi.fn(async () => {});
     vi.spyOn(bulk_action, "parseActions").mockReturnValue([]);
     vi.spyOn(toast, "showMessage").mockImplementation(() => {});
 });
@@ -64,6 +66,18 @@ describe("the search definition", () => {
         await settle();
 
         expect(getRequest()).toHaveBeenCalledTimes(1);
+    });
+
+    it("shows partial action failures instead of a success notification", async () => {
+        vi.mocked(server.post).mockResolvedValue({ applied: 2, skipped: 1, failed: 1, outcomes: [] });
+        const failure = vi.spyOn(toast, "showError").mockImplementation(() => {});
+        const container = renderDefinition();
+        const button = [...container.querySelectorAll("button")].find(b => b.textContent?.includes("search_definition.search_execute"));
+        act(() => { button?.click(); });
+        await settle();
+        expect(ws.waitForMaxKnownEntityChangeId).toHaveBeenCalled();
+        expect(failure).toHaveBeenCalledOnce();
+        expect(toast.showMessage).not.toHaveBeenCalled();
     });
 
     it("saves the search string before Enter runs it", async () => {

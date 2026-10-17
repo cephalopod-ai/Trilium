@@ -34,13 +34,13 @@ const TAB_TPL = `
     <div class="note-tab-icon"></div>
     <div class="note-tab-title"></div>
     <div class="note-tab-pin-indicator bx bx-pin" aria-label="${t("tab_row.unpin_tab")}"></div>
-    <div class="note-tab-close bx bx-x" aria-label="${t("tab_row.close_tab")}"></div>
+    <button type="button" class="note-tab-close bx bx-x" aria-label="${t("tab_row.close_tab")}"></button>
   </div>
 </div>`;
 
 const CONTAINER_ANCHOR_TPL = `<div class="tab-row-container-anchor"></div>`;
 
-const NEW_TAB_BUTTON_TPL = `<div class="note-new-tab" data-trigger-command="openNewTab" aria-label="${t("tab_row.add_new_tab")}">+</div>`;
+const NEW_TAB_BUTTON_TPL = `<button type="button" class="note-new-tab" data-trigger-command="openNewTab" aria-label="${t("tab_row.add_new_tab")}">+</button>`;
 const FILLER_TPL = `<div class="tab-row-filler"></div>`;
 
 const TAB_ROW_TPL = `
@@ -62,6 +62,13 @@ const TAB_ROW_TPL = `
     .tab-row-widget * {
         box-sizing: inherit;
         font: inherit;
+    }
+
+    .tab-row-widget button {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        color: inherit;
     }
 
     .tab-row-widget .tab-row-widget-container {
@@ -322,11 +329,11 @@ const TAB_ROW_TPL = `
     }
 
     </style>
-    <div class="tab-scroll-button-left bx bx-chevron-left"></div>
+    <button type="button" class="tab-scroll-button-left bx bx-chevron-left" aria-label="${t("tab_row.scroll_left")}"></button>
     <div class="tab-row-widget-scrolling-container">
         <div class="tab-row-widget-container"></div>
     </div>
-    <div class="tab-scroll-button-right bx bx-chevron-right"></div>
+    <button type="button" class="tab-scroll-button-right bx bx-chevron-right" aria-label="${t("tab_row.scroll_right")}"></button>
 </div>`;
 
 export default class TabRowWidget extends BasicWidget {
@@ -447,8 +454,8 @@ export default class TabRowWidget extends BasicWidget {
         const scrollWidth = this.$tabScrollingContainer[0].scrollWidth;
         const clientWidth = this.$tabScrollingContainer[0].clientWidth;
         // Detect whether the scrollbar is at the far left or far right.
-        this.$scrollButtonLeft.toggleClass("disabled", Math.abs(scrollLeft) <= 1);
-        this.$scrollButtonRight.toggleClass("disabled", Math.abs(scrollLeft + clientWidth - scrollWidth) <= 1);
+        this.$scrollButtonLeft.toggleClass("disabled", Math.abs(scrollLeft) <= 1).prop("disabled", Math.abs(scrollLeft) <= 1);
+        this.$scrollButtonRight.toggleClass("disabled", Math.abs(scrollLeft + clientWidth - scrollWidth) <= 1).prop("disabled", Math.abs(scrollLeft + clientWidth - scrollWidth) <= 1);
     }
 
     setScrollButtonVisibility(show: boolean = true) {

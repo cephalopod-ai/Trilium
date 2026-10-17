@@ -1,0 +1,71 @@
+
+ RUN  v5.0.3 <repo>/apps/client
+
+stdout | src/widgets/react/ActionButton.spec.tsx:49 > ActionButton > triggers its command from the surrounding component, naming the note context it stands in
+Cannot find action 'runActiveNote'
+
+stdout | src/widgets/react/ActionButton.spec.tsx:67 > ActionButton > names the note context of the closest legacy ancestor, such as a split, when no provider surrounds it
+Cannot find action 'runActiveNote'
+
+ ✓ src/widgets/react/ActionButton.mobile.spec.tsx:30 > ActionButton on a touch screen > declines its tooltip where asked, handing the label to assistive technology instead 2ms
+ ✓ src/widgets/react/ActionButton.mobile.spec.tsx:41 > ActionButton on a touch screen > keeps both the tooltip and an accessible name when the tooltip is enabled 1ms
+ ✓ src/widgets/react/ActionButton.spec.tsx:27 > ActionButton > keeps a plain accessible name before hover and updates it with the label 5ms
+ ✓ src/widgets/react/ActionButton.spec.tsx:36 > ActionButton > removes its show listener when tooltip options change on the same button 1ms
+ ✓ src/widgets/react/ActionButton.spec.tsx:49 > ActionButton > triggers its command from the surrounding component, naming the note context it stands in 2ms
+ ✓ src/widgets/react/ActionButton.spec.tsx:67 > ActionButton > names the note context of the closest legacy ancestor, such as a split, when no provider surrounds it 1ms
+ ✓ src/widgets/react/ActionButton.spec.tsx:85 > ActionButton > dismisses its tooltip when pressed, so it cannot sit on top of what the press opened 5ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:104 > useLlmChat > turns a content-free completion into a retryable error without retrying automatically 4ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:120 > useLlmChat > provides the latest messages and note access to a synchronous save snapshot 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:132 > useLlmChat > focuses the input at once when it is ready, or as soon as it registers 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:147 > useLlmChat > selects the default model with its provider and annotates model costs 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:164 > useLlmChat > groups models per provider, keeping a provider with no selected models as an empty group 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:182 > useLlmChat > sends with the provider recorded at model selection 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:198 > useLlmChat > sends the chosen search provider, unless the model runs its own agent loop 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:221 > useLlmChat > holds back a message whose attachments the model cannot read, until the model changes 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:250 > useLlmChat > resolves the provider by model ID for chats saved before selectedProvider existed 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:270 > useLlmChat > tracks what the next request will carry: reported usage, a restored transcript, and the unsent draft 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:321 > useLlmChat > counts no tokens for a turn whose provider reports only the model 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:345 > useLlmChat > keeps, saves and sends the reasoning effort, only for a model that has levels 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:389 > useLlmChat > round-trips the selected provider through getContent 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:405 > useLlmChat > keeps thoughts in stream order inside the reply, and never sends them back 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:452 > useLlmChat > resets Gosling execution authority when the chat note changes 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:465 > useLlmChat > keeps what a turn waits on until the turn ends 0ms
+ ✓ src/widgets/react/react_utils.spec.tsx:18 > widget crash boundary > isolates a render failure, offers retry, and leaves sibling mounts usable 359ms
+ × src/widgets/react/react_utils.spec.tsx:42 > widget crash boundary > contains a later child failure after a fragment widget is inserted into its real parent 2ms
+   → expected null not to be null
+ ✓ src/services/bulk_action.spec.ts:56 > bulk_action service > exposes the action metadata via the default export 1ms
+ ✓ src/services/bulk_action.spec.ts:85 > bulk_action service > addAction posts an action attribute and waits for sync 1ms
+ ✓ src/services/bulk_action.spec.ts:99 > bulk_action service > parseActions instantiates known actions and skips invalid/unknown ones 1ms
+ ✓ src/services/bulk_action.spec.ts:128 > bulk_action service > executeBulkActions posts the actions, waits for sync, and toasts (default includeDescendants) 0ms
+ ✓ src/services/bulk_action.spec.ts:145 > bulk_action service > executeBulkActions forwards includeDescendants when provided 0ms
+ ✓ src/services/bulk_action.spec.ts:158 > bulk_action service > returns mixed outcomes and uses an error notice when any action failed 0ms
+ ✓ src/services/bulk_action.spec.ts:168 > bulk_action service > executeBulkActions still applies the actions when told to stay silent 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/widgets/react/react_utils.spec.tsx:42 > widget crash boundary > contains a later child failure after a fragment widget is inserted into its real parent
+AssertionError: expected null not to be null
+ ❯ src/widgets/react/react_utils.spec.tsx:57:58
+     55|         expect(host.querySelector("[data-initial]")).not.toBeNull();
+     56|         await act(async () => { crash(); });
+     57|         expect(host.querySelector('[role="alert"]')).not.toBeNull();
+       |                                                          ^
+     58|     });
+     59| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 31 passed (32)
+   Start at  09:06:15
+   Duration  1.02s (transform 42%, environment 28%, tests 15%, import 11%, setup 4%)
+
+JUNIT report written to <repo>/apps/client/test-output/vitest/junit.xml
+ HTML  Report is generated
+       You can run npx vite preview --outDir .vitest to see the test results.
+Error: ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL
+
+  × "pnpm recursive exec" failed in <repo>/apps/
+  │ client
+

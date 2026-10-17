@@ -1,0 +1,235 @@
+
+ RUN  v5.0.3 <repo>/apps/client
+
+ ✓ src/services/render.spec.tsx:64 > render > default export exposes render 2ms
+ ✓ src/services/render.spec.tsx:68 > render > empties and hides the element when there are no renderNote relations 5ms
+ ✓ src/services/render.spec.tsx:80 > render > ignores relations whose value is empty (filtered out) 1ms
+ ✓ src/services/render.spec.tsx:90 > render > loads, appends bundle html and executes the bundle for each render note 3ms
+ ✓ src/services/render.spec.tsx:117 > render > scopes the note's own stylesheet to its container so it cannot restyle the app 2ms
+ ✓ src/services/render.spec.tsx:140 > render > loops over every renderNote relation: one container + bundle fetch + execution per target 1ms
+ ✓ src/services/render.spec.tsx:168 > render > invokes onError when the bundle could not be loaded 1ms
+ ✓ src/services/render.spec.tsx:182 > render > forwards bundle execution rejections to onError via catch 2ms
+ ✓ src/services/render.spec.tsx:195 > render > parses a JSON-shaped string error and passes the parsed object to onError 0ms
+ ✓ src/services/render.spec.tsx:208 > render > falls back to passing the raw error when a JSON-shaped string fails to parse 0ms
+ ✓ src/services/render.spec.tsx:224 > render > passes a non-string thrown error straight to onError 0ms
+ ✓ src/services/render.spec.tsx:238 > render > triggers JSX rendering when the bundle html is empty 3ms
+ ✓ src/services/render.spec.tsx:266 > render > holds waitForPendingRenders until the script and its JSX mount have settled 3ms
+ ✓ src/services/render.spec.tsx:307 > renderIfJsx > does nothing when the root script note is not text/jsx 0ms
+ ✓ src/services/render.spec.tsx:314 > renderIfJsx > does nothing when the resolved root note is missing 0ms
+ ✓ src/services/render.spec.tsx:325 > renderIfJsx > does nothing when the bundle result is not a function 0ms
+ ✓ src/services/render.spec.tsx:332 > renderIfJsx > does nothing when there is no closest component 0ms
+ ✓ src/services/render.spec.tsx:340 > renderIfJsx > renders the user component wrapped in an error boundary 0ms
+ ✓ src/services/render.spec.tsx:358 > renderIfJsx > error boundary renders children normally and swallows errors via componentDidCatch 0ms
+ ✓ src/services/content_renderer.spec.ts:184 > CONTENT_RENDERERS > has an entry for every group the static export names a renderer by 2ms
+ ✓ src/services/content_renderer.spec.ts:191 > getEmbedBoxSize > sizes an embed by what it previews: none, audio, code or anything else 3ms
+ ✓ src/services/content_renderer.spec.ts:231 > getEmbedBoxSize > shows an upload too large to highlight as a file 0ms
+ ✓ src/services/content_renderer.spec.ts:237 > getEmbedBoxSize > sizes an upload by its media type, as the attachment it becomes 0ms
+ ✓ src/services/content_renderer.spec.ts:250 > hasRenderedPreview > tells a file it draws, such as a canvas drawing, from one it shows as an icon 0ms
+ ✓ src/services/content_renderer.spec.ts:269 > getRenderedContent dispatch > marks a note that asks for the full content width 7ms
+ ✓ src/services/content_renderer.spec.ts:279 > getRenderedContent dispatch > renders text/book via renderText and applies css class 3ms
+ ✓ src/services/content_renderer.spec.ts:293 > getRenderedContent dispatch > renders markdown with content through renderToHtml + postProcess 48ms
+ ✓ src/services/content_renderer.spec.ts:307 > getRenderedContent dispatch > treats a markdown note with a null blob as empty 0ms
+ ✓ src/services/content_renderer.spec.ts:316 > getRenderedContent dispatch > renders empty markdown as a children list (FNote, not noChildrenList) 0ms
+ ✓ src/services/content_renderer.spec.ts:325 > getRenderedContent dispatch > empty markdown with noChildrenList skips the children list 0ms
+ ✓ src/services/content_renderer.spec.ts:332 > getRenderedContent dispatch > empty markdown honors includeArchivedNotes flag 0ms
+ ✓ src/services/content_renderer.spec.ts:341 > getRenderedContent code rendering > pretty-prints valid JSON code notes 1ms
+ ✓ src/services/content_renderer.spec.ts:350 > getRenderedContent code rendering > leaves invalid JSON untouched 0ms
+ ✓ src/services/content_renderer.spec.ts:357 > getRenderedContent code rendering > renders non-JSON code with empty content fallback 0ms
+ ✓ src/services/content_renderer.spec.ts:377 > getRenderedContent editable code > renders an attached code file too large to highlight as a file 0ms
+ ✓ src/services/content_renderer.spec.ts:391 > getRenderedContent editable code > renders an attached code file as code, highlighted by the language of its name 0ms
+ ✓ src/services/content_renderer.spec.ts:413 > getRenderedContent editable code > mounts CodeEmbed for an interactive code note, saved by `noteEditor` 3ms
+ ✓ src/services/content_renderer.spec.ts:450 > getRenderedContent editable code > mounts CodeEmbed for an interactive code file, saved by `attachmentEditor` 1ms
+ ✓ src/services/content_renderer.spec.ts:470 > getRenderedContent editable code > mounts TextEmbed for an interactive text note, with a preview to render again 2ms
+ ✓ src/services/content_renderer.spec.ts:499 > getRenderedContent editable code > mounts TextEmbed for blocks, with an editor where they can be edited apart 4ms
+ ✓ src/services/content_renderer.spec.ts:526 > getRenderedContent editable code > edits only code and text notes 1ms
+ ✓ src/services/content_renderer.spec.ts:539 > getRenderedContent editable code > keeps the static preview without an editor, or outside an embed 1ms
+ ✓ src/services/content_renderer.spec.ts:564 > getRenderedContent image rendering > renders an FNote image with an api/images url 2ms
+ ✓ src/services/content_renderer.spec.ts:574 > getRenderedContent image rendering > renders an FAttachment image with an api/attachments url 1ms
+ ✓ src/services/content_renderer.spec.ts:581 > getRenderedContent image rendering > mounts the image viewer when the caller embeds an image note or attachment 1ms
+ ✓ src/services/content_renderer.spec.ts:606 > getRenderedContent image rendering > keeps a plain image for an embedded canvas and outside an embed 0ms
+ ✓ src/services/content_renderer.spec.ts:617 > getRenderedContent image rendering > appends OCR text for FNote images when showTextRepresentation and OCR succeeds 0ms
+ ✓ src/services/content_renderer.spec.ts:625 > getRenderedContent image rendering > omits OCR section when the OCR response is unsuccessful 0ms
+ ✓ src/services/content_renderer.spec.ts:632 > getRenderedContent image rendering > swallows OCR fetch errors 0ms
+ ✓ src/services/content_renderer.spec.ts:642 > getRenderedContent image rendering > does not fetch OCR for attachments even with showTextRepresentation 0ms
+stdout | src/widgets/react/ActionButton.spec.tsx:49 > ActionButton > triggers its command from the surrounding component, naming the note context it stands in
+Cannot find action 'runActiveNote'
+
+stdout | src/widgets/react/ActionButton.spec.tsx:67 > ActionButton > names the note context of the closest legacy ancestor, such as a split, when no provider surrounds it
+Cannot find action 'runActiveNote'
+
+ ✓ src/widgets/tab_row.spec.ts:23 > gives tab actions native keyboard semantics and disables unavailable scrolling 18ms
+ ✓ src/widgets/react/ActionButton.mobile.spec.tsx:30 > ActionButton on a touch screen > declines its tooltip where asked, handing the label to assistive technology instead 5ms
+ ✓ src/widgets/react/ActionButton.mobile.spec.tsx:41 > ActionButton on a touch screen > keeps both the tooltip and an accessible name when the tooltip is enabled 1ms
+stderr | src/services/content_renderer.spec.ts:792 > getRenderedContent office rendering > shows an admonition (and drops the preview body) when conversion fails
+Failed to render office document preview: bad zip
+
+ ✓ src/widgets/react/ActionButton.spec.tsx:27 > ActionButton > keeps a plain accessible name before hover and updates it with the label 10ms
+ ✓ src/widgets/react/ActionButton.spec.tsx:36 > ActionButton > removes its show listener when tooltip options change on the same button 3ms
+ ✓ src/widgets/react/ActionButton.spec.tsx:49 > ActionButton > triggers its command from the surrounding component, naming the note context it stands in 4ms
+ ✓ src/widgets/react/ActionButton.spec.tsx:67 > ActionButton > names the note context of the closest legacy ancestor, such as a split, when no provider surrounds it 2ms
+ ✓ src/widgets/react/ActionButton.spec.tsx:85 > ActionButton > dismisses its tooltip when pressed, so it cannot sit on top of what the press opened 10ms
+ × src/widgets/react/react_utils.spec.tsx:19 > widget crash boundary > isolates a render failure, offers retry, and leaves sibling mounts usable 1012ms
+   → expected null not to be null
+ ✓ src/widgets/react/react_utils.spec.tsx:43 > widget crash boundary > contains a later child failure after a fragment widget is inserted into its real parent 4ms
+ ✓ src/services/content_renderer.spec.ts:651 > getRenderedContent file rendering > renders a pdf note with a viewer, download and open buttons 68ms
+ ✓ src/services/content_renderer.spec.ts:676 > getRenderedContent file rendering > does not render file when tooltip option is set 0ms
+ ✓ src/services/content_renderer.spec.ts:685 > getRenderedContent file rendering > mounts a lazy media player for an audio or video note, streaming nothing until it is played 1ms
+ ✓ src/services/content_renderer.spec.ts:697 > getRenderedContent file rendering > mounts the full media player when the caller embeds the note, and drops the footer it carries itself 0ms
+ ✓ src/services/content_renderer.spec.ts:708 > getRenderedContent file rendering > keeps the footer for a media preview, and for the file types that have no player 1ms
+ ✓ src/services/content_renderer.spec.ts:718 > getRenderedContent file rendering > renders the plain media element for callers that serialize to HTML (presentation, printing) 3ms
+ ✓ src/services/content_renderer.spec.ts:734 > getRenderedContent file rendering > hides the open button for protected file notes 1ms
+ ✓ src/services/content_renderer.spec.ts:744 > getRenderedContent file rendering > renders a file attachment without note-only footer buttons 0ms
+ ✓ src/services/content_renderer.spec.ts:751 > getRenderedContent file rendering > appends OCR text inside the file content when requested 1ms
+ ✓ src/services/content_renderer.spec.ts:763 > getRenderedContent office rendering > renders a docx file note as a converted, sanitized preview plus file actions 1ms
+ ✓ src/services/content_renderer.spec.ts:776 > getRenderedContent office rendering > attaches a spreadsheet's stylesheet inside the preview body, as an element 1ms
+ ✓ src/services/content_renderer.spec.ts:792 > getRenderedContent office rendering > shows an admonition (and drops the preview body) when conversion fails 2ms
+ ✓ src/services/content_renderer.spec.ts:802 > getRenderedContent office rendering > does not run the heavy conversion in tooltip mode 0ms
+ ✓ src/services/content_renderer.spec.ts:810 > getRenderedContent office rendering > renders an office attachment preview without the note-only footer 1ms
+ ✓ src/services/content_renderer.spec.ts:820 > getRenderedContent render / doc / protectedSession / mermaid > renders a render-type note and surfaces render-service output 1ms
+ ✓ src/services/content_renderer.spec.ts:828 > getRenderedContent render / doc / protectedSession / mermaid > mounts a JSX render note under the given parent component 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:104 > useLlmChat > turns a content-free completion into a retryable error without retrying automatically 8ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:120 > useLlmChat > provides the latest messages and note access to a synchronous save snapshot 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:132 > useLlmChat > focuses the input at once when it is ready, or as soon as it registers 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:147 > useLlmChat > selects the default model with its provider and annotates model costs 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:164 > useLlmChat > groups models per provider, keeping a provider with no selected models as an empty group 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:182 > useLlmChat > sends with the provider recorded at model selection 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:198 > useLlmChat > sends the chosen search provider, unless the model runs its own agent loop 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:221 > useLlmChat > holds back a message whose attachments the model cannot read, until the model changes 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:250 > useLlmChat > resolves the provider by model ID for chats saved before selectedProvider existed 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:270 > useLlmChat > tracks what the next request will carry: reported usage, a restored transcript, and the unsent draft 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:321 > useLlmChat > counts no tokens for a turn whose provider reports only the model 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:345 > useLlmChat > keeps, saves and sends the reasoning effort, only for a model that has levels 1ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:389 > useLlmChat > round-trips the selected provider through getContent 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:405 > useLlmChat > keeps thoughts in stream order inside the reply, and never sends them back 2ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:452 > useLlmChat > resets Gosling execution authority when the chat note changes 0ms
+ ✓ src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx:465 > useLlmChat > keeps what a turn waits on until the turn ends 1ms
+ ✓ src/services/content_renderer.spec.ts:834 > getRenderedContent render / doc / protectedSession / mermaid > render error callback shows an admonition with the error message 214ms
+ ✓ src/services/content_renderer.spec.ts:847 > getRenderedContent render / doc / protectedSession / mermaid > render error callback accepts a string error directly 1ms
+ ✓ src/services/content_renderer.spec.ts:857 > getRenderedContent render / doc / protectedSession / mermaid > renders a doc note via the doc renderer 1ms
+ ✓ src/services/content_renderer.spec.ts:865 > getRenderedContent render / doc / protectedSession / mermaid > renders the protected-session prompt with a working enter button 1ms
+ ✓ src/services/content_renderer.spec.ts:877 > getRenderedContent render / doc / protectedSession / mermaid > shows a mermaid note's saved SVG instead of rendering its source 0ms
+ ✓ src/services/content_renderer.spec.ts:890 > generic FNote fallback / webView > renders the no-preview icon block for unknown types 0ms
+ ✓ src/services/content_renderer.spec.ts:898 > generic FNote fallback / webView > gives an attachment without a preview its own icon, as a note gets 0ms
+ ✓ src/services/content_renderer.spec.ts:913 > generic FNote fallback / webView > renders a webView footer that opens in a new window when not in electron 1ms
+ ✓ src/services/content_renderer.spec.ts:924 > generic FNote fallback / webView > uses the electron shell when electronApi is present 1ms
+ ✓ src/services/content_renderer.spec.ts:933 > generic FNote fallback / webView > does nothing on click when webViewSrc label value is missing 0ms
+ ✓ src/services/content_renderer.spec.ts:942 > generic FNote fallback / webView > renders a plain webView (no webViewSrc label) without a footer 0ms
+ ✓ src/services/content_renderer.spec.ts:949 > generic FNote fallback / webView > mounts the live WebView widget when interactive (outside a tooltip) 2ms
+ ✓ src/services/content_renderer.spec.ts:961 > generic FNote fallback / webView > points a freshly mounted .component element at appContext so embedded command buttons resolve 0ms
+ ✓ src/services/content_renderer.spec.ts:974 > generic FNote fallback / webView > leaves a .component element that already carries a component prop untouched 1ms
+ ✓ src/services/content_renderer.spec.ts:992 > generic FNote fallback / webView > executes the search and mounts the live collection list for an interactive search note 8ms
+ ✓ src/services/content_renderer.spec.ts:1008 > generic FNote fallback / webView > mounts the collection view for an interactive book note without executing a search 3ms
+ ✓ src/services/content_renderer.spec.ts:1024 > generic FNote fallback / webView > does not embed a dashboard-view collection, to avoid recursion 1ms
+ ✓ src/services/content_renderer.spec.ts:1033 > generic FNote fallback / webView > keeps the static fallback for book/search notes when interactive is off 1ms
+ ✓ src/services/content_renderer.spec.ts:1050 > generic FNote fallback / webView > keeps the static fallback in a tooltip or without a src, even when interactive 1ms
+ ✓ src/services/content_renderer.spec.ts:1069 > generic FNote fallback / webView > mounts the chat preview for an AI chat note 1ms
+ ✓ src/services/content_renderer.spec.ts:1078 > generic FNote fallback / webView > snapshots the chat preview for a tooltip, leaving no live root behind 1ms
+ ✓ src/services/content_renderer.spec.ts:1090 > generic FNote fallback / webView > caps how many messages a tooltip previews, but not the note detail 1ms
+ ✓ src/services/content_renderer.spec.ts:1100 > generic FNote fallback / webView > keeps a title-only tooltip for a chat with no messages 0ms
+ ✓ src/services/content_renderer.spec.ts:1111 > getRenderedContent canvas drawing rendering > mounts the editor for an interactive attachment, with its saving editor 1ms
+ ✓ src/services/content_renderer.spec.ts:1132 > getRenderedContent canvas drawing rendering > shows a picture of the drawing elsewhere, and an icon for an empty drawing 1ms
+ ✓ src/services/content_renderer.spec.ts:1151 > interactive content disposal > tags an interactive mount and disposes it, unmounting the widget 0ms
+ ✓ src/services/content_renderer.spec.ts:1164 > interactive content disposal > is a no-op for content with no interactive mounts 0ms
+ ✓ src/services/content_renderer.spec.ts:1176 > defensive guards for entities that are neither FNote nor FAttachment > image rendering falls back to an empty src url and skips the FNote-only fallback block 0ms
+ ✓ src/services/content_renderer.spec.ts:1185 > defensive guards for entities that are neither FNote nor FAttachment > file rendering throws for an unrecognized entity type 0ms
+ ✓ src/services/content_renderer.spec.ts:1190 > defensive guards for entities that are neither FNote nor FAttachment > rendering type defaults to empty when the entity has neither type nor role 0ms
+ ✓ src/services/content_renderer.spec.ts:1198 > getRenderingType detection > classifies an attachment by its role 0ms
+ ✓ src/services/content_renderer.spec.ts:1203 > getRenderingType detection > renders an importSource attachment like a file 0ms
+ ✓ src/services/content_renderer.spec.ts:1211 > getRenderingType detection > returns the raw role of an attachment with no branch, drawn as an icon 0ms
+ ✓ src/services/content_renderer.spec.ts:1220 > getRenderingType detection > maps json file notes to code unless tagged as an icon pack 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:24 > restoreExistingData > maintains important columns properties 1ms
+ ✓ src/widgets/collections/table/columns.spec.ts:38 > restoreExistingData > should restore existing column data 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:52 > restoreExistingData > restores order of columns 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:66 > restoreExistingData > inserts new columns at given position 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:83 > restoreExistingData > inserts new columns at the end if no position is specified 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:100 > restoreExistingData > supports a rename 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:115 > restoreExistingData > doesn't alter the existing order 1ms
+ ✓ src/widgets/collections/table/columns.spec.ts:130 > restoreExistingData > allows hiding the row number column 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:141 > restoreExistingData > enforces size for non-resizable columns 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:152 > restoreExistingData > enforces size for non-resizable columns persisted by Tabulator 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:168 > buildColumnDefinitions — typed columns > edits every temporal type through its native picker, as the promoted field does 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:187 > buildColumnDefinitions — typed columns > hands a url column's href through the scheme guard rather than linking the value as stored 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:202 > buildColumnDefinitions — typed columns > shows a single flag as the chip a set of flags wears, and an unset cell as nothing 6ms
+ ✓ src/widgets/collections/table/columns.spec.ts:244 > buildColumnDefinitions — relation columns > sorts by the title the cell shows, and by nothing where a row or the column carries none 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:256 > buildColumnDefinitions — relation columns > shows a set of targets as the chips naming their notes 3ms
+ ✓ src/widgets/collections/table/columns.spec.ts:273 > buildColumnDefinitions — relation columns > edits a set of targets through the same field the note's own promoted grid offers 2ms
+ ✓ src/widgets/collections/table/columns.spec.ts:288 > buildColumnDefinitions — relation columns > edits a single target through the note search, standing over the cell 1ms
+ ✓ src/widgets/collections/table/columns.spec.ts:328 > buildColumnDefinitions — colour columns > reports the picked colour once the pick is settled, not through the drag 1ms
+ ✓ src/widgets/collections/table/columns.spec.ts:343 > buildColumnDefinitions — colour columns > clears a colour back to the unset value a bare picker cannot express 1ms
+ ✓ src/widgets/collections/table/columns.spec.ts:350 > buildColumnDefinitions — colour columns > shows a colour as the chip a set of colours wears, and an unset one as nothing 3ms
+ ✓ src/widgets/collections/table/columns.spec.ts:380 > buildColumnDefinitions — colour columns > leaves a cell alone until a colour is picked, an opened picker being no decision 1ms
+ ✓ src/widgets/collections/table/columns.spec.ts:416 > buildColumnDefinitions — select columns > hands the editor the column's own options, and a way to add to them 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:427 > buildColumnDefinitions — select columns > asks for the options as a cell is opened, so one just created is already among them 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:441 > buildColumnDefinitions — select columns > leaves the editor no way to create where the caller offers none 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:457 > buildColumnDefinitions — multi-valued columns > edits and shows a set as chips whatever it holds, not only a set of options 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:495 > buildColumnDefinitions — multi-valued columns > stays open where the focus leaves the page rather than the cell 3ms
+ ✓ src/widgets/collections/table/columns.spec.ts:514 > buildColumnDefinitions — multi-valued columns > shows each value as its type reads it, rather than as the text it is stored as 1ms
+ ✓ src/widgets/collections/table/columns.spec.ts:540 > buildColumnDefinitions — multi-valued columns > links each url of a set, without making a hostile scheme clickable 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:554 > buildColumnDefinitions — multi-valued columns > sorts by the values a cell holds, not by the array they arrive in 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:567 > buildColumnDefinitions — relation columns > sorts by the target's title carried in the row, not by the noteId the cell stores 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:591 > buildColumnDefinitions — relation columns > keeps the title sort for a column of several targets, whose cells hold noteId arrays 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:621 > formatLabelDate > renders dates and datetimes in the configured formatting locale 4ms
+ ✓ src/widgets/collections/table/columns.spec.ts:628 > formatLabelDate > keeps a date-only value on its calendar day rather than shifting it by timezone 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:635 > formatLabelDate > echoes values that are not dates instead of throwing inside the grid render 0ms
+ ✓ src/widgets/collections/table/columns.spec.ts:643 > formatLabelDate > renders a blank cell for missing values 0ms
+ ✓ src/widgets/sidebar/pdf/PdfAttachments.spec.tsx:23 > exposes each attachment as a focusable native download action named by its filename 7ms
+ ✓ src/services/bulk_action.spec.ts:56 > bulk_action service > exposes the action metadata via the default export 3ms
+ ✓ src/services/bulk_action.spec.ts:85 > bulk_action service > addAction posts an action attribute and waits for sync 1ms
+ ✓ src/services/bulk_action.spec.ts:99 > bulk_action service > parseActions instantiates known actions and skips invalid/unknown ones 1ms
+ ✓ src/services/bulk_action.spec.ts:128 > bulk_action service > executeBulkActions posts the actions, waits for sync, and toasts (default includeDescendants) 0ms
+ ✓ src/services/bulk_action.spec.ts:145 > bulk_action service > executeBulkActions forwards includeDescendants when provided 0ms
+ ✓ src/services/bulk_action.spec.ts:158 > bulk_action service > returns mixed outcomes and uses an error notice when any action failed 0ms
+ ✓ src/services/bulk_action.spec.ts:168 > bulk_action service > executeBulkActions still applies the actions when told to stay silent 0ms
+ ✓ src/services/i18n.spec.ts:37 > i18n > translations are valid JSON with no duplicate keys 123ms
+ ✓ src/services/i18n.spec.ts:75 > i18n > declares the plural forms English uses, and no others 3ms
+ ✓ src/services/i18n.spec.ts:104 > i18n > interpolates values without HTML-escaping them 6ms
+ ✓ src/services/i18n.spec.ts:175 > i18n > editor messages > has an English entry for every message the plugins ask for 13ms
+ ✓ src/services/i18n.spec.ts:222 > i18n > editor messages > interpolates with CKEditor's %0 placeholders rather than i18next's {{…}} 119ms
+ ✓ src/services/i18n.spec.ts:237 > i18n > editor messages > keeps the placeholders of the English message in every translation 32ms
+ ✓ src/services/i18n.spec.ts:256 > i18n > editor messages > has no English entry that no plugin asks for 10ms
+ ✓ src/services/i18n.spec.ts:299 > i18n > getAvailableLocales > returns the full LOCALES list 0ms
+ ✓ src/services/i18n.spec.ts:303 > i18n > getAvailableLocales > annotates the names with their English equivalent in a development build 17ms
+ ✓ src/services/i18n.spec.ts:318 > i18n > getAvailableLocales > leaves the English entries alone, including the malformed dev-only tag 1ms
+ ✓ src/services/i18n.spec.ts:329 > i18n > getAvailableLocales > shows the native name alone for a tag Intl refuses 1ms
+ ✓ src/services/i18n.spec.ts:341 > i18n > getAvailableLocales > shows the native name alone where Intl has no name to give 0ms
+ ✓ src/services/i18n.spec.ts:350 > i18n > getAvailableLocales > does not mutate the shared LOCALES entries 1ms
+ ✓ src/services/i18n.spec.ts:360 > i18n > getLocaleById > returns null for falsy locale ids 0ms
+ ✓ src/services/i18n.spec.ts:366 > i18n > getLocaleById > returns the matching locale for a known id 22ms
+ ✓ src/services/i18n.spec.ts:372 > i18n > getLocaleById > returns null for an unknown id 0ms
+ ✓ src/services/i18n.spec.ts:378 > i18n > initLocale > initializes i18next with an explicit locale, sets dayjs and resolves the deferred 46ms
+ ✓ src/services/i18n.spec.ts:392 > i18n > initLocale > uses the default 'en' locale when called without arguments 56ms
+ ✓ src/services/i18n.spec.ts:399 > i18n > getCurrentLanguage > reflects the language i18next was last initialized with 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/widgets/react/react_utils.spec.tsx:19 > widget crash boundary > isolates a render failure, offers retry, and leaves sibling mounts usable
+AssertionError: expected null not to be null
+ ❯ src/widgets/react/react_utils.spec.tsx:35:73
+     33|         });
+     34|         expect(host.querySelector('[role="alert"]')).not.toBeNull();
+     35|         await vi.waitFor(() => expect(host.querySelector("button")).no…
+       |                                                                         ^
+     36|         broken = false;
+     37|         await act(async () => { host.querySelector("button")?.click();…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 10 passed (11)
+      Tests  1 failed | 187 passed (188)
+   Start at  09:11:23
+   Duration  4.86s (transform 53%, environment 25%, tests 10%, import 10%, setup 3%)
+
+  Transform  transforming modules took 13.98s · 53% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             on CI this only helps when the cache directory is persisted between runs
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+
+JUNIT report written to <repo>/apps/client/test-output/vitest/junit.xml
+ HTML  Report is generated
+       You can run npx vite preview --outDir .vitest to see the test results.
+Error: ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL
+
+  × "pnpm recursive exec" failed in <repo>/apps/
+  │ client
+

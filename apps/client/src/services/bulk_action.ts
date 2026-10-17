@@ -18,7 +18,7 @@ import ConvertNoteBulkAction from "../widgets/bulk_actions/note/convert_note.js"
 import { t } from "./i18n.js";
 import type FNote from "../entities/fnote.js";
 import toast from "./toast.js";
-import { BulkAction } from "@triliumnext/commons";
+import { BulkAction, type BulkActionResult } from "@triliumnext/commons";
 
 export const ACTION_GROUPS = [
     {
@@ -99,8 +99,7 @@ export interface BulkActionOptions {
     /** Whether to apply the actions to every descendant of the given notes as well. */
     includeDescendants?: boolean;
     /**
-     * Whether to skip the "bulk actions executed" toast, for a caller whose own UI already
-     * shows the result of the change.
+     * Whether to let the caller report the outcome. Failed actions reject even if HTTP succeeded.
      */
     silent?: boolean;
 }
@@ -110,7 +109,7 @@ export async function executeBulkActions(
     actions: BulkAction[],
     { includeDescendants = false, silent = false }: BulkActionOptions = {}
 ) {
-    await server.post("bulk-action/execute", {
+    const result = await server.post<BulkActionResult>("bulk-action/execute", {
         noteIds: targetNoteIds,
         includeDescendants,
         actions
@@ -118,9 +117,19 @@ export async function executeBulkActions(
 
     await ws.waitForMaxKnownEntityChangeId();
 
-    if (!silent) {
-        toast.showMessage(t("bulk_actions.bulk_actions_executed"), 3000);
-    }
+    if (silent && result.failed) throw new Error(bulkActionResultMessage(result));
+    if (!silent) showBulkActionResult(result);
+}
+
+function bulkActionResultMessage(result: BulkActionResult) {
+    return t("bulk_actions.execution_summary", { applied: result.applied, skipped: result.skipped, failed: result.failed });
+}
+
+/** Shared by explicit batches and saved-search actions, which return the same outcome contract. */
+export function showBulkActionResult(result: BulkActionResult) {
+    const message = bulkActionResultMessage(result);
+    if (result.failed) toast.showError(message);
+    else toast.showMessage(message, 3000);
 }
 
 export default {

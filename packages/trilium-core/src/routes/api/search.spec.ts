@@ -228,10 +228,10 @@ describe("Search API (core)", () => {
         expect(fromNote.status).toBe(200);
         expect(fromNote.body.searchResultNoteIds).toContain(createdNoteId);
 
-        // searchAndExecute returns no body (204) — the note has no action labels,
-        // so executing over the results is a safe no-op.
+        // No action labels means an empty, truthful action summary.
         const exec = await api.post(`/api/search-and-execute-note/${searchNoteId}`);
-        expect(exec.status).toBe(204);
+        expect(exec.status).toBe(200);
+        expect(exec.body).toEqual({ applied: 0, skipped: 0, failed: 0, outcomes: [] });
     });
 
     it("400s when executing a note that is not a search note", async () => {

@@ -12,6 +12,10 @@ Interaction since v0.104.0:
 
 Backend logs are stored on the file system. To find them, open the <a class="reference-link" href="../../Installation%20%26%20Setup/Data%20directory.md">Data directory</a>, go to the `log` subdirectory and find the latest log file, e.g. `trilium-2022-12-14.log`. 
 
+## File write failures
+
+If the log file cannot be opened or written, the server reports the failure to the console and continues echoing new log entries there. File logging is retried on the next entry after a 30-second delay. Entries produced during the failure are not replayed into the file. Check the console when the backend log has a gap.
+
 ## Reporting backend bugs
 
 You can attach the whole file to the bug report (preferable) or open it and copy-paste only the last lines / lines you believe are relevant.

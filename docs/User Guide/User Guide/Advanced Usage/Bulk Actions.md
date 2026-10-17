@@ -17,6 +17,10 @@ The _Bulk Actions_ dialog makes it easy to apply changes to multiple notes at on
 *   When all the actions are defined, press _Execute bulk actions_ to trigger all of them at once.
 *   For convenience, the last bulk action configuration is saved for further use and will be restored when entering the dialog again.
 
+## Results
+
+After execution, the notification counts actions applied, skipped, and failed. Counts refer to note/action pairs, so two actions on three notes produce six outcomes. An already-satisfied action counts as applied. Unavailable notes, locked protected content, and inapplicable conversions are skipped. Failures are reported while the remaining actions continue; earlier changes can already have been applied. Review the result before running the batch again.
+
 ## Actions
 
 ### Labels

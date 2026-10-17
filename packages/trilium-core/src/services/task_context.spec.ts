@@ -1,6 +1,8 @@
 import type { TaskData, TaskResult } from "@triliumnext/commons";
 import { afterEach, beforeEach, describe, expect, it, type MockInstance, vi } from "vitest";
 
+import { getContext } from "./context";
+import { getSql } from "./sql";
 import TaskContext from "./task_context.js";
 import ws from "./ws.js";
 
@@ -223,6 +225,36 @@ describe("TaskContext", () => {
             // Taking them clears the list, so a later request of the same group re-erases nothing.
             expect(context.takeScheduledErases()).toEqual([]);
         });
+    });
+
+    it("keeps a task group until its success transaction commits and preserves it on rollback", () => {
+        const context = TaskContext.getInstance("release-commit", "importNotes", importData);
+        getContext().init(() => getSql().transactional(() => {
+            context.taskSucceeded(importResult);
+            expect(TaskContext.getInstance("release-commit", "importNotes", importData)).toBe(context);
+        }));
+        expect(TaskContext.getInstance("release-commit", "importNotes", importData)).not.toBe(context);
+        const rollback = TaskContext.getInstance("release-rollback", "importNotes", importData);
+        expect(() => getContext().init(() => getSql().transactional(() => {
+            rollback.taskSucceeded(importResult);
+            throw new Error("rollback");
+        }))).toThrow("rollback");
+        expect(TaskContext.getInstance("release-rollback", "importNotes", importData)).toBe(rollback);
+    });
+
+    it("releases completed contexts and expires abandoned groups without evicting active ones", () => {
+        vi.useFakeTimers();
+        vi.setSystemTime(new Date("2026-10-17T12:00:00Z"));
+        const complete = TaskContext.getInstance("release-complete", "importNotes", importData);
+        complete.taskSucceeded(importResult);
+        expect(TaskContext.getInstance("release-complete", "importNotes", importData)).not.toBe(complete);
+        const abandoned = TaskContext.getInstance("release-idle", "importNotes", importData);
+        const active = TaskContext.getInstance("release-active", "importNotes", importData);
+        vi.advanceTimersByTime(23 * 60 * 60 * 1000);
+        active.increaseProgressCount();
+        vi.advanceTimersByTime(2 * 60 * 60 * 1000);
+        expect(TaskContext.getInstance("release-active", "importNotes", importData)).toBe(active);
+        expect(TaskContext.getInstance("release-idle", "importNotes", importData)).not.toBe(abandoned);
     });
 
     describe("getInstance", () => {

@@ -177,9 +177,9 @@ describe("setupPrintingHandlers", () => {
 
     afterEach(() => setPlatform(realPlatform));
 
-    describe("print-note", () => {
+    describe("print-from-preview lifecycle", () => {
         it("prints successfully and forwards the print report", async () => {
-            const e = await fireOn("print-note", { notePath: "root/abc" });
+            const e = await fireOn("print-from-preview", { ...PDF_OPTS, silent: false });
             expect(h.print).toHaveBeenCalled();
             expect(e.sender.send).toHaveBeenCalledWith("print-done", "REPORT");
             expect(h.destroy).toHaveBeenCalled();
@@ -188,25 +188,25 @@ describe("setupPrintingHandlers", () => {
 
         it("shows an error box on print failure but not on user cancel", async () => {
             h.print.mockImplementation((_opts, cb) => cb(false, "spooler down"));
-            await fireOn("print-note", { notePath: "root/abc" });
+            await fireOn("print-from-preview", { ...PDF_OPTS, silent: false });
             expect(h.showErrorBox).toHaveBeenCalled();
 
             h.showErrorBox.mockClear();
             h.print.mockImplementation((_opts, cb) => cb(false, "Print job canceled"));
-            await fireOn("print-note", { notePath: "root/abc" });
+            await fireOn("print-from-preview", { ...PDF_OPTS, silent: false });
             expect(h.showErrorBox).not.toHaveBeenCalled();
         });
 
         it("reports an error payload and destroys the window when the print window fails to load", async () => {
             h.loadURL.mockRejectedValue(new Error("load failed"));
-            const e = await fireOn("print-note", { notePath: "root/abc" });
+            const e = await fireOn("print-from-preview", { ...PDF_OPTS, silent: false });
             expect(e.sender.send).toHaveBeenCalledWith("print-done", expect.objectContaining({ type: "error", message: "load failed" }));
             expect(h.destroy).toHaveBeenCalledTimes(1);
         });
 
         it("uses offscreen rendering off Linux and forwards console output + progress", async () => {
             setPlatform("darwin");
-            const e = await fireOn("print-note", { notePath: "root/abc" });
+            const e = await fireOn("print-from-preview", { ...PDF_OPTS, silent: false });
             expect((h.lastBwOpts as { webPreferences: { offscreen: boolean } }).webPreferences.offscreen).toBe(true);
 
             // Exercise the captured console-message handler at each log level.
@@ -230,7 +230,7 @@ describe("setupPrintingHandlers", () => {
             // Reject with a plain string so the `err instanceof Error` ternaries
             // take their String(err) / undefined arms.
             h.loadURL.mockRejectedValue("plain string failure");
-            const e = await fireOn("print-note", { notePath: "root/abc" });
+            const e = await fireOn("print-from-preview", { ...PDF_OPTS, silent: false });
             expect(e.sender.send).toHaveBeenCalledWith("print-done", { type: "error", message: "plain string failure", stack: undefined });
         });
 
@@ -240,51 +240,65 @@ describe("setupPrintingHandlers", () => {
             h.executeJavaScript.mockReset()
                 .mockRejectedValueOnce(new Error("inject failed"))
                 .mockRejectedValueOnce(new Error("note never ready"));
-            const e = await fireOn("print-note", { notePath: "root/abc" });
+            const e = await fireOn("print-from-preview", { ...PDF_OPTS, silent: false });
             expect(e.sender.send).toHaveBeenCalledWith("print-done", expect.objectContaining({ type: "error", message: "note never ready" }));
             expect(h.destroy).toHaveBeenCalledTimes(1);
         });
     });
 
-    describe("export-as-pdf", () => {
-        it("writes the generated PDF and opens it", async () => {
-            const e = await fireOn("export-as-pdf", PDF_OPTS);
+    it("registers only the supported preview printing channels", () => {
+        expect(h.on.has("print-note")).toBe(false);
+        expect(h.on.has("export-as-pdf")).toBe(false);
+        expect(h.on.has("export-as-pdf-preview")).toBe(true);
+        expect(h.on.has("print-from-preview")).toBe(true);
+    });
+
+    describe("PDF preview and save lifecycle", () => {
+        it("generates a PDF preview, then saves and opens its bytes", async () => {
+            const e = await fireOn("export-as-pdf-preview", PDF_OPTS);
             expect(h.printToPDF).toHaveBeenCalled();
-            expect(h.writeFile).toHaveBeenCalledWith("/out.pdf", expect.any(Buffer));
+            expect(e.sender.send).toHaveBeenCalledWith("export-as-pdf-preview-result", {
+                buffer: Buffer.from("pdf-bytes"), notePath: "root/abc", requestId: 7
+            });
+            await fireOn("save-pdf", { title: PDF_OPTS.title, buffer: Buffer.from("pdf-bytes") });
+            expect(h.writeFile).toHaveBeenCalledWith("/out.pdf", Buffer.from("pdf-bytes"));
             expect(h.openPath).toHaveBeenCalledWith("/out.pdf");
             expect(e.sender.send).toHaveBeenCalledWith("print-done", "REPORT");
             expect(h.destroy).toHaveBeenCalled();
         });
 
-        it("does nothing when the user cancels the save dialog", async () => {
+        it("does not write when the user cancels the save dialog", async () => {
             h.showSaveDialogSync.mockReturnValue(undefined);
-            await fireOn("export-as-pdf", PDF_OPTS);
-            expect(h.printToPDF).not.toHaveBeenCalled();
-            expect(h.destroy).toHaveBeenCalled(); // finally still tears down
+            await fireOn("save-pdf", { title: PDF_OPTS.title, buffer: Buffer.from("pdf") });
+            expect(h.writeFile).not.toHaveBeenCalled();
+            expect(h.openPath).not.toHaveBeenCalled();
         });
 
-        it("shows an error box when PDF generation fails", async () => {
+        it("returns preview generation errors to the preview dialog", async () => {
             h.printToPDF.mockRejectedValue(new Error("render failed"));
-            await fireOn("export-as-pdf", PDF_OPTS);
-            expect(h.showErrorBox).toHaveBeenCalledWith("pdf.unable-to-export-title", "pdf.unable-to-export-message");
+            const e = await fireOn("export-as-pdf-preview", PDF_OPTS);
+            expect(e.sender.send).toHaveBeenCalledWith("export-as-pdf-preview-result", {
+                notePath: "root/abc", requestId: 7, error: "render failed"
+            });
             expect(h.writeFile).not.toHaveBeenCalled();
+            expect(h.destroy).toHaveBeenCalled();
         });
 
         it("shows an error box when writing the file fails", async () => {
             h.writeFile.mockRejectedValue(new Error("disk full"));
-            await fireOn("export-as-pdf", PDF_OPTS);
+            await fireOn("save-pdf", { title: PDF_OPTS.title, buffer: Buffer.from("pdf") });
             expect(h.showErrorBox).toHaveBeenCalledWith("pdf.unable-to-export-title", "pdf.unable-to-save-message");
             expect(h.openPath).not.toHaveBeenCalled();
         });
 
-        it("reports an error payload when the print window fails (Error and non-Error)", async () => {
-            h.loadURL.mockRejectedValue(new Error("load failed"));
-            const e1 = await fireOn("export-as-pdf", PDF_OPTS);
-            expect(e1.sender.send).toHaveBeenCalledWith("print-done", expect.objectContaining({ type: "error", message: "load failed" }));
-
-            h.loadURL.mockRejectedValue("string failure");
-            const e2 = await fireOn("export-as-pdf", PDF_OPTS);
-            expect(e2.sender.send).toHaveBeenCalledWith("print-done", { type: "error", message: "string failure", stack: undefined });
+        it("returns window errors to the preview dialog (Error and non-Error)", async () => {
+            for (const error of [new Error("load failed"), "string failure"]) {
+                h.loadURL.mockRejectedValue(error);
+                const e = await fireOn("export-as-pdf-preview", PDF_OPTS);
+                expect(e.sender.send).toHaveBeenCalledWith("export-as-pdf-preview-result", {
+                    notePath: "root/abc", requestId: 7, error: error instanceof Error ? error.message : error
+                });
+            }
         });
     });
 
@@ -348,10 +362,10 @@ describe("setupPrintingHandlers", () => {
             h.executeJavaScript.mockReset()
                 .mockResolvedValueOnce(undefined)
                 .mockReturnValueOnce(new Promise((resolve) => { ready = resolve; }));
-            const fn = h.on.get("print-note");
-            if (!fn) throw new Error("no on-handler for print-note");
+            const fn = h.on.get("print-from-preview");
+            if (!fn) throw new Error("no on-handler for print-from-preview");
             const e = makeEvent();
-            const done = fn(e, { notePath: "root/abc" });
+            const done = fn(e, { ...PDF_OPTS, silent: false });
 
             const progress = h.on.get("print-progress");
             expect(progress).toBeDefined();

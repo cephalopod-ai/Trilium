@@ -24,6 +24,28 @@ describe("ActionButton", () => {
         }
     });
 
+    it("keeps a plain accessible name before hover and updates it with the label", async () => {
+        await act(async () => { render(<ActionButton icon="bx bx-play" text="Run" />, container); });
+        const button = container.querySelector("button");
+        expect(button?.getAttribute("aria-label")).toBe("Run");
+        expect(document.querySelector(".tooltip")).toBeNull();
+        await act(async () => { render(<ActionButton icon="bx bx-play" text="<b>Run &amp; save</b>" tooltipHtml />, container); });
+        expect(button?.getAttribute("aria-label")).toBe("Run & save");
+    });
+
+    it("removes its show listener when tooltip options change on the same button", async () => {
+        await act(async () => { render(<ActionButton icon="bx bx-play" text="Run" />, container); });
+        const button = container.querySelector("button");
+        if (!button) throw new Error("Missing button");
+        const add = vi.spyOn(button, "addEventListener");
+        const remove = vi.spyOn(button, "removeEventListener");
+        await act(async () => { render(<ActionButton icon="bx bx-play" text="Run" titlePosition="top" />, container); });
+        const listener = add.mock.calls.find(([name]) => name === "show.bs.tooltip")?.[1];
+        expect(listener).toBeDefined();
+        await act(async () => { render(<ActionButton icon="bx bx-play" text="Run" titlePosition="left" />, container); });
+        expect(remove).toHaveBeenCalledWith("show.bs.tooltip", listener);
+    });
+
     it("triggers its command from the surrounding component, naming the note context it stands in", () => {
         const parentComponent = new Component();
         const triggerCommand = vi.spyOn(parentComponent, "triggerCommand").mockReturnValue(undefined);

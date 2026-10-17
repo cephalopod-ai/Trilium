@@ -91,6 +91,8 @@ Simply type text in the forms and they will be automatically saved.
 
 See the dedicated section on PDFs in <a class="reference-link" href="../../Basic%20Concepts%20and%20Features/UI%20Elements/Right%20Sidebar/Outline%20tab.md">Outline tab</a>.
 
+If a PDF contains embedded files, the attachments list in the sidebar offers a download button for each file. Reach a file with <kbd>Tab</kbd> and activate it with <kbd>Enter</kbd> or <kbd>Space</kbd>.
+
 ## Share functionality
 
 PDFs can also be shared using the <a class="reference-link" href="../../Advanced%20Usage/Sharing.md">Sharing</a> feature. This will also use Trilium's customized PDF viewer.

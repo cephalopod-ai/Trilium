@@ -25,7 +25,6 @@ async function loadSw(): Promise<Record<string, EventHandler>> {
     });
     // sw.ts is a side-effect-only service worker script (no exports); importing it
     // runs its addEventListener registrations, which the spy above captures.
-    // @ts-expect-error - sw.ts has no module exports
     await import("./sw.js");
     return handlers;
 }
@@ -72,12 +71,13 @@ function fetchEvent(url: string, init: RequestInit = {}): { request: unknown; cl
 }
 
 beforeEach(() => {
+    vi.stubEnv("DEV", true);
     channels = [];
     (self as unknown as SwGlobals).skipWaiting = vi.fn();
     (self as unknown as SwGlobals).clients = { claim: vi.fn(async () => {}), matchAll: vi.fn(async () => []) };
     vi.stubGlobal("caches", {
         open: vi.fn(async () => ({ addAll: vi.fn(), match: vi.fn(), put: vi.fn() })),
-        keys: vi.fn(async () => ["static-old", "static-localserver-v1.4"]),
+        keys: vi.fn(async () => ["static-old", "static-localserver-v1.5"]),
         delete: vi.fn(async () => true)
     });
     vi.stubGlobal("MessageChannel", MockMessageChannel);
@@ -88,6 +88,7 @@ beforeEach(() => {
 afterEach(() => {
     vi.restoreAllMocks();
     vi.unstubAllGlobals();
+    vi.unstubAllEnvs();
     delete (self as unknown as SwGlobals).skipWaiting;
     delete (self as unknown as SwGlobals).clients;
 });
@@ -108,8 +109,46 @@ describe("service worker lifecycle", () => {
         await waited;
         const caches = (globalThis as unknown as { caches: { delete: ReturnType<typeof vi.fn> } }).caches;
         expect(caches.delete).toHaveBeenCalledWith("static-old");
-        expect(caches.delete).not.toHaveBeenCalledWith("static-localserver-v1.4");
+        expect(caches.delete).not.toHaveBeenCalledWith("static-localserver-v1.5");
         expect((self as unknown as SwGlobals).clients?.claim).toHaveBeenCalled();
+    });
+});
+
+describe("production static cache", () => {
+    it("precaches the entry page and serves visited hashed assets and HTML offline", async () => {
+        vi.stubEnv("DEV", false);
+        const entries = new Map<string, Response>();
+        const cache = {
+            addAll: vi.fn(async () => {}),
+            match: vi.fn(async (request: { url: string }) => entries.get(request.url)?.clone()),
+            put: vi.fn(async (request: { url: string }, response: Response) => { entries.set(request.url, response); })
+        };
+        vi.mocked(caches.open).mockResolvedValue(cache as unknown as Cache);
+        const handlers = await loadSw();
+        let installed: Promise<unknown> | undefined;
+        handlers.install({ waitUntil: (p: Promise<unknown>) => { installed = p; } });
+        await installed;
+        expect(cache.addAll).toHaveBeenCalledWith(["/", "/index.html"]);
+        for (const path of ["/src/app-abcdefgh.js", "/index.html"]) {
+            const online = fetchEvent(`${origin}${path}`);
+            handlers.fetch(online);
+            expect(await (await awaitResponse(online)).text()).toBe("network");
+        }
+        vi.mocked(fetch).mockRejectedValue(new Error("offline"));
+        for (const path of ["/src/app-abcdefgh.js", "/index.html"]) {
+            const offline = fetchEvent(`${origin}${path}`);
+            handlers.fetch(offline);
+            expect(await (await awaitResponse(offline)).text()).toBe("network");
+        }
+        expect([...entries.keys()].some(key => key.includes("/api/"))).toBe(false);
+    });
+
+    it("bypasses the static cache in development", async () => {
+        const handlers = await loadSw();
+        const event = fetchEvent(`${origin}/src/app-abcdefgh.js`);
+        handlers.fetch(event);
+        await awaitResponse(event);
+        expect(caches.open).not.toHaveBeenCalled();
     });
 });
 

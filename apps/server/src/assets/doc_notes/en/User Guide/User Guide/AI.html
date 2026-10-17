@@ -2,8 +2,8 @@
   that works directly on your notes: ask questions about the note you're
   reading, have it draft or restructure content, or get it to write scripts
   and widgets for you.</p>
-<p>The integration is off by default and does nothing until you enable it
-  and configure a provider; Trilium ships no model of its own. The provider
+<p>AI entry points are hidden by default, and sending a message requires
+  a configured provider; Trilium ships no model of its own. The provider
   you pick decides how your notes travel: a cloud API billed per use, a subscription
   you already pay for, or a model running on your own hardware, in which
   case nothing leaves the machine. See&nbsp;<a class="reference-link" href="#root/_help_bkPZAMT7d2sR">Providers</a>&nbsp;for
@@ -80,7 +80,11 @@
 <h2>Enabling the AI integration</h2>
 <p>To enable the AI integration, simply go to&nbsp;<a class="reference-link"
   href="#root/_help_4TIF1oA4VQRO">Options</a>&nbsp;→ <em>AI / LLM</em> and
-  press the toggle in the top-right of the dialog and configure a provider.</p>
+  turn on <em>Show AI features</em>, then configure a provider.</p>
+<p><em>Show AI features</em> controls the sidebar, creation of new chat notes,
+  and AI settings visibility. Turning it off keeps existing chat notes and
+  configured providers available; it does not cancel active requests or prevent
+  an existing chat from sending messages.</p>
 <h2>Creating a new chat</h2>
 <p>There are two different chat interfaces:</p>
 <ul>
@@ -110,6 +114,9 @@
   are considered free, whereas custom endpoint providers don't offer any
   pricing information.</p>
 <h2>Features</h2>
+<p>If a provider finishes without returning content, the conversation shows
+  an error with <em>Retry</em>. Retrying starts another request; Trilium does
+  not retry automatically.</p>
 <h3>Web search</h3>
 <p>The AI can optionally search the web to find more information about a
   specific topic.&nbsp;</p>

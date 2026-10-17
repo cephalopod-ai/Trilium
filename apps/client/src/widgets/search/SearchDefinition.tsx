@@ -1,13 +1,13 @@
 import "./SearchDefinition.css";
 
-import { SaveSearchNoteResponse } from "@triliumnext/commons";
+import { type BulkActionResult, SaveSearchNoteResponse } from "@triliumnext/commons";
 import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import { Fragment } from "preact/jsx-runtime";
 
 import appContext from "../../components/app_context";
 import FNote from "../../entities/fnote";
 import attributes from "../../services/attributes";
-import bulk_action, { ACTION_GROUPS } from "../../services/bulk_action";
+import bulk_action, { ACTION_GROUPS, showBulkActionResult } from "../../services/bulk_action";
 import { t } from "../../services/i18n";
 import search from "../../services/search";
 import server from "../../services/server";
@@ -153,9 +153,10 @@ function SearchButtonBar({ note, refreshResults, savePendingOptions }: {
 }) {
     async function searchAndExecuteActions() {
         await savePendingOptions();
-        await server.post(`search-and-execute-note/${note.noteId}`);
+        const result = await server.post<BulkActionResult>(`search-and-execute-note/${note.noteId}`);
+        await ws.waitForMaxKnownEntityChangeId();
         refreshResults();
-        toast.showMessage(t("search_definition.actions_executed"), 3000);
+        showBulkActionResult(result);
     }
 
     async function saveSearchNote() {

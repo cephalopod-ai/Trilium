@@ -1,0 +1,165 @@
+$ vitest routes/api/search.spec.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.mts:5:26). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.3 <repo>/apps/server
+
+Migration with JS module
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:38 > Search API (core) > returns matching note ids for a full search 11ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:47 > Search API (core) > restricts a full search to the given ancestor's subtree 17ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:65 > Search API (core) > returns note ids with token infos and the error when includeTokens is set 5ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:87 > Search API (core) > accepts slash-bearing full-search queries 8ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:95 > Search API (core) > returns structured quick-search results with snippets 8ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:108 > Search API (core) > excludes regex (`%=`) tokens from quick-search highlightedTokens 2ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:122 > Search API (core) > confines a quick search to the hoisted subtree, hidden subtree included 7ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:142 > Search API (core) > omits hidden notes from an unhoisted quick search 8ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:153 > Search API (core) > accepts slash-bearing quick-search queries 12ms
+Got error  ValidationError: Search string must be a non-empty string.
+    at getSearchString (<repo>/packages/trilium-core/src/routes/api/search.ts:191:15)
+    at search (<repo>/packages/trilium-core/src/routes/api/search.ts:160:26)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37) {
+  statusCode: 400
+}
+Got error  ValidationError: Search string must be a non-empty string.
+    at getSearchString (<repo>/packages/trilium-core/src/routes/api/search.ts:191:15)
+    at search (<repo>/packages/trilium-core/src/routes/api/search.ts:160:26)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37) {
+  statusCode: 400
+}
+Got error  ValidationError: Search string must be a non-empty string.
+    at getSearchString (<repo>/packages/trilium-core/src/routes/api/search.ts:191:15)
+    at quickSearch (<repo>/packages/trilium-core/src/routes/api/search.ts:130:26)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37) {
+  statusCode: 400
+}
+Got error  ValidationError: Search string must be a non-empty string.
+    at getSearchString (<repo>/packages/trilium-core/src/routes/api/search.ts:191:15)
+    at quickSearch (<repo>/packages/trilium-core/src/routes/api/search.ts:130:26)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37) {
+  statusCode: 400
+}
+Got error  ValidationError: Note 'root' is not a search note.
+    at searchFromNote (<repo>/packages/trilium-core/src/routes/api/search.ts:35:15)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.get (<repo>/packages/trilium-core/src/test/api_tester.ts:357:21) {
+  statusCode: 400
+}
+Got error  ValidationError: Note 'root' is not a search note.
+    at searchAndExecute (<repo>/packages/trilium-core/src/routes/api/search.ts:51:15)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21) {
+  statusCode: 400
+}
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:161 > Search API (core) > rejects missing and empty search query parameters 19ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:168 > Search API (core) > takes the search string only from the query 1ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:173 > Search API (core) > lists template note ids including a freshly-labelled template 5ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:185 > Search API (core) > 400s when searching from a note that is not a search note 0ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:190 > Search API (core) > returns related notes for an attribute query 5ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:199 > Search API (core) > caps related-note results at 20 even with many matches 24ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:217 > Search API (core) > runs a saved search note and executes bulk actions over it 17ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:237 > Search API (core) > 400s when executing a note that is not a search note 1ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:243 > Search API (core) > result-details endpoint > returns snippet details in requested order with highlightedTokenInfos 48ms
+Got error  ValidationError: Note 'root' is not a search note.
+    at getSearchResultDetails (<repo>/packages/trilium-core/src/routes/api/search.ts:71:15)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21) {
+  statusCode: 400
+}
+Got error  ValidationError: A maximum of 100 noteIds can be requested at once.
+    at getSearchResultDetails (<repo>/packages/trilium-core/src/routes/api/search.ts:79:15)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21) {
+  statusCode: 400
+}
+Got error  ValidationError: Request body must contain a 'noteIds' string array.
+    at getSearchResultDetails (<repo>/packages/trilium-core/src/routes/api/search.ts:76:15)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21) {
+  statusCode: 400
+}
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:284 > Search API (core) > result-details endpoint > omits requested ids that are not in the result set 9ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:300 > Search API (core) > result-details endpoint > 400s on a note that is not a search note 9ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:305 > Search API (core) > result-details endpoint > 400s when more than 100 noteIds are requested 7ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:315 > Search API (core) > result-details endpoint > 400s when noteIds is not a string array 3ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:324 > Search API (core) > result-details endpoint > produces a regex token info and a match-centered snippet for a %= query 24ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:349 > Search API (core) > counts the MIME types of the user's notes, the most used first 3ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:383 > isNewTemplate > marks recent templates as new and leaves older ones alone 0ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:389 > isNewTemplate > never marks the predefined templates set up alongside the root note 0ms
+ ✓ ../../packages/trilium-core/src/routes/api/search.spec.ts:398 > isNewTemplate > falls back to the age check when the root creation date is unknown 0ms
+
+ Test Files  1 passed (1)
+      Tests  27 passed (27)
+   Start at  09:16:20
+   Duration  23.03s (transform 87%, setup 10%, tests 3%)
+
+  Transform  transforming modules took 19.74s · 87% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+
+JUNIT report written to <repo>/apps/server/test-output/vitest/junit.xml
+ HTML  Report is generated
+       You can run npx vite preview --outDir .vitest to see the test results.

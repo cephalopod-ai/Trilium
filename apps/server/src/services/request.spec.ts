@@ -17,6 +17,8 @@ interface FakeResponse {
 interface FakeRequest {
     opts: any;
     endPayload: string | undefined;
+    destroy?: ReturnType<typeof vi.fn>;
+    abort?: ReturnType<typeof vi.fn>;
     on(event: string, cb: Handler): FakeRequest;
     end(payload?: string): void;
     triggerError(err: any): void;
@@ -72,6 +74,8 @@ const { state, fakeHttp, fakeHttps, makeResponse, HttpProxyAgent, HttpsProxyAgen
             const req: FakeRequest = {
                 opts,
                 endPayload: undefined,
+                destroy: vi.fn(),
+                abort: vi.fn(),
                 on(event, cb) {
                     handlers[event] = cb;
                     return req;
@@ -155,6 +159,27 @@ describe("NodeRequestProvider.exec", () => {
 
     afterEach(() => {
         vi.clearAllMocks();
+    });
+
+    it.each(["node", "electron"])("cancels a stalled %s transport, including after headers", async (transport) => {
+        vi.useFakeTimers();
+        try {
+            let started: (request: FakeRequest) => void = () => {};
+            const ready = new Promise<FakeRequest>(resolve => { started = resolve; });
+            state.onEnd = started;
+            const response = provider.exec(baseOpts({ timeout: 50 }));
+            const assertion = expect(response).rejects.toThrow("timed out");
+            const request = await ready;
+            if (transport === "electron") request.destroy = undefined;
+            request.triggerResponse(makeResponse(200, "OK"));
+            await vi.advanceTimersByTimeAsync(50);
+            await assertion;
+            expect(transport === "node" ? request.destroy : request.abort).toHaveBeenCalledOnce();
+            expect(() => request.triggerError(new Error("late cancellation"))).not.toThrow();
+            expect(vi.getTimerCount()).toBe(0);
+        } finally {
+            vi.useRealTimers();
+        }
     });
 
     it("selects the http client and resolves parsed JSON on 200", async () => {

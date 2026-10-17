@@ -14,6 +14,12 @@
 <p>Backend logs are stored on the file system. To find them, open the&nbsp;<a
   class="reference-link" href="#root/_help_tAassRL4RSQL">Data directory</a>,
   go to the <code>log</code> subdirectory and find the latest log file, e.g. <code>trilium-2022-12-14.log</code>.&nbsp;</p>
+<h2>File write failures</h2>
+<p>If the log file cannot be opened or written, the server reports the failure
+  to the console and continues echoing new log entries there. File logging
+  is retried on the next entry after a 30-second delay. Entries produced
+  during the failure are not replayed into the file. Check the console when
+  the backend log has a gap.</p>
 <h2>Reporting backend bugs</h2>
 <p>You can attach the whole file to the bug report (preferable) or open it
   and copy-paste only the last lines / lines you believe are relevant.</p>

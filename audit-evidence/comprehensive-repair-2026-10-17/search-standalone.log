@@ -1,0 +1,567 @@
+$ vitest routes/api/search.spec.ts local-bridge.spec.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.mts:20:26). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.3 <repo>/apps/standalone/src
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts
+[BrowserSqlProvider] Initializing SQLite WASM...
+
+stdout | local-bridge.spec.ts
+[BrowserSqlProvider] Initializing SQLite WASM...
+
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts
+Ignoring inability to install OPFS sqlite3_vfs: The OPFS sqlite3_vfs cannot run in the main thread because it requires Atomics.wait().
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts
+[BrowserSqlProvider] SQLite WASM initialized in 23.82ms: 3.51.1
+
+stderr | local-bridge.spec.ts
+Ignoring inability to install OPFS sqlite3_vfs: The OPFS sqlite3_vfs cannot run in the main thread because it requires Atomics.wait().
+
+stdout | local-bridge.spec.ts
+[BrowserSqlProvider] SQLite WASM initialized in 28.90ms: 3.51.1
+
+stdout | local-bridge.spec.ts
+App db version is 242, while db version is 241. Migration needed.
+
+stderr | local-bridge.spec.ts
+[Backup] Stored backups are not supported on this platform, so "before-migration" was not created. The options screen backs up by downloading a copy instead.
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts
+App db version is 242, while db version is 241. Migration needed.
+
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts
+[Backup] Stored backups are not supported on this platform, so "before-migration" was not created. The options screen backs up by downloading a copy instead.
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts
+Attempting migration to version 242
+Migration with JS module
+Migration to version 242 has been successful.
+
+stdout | local-bridge.spec.ts
+Attempting migration to version 242
+Migration with JS module
+Migration to version 242 has been successful.
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts
+Becca (note cache) load took 16ms
+Created option "syncMaxBlobContentSize" with default value "0"
+Created option "revisionIgnoreNamedSnapshots" with default value "true"
+Created option "monospaceLigaturesEnabled" with default value "false"
+Created option "imageResize" with default value "true"
+Created option "imageJpegHandling" with default value "compress"
+Created option "imagePngHandling" with default value "optimize"
+Created option "imageConversionQuality" with default value "75"
+Created option "transcriptCleanupEnabled" with default value "true"
+Created option "contentManagerSortOrder" with default value "title"
+Created option "contentManagerViewMode" with default value "category"
+Created option "rightPaneSelectedTab" with default value "outline"
+Created option "rightPaneNoteMapType" with default value "link"
+Created option "customDbBackupDir" with default value ""
+Created option "backupEnableCompression" with default value "false"
+Created option "backupEnableEncryption" with default value "false"
+Created option "searchResultsPageSize" with default value "20"
+Created option "hardwareAccelerationEnabled" with default value "true"
+Created option "pdfSignatures" with default value "{}"
+Created option "defaultContentLanguage" with default value "en"
+Created option "textNoteDoubleQuoteStyle" with default value "auto"
+Created option "textNoteSingleQuoteStyle" with default value "auto"
+Created option "textNotePunctuationReplacementsEnabled" with default value "true"
+Created option "textNoteMathReplacementsEnabled" with default value "true"
+Created option "textNoteSymbolReplacementsEnabled" with default value "true"
+Created option "textNoteCustomReplacements" with default value "[]"
+Created option "mathFieldEnabled" with default value "true"
+Created option "textNoteContentHintsEnabled" with default value "true"
+Created option "textNoteAutoLinkPreviewsEnabled" with default value "true"
+Created option "textNoteHtmlSupportEnabled" with default value "false"
+Created option "clipboardImageEmbedEnabled" with default value "true"
+Created option "cleanupToolOptions" with default value "{}"
+Created option "imageCompressionToolOptions" with default value "{}"
+Created option "llmWebSearchProvider" with default value ""
+Created option "aiAssistantModel" with default value ""
+Created option "keyboardShortcutsDuplicateNote" with default value "[]"
+Created option "keyboardShortcutsOpenNewNoteSplit" with default value "[]"
+Created option "keyboardShortcutsCloseActiveNoteSplit" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsShowDeletedNotes" with default value "[]"
+Created option "keyboardShortcutsShowSpaceUsage" with default value "[]"
+Created option "keyboardShortcutsShowShortcutHints" with default value "["Alt+F1"]"
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core)
+Created new note 'Zf0XUSwJEK7i', branch 'root_Zf0XUSwJEK7i' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core)
+Created new note 'l5oHS9YB8Ifv', branch 'root_l5oHS9YB8Ifv' of type 'text', mime 'text/html'
+
+stdout | local-bridge.spec.ts
+Becca (note cache) load took 23ms
+Created option "syncMaxBlobContentSize" with default value "0"
+Created option "revisionIgnoreNamedSnapshots" with default value "true"
+Created option "monospaceLigaturesEnabled" with default value "false"
+Created option "imageResize" with default value "true"
+Created option "imageJpegHandling" with default value "compress"
+Created option "imagePngHandling" with default value "optimize"
+Created option "imageConversionQuality" with default value "75"
+Created option "transcriptCleanupEnabled" with default value "true"
+Created option "contentManagerSortOrder" with default value "title"
+Created option "contentManagerViewMode" with default value "category"
+Created option "rightPaneSelectedTab" with default value "outline"
+Created option "rightPaneNoteMapType" with default value "link"
+Created option "customDbBackupDir" with default value ""
+Created option "backupEnableCompression" with default value "false"
+Created option "backupEnableEncryption" with default value "false"
+Created option "searchResultsPageSize" with default value "20"
+Created option "hardwareAccelerationEnabled" with default value "true"
+Created option "pdfSignatures" with default value "{}"
+Created option "defaultContentLanguage" with default value "en"
+Created option "textNoteDoubleQuoteStyle" with default value "auto"
+Created option "textNoteSingleQuoteStyle" with default value "auto"
+Created option "textNotePunctuationReplacementsEnabled" with default value "true"
+Created option "textNoteMathReplacementsEnabled" with default value "true"
+Created option "textNoteSymbolReplacementsEnabled" with default value "true"
+Created option "textNoteCustomReplacements" with default value "[]"
+Created option "mathFieldEnabled" with default value "true"
+Created option "textNoteContentHintsEnabled" with default value "true"
+Created option "textNoteAutoLinkPreviewsEnabled" with default value "true"
+Created option "textNoteHtmlSupportEnabled" with default value "false"
+Created option "clipboardImageEmbedEnabled" with default value "true"
+Created option "cleanupToolOptions" with default value "{}"
+Created option "imageCompressionToolOptions" with default value "{}"
+Created option "llmWebSearchProvider" with default value ""
+Created option "aiAssistantModel" with default value ""
+Created option "keyboardShortcutsDuplicateNote" with default value "[]"
+Created option "keyboardShortcutsOpenNewNoteSplit" with default value "[]"
+Created option "keyboardShortcutsCloseActiveNoteSplit" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsShowDeletedNotes" with default value "[]"
+Created option "keyboardShortcutsShowSpaceUsage" with default value "[]"
+Created option "keyboardShortcutsShowShortcutHints" with default value "["Alt+F1"]"
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > returns matching note ids for a full search
+Flat text search index built: 452 notes, 1.4 MiB
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > restricts a full search to the given ancestor's subtree
+Created new note 'YdQTQaMm1dI5', branch 'root_YdQTQaMm1dI5' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > restricts a full search to the given ancestor's subtree
+Created new note 'OvyHMjMWH6Z6', branch 'YdQTQaMm1dI5_OvyHMjMWH6Z6' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > restricts a full search to the given ancestor's subtree
+Created new note 'wKAXxjdpYgAL', branch 'root_wKAXxjdpYgAL' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > restricts a full search to the given ancestor's subtree
+Flat text search index built: 455 notes, 72 KiB
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > confines a quick search to the hoisted subtree, hidden subtree included
+Created new note 'KPaJeDIGpi28', branch 'root_KPaJeDIGpi28' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > confines a quick search to the hoisted subtree, hidden subtree included
+Created new note 'GM82wOPDzi51', branch 'KPaJeDIGpi28_GM82wOPDzi51' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > confines a quick search to the hoisted subtree, hidden subtree included
+Created new note 'aJlgK1vxBDl1', branch 'root_aJlgK1vxBDl1' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > confines a quick search to the hoisted subtree, hidden subtree included
+Created new note 'y72bIa18Na4S', branch '_lbBookmarks_y72bIa18Na4S' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > confines a quick search to the hoisted subtree, hidden subtree included
+Flat text search index built: 459 notes, 72 KiB
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > omits hidden notes from an unhoisted quick search
+Created new note 'jV1komxPSVtn', branch 'root_jV1komxPSVtn' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > omits hidden notes from an unhoisted quick search
+Created new note 'NGvSYrGXUtx0', branch '_lbBookmarks_NGvSYrGXUtx0' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > omits hidden notes from an unhoisted quick search
+Flat text search index built: 461 notes, 407 KiB
+
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > rejects missing and empty search query parameters
+Got error  ValidationError: Search string must be a non-empty string.
+    at getSearchString (<repo>/packages/trilium-core/src/routes/api/search.ts:191:15)
+    at search (<repo>/packages/trilium-core/src/routes/api/search.ts:160:26)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37) {
+  statusCode: 400
+}
+
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > rejects missing and empty search query parameters
+Got error  ValidationError: Search string must be a non-empty string.
+    at getSearchString (<repo>/packages/trilium-core/src/routes/api/search.ts:191:15)
+    at search (<repo>/packages/trilium-core/src/routes/api/search.ts:160:26)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37) {
+  statusCode: 400
+}
+
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > rejects missing and empty search query parameters
+Got error  ValidationError: Search string must be a non-empty string.
+    at getSearchString (<repo>/packages/trilium-core/src/routes/api/search.ts:191:15)
+    at quickSearch (<repo>/packages/trilium-core/src/routes/api/search.ts:130:26)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37) {
+  statusCode: 400
+}
+
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > rejects missing and empty search query parameters
+Got error  ValidationError: Search string must be a non-empty string.
+    at getSearchString (<repo>/packages/trilium-core/src/routes/api/search.ts:191:15)
+    at quickSearch (<repo>/packages/trilium-core/src/routes/api/search.ts:130:26)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37) {
+  statusCode: 400
+}
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > lists template note ids including a freshly-labelled template
+Created new note '6Y2fZO7enGXy', branch 'root_6Y2fZO7enGXy' of type 'text', mime 'text/html'
+
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > 400s when searching from a note that is not a search note
+Got error  ValidationError: Note 'root' is not a search note.
+    at searchFromNote (<repo>/packages/trilium-core/src/routes/api/search.ts:35:15)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.get (<repo>/packages/trilium-core/src/test/api_tester.ts:357:21) {
+  statusCode: 400
+}
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'owtAGwQ7AiE5', branch 'root_owtAGwQ7AiE5' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note '8YHziR8H1gfG', branch 'root_8YHziR8H1gfG' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'D19Ee7e3PlJB', branch 'root_D19Ee7e3PlJB' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note '06Zm1vtLzofe', branch 'root_06Zm1vtLzofe' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'TJa9NOSZvfQV', branch 'root_TJa9NOSZvfQV' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'FyggG56tpqsG', branch 'root_FyggG56tpqsG' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'amVsp4wX1Vsj', branch 'root_amVsp4wX1Vsj' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'VkP6azA3pz9w', branch 'root_VkP6azA3pz9w' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'NFnWGR0a7kl8', branch 'root_NFnWGR0a7kl8' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'az6ZDV0Fy58x', branch 'root_az6ZDV0Fy58x' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'i12r1jjt8i0B', branch 'root_i12r1jjt8i0B' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note '5YdNveY5clmr', branch 'root_5YdNveY5clmr' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'Zfj4kiXnpv7R', branch 'root_Zfj4kiXnpv7R' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'eX29Gifbyajb', branch 'root_eX29Gifbyajb' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'WINMbjlDdyD3', branch 'root_WINMbjlDdyD3' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'UT4BujKEf6vq', branch 'root_UT4BujKEf6vq' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'N81NDlVs9B33', branch 'root_N81NDlVs9B33' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'ScxmZTQCs4Am', branch 'root_ScxmZTQCs4Am' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'njDbkwitOmxT', branch 'root_njDbkwitOmxT' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'AnIVJueXTCXr', branch 'root_AnIVJueXTCXr' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'oqa0HBud7tRu', branch 'root_oqa0HBud7tRu' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > caps related-note results at 20 even with many matches
+Created new note 'euMO7ASs3TZp', branch 'root_euMO7ASs3TZp' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > runs a saved search note and executes bulk actions over it
+Created new note 'YNEVPBqi1bXK', branch '_search_YNEVPBqi1bXK' of type 'book', mime ''
+Created new note 'j01lctefyeBi', branch 'YNEVPBqi1bXK_j01lctefyeBi' of type 'search', mime 'application/json'
+
+DOMException [AbortError]: The operation was aborted.
+    at Fetch.onAsyncTaskManagerAbort (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:546:23)
+    at Object.<anonymous> (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:416:101)
+    at AsyncTaskManager.abortAll (file://<repo>/node_modules/happy-dom/lib/async-task-manager/AsyncTaskManager.js:292:30)
+    at AsyncTaskManager.destroy (file://<repo>/node_modules/happy-dom/lib/async-task-manager/AsyncTaskManager.js:64:21)
+    at file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameFactory.js:43:22
+    at new Promise (<anonymous>)
+    at BrowserFrameFactory.destroyFrame (file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameFactory.js:30:16)
+    at #unloadPage (file://<repo>/node_modules/happy-dom/lib/nodes/html-iframe-element/HTMLIFrameElement.js:363:33)
+    at [disconnectedFromDocument] (file://<repo>/node_modules/happy-dom/lib/nodes/html-iframe-element/HTMLIFrameElement.js:238:25)
+    at [disconnectedFromNode] (file://<repo>/node_modules/happy-dom/lib/nodes/node/Node.js:829:58)
+DOMException [NetworkError]: Failed to execute "fetch()" on "Window" with URL "http://localhost:3000/local-backup-download?fileName=Backup.tnbackup": The operation was aborted.
+    at Fetch.onError (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:540:21)
+    at ClientRequest.emit (node:events:508:28)
+    at emitErrorEvent (node:_http_client:108:11)
+    at _destroy (node:_http_client:962:9)
+    at onSocketNT (node:_http_client:982:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > runs a saved search note and executes bulk actions over it
+Flat text search index built: 486 notes, 107 KiB
+
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > 400s when executing a note that is not a search note
+Got error  ValidationError: Note 'root' is not a search note.
+    at searchAndExecute (<repo>/packages/trilium-core/src/routes/api/search.ts:51:15)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21) {
+  statusCode: 400
+}
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > returns snippet details in requested order with highlightedTokenInfos
+Created new note 'AaSGc8J0x0Hi', branch 'root_AaSGc8J0x0Hi' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > returns snippet details in requested order with highlightedTokenInfos
+Created new note 'FLIky6H3IgK8', branch 'root_FLIky6H3IgK8' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > returns snippet details in requested order with highlightedTokenInfos
+Created new note 'fhaxnoTBNPy6', branch 'YNEVPBqi1bXK_fhaxnoTBNPy6' of type 'search', mime 'application/json'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > returns snippet details in requested order with highlightedTokenInfos
+Flat text search index built: 489 notes, 73 KiB
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > omits requested ids that are not in the result set
+Created new note 'ZR6EXzQxncuW', branch 'root_ZR6EXzQxncuW' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > omits requested ids that are not in the result set
+Created new note 'CjpKeXfGfETN', branch 'root_CjpKeXfGfETN' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > omits requested ids that are not in the result set
+Created new note 'uNjX5VTRZ3HR', branch 'YNEVPBqi1bXK_uNjX5VTRZ3HR' of type 'search', mime 'application/json'
+
+AggregateError:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7) {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:3000
+        at createConnectionError (node:net:1678:14)
+        at afterConnectMultiple (node:net:1708:16) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 3000
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:3000
+        at createConnectionError (node:net:1678:14)
+        at afterConnectMultiple (node:net:1708:16) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 3000
+    }
+  ]
+}
+DOMException [NetworkError]: Failed to execute "fetch()" on "Window" with URL "http://localhost:3000/local-backup-download?fileName=Backup.tnbackup":
+    at Fetch.onError (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:540:21)
+    at ClientRequest.emit (node:events:508:28)
+    at emitErrorEvent (node:_http_client:108:11)
+    at Socket.socketErrorListener (node:_http_client:575:5)
+    at Socket.emit (node:events:508:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > omits requested ids that are not in the result set
+Flat text search index built: 492 notes, 73 KiB
+
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > 400s on a note that is not a search note
+Got error  ValidationError: Note 'root' is not a search note.
+    at getSearchResultDetails (<repo>/packages/trilium-core/src/routes/api/search.ts:71:15)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21) {
+  statusCode: 400
+}
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > 400s when more than 100 noteIds are requested
+Created new note 'Xp3tYPJhpmQF', branch 'YNEVPBqi1bXK_Xp3tYPJhpmQF' of type 'search', mime 'application/json'
+
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > 400s when more than 100 noteIds are requested
+Got error  ValidationError: A maximum of 100 noteIds can be requested at once.
+    at getSearchResultDetails (<repo>/packages/trilium-core/src/routes/api/search.ts:79:15)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21) {
+  statusCode: 400
+}
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > 400s when noteIds is not a string array
+Created new note 'sGTZ6jARbo1R', branch 'YNEVPBqi1bXK_sGTZ6jARbo1R' of type 'search', mime 'application/json'
+
+DOMException [TimeoutError]: The operation was aborted. Request timed out.
+    at file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameNavigator.js:171:35
+    at callTimer (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5150:25)
+    at runTimersInRange (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5848:26)
+    at doTickInner (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5943:22)
+    at doTick (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5959:21)
+    at file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:6049:22
+    at Immediate.<anonymous> (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5997:30)
+    at process.processImmediate (node:internal/timers:504:21)
+Error: socket hang up
+    at Socket.socketCloseListener (node:_http_client:548:27)
+    at Socket.emit (node:events:520:35)
+    at TCP.<anonymous> (node:net:346:12) {
+  code: 'ECONNRESET'
+}
+stderr | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > 400s when noteIds is not a string array
+Got error  ValidationError: Request body must contain a 'noteIds' string array.
+    at getSearchResultDetails (<repo>/packages/trilium-core/src/routes/api/search.ts:76:15)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21) {
+  statusCode: 400
+}
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > produces a regex token info and a match-centered snippet for a %= query
+Created new note 'S6LKVE58TlP0', branch 'root_S6LKVE58TlP0' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > result-details endpoint > produces a regex token info and a match-centered snippet for a %= query
+Created new note 'zevr2DyXuzF4', branch 'YNEVPBqi1bXK_zevr2DyXuzF4' of type 'search', mime 'application/json'
+
+DOMException [AbortError]: The operation was aborted.
+    at Fetch.onAsyncTaskManagerAbort (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:546:23)
+    at Object.<anonymous> (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:416:101)
+    at AsyncTaskManager.abortAll (file://<repo>/node_modules/happy-dom/lib/async-task-manager/AsyncTaskManager.js:292:30)
+    at AsyncTaskManager.destroy (file://<repo>/node_modules/happy-dom/lib/async-task-manager/AsyncTaskManager.js:64:21)
+    at file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameFactory.js:43:22
+    at new Promise (<anonymous>)
+    at BrowserFrameFactory.destroyFrame (file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameFactory.js:30:16)
+    at #unloadPage (file://<repo>/node_modules/happy-dom/lib/nodes/html-iframe-element/HTMLIFrameElement.js:363:33)
+    at [disconnectedFromDocument] (file://<repo>/node_modules/happy-dom/lib/nodes/html-iframe-element/HTMLIFrameElement.js:238:25)
+    at [disconnectedFromNode] (file://<repo>/node_modules/happy-dom/lib/nodes/node/Node.js:829:58)
+DOMException [NetworkError]: Failed to execute "fetch()" on "Window" with URL "http://localhost:3000/local-backup-download?fileName=Backup.tnbackup": The operation was aborted.
+    at Fetch.onError (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:540:21)
+    at ClientRequest.emit (node:events:508:28)
+    at emitErrorEvent (node:_http_client:108:11)
+    at _destroy (node:_http_client:962:9)
+    at onSocketNT (node:_http_client:982:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+DOMException [TimeoutError]: The operation was aborted. Request timed out.
+    at file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameNavigator.js:171:35
+    at callTimer (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5150:25)
+    at runTimersInRange (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5848:26)
+    at doTickInner (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5943:22)
+    at doTick (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5959:21)
+    at file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:6049:22
+    at Immediate.<anonymous> (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5997:30)
+    at process.processImmediate (node:internal/timers:504:21)
+Error: socket hang up
+    at Socket.socketCloseListener (node:_http_client:548:27)
+    at Socket.emit (node:events:520:35)
+    at TCP.<anonymous> (node:net:346:12) {
+  code: 'ECONNRESET'
+}
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > counts the MIME types of the user's notes, the most used first
+Created new note 'bEOLlHolWM96', branch 'root_bEOLlHolWM96' of type 'code', mime 'text/x-zz-once'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > counts the MIME types of the user's notes, the most used first
+Created new note 'cPvvZ4BkaLGC', branch 'root_cPvvZ4BkaLGC' of type 'code', mime 'text/x-zz-twice'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > counts the MIME types of the user's notes, the most used first
+Created new note 'flqdVYgm9lDK', branch 'root_flqdVYgm9lDK' of type 'code', mime 'text/x-zz-twice'
+
+stdout | ../../../packages/trilium-core/src/routes/api/search.spec.ts > Search API (core) > counts the MIME types of the user's notes, the most used first
+Created new note 'piyC68gOoQap', branch '_share_piyC68gOoQap' of type 'code', mime 'text/x-zz-shared'
+
+ ✓ ../../../packages/trilium-core/src/routes/api/search.spec.ts (27 tests) 726ms
+stderr | local-bridge.spec.ts > restoreBackup > settles all restore waiters on onerror and ignores late results
+[LocalBridge] Worker error: { message: 'crash' }
+
+stderr | local-bridge.spec.ts > restoreBackup > settles all restore waiters on WORKER_ERROR and ignores late results
+[LocalBridge] Worker reported error: { message: 'crash' }
+
+stderr | local-bridge.spec.ts > restoreBackup > settles all restore waiters on FATAL_ERROR and ignores late results
+[LocalBridge] Fatal error: crash
+
+ ✓ local-bridge.spec.ts (59 tests) 1109ms
+
+ Test Files  2 passed (2)
+      Tests  86 passed (86)
+   Start at  09:16:22
+   Duration  21.64s (transform 81%, environment 7%, setup 7%, tests 4%)
+
+  Transform  transforming modules took 33.94s · 81% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+
+JUNIT report written to <repo>/apps/standalone/test-output/vitest/junit.xml

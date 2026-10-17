@@ -68,3 +68,18 @@ export type BulkActionData<T extends keyof ActionHandlers> = ActionHandlers[T] &
 export type BulkAction = {
   [K in keyof ActionHandlers]: { name: K; } & ActionHandlers[K];
 }[keyof ActionHandlers];
+
+/** An outcome is per note/action pair; applied includes an already-satisfied action. */
+export interface BulkActionOutcome {
+    noteId: string;
+    actionName: BulkAction["name"];
+    status: "applied" | "skipped" | "failed";
+    message?: string;
+}
+
+export interface BulkActionResult {
+    applied: number;
+    skipped: number;
+    failed: number;
+    outcomes: BulkActionOutcome[];
+}

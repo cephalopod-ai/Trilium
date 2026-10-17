@@ -1,4 +1,4 @@
-import { expect, describe, it } from "vitest";
+import { expect, describe, it, vi } from "vitest";
 import * as utils from "./index";
 
 // fn value, expected value
@@ -415,6 +415,19 @@ describe("#getNoteTitle", () => {
 });
 
 describe("#timeLimit", () => {
+    it("releases its deadline after early fulfillment and rejection", async () => {
+        vi.useFakeTimers();
+        const baseline = vi.getTimerCount();
+        try {
+            await expect(utils.timeLimit(Promise.resolve("ok"), 60_000)).resolves.toBe("ok");
+            const failure = new Error("failed");
+            await expect(utils.timeLimit(Promise.reject(failure), 60_000)).rejects.toBe(failure);
+            expect(vi.getTimerCount()).toBe(baseline);
+        } finally {
+            vi.useRealTimers();
+        }
+    });
+
     it("when promise execution does NOT exceed timeout, it should resolve with promises' value", async () => {
         const resolvedValue = `resolved: ${new Date().toISOString()}`;
         const testPromise = new Promise((res, rej) => {
@@ -426,12 +439,10 @@ describe("#timeLimit", () => {
         await expect(utils.timeLimit(testPromise, 1_000)).resolves.toBe(resolvedValue);
     });
 
-    it("does nothing when the internal timeout fires after the promise already resolved", async () => {
-        // Resolve well within the limit, then wait past the limit so the internal
-        // setTimeout callback runs with `resolved === true` (the no-op else path).
+    it("keeps the fulfilled value after the original deadline", async () => {
+        // Resolving before the deadline cancels it; waiting past it must not change the result.
         const fast = new Promise((res) => setTimeout(() => res("fast"), 5));
         await expect(utils.timeLimit(fast, 20)).resolves.toBe("fast");
-        // give the 20ms internal timer time to fire on the already-resolved promise
         await new Promise((res) => setTimeout(res, 40));
     });
 

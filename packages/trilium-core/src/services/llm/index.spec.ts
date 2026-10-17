@@ -92,6 +92,22 @@ describe("llm/index provider registry", () => {
     });
 
     describe("getProvider", () => {
+        it("does not publish a construction across cache invalidation", async () => {
+            let finishOld: (provider: Awaited<ReturnType<typeof getProvider>>) => void = () => {};
+            const oldProvider = {} as Awaited<ReturnType<typeof getProvider>>;
+            const currentProvider = {} as Awaited<ReturnType<typeof getProvider>>;
+            registerHostProvider("acp-agent", () => new Promise(resolve => { finishOld = resolve; }));
+            setProviders([{ id: "same", provider: "acp-agent", apiKey: "old" }]);
+            const old = getProvider("same");
+            clearProviderCache();
+            setProviders([{ id: "same", provider: "acp-agent", apiKey: "new" }]);
+            registerHostProvider("acp-agent", async () => currentProvider);
+            expect(await getProvider("same")).toBe(currentProvider);
+            finishOld(oldProvider);
+            expect(await old).toBe(oldProvider);
+            expect(await getProvider("same")).toBe(currentProvider);
+        });
+
         it("returns the first provider when no id is given and caches it", async () => {
             setProviders(TWO);
             const p1 = await getProvider();

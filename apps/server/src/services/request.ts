@@ -36,6 +36,8 @@ type RequestEvent = "error" | "response" | "abort";
 interface NetRequest {
     on(event: RequestEvent, cb: (e: any) => void): void;
     end(payload?: string): void;
+    destroy?(): void;
+    abort?(): void;
 }
 
 export interface Client {
@@ -53,6 +55,13 @@ function generateError(
     message: string
 ) {
     return new Error(`Request to ${opts.method} ${opts.url} failed, error: ${message}`);
+}
+
+/** A total deadline: the failure owner settles the promise and cancels its transport. */
+function armDeadline(opts: Pick<ClientOpts, "method" | "url" | "timeout">, fail: (error: Error) => void) {
+    if (!opts.timeout || opts.timeout <= 0) return () => {};
+    const timer = setTimeout(() => fail(generateError(opts, `Request timed out after ${opts.timeout} ms`)), opts.timeout);
+    return () => clearTimeout(timer);
 }
 
 async function getProxyAgent(opts: ClientOpts) {
@@ -107,6 +116,24 @@ export default class NodeRequestProvider implements RequestProvider {
         const resolvedClient = await client;
 
         return new Promise((resolve, reject) => {
+            let clearDeadline = () => {};
+            let settled = false;
+            let request: NetRequest | undefined;
+            const succeed = (value: T) => {
+                if (settled) return;
+                settled = true;
+                clearDeadline();
+                resolve(value);
+            };
+            const fail = (error: Error) => {
+                if (settled) return;
+                settled = true;
+                clearDeadline();
+                reject(error);
+                // Cancellation may emit a late error; listeners stay attached and settlement is guarded.
+                if (request?.destroy) request.destroy();
+                else request?.abort?.();
+            };
             try {
                 const headers: Record<string, string | number> = {
                     Cookie: (opts.cookieJar && opts.cookieJar.header) || "",
@@ -129,7 +156,7 @@ export default class NodeRequestProvider implements RequestProvider {
                     headers["trilium-cred"] = Buffer.from(`dummy:${opts.auth.password}`).toString("base64");
                 }
 
-                const request = resolvedClient.request({
+                request = resolvedClient.request({
                     method: opts.method,
                     // url is used by electron net module
                     url: opts.url,
@@ -145,14 +172,18 @@ export default class NodeRequestProvider implements RequestProvider {
                     cache: "no-store"
                 });
 
-                request.on("error", (err) => reject(generateError(opts, err)));
+                request.on("error", (err) => fail(generateError(opts, err)));
+                request.on("abort", () => fail(generateError(opts, "Request aborted")));
+
+                clearDeadline = armDeadline(opts, fail);
 
                 request.on("response", (response) => {
                     // Once headers arrive, `electron.net` reports a mid-body failure by
                     // destroying the response stream rather than the request. An "error"
                     // event with no listener is rethrown by Node and crashes the Electron
                     // main process, so this listener is load-bearing, not defensive.
-                    response.on("error", (err: unknown) => reject(generateError(opts, String(err))));
+                    response.on("error", (err: unknown) => fail(generateError(opts, String(err))));
+                    response.on("aborted", () => fail(generateError(opts, "Response aborted")));
 
                     if (opts.cookieJar && response.headers["set-cookie"]) {
                         absorbSetCookies(opts.cookieJar, response.headers["set-cookie"]);
@@ -161,9 +192,10 @@ export default class NodeRequestProvider implements RequestProvider {
                     let responseStr = "";
                     let chunks: Buffer[] = [];
 
-                    response.on("data", (chunk: Buffer) => chunks.push(chunk));
+                    response.on("data", (chunk: Buffer) => { if (!settled) chunks.push(chunk); });
 
                     response.on("end", () => {
+                        if (settled) return;
                         // use Buffer instead of string concatenation to avoid implicit decoding for each chunk
                         // decode the entire data chunks explicitly as utf-8
                         responseStr = Buffer.concat(chunks).toString("utf-8");
@@ -172,11 +204,11 @@ export default class NodeRequestProvider implements RequestProvider {
                             try {
                                 const jsonObj = responseStr.trim() ? JSON.parse(responseStr) : null;
 
-                                resolve(jsonObj);
+                                succeed(jsonObj);
                             } catch (e: any) {
                                 getLog().error(`Failed to deserialize sync response: ${responseStr}`);
 
-                                reject(generateError(opts, e.message));
+                                fail(generateError(opts, e.message));
                             }
                         } else {
                             let errorMessage;
@@ -189,7 +221,7 @@ export default class NodeRequestProvider implements RequestProvider {
                                 errorMessage = responseStr.substr(0, Math.min(responseStr.length, 100));
                             }
 
-                            reject(generateError(opts, `${response.statusCode} ${response.statusMessage} ${errorMessage}`));
+                            fail(generateError(opts, `${response.statusCode} ${response.statusMessage} ${errorMessage}`));
                         }
                     });
                 });
@@ -202,7 +234,7 @@ export default class NodeRequestProvider implements RequestProvider {
 
                 request.end(payload as string);
             } catch (e: any) {
-                reject(generateError(opts, e.message));
+                fail(generateError(opts, e.message));
             }
         });
     }
@@ -269,8 +301,20 @@ export default class NodeRequestProvider implements RequestProvider {
         // Proxies resolve the name themselves, so cannot enforce the pinned-address policy.
 
         return new Promise<ArrayBuffer>((resolve, reject) => {
+            let clearDeadline = () => {};
+            let settled = false;
+            let request: NetRequest | undefined;
+            const fail = (error: Error) => {
+                if (settled) return;
+                settled = true;
+                clearDeadline();
+                reject(error);
+                // Cancellation may emit a late error; listeners stay attached and settlement is guarded.
+                if (request?.destroy) request.destroy();
+                else request?.abort?.();
+            };
             try {
-                const request = client.request({
+                request = client.request({
                     method: opts.method,
                     // url is used by electron net module
                     url: opts.url,
@@ -284,23 +328,28 @@ export default class NodeRequestProvider implements RequestProvider {
                     lookup: opts.lookup
                 });
 
-                request.on("error", (err) => reject(generateError(opts, err)));
+                request.on("error", (err) => fail(generateError(opts, err)));
 
-                request.on("abort", (err) => reject(generateError(opts, err)));
+                request.on("abort", (err) => fail(generateError(opts, err)));
+                clearDeadline = armDeadline(opts, fail);
 
                 request.on("response", (response) => {
                     // See the equivalent listener in `exec`: without it, a connection
                     // reset after headers crashes the Electron main process.
-                    response.on("error", (err: unknown) => reject(generateError(opts, String(err))));
+                    response.on("error", (err: unknown) => fail(generateError(opts, String(err))));
+                    response.on("aborted", () => fail(generateError(opts, "Response aborted")));
 
                     if (![200, 201, 204].includes(response.statusCode)) {
-                        reject(generateError(opts, `${response.statusCode} ${response.statusMessage}`));
+                        fail(generateError(opts, `${response.statusCode} ${response.statusMessage}`));
                     }
 
                     const chunks: Buffer[] = [];
 
-                    response.on("data", (chunk: Buffer) => chunks.push(chunk));
+                    response.on("data", (chunk: Buffer) => { if (!settled) chunks.push(chunk); });
                     response.on("end", () => {
+                        if (settled) return;
+                        settled = true;
+                        clearDeadline();
                         const buf = Buffer.concat(chunks);
                         resolve(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength));
                     });
@@ -308,7 +357,7 @@ export default class NodeRequestProvider implements RequestProvider {
 
                 request.end(undefined);
             } catch (e: any) {
-                reject(generateError(opts, e.message));
+                fail(generateError(opts, e.message));
             }
         });
     }

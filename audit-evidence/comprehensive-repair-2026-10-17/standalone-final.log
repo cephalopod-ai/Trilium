@@ -1,0 +1,889 @@
+$ vitest services/utils/index.spec.ts services/bulk_actions.spec.ts routes/api/bulk_action.spec.ts services/task_context.spec.ts services/llm/index.spec.ts sw.spec.ts local-bridge.spec.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.mts:20:26). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.3 <repo>/apps/standalone/src
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts
+[BrowserSqlProvider] Initializing SQLite WASM...
+
+stderr | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts
+Ignoring inability to install OPFS sqlite3_vfs: The OPFS sqlite3_vfs cannot run in the main thread because it requires Atomics.wait().
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts
+[BrowserSqlProvider] SQLite WASM initialized in 23.95ms: 3.51.1
+
+stdout | ../../../packages/trilium-core/src/services/task_context.spec.ts
+[BrowserSqlProvider] Initializing SQLite WASM...
+
+stderr | ../../../packages/trilium-core/src/services/task_context.spec.ts
+Ignoring inability to install OPFS sqlite3_vfs: The OPFS sqlite3_vfs cannot run in the main thread because it requires Atomics.wait().
+
+stdout | ../../../packages/trilium-core/src/services/task_context.spec.ts
+[BrowserSqlProvider] SQLite WASM initialized in 32.73ms: 3.51.1
+
+stdout | sw.spec.ts
+[BrowserSqlProvider] Initializing SQLite WASM...
+
+stderr | sw.spec.ts
+Ignoring inability to install OPFS sqlite3_vfs: The OPFS sqlite3_vfs cannot run in the main thread because it requires Atomics.wait().
+
+stdout | sw.spec.ts
+[BrowserSqlProvider] SQLite WASM initialized in 25.22ms: 3.51.1
+
+stdout | local-bridge.spec.ts
+[BrowserSqlProvider] Initializing SQLite WASM...
+
+stdout | ../../../packages/trilium-core/src/services/utils/index.spec.ts
+[BrowserSqlProvider] Initializing SQLite WASM...
+
+stderr | local-bridge.spec.ts
+Ignoring inability to install OPFS sqlite3_vfs: The OPFS sqlite3_vfs cannot run in the main thread because it requires Atomics.wait().
+
+stdout | local-bridge.spec.ts
+[BrowserSqlProvider] SQLite WASM initialized in 26.00ms: 3.51.1
+
+stderr | ../../../packages/trilium-core/src/services/utils/index.spec.ts
+Ignoring inability to install OPFS sqlite3_vfs: The OPFS sqlite3_vfs cannot run in the main thread because it requires Atomics.wait().
+
+stdout | ../../../packages/trilium-core/src/services/utils/index.spec.ts
+[BrowserSqlProvider] SQLite WASM initialized in 24.96ms: 3.51.1
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts
+[BrowserSqlProvider] Initializing SQLite WASM...
+
+stderr | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts
+Ignoring inability to install OPFS sqlite3_vfs: The OPFS sqlite3_vfs cannot run in the main thread because it requires Atomics.wait().
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts
+[BrowserSqlProvider] SQLite WASM initialized in 15.89ms: 3.51.1
+
+stdout | sw.spec.ts
+App db version is 242, while db version is 241. Migration needed.
+
+stderr | sw.spec.ts
+[Backup] Stored backups are not supported on this platform, so "before-migration" was not created. The options screen backs up by downloading a copy instead.
+
+stdout | ../../../packages/trilium-core/src/services/task_context.spec.ts
+App db version is 242, while db version is 241. Migration needed.
+
+stderr | ../../../packages/trilium-core/src/services/task_context.spec.ts
+[Backup] Stored backups are not supported on this platform, so "before-migration" was not created. The options screen backs up by downloading a copy instead.
+
+stdout | ../../../packages/trilium-core/src/services/llm/index.spec.ts
+[BrowserSqlProvider] Initializing SQLite WASM...
+
+stdout | local-bridge.spec.ts
+Slow query took 21ms: SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'options'
+App db version is 242, while db version is 241. Migration needed.
+
+stderr | local-bridge.spec.ts
+[Backup] Stored backups are not supported on this platform, so "before-migration" was not created. The options screen backs up by downloading a copy instead.
+
+stdout | ../../../packages/trilium-core/src/services/utils/index.spec.ts
+Slow query took 25ms: SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'options'
+App db version is 242, while db version is 241. Migration needed.
+
+stderr | ../../../packages/trilium-core/src/services/utils/index.spec.ts
+[Backup] Stored backups are not supported on this platform, so "before-migration" was not created. The options screen backs up by downloading a copy instead.
+
+stderr | ../../../packages/trilium-core/src/services/llm/index.spec.ts
+Ignoring inability to install OPFS sqlite3_vfs: The OPFS sqlite3_vfs cannot run in the main thread because it requires Atomics.wait().
+
+stdout | ../../../packages/trilium-core/src/services/llm/index.spec.ts
+[BrowserSqlProvider] SQLite WASM initialized in 15.62ms: 3.51.1
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts
+Slow query took 28ms: SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'options'
+App db version is 242, while db version is 241. Migration needed.
+
+stderr | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts
+[Backup] Stored backups are not supported on this platform, so "before-migration" was not created. The options screen backs up by downloading a copy instead.
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts
+App db version is 242, while db version is 241. Migration needed.
+
+stderr | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts
+[Backup] Stored backups are not supported on this platform, so "before-migration" was not created. The options screen backs up by downloading a copy instead.
+
+stdout | sw.spec.ts
+Attempting migration to version 242
+Migration with JS module
+Migration to version 242 has been successful.
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts
+Attempting migration to version 242
+Migration with JS module
+Migration to version 242 has been successful.
+
+stdout | ../../../packages/trilium-core/src/services/task_context.spec.ts
+Attempting migration to version 242
+Migration with JS module
+Migration to version 242 has been successful.
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts
+Attempting migration to version 242
+Migration with JS module
+Migration to version 242 has been successful.
+
+stdout | local-bridge.spec.ts
+Attempting migration to version 242
+Migration with JS module
+Migration to version 242 has been successful.
+
+stdout | ../../../packages/trilium-core/src/services/utils/index.spec.ts
+Attempting migration to version 242
+Migration with JS module
+Migration to version 242 has been successful.
+
+stdout | ../../../packages/trilium-core/src/services/task_context.spec.ts
+Becca (note cache) load took 13ms
+Created option "syncMaxBlobContentSize" with default value "0"
+Created option "revisionIgnoreNamedSnapshots" with default value "true"
+Created option "monospaceLigaturesEnabled" with default value "false"
+Created option "imageResize" with default value "true"
+Created option "imageJpegHandling" with default value "compress"
+Created option "imagePngHandling" with default value "optimize"
+Created option "imageConversionQuality" with default value "75"
+Created option "transcriptCleanupEnabled" with default value "true"
+Created option "contentManagerSortOrder" with default value "title"
+Created option "contentManagerViewMode" with default value "category"
+Created option "rightPaneSelectedTab" with default value "outline"
+Created option "rightPaneNoteMapType" with default value "link"
+Created option "customDbBackupDir" with default value ""
+Created option "backupEnableCompression" with default value "false"
+Created option "backupEnableEncryption" with default value "false"
+Created option "searchResultsPageSize" with default value "20"
+Created option "hardwareAccelerationEnabled" with default value "true"
+Created option "pdfSignatures" with default value "{}"
+Created option "defaultContentLanguage" with default value "en"
+Created option "textNoteDoubleQuoteStyle" with default value "auto"
+Created option "textNoteSingleQuoteStyle" with default value "auto"
+Created option "textNotePunctuationReplacementsEnabled" with default value "true"
+Created option "textNoteMathReplacementsEnabled" with default value "true"
+Created option "textNoteSymbolReplacementsEnabled" with default value "true"
+Created option "textNoteCustomReplacements" with default value "[]"
+Created option "mathFieldEnabled" with default value "true"
+Created option "textNoteContentHintsEnabled" with default value "true"
+Created option "textNoteAutoLinkPreviewsEnabled" with default value "true"
+Created option "textNoteHtmlSupportEnabled" with default value "false"
+Created option "clipboardImageEmbedEnabled" with default value "true"
+Created option "cleanupToolOptions" with default value "{}"
+Created option "imageCompressionToolOptions" with default value "{}"
+Created option "llmWebSearchProvider" with default value ""
+Created option "aiAssistantModel" with default value ""
+Created option "keyboardShortcutsDuplicateNote" with default value "[]"
+Created option "keyboardShortcutsOpenNewNoteSplit" with default value "[]"
+Created option "keyboardShortcutsCloseActiveNoteSplit" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsShowDeletedNotes" with default value "[]"
+Created option "keyboardShortcutsShowSpaceUsage" with default value "[]"
+Created option "keyboardShortcutsShowShortcutHints" with default value "["Alt+F1"]"
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts
+Becca (note cache) load took 23ms
+Created option "syncMaxBlobContentSize" with default value "0"
+Created option "revisionIgnoreNamedSnapshots" with default value "true"
+Created option "monospaceLigaturesEnabled" with default value "false"
+Created option "imageResize" with default value "true"
+Created option "imageJpegHandling" with default value "compress"
+Created option "imagePngHandling" with default value "optimize"
+Created option "imageConversionQuality" with default value "75"
+Created option "transcriptCleanupEnabled" with default value "true"
+Created option "contentManagerSortOrder" with default value "title"
+Created option "contentManagerViewMode" with default value "category"
+Created option "rightPaneSelectedTab" with default value "outline"
+Created option "rightPaneNoteMapType" with default value "link"
+Created option "customDbBackupDir" with default value ""
+Created option "backupEnableCompression" with default value "false"
+Created option "backupEnableEncryption" with default value "false"
+Created option "searchResultsPageSize" with default value "20"
+Created option "hardwareAccelerationEnabled" with default value "true"
+Created option "pdfSignatures" with default value "{}"
+Created option "defaultContentLanguage" with default value "en"
+Created option "textNoteDoubleQuoteStyle" with default value "auto"
+Created option "textNoteSingleQuoteStyle" with default value "auto"
+Created option "textNotePunctuationReplacementsEnabled" with default value "true"
+Created option "textNoteMathReplacementsEnabled" with default value "true"
+Created option "textNoteSymbolReplacementsEnabled" with default value "true"
+Created option "textNoteCustomReplacements" with default value "[]"
+Created option "mathFieldEnabled" with default value "true"
+Created option "textNoteContentHintsEnabled" with default value "true"
+Created option "textNoteAutoLinkPreviewsEnabled" with default value "true"
+Created option "textNoteHtmlSupportEnabled" with default value "false"
+Created option "clipboardImageEmbedEnabled" with default value "true"
+Created option "cleanupToolOptions" with default value "{}"
+Created option "imageCompressionToolOptions" with default value "{}"
+Created option "llmWebSearchProvider" with default value ""
+Created option "aiAssistantModel" with default value ""
+Created option "keyboardShortcutsDuplicateNote" with default value "[]"
+Created option "keyboardShortcutsOpenNewNoteSplit" with default value "[]"
+Created option "keyboardShortcutsCloseActiveNoteSplit" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsShowDeletedNotes" with default value "[]"
+Created option "keyboardShortcutsShowSpaceUsage" with default value "[]"
+Created option "keyboardShortcutsShowShortcutHints" with default value "["Alt+F1"]"
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts
+Becca (note cache) load took 12ms
+Created option "syncMaxBlobContentSize" with default value "0"
+Created option "revisionIgnoreNamedSnapshots" with default value "true"
+Created option "monospaceLigaturesEnabled" with default value "false"
+Created option "imageResize" with default value "true"
+Created option "imageJpegHandling" with default value "compress"
+Created option "imagePngHandling" with default value "optimize"
+Created option "imageConversionQuality" with default value "75"
+Created option "transcriptCleanupEnabled" with default value "true"
+Created option "contentManagerSortOrder" with default value "title"
+Created option "contentManagerViewMode" with default value "category"
+Created option "rightPaneSelectedTab" with default value "outline"
+Created option "rightPaneNoteMapType" with default value "link"
+Created option "customDbBackupDir" with default value ""
+Created option "backupEnableCompression" with default value "false"
+Created option "backupEnableEncryption" with default value "false"
+Created option "searchResultsPageSize" with default value "20"
+Created option "hardwareAccelerationEnabled" with default value "true"
+Created option "pdfSignatures" with default value "{}"
+Created option "defaultContentLanguage" with default value "en"
+Created option "textNoteDoubleQuoteStyle" with default value "auto"
+Created option "textNoteSingleQuoteStyle" with default value "auto"
+Created option "textNotePunctuationReplacementsEnabled" with default value "true"
+Created option "textNoteMathReplacementsEnabled" with default value "true"
+Created option "textNoteSymbolReplacementsEnabled" with default value "true"
+Created option "textNoteCustomReplacements" with default value "[]"
+Created option "mathFieldEnabled" with default value "true"
+Created option "textNoteContentHintsEnabled" with default value "true"
+Created option "textNoteAutoLinkPreviewsEnabled" with default value "true"
+Created option "textNoteHtmlSupportEnabled" with default value "false"
+Created option "clipboardImageEmbedEnabled" with default value "true"
+Created option "cleanupToolOptions" with default value "{}"
+Created option "imageCompressionToolOptions" with default value "{}"
+Created option "llmWebSearchProvider" with default value ""
+Created option "aiAssistantModel" with default value ""
+Created option "keyboardShortcutsDuplicateNote" with default value "[]"
+Created option "keyboardShortcutsOpenNewNoteSplit" with default value "[]"
+Created option "keyboardShortcutsCloseActiveNoteSplit" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsShowDeletedNotes" with default value "[]"
+Created option "keyboardShortcutsShowSpaceUsage" with default value "[]"
+Created option "keyboardShortcutsShowShortcutHints" with default value "["Alt+F1"]"
+
+stderr | ../../../packages/trilium-core/src/services/task_context.spec.ts > TaskContext > keeps a task group until its success transaction commits and preserves it on rollback
+Got error  Error: rollback
+    at <repo>/packages/trilium-core/src/services/task_context.spec.ts:240:19
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/services/task_context.spec.ts:238:55
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at <repo>/packages/trilium-core/src/services/task_context.spec.ts:238:35
+    at Proxy.assertThrows (file://<repo>/node_modules/chai/index.js:2798:5)
+    at Proxy.methodWrapper (file://<repo>/node_modules/chai/index.js:1700:25)
+    at Proxy.<anonymous> (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:1990:12)
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > affected note count > counts a single existing note
+Created new note 'uM6OmbNYDWcc', branch 'root_uM6OmbNYDWcc' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > affected note count > includes descendants when requested
+Created new note 'iKMpzKVJBps1', branch 'root_iKMpzKVJBps1' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > affected note count > includes descendants when requested
+Created new note 'qAfBQrn585Pu', branch 'iKMpzKVJBps1_qAfBQrn585Pu' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > executing actions > adds a label to the targeted notes (round-trip)
+Created new note 'M1O8ZjnUIiCO', branch 'root_M1O8ZjnUIiCO' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > executing actions > adds a label to the targeted notes (round-trip)
+Applying action handler to note M1O8ZjnUIiCO: {"name":"addLabel","labelName":"bulkAdded","labelValue":"yes"}
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > executing actions > deletes a label from the targeted notes (round-trip)
+Created new note 'IDyH6HTeWgQD', branch 'root_IDyH6HTeWgQD' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > executing actions > deletes a label from the targeted notes (round-trip)
+Applying action handler to note IDyH6HTeWgQD: {"name":"addLabel","labelName":"toRemove","labelValue":"1"}
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > executing actions > deletes a label from the targeted notes (round-trip)
+Applying action handler to note IDyH6HTeWgQD: {"name":"deleteLabel","labelName":"toRemove"}
+Marking attributes WJ50y2CHabc2 as deleted
+
+stdout | local-bridge.spec.ts
+Becca (note cache) load took 15ms
+Created option "syncMaxBlobContentSize" with default value "0"
+Created option "revisionIgnoreNamedSnapshots" with default value "true"
+Created option "monospaceLigaturesEnabled" with default value "false"
+Created option "imageResize" with default value "true"
+Created option "imageJpegHandling" with default value "compress"
+Created option "imagePngHandling" with default value "optimize"
+Created option "imageConversionQuality" with default value "75"
+Created option "transcriptCleanupEnabled" with default value "true"
+Created option "contentManagerSortOrder" with default value "title"
+Created option "contentManagerViewMode" with default value "category"
+Created option "rightPaneSelectedTab" with default value "outline"
+Created option "rightPaneNoteMapType" with default value "link"
+Created option "customDbBackupDir" with default value ""
+Created option "backupEnableCompression" with default value "false"
+Created option "backupEnableEncryption" with default value "false"
+Created option "searchResultsPageSize" with default value "20"
+Created option "hardwareAccelerationEnabled" with default value "true"
+Created option "pdfSignatures" with default value "{}"
+Created option "defaultContentLanguage" with default value "en"
+Created option "textNoteDoubleQuoteStyle" with default value "auto"
+Created option "textNoteSingleQuoteStyle" with default value "auto"
+Created option "textNotePunctuationReplacementsEnabled" with default value "true"
+Created option "textNoteMathReplacementsEnabled" with default value "true"
+Created option "textNoteSymbolReplacementsEnabled" with default value "true"
+Created option "textNoteCustomReplacements" with default value "[]"
+Created option "mathFieldEnabled" with default value "true"
+Created option "textNoteContentHintsEnabled" with default value "true"
+Created option "textNoteAutoLinkPreviewsEnabled" with default value "true"
+Created option "textNoteHtmlSupportEnabled" with default value "false"
+Created option "clipboardImageEmbedEnabled" with default value "true"
+Created option "cleanupToolOptions" with default value "{}"
+Created option "imageCompressionToolOptions" with default value "{}"
+Created option "llmWebSearchProvider" with default value ""
+Created option "aiAssistantModel" with default value ""
+Created option "keyboardShortcutsDuplicateNote" with default value "[]"
+Created option "keyboardShortcutsOpenNewNoteSplit" with default value "[]"
+Created option "keyboardShortcutsCloseActiveNoteSplit" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsShowDeletedNotes" with default value "[]"
+Created option "keyboardShortcutsShowSpaceUsage" with default value "[]"
+Created option "keyboardShortcutsShowShortcutHints" with default value "["Alt+F1"]"
+
+stdout | sw.spec.ts
+Becca (note cache) load took 28ms
+Created option "syncMaxBlobContentSize" with default value "0"
+Created option "revisionIgnoreNamedSnapshots" with default value "true"
+Created option "monospaceLigaturesEnabled" with default value "false"
+Created option "imageResize" with default value "true"
+Created option "imageJpegHandling" with default value "compress"
+Created option "imagePngHandling" with default value "optimize"
+Created option "imageConversionQuality" with default value "75"
+Created option "transcriptCleanupEnabled" with default value "true"
+Created option "contentManagerSortOrder" with default value "title"
+Created option "contentManagerViewMode" with default value "category"
+Created option "rightPaneSelectedTab" with default value "outline"
+Created option "rightPaneNoteMapType" with default value "link"
+Created option "customDbBackupDir" with default value ""
+Created option "backupEnableCompression" with default value "false"
+Created option "backupEnableEncryption" with default value "false"
+Created option "searchResultsPageSize" with default value "20"
+Created option "hardwareAccelerationEnabled" with default value "true"
+Created option "pdfSignatures" with default value "{}"
+Created option "defaultContentLanguage" with default value "en"
+Created option "textNoteDoubleQuoteStyle" with default value "auto"
+Created option "textNoteSingleQuoteStyle" with default value "auto"
+Created option "textNotePunctuationReplacementsEnabled" with default value "true"
+Created option "textNoteMathReplacementsEnabled" with default value "true"
+Created option "textNoteSymbolReplacementsEnabled" with default value "true"
+Created option "textNoteCustomReplacements" with default value "[]"
+Created option "mathFieldEnabled" with default value "true"
+Created option "textNoteContentHintsEnabled" with default value "true"
+Created option "textNoteAutoLinkPreviewsEnabled" with default value "true"
+Created option "textNoteHtmlSupportEnabled" with default value "false"
+Created option "clipboardImageEmbedEnabled" with default value "true"
+Created option "cleanupToolOptions" with default value "{}"
+Created option "imageCompressionToolOptions" with default value "{}"
+Created option "llmWebSearchProvider" with default value ""
+Created option "aiAssistantModel" with default value ""
+Created option "keyboardShortcutsDuplicateNote" with default value "[]"
+Created option "keyboardShortcutsOpenNewNoteSplit" with default value "[]"
+Created option "keyboardShortcutsCloseActiveNoteSplit" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsShowDeletedNotes" with default value "[]"
+Created option "keyboardShortcutsShowSpaceUsage" with default value "[]"
+Created option "keyboardShortcutsShowShortcutHints" with default value "["Alt+F1"]"
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeActions > returns applied, skipped and failed outcomes while continuing the batch
+Created new note 'pQN2ol6lIUvv', branch 'root_pQN2ol6lIUvv' of type 'text', mime 'text/html'
+Applying action handler to note pQN2ol6lIUvv: {"name":"executeScript","script":"throw new Error('item failure')"}
+Applying action handler to note pQN2ol6lIUvv: {"name":"moveNote","targetParentNoteId":"missingParent"}
+Cannot execute moveNote because note missingParent doesn't exist.
+Applying action handler to note pQN2ol6lIUvv: {"name":"addLabel","labelName":"afterFailure"}
+
+stderr | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeActions > returns applied, skipped and failed outcomes while continuing the batch
+ERROR:  Execution of script "bulk-actions-spec-1" (pQN2ol6lIUvv) failed with error: item failure
+ERROR:  Bulk action executeScript failed on note pQN2ol6lIUvv: item failure
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeActions > accepts both an array and a Set of note IDs
+Created new note '73mvcqnA8ijR', branch 'root_73mvcqnA8ijR' of type 'text', mime 'text/html'
+Created new note 'Y8HN092yV026', branch 'root_Y8HN092yV026' of type 'text', mime 'text/html'
+Applying action handler to note 73mvcqnA8ijR: {"name":"addLabel","labelName":"fromSet"}
+Applying action handler to note Y8HN092yV026: {"name":"addLabel","labelName":"fromSet"}
+
+stdout | ../../../packages/trilium-core/src/services/llm/index.spec.ts
+App db version is 242, while db version is 241. Migration needed.
+
+stderr | ../../../packages/trilium-core/src/services/llm/index.spec.ts
+[Backup] Stored backups are not supported on this platform, so "before-migration" was not created. The options screen backs up by downloading a copy instead.
+
+stdout | ../../../packages/trilium-core/src/services/utils/index.spec.ts
+Becca (note cache) load took 14ms
+Created option "syncMaxBlobContentSize" with default value "0"
+Created option "revisionIgnoreNamedSnapshots" with default value "true"
+Created option "monospaceLigaturesEnabled" with default value "false"
+Created option "imageResize" with default value "true"
+Created option "imageJpegHandling" with default value "compress"
+Created option "imagePngHandling" with default value "optimize"
+Created option "imageConversionQuality" with default value "75"
+Created option "transcriptCleanupEnabled" with default value "true"
+Created option "contentManagerSortOrder" with default value "title"
+Created option "contentManagerViewMode" with default value "category"
+Created option "rightPaneSelectedTab" with default value "outline"
+Created option "rightPaneNoteMapType" with default value "link"
+Created option "customDbBackupDir" with default value ""
+Created option "backupEnableCompression" with default value "false"
+Created option "backupEnableEncryption" with default value "false"
+Created option "searchResultsPageSize" with default value "20"
+Created option "hardwareAccelerationEnabled" with default value "true"
+Created option "pdfSignatures" with default value "{}"
+Created option "defaultContentLanguage" with default value "en"
+Created option "textNoteDoubleQuoteStyle" with default value "auto"
+Created option "textNoteSingleQuoteStyle" with default value "auto"
+Created option "textNotePunctuationReplacementsEnabled" with default value "true"
+Created option "textNoteMathReplacementsEnabled" with default value "true"
+Created option "textNoteSymbolReplacementsEnabled" with default value "true"
+Created option "textNoteCustomReplacements" with default value "[]"
+Created option "mathFieldEnabled" with default value "true"
+Created option "textNoteContentHintsEnabled" with default value "true"
+Created option "textNoteAutoLinkPreviewsEnabled" with default value "true"
+Created option "textNoteHtmlSupportEnabled" with default value "false"
+Created option "clipboardImageEmbedEnabled" with default value "true"
+Created option "cleanupToolOptions" with default value "{}"
+Created option "imageCompressionToolOptions" with default value "{}"
+Created option "llmWebSearchProvider" with default value ""
+Created option "aiAssistantModel" with default value ""
+Created option "keyboardShortcutsDuplicateNote" with default value "[]"
+Created option "keyboardShortcutsOpenNewNoteSplit" with default value "[]"
+Created option "keyboardShortcutsCloseActiveNoteSplit" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsShowDeletedNotes" with default value "[]"
+Created option "keyboardShortcutsShowSpaceUsage" with default value "[]"
+Created option "keyboardShortcutsShowShortcutHints" with default value "["Alt+F1"]"
+
+ ✓ ../../../packages/trilium-core/src/services/task_context.spec.ts (15 tests) 244ms
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > executing actions > falls back to the _bulkAction note when no actions are provided
+Created new note 'dn0km1EE6hCa', branch 'root_dn0km1EE6hCa' of type 'text', mime 'text/html'
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeActions > isolates per-note handler failures and keeps applying to remaining notes
+Created new note '9FTPQo5924uR', branch 'root_9FTPQo5924uR' of type 'text', mime 'text/html'
+Applying action handler to note 9FTPQo5924uR: {"name":"executeScript","script":"thisIsNotDefined()"}
+Applying action handler to note 9FTPQo5924uR: {"name":"addLabel","labelName":"appliedAfterFailure"}
+
+stderr | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeActions > isolates per-note handler failures and keeps applying to remaining notes
+ERROR:  Execution of script "bulk-actions-spec-4" (9FTPQo5924uR) failed with error: thisIsNotDefined is not defined
+ERROR:  Bulk action executeScript failed on note 9FTPQo5924uR: thisIsNotDefined is not defined
+
+stderr | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > error handling > errors when noteIds is not an array
+Got error  Error: noteIds must be an array
+    at execute (<repo>/packages/trilium-core/src/routes/api/bulk_action.ts:8:15)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21)
+
+stdout | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > error handling > errors when an action is missing a name
+Created new note 'Qw7X0adkZ2A2', branch 'root_Qw7X0adkZ2A2' of type 'text', mime 'text/html'
+
+stderr | ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts > Bulk action API (core) > error handling > errors when an action is missing a name
+Got error  Error: Action must have a name
+    at execute (<repo>/packages/trilium-core/src/routes/api/bulk_action.ts:18:23)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:57
+    at executeTransaction (<repo>/apps/standalone/src/lightweight/sql_provider.ts:565:37)
+    at Function.deferred (<repo>/apps/standalone/src/lightweight/sql_provider.ts:583:54)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at BrowserExecutionContext.init (<repo>/apps/standalone/src/lightweight/cls_provider.ts:44:22)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21)
+
+stdout | ../../../packages/trilium-core/src/services/llm/index.spec.ts
+Attempting migration to version 242
+Migration with JS module
+Migration to version 242 has been successful.
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > label actions > addLabel / updateLabelValue / renameLabel / deleteLabel
+Created new note 'BBc7i6pmru0L', branch 'root_BBc7i6pmru0L' of type 'text', mime 'text/html'
+Applying action handler to note BBc7i6pmru0L: {"name":"addLabel","labelName":"color","labelValue":"red"}
+Applying action handler to note BBc7i6pmru0L: {"name":"updateLabelValue","labelName":"color","labelValue":"blue"}
+Applying action handler to note BBc7i6pmru0L: {"name":"renameLabel","oldLabelName":"color","newLabelName":"shade"}
+Marking attributes OAWgWn6q63PA as deleted
+Applying action handler to note BBc7i6pmru0L: {"name":"deleteLabel","labelName":"shade"}
+Marking attributes mR12MySWgapb as deleted
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > relation actions > addRelation / updateRelationTarget / renameRelation / deleteRelation
+Created new note 'cu11ygEOXxtD', branch 'root_cu11ygEOXxtD' of type 'text', mime 'text/html'
+Created new note 'lQvxGomsnd7j', branch 'root_lQvxGomsnd7j' of type 'text', mime 'text/html'
+Created new note 'nGc35GklNM3X', branch 'root_nGc35GklNM3X' of type 'text', mime 'text/html'
+Applying action handler to note cu11ygEOXxtD: {"name":"addRelation","relationName":"link","targetNoteId":"lQvxGomsnd7j"}
+Applying action handler to note cu11ygEOXxtD: {"name":"updateRelationTarget","relationName":"link","targetNoteId":"nGc35GklNM3X"}
+Applying action handler to note cu11ygEOXxtD: {"name":"renameRelation","oldRelationName":"link","newRelationName":"ref"}
+Marking attributes d6M7ILwJGGPI as deleted
+Applying action handler to note cu11ygEOXxtD: {"name":"deleteRelation","relationName":"ref"}
+Marking attributes Uy72WCpAKBUK as deleted
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > renameNote > evaluates the new title as a template with `note` in scope
+Created new note 'dTRccZHkGoc9', branch 'root_dTRccZHkGoc9' of type 'text', mime 'text/html'
+Applying action handler to note dTRccZHkGoc9: {"name":"renameNote","newTitle":"Prefix - ${note.noteId}"}
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > renameNote > leaves the title untouched when the evaluated value is identical
+Created new note 'psfRpp3VgIdb', branch 'root_psfRpp3VgIdb' of type 'text', mime 'text/html'
+Applying action handler to note psfRpp3VgIdb: {"name":"renameNote","newTitle":"bulk-actions-spec-10"}
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeScript > runs the script against the note and persists changes
+Created new note 'lL1HTBPGPjOM', branch 'root_lL1HTBPGPjOM' of type 'text', mime 'text/html'
+Applying action handler to note lL1HTBPGPjOM: {"name":"executeScript","script":"note.setLabel('scripted', 'yes')"}
+
+ ✓ ../../../packages/trilium-core/src/routes/api/bulk_action.spec.ts (8 tests) 138ms
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeScript > persists mutations even when the script returns early
+Created new note 'rnZskiIfcE9G', branch 'root_rnZskiIfcE9G' of type 'text', mime 'text/html'
+Applying action handler to note rnZskiIfcE9G: {"name":"executeScript","script":"note.title = 'renamed by script';\nreturn;"}
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeScript > is a no-op for an empty / whitespace-only script
+Created new note '8nE0qt291Kqp', branch 'root_8nE0qt291Kqp' of type 'text', mime 'text/html'
+Applying action handler to note 8nE0qt291Kqp: {"name":"executeScript","script":"   "}
+Ignoring executeScript since the script is empty.
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > deleteNote > marks the targeted note as deleted
+Created new note '3eBUizTl74pK', branch 'root_3eBUizTl74pK' of type 'text', mime 'text/html'
+Applying action handler to note 3eBUizTl74pK: {"name":"deleteNote"}
+Marking branches root_3eBUizTl74pK as deleted
+Deleting note '3eBUizTl74pK'
+Marking notes 3eBUizTl74pK as deleted
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > saveRevision > saves a named revision capturing the note's current content
+Created new note 'LxqSZg1PUfnp', branch 'root_LxqSZg1PUfnp' of type 'text', mime 'text/html'
+Applying action handler to note LxqSZg1PUfnp: {"name":"saveRevision","revisionName":"milestone"}
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > saveRevision > saves an unnamed revision when no name is provided
+Created new note '7bsDu6tFYG01', branch 'root_7bsDu6tFYG01' of type 'text', mime 'text/html'
+Applying action handler to note 7bsDu6tFYG01: {"name":"saveRevision"}
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > deleteRevisions > erases all revisions of the targeted note
+Created new note 'FKLgvtSSpsai', branch 'root_FKLgvtSSpsai' of type 'text', mime 'text/html'
+Applying action handler to note FKLgvtSSpsai: {"name":"deleteRevisions"}
+Removed revisions: ["m4GAUlqSY4aD"]
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > moveNote > moves a single-parent note to the target parent
+Created new note 'XZUsW1vUFbCN', branch 'root_XZUsW1vUFbCN' of type 'text', mime 'text/html'
+Created new note 'buomfRHvta1h', branch 'root_buomfRHvta1h' of type 'text', mime 'text/html'
+Applying action handler to note XZUsW1vUFbCN: {"name":"moveNote","targetParentNoteId":"buomfRHvta1h"}
+Marking branches root_XZUsW1vUFbCN as deleted
+
+stdout | ../../../packages/trilium-core/src/services/llm/index.spec.ts
+Becca (note cache) load took 18ms
+Created option "syncMaxBlobContentSize" with default value "0"
+Created option "revisionIgnoreNamedSnapshots" with default value "true"
+Created option "monospaceLigaturesEnabled" with default value "false"
+Created option "imageResize" with default value "true"
+Created option "imageJpegHandling" with default value "compress"
+Created option "imagePngHandling" with default value "optimize"
+Created option "imageConversionQuality" with default value "75"
+Created option "transcriptCleanupEnabled" with default value "true"
+Created option "contentManagerSortOrder" with default value "title"
+Created option "contentManagerViewMode" with default value "category"
+Created option "rightPaneSelectedTab" with default value "outline"
+Created option "rightPaneNoteMapType" with default value "link"
+Created option "customDbBackupDir" with default value ""
+Created option "backupEnableCompression" with default value "false"
+Created option "backupEnableEncryption" with default value "false"
+Created option "searchResultsPageSize" with default value "20"
+Created option "hardwareAccelerationEnabled" with default value "true"
+Created option "pdfSignatures" with default value "{}"
+Created option "defaultContentLanguage" with default value "en"
+Created option "textNoteDoubleQuoteStyle" with default value "auto"
+Created option "textNoteSingleQuoteStyle" with default value "auto"
+Created option "textNotePunctuationReplacementsEnabled" with default value "true"
+Created option "textNoteMathReplacementsEnabled" with default value "true"
+Created option "textNoteSymbolReplacementsEnabled" with default value "true"
+Created option "textNoteCustomReplacements" with default value "[]"
+Created option "mathFieldEnabled" with default value "true"
+Created option "textNoteContentHintsEnabled" with default value "true"
+Created option "textNoteAutoLinkPreviewsEnabled" with default value "true"
+Created option "textNoteHtmlSupportEnabled" with default value "false"
+Created option "clipboardImageEmbedEnabled" with default value "true"
+Created option "cleanupToolOptions" with default value "{}"
+Created option "imageCompressionToolOptions" with default value "{}"
+Created option "llmWebSearchProvider" with default value ""
+Created option "aiAssistantModel" with default value ""
+Created option "keyboardShortcutsDuplicateNote" with default value "[]"
+Created option "keyboardShortcutsOpenNewNoteSplit" with default value "[]"
+Created option "keyboardShortcutsCloseActiveNoteSplit" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsMoveActiveNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitLeft" with default value "[]"
+Created option "keyboardShortcutsFocusNoteSplitRight" with default value "[]"
+Created option "keyboardShortcutsShowDeletedNotes" with default value "[]"
+Created option "keyboardShortcutsShowSpaceUsage" with default value "[]"
+Created option "keyboardShortcutsShowShortcutHints" with default value "["Alt+F1"]"
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > moveNote > clones (rather than moves) a note that has multiple parents
+Created new note '6w0HWscPZ137', branch 'root_6w0HWscPZ137' of type 'text', mime 'text/html'
+Created new note 'JRCjdmIKWX81', branch 'root_JRCjdmIKWX81' of type 'text', mime 'text/html'
+Created new note 'gbkcXRQGrQ3g', branch 'root_gbkcXRQGrQ3g' of type 'text', mime 'text/html'
+Cloned note '6w0HWscPZ137' to a new parent note 'JRCjdmIKWX81' with prefix 'null'
+Applying action handler to note 6w0HWscPZ137: {"name":"moveNote","targetParentNoteId":"gbkcXRQGrQ3g"}
+Cloned note '6w0HWscPZ137' to a new parent note 'gbkcXRQGrQ3g' with prefix 'null'
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > moveNote > is a no-op when the target parent does not exist
+Created new note 'LMISYFK6E3xC', branch 'root_LMISYFK6E3xC' of type 'text', mime 'text/html'
+Applying action handler to note LMISYFK6E3xC: {"name":"moveNote","targetParentNoteId":"doesNotExist123"}
+Cannot execute moveNote because note doesNotExist123 doesn't exist.
+
+stdout | sw.spec.ts > service worker lifecycle > skips waiting on install
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeActionsFromNote > reads, parses and applies actions stored in the note's `action` labels
+Created new note 'V4T8l0fNi8K6', branch 'root_V4T8l0fNi8K6' of type 'text', mime 'text/html'
+Created new note 'tUEQD0TaY94E', branch 'root_tUEQD0TaY94E' of type 'text', mime 'text/html'
+Applying action handler to note tUEQD0TaY94E: {"name":"addLabel","labelName":"fromDefinition","labelValue":"1"}
+Applying action handler to note tUEQD0TaY94E: {"name":"addLabel","labelName":"second","labelValue":"2"}
+
+stdout | sw.spec.ts > service worker lifecycle > clears stale caches and claims clients on activate
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeActionsFromNote > skips malformed JSON and unknown action handlers, applying only the valid ones
+Created new note 't3shMfbfab81', branch 'root_t3shMfbfab81' of type 'text', mime 'text/html'
+Created new note '0bMoOWBKbw05', branch 'root_0bMoOWBKbw05' of type 'text', mime 'text/html'
+Applying action handler to note 0bMoOWBKbw05: {"name":"addLabel","labelName":"valid","labelValue":"ok"}
+
+stderr | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > executeActionsFromNote > skips malformed JSON and unknown action handlers, applying only the valid ones
+ERROR:  Cannot parse '{ not valid json' into search action, skipping.
+ERROR:  Cannot find 'noSuchHandler' search action handler, skipping.
+
+ ✓ ../../../packages/trilium-core/src/services/llm/index.spec.ts (22 tests) 119ms
+stdout | sw.spec.ts > production static cache > bypasses the static cache in development
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > fetch routing > ignores cross-origin requests
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > fetch routing > lets native-proxy requests fall through to the network stack untouched
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > fetch routing > routes local-first prefixes to the client bridge
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > fetch routing > routes shared-note pages to the client bridge but serves the share theme's assets statically
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > fetch routing > explains that Trilium must be open when a share page finds no app window
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > fetch routing > serves navigations and .html network-first (which bypasses cache in dev)
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > fetch routing > serves other GETs cache-first (which bypasses cache in dev)
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > fetch routing > passes non-GET, non-local requests straight to the network
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > fetch routing > bypasses SW routing on the capacitor:// scheme (assets load via the WebView)
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > forwardToClientLocalServer > forwards to the main app window and returns its response
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > convertNote > converts only notes matching the conversion's source type, skipping the rest
+Created new note 'TFj5PYMXl7eA', branch 'root_TFj5PYMXl7eA' of type 'text', mime 'text/html'
+Created new note 'ZlH6FK4C57V1', branch 'root_ZlH6FK4C57V1' of type 'code', mime 'text/x-markdown'
+Applying action handler to note TFj5PYMXl7eA: {"name":"convertNote","conversion":"htmlToMarkdown"}
+Applying action handler to note ZlH6FK4C57V1: {"name":"convertNote","conversion":"htmlToMarkdown"}
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > convertNote > converts a Markdown note back to a text note
+Created new note '1dtY53mukt1r', branch 'root_1dtY53mukt1r' of type 'code', mime 'text/x-markdown'
+Applying action handler to note 1dtY53mukt1r: {"name":"convertNote","conversion":"markdownToHtml"}
+
+stdout | ../../../packages/trilium-core/src/services/bulk_actions.spec.ts > bulk_actions service (real DB) > convertNote > does nothing for an unknown or unset conversion
+Created new note 'fXe3Ic85qC9g', branch 'root_fXe3Ic85qC9g' of type 'text', mime 'text/html'
+Applying action handler to note fXe3Ic85qC9g: {"name":"convertNote","conversion":""}
+
+ ✓ ../../../packages/trilium-core/src/services/bulk_actions.spec.ts (23 tests) 333ms
+stdout | sw.spec.ts > forwardToClientLocalServer > falls back to any client when no main window is found
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > forwardToClientLocalServer > answers 503 rather than asking the static host when there are no clients
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > forwardToClientLocalServer > defaults status and omits headers when the response is sparse
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > forwardToClientLocalServer > answers 503 rather than asking the static host on a protocol mismatch
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > forwardToClientLocalServer > rejects on a message error
+[Service Worker] Running in DEV mode - caching disabled
+
+DOMException [AbortError]: The operation was aborted.
+    at Fetch.onAsyncTaskManagerAbort (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:546:23)
+    at Object.<anonymous> (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:416:101)
+    at AsyncTaskManager.abortAll (file://<repo>/node_modules/happy-dom/lib/async-task-manager/AsyncTaskManager.js:292:30)
+    at AsyncTaskManager.destroy (file://<repo>/node_modules/happy-dom/lib/async-task-manager/AsyncTaskManager.js:64:21)
+    at file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameFactory.js:43:22
+    at new Promise (<anonymous>)
+    at BrowserFrameFactory.destroyFrame (file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameFactory.js:30:16)
+    at #unloadPage (file://<repo>/node_modules/happy-dom/lib/nodes/html-iframe-element/HTMLIFrameElement.js:363:33)
+    at [disconnectedFromDocument] (file://<repo>/node_modules/happy-dom/lib/nodes/html-iframe-element/HTMLIFrameElement.js:238:25)
+    at [disconnectedFromNode] (file://<repo>/node_modules/happy-dom/lib/nodes/node/Node.js:829:58)
+DOMException [NetworkError]: Failed to execute "fetch()" on "Window" with URL "http://localhost:3000/local-backup-download?fileName=Backup.tnbackup": The operation was aborted.
+    at Fetch.onError (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:540:21)
+    at ClientRequest.emit (node:events:508:28)
+    at emitErrorEvent (node:_http_client:108:11)
+    at _destroy (node:_http_client:962:9)
+    at onSocketNT (node:_http_client:982:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+stdout | sw.spec.ts > forwardToClientLocalServer > times out when the client never responds
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > forwardToClientLocalServer > routes to the tab that announced itself as leader
+[Service Worker] Running in DEV mode - caching disabled
+
+AggregateError:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7) {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:3000
+        at createConnectionError (node:net:1678:14)
+        at afterConnectMultiple (node:net:1708:16) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 3000
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:3000
+        at createConnectionError (node:net:1678:14)
+        at afterConnectMultiple (node:net:1708:16) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 3000
+    }
+  ]
+}
+DOMException [NetworkError]: Failed to execute "fetch()" on "Window" with URL "http://localhost:3000/local-backup-download?fileName=Backup.tnbackup":
+    at Fetch.onError (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:540:21)
+    at ClientRequest.emit (node:events:508:28)
+    at emitErrorEvent (node:_http_client:108:11)
+    at Socket.socketErrorListener (node:_http_client:575:5)
+    at Socket.emit (node:events:508:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+DOMException [TimeoutError]: The operation was aborted. Request timed out.
+    at file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameNavigator.js:171:35
+    at callTimer (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5150:25)
+    at runTimersInRange (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5848:26)
+    at doTickInner (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5943:22)
+    at doTick (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5959:21)
+    at file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:6049:22
+    at Immediate.<anonymous> (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5997:30)
+    at process.processImmediate (node:internal/timers:504:21)
+Error: socket hang up
+    at Socket.socketCloseListener (node:_http_client:548:27)
+    at Socket.emit (node:events:520:35)
+    at TCP.<anonymous> (node:net:346:12) {
+  code: 'ECONNRESET'
+}
+DOMException [AbortError]: The operation was aborted.
+    at Fetch.onAsyncTaskManagerAbort (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:546:23)
+    at Object.<anonymous> (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:416:101)
+    at AsyncTaskManager.abortAll (file://<repo>/node_modules/happy-dom/lib/async-task-manager/AsyncTaskManager.js:292:30)
+    at AsyncTaskManager.destroy (file://<repo>/node_modules/happy-dom/lib/async-task-manager/AsyncTaskManager.js:64:21)
+    at file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameFactory.js:43:22
+    at new Promise (<anonymous>)
+    at BrowserFrameFactory.destroyFrame (file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameFactory.js:30:16)
+    at #unloadPage (file://<repo>/node_modules/happy-dom/lib/nodes/html-iframe-element/HTMLIFrameElement.js:363:33)
+    at [disconnectedFromDocument] (file://<repo>/node_modules/happy-dom/lib/nodes/html-iframe-element/HTMLIFrameElement.js:238:25)
+    at [disconnectedFromNode] (file://<repo>/node_modules/happy-dom/lib/nodes/node/Node.js:829:58)
+DOMException [NetworkError]: Failed to execute "fetch()" on "Window" with URL "http://localhost:3000/local-backup-download?fileName=Backup.tnbackup": The operation was aborted.
+    at Fetch.onError (file://<repo>/node_modules/happy-dom/lib/fetch/Fetch.js:540:21)
+    at ClientRequest.emit (node:events:508:28)
+    at emitErrorEvent (node:_http_client:108:11)
+    at _destroy (node:_http_client:962:9)
+    at onSocketNT (node:_http_client:982:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+DOMException [TimeoutError]: The operation was aborted. Request timed out.
+    at file://<repo>/node_modules/happy-dom/lib/browser/utilities/BrowserFrameNavigator.js:171:35
+    at callTimer (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5150:25)
+    at runTimersInRange (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5848:26)
+    at doTickInner (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5943:22)
+    at doTick (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5959:21)
+    at file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:6049:22
+    at Immediate.<anonymous> (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:5997:30)
+    at process.processImmediate (node:internal/timers:504:21)
+Error: socket hang up
+    at Socket.socketCloseListener (node:_http_client:548:27)
+    at Socket.emit (node:events:520:35)
+    at TCP.<anonymous> (node:net:346:12) {
+  code: 'ECONNRESET'
+}
+stdout | sw.spec.ts > forwardToClientLocalServer > probes for the leader when it has not been told who it is
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > forwardToClientLocalServer > re-resolves the leader when a tab replies NOT_LEADER
+[Service Worker] Running in DEV mode - caching disabled
+
+stderr | local-bridge.spec.ts > restoreBackup > settles all restore waiters on onerror and ignores late results
+[LocalBridge] Worker error: { message: 'crash' }
+
+stderr | local-bridge.spec.ts > restoreBackup > settles all restore waiters on WORKER_ERROR and ignores late results
+[LocalBridge] Worker reported error: { message: 'crash' }
+
+stderr | local-bridge.spec.ts > restoreBackup > settles all restore waiters on FATAL_ERROR and ignores late results
+[LocalBridge] Fatal error: crash
+
+ ✓ local-bridge.spec.ts (59 tests) 887ms
+stdout | sw.spec.ts > forwardToClientLocalServer > re-sends the body when a body-bearing mutation hits a stale leader
+[Service Worker] Running in DEV mode - caching disabled
+
+ ✓ ../../../packages/trilium-core/src/services/utils/index.spec.ts (234 tests) 972ms
+stdout | sw.spec.ts > forwardToClientLocalServer > waits for a reloaded tab that is promoted to leader after its request went out
+[Service Worker] Running in DEV mode - caching disabled
+
+stdout | sw.spec.ts > forwardToClientLocalServer > answers 503 once no tab has become leader by the deadline
+[Service Worker] Running in DEV mode - caching disabled
+
+ ✓ sw.spec.ts (26 tests) 1295ms
+   ✓ forwardToClientLocalServer (13)
+     ✓ re-resolves the leader when a tab replies NOT_LEADER 305ms
+     ✓ re-sends the body when a body-bearing mutation hits a stale leader 307ms
+
+ Test Files  7 passed (7)
+      Tests  387 passed (387)
+   Start at  09:11:23
+   Duration  5.85s (transform 66%, environment 13%, tests 11%, setup 9%)
+
+  Transform  transforming modules took 23.05s · 66% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+
+JUNIT report written to <repo>/apps/standalone/test-output/vitest/junit.xml

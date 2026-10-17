@@ -1,5 +1,5 @@
 {
-  "title": "Trilium comprehensive audit \u2014 recovered Mistral work, completed by Codex",
+  "title": "Trilium comprehensive audit — recovered Mistral work, completed by Codex",
   "date": "2026-10-17",
   "timezone": "America/New_York",
   "repo": "/Users/eric/Work/vscode/Trilium",
@@ -25,12 +25,12 @@
         {
           "file": "apps/client/src/widgets/react/ActionButton.tsx",
           "lines": "45-65",
-          "quote": "    const title = keyboardShortcut?.length\n        ? `${text} (${keyboardShortcut.map((shortcut) => joinShortcut(formatShortcut(shortcut))).join(\", \")})`\n        : text;\n    const titleRef = useRef(title);\n    titleRef.current = title;\n    const declined = !!noTooltipOnTouch && cachedIsMobile;\n    const hasTitle = !!title && title.length > 0 && !declined;\n\n    // The tooltip is recreated only when its structural options (or its presence) change \u2014 not when\n    // the label text changes. A plain text change is pushed into the live tooltip via setContent\n    // below, so a dynamic label updates in place instead of disposing and recreating the tooltip,\n    // which would drop the current hover. The title is resolved lazily (a function) so Bootstrap\n    // always reads the latest value from titleRef rather than one captured when the config was memoized.\n    const tooltipConfig = useMemo<Partial<Tooltip.Options>>(() => ({\n        title: hasTitle ? () => titleRef.current ?? \"\" : undefined,\n        placement: titlePosition ?? \"bottom\",\n        fallbackPlacements: [ titlePosition ?? \"bottom\" ],\n        customClass: tooltipClass ?? \"\",\n        html: tooltipHtml ?? false,\n        trigger: cachedIsMobile ? \"focus\" : \"hover focus\",\n        animation: false"
+          "quote": "    const title = keyboardShortcut?.length\n        ? `${text} (${keyboardShortcut.map((shortcut) => joinShortcut(formatShortcut(shortcut))).join(\", \")})`\n        : text;\n    const titleRef = useRef(title);\n    titleRef.current = title;\n    const declined = !!noTooltipOnTouch && cachedIsMobile;\n    const hasTitle = !!title && title.length > 0 && !declined;\n\n    // The tooltip is recreated only when its structural options (or its presence) change — not when\n    // the label text changes. A plain text change is pushed into the live tooltip via setContent\n    // below, so a dynamic label updates in place instead of disposing and recreating the tooltip,\n    // which would drop the current hover. The title is resolved lazily (a function) so Bootstrap\n    // always reads the latest value from titleRef rather than one captured when the config was memoized.\n    const tooltipConfig = useMemo<Partial<Tooltip.Options>>(() => ({\n        title: hasTitle ? () => titleRef.current ?? \"\" : undefined,\n        placement: titlePosition ?? \"bottom\",\n        fallbackPlacements: [ titlePosition ?? \"bottom\" ],\n        customClass: tooltipClass ?? \"\",\n        html: tooltipHtml ?? false,\n        trigger: cachedIsMobile ? \"focus\" : \"hover focus\",\n        animation: false"
         },
         {
           "file": "apps/client/src/widgets/react/ActionButton.tsx",
           "lines": "81-95",
-          "quote": "    return <button\n        ref={buttonRef}\n        // An action button is driven by its onClick \u2014 it must never act as a form's\n        // implicit submit button (a <button> defaults to type=\"submit\"). Otherwise,\n        // inside a <form>, pressing Enter could activate it instead of submitting\n        // (e.g. the error-dismiss button stealing the login form's Enter).\n        type=\"button\"\n        class={`${className ?? \"\"} ${!noIconActionClass ? \"icon-action\" : \"btn\"} ${icon} ${frame ? \"btn btn-primary\" : \"\"} ${disabled ? \"disabled\" : \"\"} ${active ? \"active\" : \"\"}`}\n        onClick={triggerOwnCommand}\n        // Only where the tooltip that would otherwise carry it has been declined: elsewhere the\n        // tooltip is the button's name, and a second one here would be read out beside it.\n        aria-label={declined ? title : undefined}\n        disabled={disabled}\n        {...restProps}\n    />;"
+          "quote": "    return <button\n        ref={buttonRef}\n        // An action button is driven by its onClick — it must never act as a form's\n        // implicit submit button (a <button> defaults to type=\"submit\"). Otherwise,\n        // inside a <form>, pressing Enter could activate it instead of submitting\n        // (e.g. the error-dismiss button stealing the login form's Enter).\n        type=\"button\"\n        class={`${className ?? \"\"} ${!noIconActionClass ? \"icon-action\" : \"btn\"} ${icon} ${frame ? \"btn btn-primary\" : \"\"} ${disabled ? \"disabled\" : \"\"} ${active ? \"active\" : \"\"}`}\n        onClick={triggerOwnCommand}\n        // Only where the tooltip that would otherwise carry it has been declined: elsewhere the\n        // tooltip is the button's name, and a second one here would be read out beside it.\n        aria-label={declined ? title : undefined}\n        disabled={disabled}\n        {...restProps}\n    />;"
         },
         {
           "file": "apps/client/src/widgets/react/hooks.tsx",
@@ -190,7 +190,7 @@
         {
           "file": "apps/client/src/widgets/type_widgets/options/llm.tsx",
           "lines": "42-62",
-          "quote": "            {/* The switch governs the whole page rather than anything on it, so it belongs to the\n                header \u2014 on the row below the title, clear of the dialog's own close button. */}\n            <OptionsPageHeader\n                helpUrl=\"GBBMSlVSOIGP\"\n                below={\n                    <OptionCardSection\n                        className=\"options-header-switch\"\n                        name=\"ai-enabled\"\n                        label={t(\"llm.enabled\")}\n                        description={t(\"llm.enabled_description\")}\n                    >\n                        <FormToggle currentValue={aiEnabled} onChange={setAiEnabled} />\n                    </OptionCardSection>\n                }\n            />\n\n            {aiEnabled && (\n                <>\n                    <ProviderSettings kind=\"llm\" allProviders={allProviders} setAllProviders={setAllProviders} />\n                    <ProviderSettings kind=\"search\" allProviders={allProviders} setAllProviders={setAllProviders} />\n                    <McpSettings />"
+          "quote": "            {/* The switch governs the whole page rather than anything on it, so it belongs to the\n                header — on the row below the title, clear of the dialog's own close button. */}\n            <OptionsPageHeader\n                helpUrl=\"GBBMSlVSOIGP\"\n                below={\n                    <OptionCardSection\n                        className=\"options-header-switch\"\n                        name=\"ai-enabled\"\n                        label={t(\"llm.enabled\")}\n                        description={t(\"llm.enabled_description\")}\n                    >\n                        <FormToggle currentValue={aiEnabled} onChange={setAiEnabled} />\n                    </OptionCardSection>\n                }\n            />\n\n            {aiEnabled && (\n                <>\n                    <ProviderSettings kind=\"llm\" allProviders={allProviders} setAllProviders={setAllProviders} />\n                    <ProviderSettings kind=\"search\" allProviders={allProviders} setAllProviders={setAllProviders} />\n                    <McpSettings />"
         },
         {
           "file": "apps/client/src/services/llm_providers.ts",
@@ -205,7 +205,7 @@
         {
           "file": "packages/trilium-core/src/services/llm/chat.ts",
           "lines": "34-75",
-          "quote": "): AsyncGenerator<LlmStreamChunk> {\n    // `webSearch` comes from the stored provider config only, never from the request.\n    const config: LlmProviderConfig = { ...requestConfig, webSearch: getSearchProviderSetup(requestConfig.webSearchProviderId) };\n    try {\n        if (!hasConfiguredProviders()) {\n            yield { type: \"error\", error: \"No LLM providers configured. Please add a provider in Options \u2192 AI / LLM.\" };\n            return;\n        }\n\n        // Prefer routing by the provider config id \u2014 it disambiguates multiple\n        // configs of the same type (e.g. OpenAI + a self-hosted Ollama). Chats\n        // saved before providerId existed fall back to type-based resolution.\n        // Host-provided tool registries load lazily; the providers' synchronous\n        // buildTools() reads the registry array, so it must be complete first.\n        await resolveToolRegistries();\n\n        const provider = config.providerId\n            ? await getProvider(config.providerId)\n            : await getProviderByType(config.provider || \"anthropic\");\n\n        const modelId = config.model || provider.getAvailableModels().find(m => m.isDefault)?.id;\n        if (!modelId) {\n            yield { type: \"error\", error: \"No model specified and no default model available for the provider.\" };\n            return;\n        }\n\n        // Prefer the config's stored selection for name/pricing \u2014 it carries the\n        // denormalized metadata even for dynamically discovered models the curated\n        // list doesn't know. Fall back to the provider's curated list, then the id.\n        const selectedModel = getSelectedModel(config.providerId, modelId);\n        const pricing = selectedModel?.pricing ?? provider.getModelPricing(modelId);\n        const modelDisplayName = selectedModel?.name\n            ?? provider.getAvailableModels().find(m => m.id === modelId)?.name\n            ?? modelId;\n\n        // Chunk-native provider (e.g. Claude Agent): it owns its own agentic loop\n        // and produces LlmStreamChunks directly, including honouring the abort.\n        const chunks = provider.chatChunks\n            ? provider.chatChunks(messages, config, abortSignal)\n            : streamToChunks(provider.chat(messages, config, abortSignal), { model: modelDisplayName, provider: provider.name, pricing });\n\n        for await (const chunk of chunks) {"
+          "quote": "): AsyncGenerator<LlmStreamChunk> {\n    // `webSearch` comes from the stored provider config only, never from the request.\n    const config: LlmProviderConfig = { ...requestConfig, webSearch: getSearchProviderSetup(requestConfig.webSearchProviderId) };\n    try {\n        if (!hasConfiguredProviders()) {\n            yield { type: \"error\", error: \"No LLM providers configured. Please add a provider in Options → AI / LLM.\" };\n            return;\n        }\n\n        // Prefer routing by the provider config id — it disambiguates multiple\n        // configs of the same type (e.g. OpenAI + a self-hosted Ollama). Chats\n        // saved before providerId existed fall back to type-based resolution.\n        // Host-provided tool registries load lazily; the providers' synchronous\n        // buildTools() reads the registry array, so it must be complete first.\n        await resolveToolRegistries();\n\n        const provider = config.providerId\n            ? await getProvider(config.providerId)\n            : await getProviderByType(config.provider || \"anthropic\");\n\n        const modelId = config.model || provider.getAvailableModels().find(m => m.isDefault)?.id;\n        if (!modelId) {\n            yield { type: \"error\", error: \"No model specified and no default model available for the provider.\" };\n            return;\n        }\n\n        // Prefer the config's stored selection for name/pricing — it carries the\n        // denormalized metadata even for dynamically discovered models the curated\n        // list doesn't know. Fall back to the provider's curated list, then the id.\n        const selectedModel = getSelectedModel(config.providerId, modelId);\n        const pricing = selectedModel?.pricing ?? provider.getModelPricing(modelId);\n        const modelDisplayName = selectedModel?.name\n            ?? provider.getAvailableModels().find(m => m.id === modelId)?.name\n            ?? modelId;\n\n        // Chunk-native provider (e.g. Claude Agent): it owns its own agentic loop\n        // and produces LlmStreamChunks directly, including honouring the abort.\n        const chunks = provider.chatChunks\n            ? provider.chatChunks(messages, config, abortSignal)\n            : streamToChunks(provider.chat(messages, config, abortSignal), { model: modelDisplayName, provider: provider.name, pricing });\n\n        for await (const chunk of chunks) {"
         },
         {
           "file": "apps/client/src/translations/en/translation.json",
@@ -365,7 +365,7 @@
         {
           "file": "apps/server/src/services/process_errors.ts",
           "lines": "117-127",
-          "quote": "function logSafely(description: string) {\n    // The console line goes out first and unconditionally: it is the only channel guaranteed to exist,\n    // and terminal users would otherwise see nothing.\n    console.error(description);\n\n    try {\n        getLog().error(description);\n    } catch {\n        // The log service may not be initialized yet \u2014 an escaped error during startup is exactly when\n        // that happens \u2014 and this handler must never throw.\n    }"
+          "quote": "function logSafely(description: string) {\n    // The console line goes out first and unconditionally: it is the only channel guaranteed to exist,\n    // and terminal users would otherwise see nothing.\n    console.error(description);\n\n    try {\n        getLog().error(description);\n    } catch {\n        // The log service may not be initialized yet — an escaped error during startup is exactly when\n        // that happens — and this handler must never throw.\n    }"
         }
       ],
       "observed": "The file stream is opened and written without a stream-specific error listener or recovery state. The shared date rotation starts asynchronously and suppresses rotation rejection. Process error reporting does retain a console fallback.",
@@ -455,7 +455,7 @@
         {
           "file": "apps/standalone/src/main.ts",
           "lines": "24-30",
-          "quote": " * report it while the worker was still on `sqlite`, and the monotonic guard in reportSplashPhase()\n * would then swallow every later worker phase.\n */\nconst STANDALONE_STARTUP_PHASES: SplashPhase[] = [\n    { id: \"service-worker\", weight: 1, status: \"Setting up offline support\u2026\" },\n    { id: \"worker-modules\", weight: 1, status: \"Starting up\u2026\" },\n    { id: \"sqlite\", weight: 3, status: \"Loading the database engine\u2026\" },"
+          "quote": " * report it while the worker was still on `sqlite`, and the monotonic guard in reportSplashPhase()\n * would then swallow every later worker phase.\n */\nconst STANDALONE_STARTUP_PHASES: SplashPhase[] = [\n    { id: \"service-worker\", weight: 1, status: \"Setting up offline support…\" },\n    { id: \"worker-modules\", weight: 1, status: \"Starting up…\" },\n    { id: \"sqlite\", weight: 3, status: \"Loading the database engine…\" },"
         }
       ],
       "observed": "The service worker hardcodes isDev=true. Both cache-first and network-first immediately return fetch(), and installation never precaches. The production entry includes this source; Vite defines no replacement for that local constant. Startup nevertheless describes the phase as offline support.",
@@ -524,7 +524,7 @@
         {
           "file": "packages/trilium-core/src/services/llm/index.ts",
           "lines": "144-168",
-          "quote": "export async function getProvider(providerId?: string): Promise<LlmProvider> {\n    const configs = getConfiguredProviders();\n\n    if (configs.length === 0) {\n        throw new Error(\"No LLM providers configured. Please add a provider in Options \u2192 AI / LLM.\");\n    }\n\n    // Find the requested provider or use the first one\n    const config = providerId\n        ? configs.find(c => c.id === providerId)\n        : configs[0];\n\n    if (!config) {\n        throw new Error(`LLM provider not found: ${providerId}`);\n    }\n\n    // Check cache\n    if (cachedProviders[config.id]) {\n        return cachedProviders[config.id];\n    }\n\n    // Create new provider instance\n    const provider = await createProviderInstance(config.provider, config.apiKey, config.baseURL);\n    cachedProviders[config.id] = provider;\n    return provider;"
+          "quote": "export async function getProvider(providerId?: string): Promise<LlmProvider> {\n    const configs = getConfiguredProviders();\n\n    if (configs.length === 0) {\n        throw new Error(\"No LLM providers configured. Please add a provider in Options → AI / LLM.\");\n    }\n\n    // Find the requested provider or use the first one\n    const config = providerId\n        ? configs.find(c => c.id === providerId)\n        : configs[0];\n\n    if (!config) {\n        throw new Error(`LLM provider not found: ${providerId}`);\n    }\n\n    // Check cache\n    if (cachedProviders[config.id]) {\n        return cachedProviders[config.id];\n    }\n\n    // Create new provider instance\n    const provider = await createProviderInstance(config.provider, config.apiKey, config.baseURL);\n    cachedProviders[config.id] = provider;\n    return provider;"
         },
         {
           "file": "packages/trilium-core/src/services/llm/index.ts",
@@ -883,7 +883,7 @@
         {
           "file": "apps/client/src/widgets/react/hooks.tsx",
           "lines": "1432-1440",
-          "quote": "        return () => {\n            disposeDelegateTracking();\n            element.removeEventListener(\"click\", dismissOnPress);\n            tooltips.delete(tooltip);\n            // Dispose even when the trigger element is already detached (e.g. a keyed remount\n            // replaced it before this cleanup ran) \u2014 dispose() also removes a currently-shown\n            // popup from the DOM, and with the trigger gone nothing else ever would (#10567).\n            // The pending-callback crash of bootstrap#37474 is handled by the dispose() patch above.\n            tooltip.dispose();"
+          "quote": "        return () => {\n            disposeDelegateTracking();\n            element.removeEventListener(\"click\", dismissOnPress);\n            tooltips.delete(tooltip);\n            // Dispose even when the trigger element is already detached (e.g. a keyed remount\n            // replaced it before this cleanup ran) — dispose() also removes a currently-shown\n            // popup from the DOM, and with the trigger gone nothing else ever would (#10567).\n            // The pending-callback crash of bootstrap#37474 is handled by the dispose() patch above.\n            tooltip.dispose();"
         },
         {
           "file": "apps/client/src/widgets/react/hooks.tsx",
@@ -1125,7 +1125,7 @@
         {
           "file": "packages/trilium-core/src/services/utils/index.ts",
           "lines": "166-192",
-          "quote": "export function timeLimit<T>(promise: Promise<T>, limitMs: number, errorMessage?: string): Promise<T> {\n    // TriliumNextTODO: since TS avoids this from ever happening \u2013 do we need this check?\n    if (!promise || !promise.then) {\n        // it's not actually a promise\n        return promise;\n    }\n\n    // better stack trace if created outside of promise\n    const errorTimeLimit = new Error(errorMessage || `Process exceeded time limit ${limitMs}`);\n\n    return new Promise((res, rej) => {\n        let resolved = false;\n\n        promise\n            .then((result) => {\n                resolved = true;\n\n                res(result);\n            })\n            .catch((error) => rej(error));\n\n        setTimeout(() => {\n            if (!resolved) {\n                rej(errorTimeLimit);\n            }\n        }, limitMs);\n    });"
+          "quote": "export function timeLimit<T>(promise: Promise<T>, limitMs: number, errorMessage?: string): Promise<T> {\n    // TriliumNextTODO: since TS avoids this from ever happening – do we need this check?\n    if (!promise || !promise.then) {\n        // it's not actually a promise\n        return promise;\n    }\n\n    // better stack trace if created outside of promise\n    const errorTimeLimit = new Error(errorMessage || `Process exceeded time limit ${limitMs}`);\n\n    return new Promise((res, rej) => {\n        let resolved = false;\n\n        promise\n            .then((result) => {\n                resolved = true;\n\n                res(result);\n            })\n            .catch((error) => rej(error));\n\n        setTimeout(() => {\n            if (!resolved) {\n                rej(errorTimeLimit);\n            }\n        }, limitMs);\n    });"
         }
       ],
       "observed": "timeLimit creates a setTimeout but does not retain or clear its handle after either success or failure.",
@@ -1324,7 +1324,7 @@
         {
           "file": "CLAUDE.md",
           "lines": "39-43",
-          "quote": "### Opening a PR\n\n`git push -u origin <branch>` then `gh pr create --base main --title \u2026 --body-file <file>`. There is no PR template in `.github/`, so the body is yours to shape.\n\n- **`origin` is `TriliumNext/Trilium`** \u2014 the working directory is named `Notes` and ~19 contributor forks are configured as remotes, so neither the path nor the remote list names the target. `gh` resolves it from `remote.origin.gh-resolved`, already set, so `--repo` is redundant; `upstream` is the archived `zadam/trilium` and is never a base."
+          "quote": "### Opening a PR\n\n`git push -u origin <branch>` then `gh pr create --base main --title … --body-file <file>`. There is no PR template in `.github/`, so the body is yours to shape.\n\n- **`origin` is `TriliumNext/Trilium`** — the working directory is named `Notes` and ~19 contributor forks are configured as remotes, so neither the path nor the remote list names the target. `gh` resolves it from `remote.origin.gh-resolved`, already set, so `--repo` is redundant; `upstream` is the archived `zadam/trilium` and is never a base."
         }
       ],
       "observed": "The checked-in instructions say origin is TriliumNext/Trilium, the working directory is Notes and roughly nineteen contributor remotes exist. Read-only Git inspection shows this checkout is Trilium with only origin at cephalopod-ai/Trilium.",
@@ -1582,7 +1582,7 @@
       "skill": "audit-contract-internalapi",
       "taxonomy_prefix": "IAPI",
       "execution": "Prioritized static supplement",
-      "sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2489,7 +2489,7 @@
       "skill": "audit-architecture-drift",
       "code": "AID-009",
       "status": "Partially reviewed",
-      "scope_note": "Desktop\u2192server is declared, so the recovered unsanctioned-dependency allegation is rejected.",
+      "scope_note": "Desktop→server is declared, so the recovered unsanctioned-dependency allegation is rejected.",
       "lens_sample": "Architecture/Backend/Project Structure docs and their registry; actual 24 workspace manifests; declared desktop embedding and portable-core split.",
       "related_findings": []
     },
@@ -2553,7 +2553,7 @@
       "code": "IAPI-001",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2565,7 +2565,7 @@
       "code": "IAPI-002",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2577,7 +2577,7 @@
       "code": "IAPI-003",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2589,7 +2589,7 @@
       "code": "IAPI-004",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2601,7 +2601,7 @@
       "code": "IAPI-005",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2613,7 +2613,7 @@
       "code": "IAPI-006",
       "status": "Finding",
       "scope_note": "Per-item outcomes are lost in the service/route/client seam.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001"
       ]
@@ -2623,7 +2623,7 @@
       "code": "IAPI-007",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2635,7 +2635,7 @@
       "code": "IAPI-008",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2647,7 +2647,7 @@
       "code": "IAPI-009",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2659,7 +2659,7 @@
       "code": "IAPI-010",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2671,7 +2671,7 @@
       "code": "IAPI-011",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2683,7 +2683,7 @@
       "code": "IAPI-012",
       "status": "Finding",
       "scope_note": "Configuration generation is not checked when asynchronous provider construction publishes.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "ARC-TRI17-001"
       ]
@@ -2693,7 +2693,7 @@
       "code": "IAPI-013",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2705,7 +2705,7 @@
       "code": "IAPI-014",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2717,7 +2717,7 @@
       "code": "IAPI-015",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -2729,7 +2729,7 @@
       "code": "IAPI-016",
       "status": "Not Reviewed beyond the explicitly identified source sample",
       "scope_note": "No exhaustive field-by-field contract census or request fuzzing. A typed interface is not a runtime-validator proof.",
-      "lens_sample": "Bulk service\u2192route\u2192client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
+      "lens_sample": "Bulk service→route→client outcome shape; LLM done/error protocol; typed Electron bridge vs legacy handlers; native ACP parser.",
       "related_findings": [
         "WFG-TRIL-001",
         "WFG-TRIL-003",
@@ -6563,7 +6563,7 @@
     {
       "candidate": "audit-equation-sourcebase",
       "status": "Not applicable; also data scope excluded",
-      "basis": "No raw\u2192curated mathematical equation corpus/sourcebase pipeline supplied."
+      "basis": "No raw→curated mathematical equation corpus/sourcebase pipeline supplied."
     },
     {
       "candidate": "audit-flutter-ios",
@@ -10223,7 +10223,7 @@
         {
           "file": "packages/trilium-core/src/services/llm/providers/base_provider.ts",
           "lines": "258-287",
-          "quote": "    protected async fetchJson(url: string, headers: Record<string, string>): Promise<unknown> {\n        const response = await llmFetch(url, { headers, signal: AbortSignal.timeout(MODEL_LIST_TIMEOUT_MS) });\n        if (!response.ok) {\n            if (response.status === 401 || response.status === 403) {\n                throw new Error(`Authentication failed (HTTP ${response.status}) \u2014 check the API key${this.baseURL ? \" and base URL\" : \"\"}.`);\n            }\n            throw new Error(`HTTP ${response.status} from ${url}`);\n        }\n        return await response.json();\n    }\n\n    /**\n     * Dynamic model listing: the live endpoint list merged with curated\n     * metadata, cached for {@link MODEL_LIST_TTL_MS}. Returns the curated list\n     * when the provider doesn't support dynamic listing, but a listing *failure*\n     * (bad API key, unreachable endpoint) propagates \u2014 the sole caller is the\n     * add/edit-provider screen, which must surface a bad credential instead of\n     * masking it as success by quietly showing the curated defaults.\n     */\n    async listModels(): Promise<ModelInfo[]> {\n        const now = Date.now();\n        if (this.modelListCache && now - this.modelListCache.fetchedAt < MODEL_LIST_TTL_MS) {\n            return this.modelListCache.models;\n        }\n        if (!this.modelListInFlight) {\n            this.modelListInFlight = this.fetchAndMergeModels().finally(() => {\n                this.modelListInFlight = undefined;\n            });\n        }\n        return this.modelListInFlight;"
+          "quote": "    protected async fetchJson(url: string, headers: Record<string, string>): Promise<unknown> {\n        const response = await llmFetch(url, { headers, signal: AbortSignal.timeout(MODEL_LIST_TIMEOUT_MS) });\n        if (!response.ok) {\n            if (response.status === 401 || response.status === 403) {\n                throw new Error(`Authentication failed (HTTP ${response.status}) — check the API key${this.baseURL ? \" and base URL\" : \"\"}.`);\n            }\n            throw new Error(`HTTP ${response.status} from ${url}`);\n        }\n        return await response.json();\n    }\n\n    /**\n     * Dynamic model listing: the live endpoint list merged with curated\n     * metadata, cached for {@link MODEL_LIST_TTL_MS}. Returns the curated list\n     * when the provider doesn't support dynamic listing, but a listing *failure*\n     * (bad API key, unreachable endpoint) propagates — the sole caller is the\n     * add/edit-provider screen, which must surface a bad credential instead of\n     * masking it as success by quietly showing the curated defaults.\n     */\n    async listModels(): Promise<ModelInfo[]> {\n        const now = Date.now();\n        if (this.modelListCache && now - this.modelListCache.fetchedAt < MODEL_LIST_TTL_MS) {\n            return this.modelListCache.models;\n        }\n        if (!this.modelListInFlight) {\n            this.modelListInFlight = this.fetchAndMergeModels().finally(() => {\n                this.modelListInFlight = undefined;\n            });\n        }\n        return this.modelListInFlight;"
         }
       ]
     },
@@ -10250,7 +10250,7 @@
         {
           "file": "apps/standalone/src/leader_election.ts",
           "lines": "29-45",
-          "quote": "export function claimLeadership(onElected: () => void): void {\n    // Web Locks is missing in some embedded WebViews. Those are single-window\n    // Capacitor apps, so this tab is trivially the only possible owner.\n    if (!navigator.locks?.request) {\n        console.info(\"[Leader] Web Locks unavailable \u2014 assuming sole tab\");\n        promote(onElected);\n        return;\n    }\n\n    void navigator.locks.request(DB_LOCK_NAME, { mode: \"exclusive\" }, () => {\n        promote(onElected);\n\n        // Never resolves: holding the lock for the lifetime of the tab is what\n        // keeps other tabs from opening a second worker. The browser releases it\n        // when the tab goes away.\n        return new Promise<never>(() => {});\n    });"
+          "quote": "export function claimLeadership(onElected: () => void): void {\n    // Web Locks is missing in some embedded WebViews. Those are single-window\n    // Capacitor apps, so this tab is trivially the only possible owner.\n    if (!navigator.locks?.request) {\n        console.info(\"[Leader] Web Locks unavailable — assuming sole tab\");\n        promote(onElected);\n        return;\n    }\n\n    void navigator.locks.request(DB_LOCK_NAME, { mode: \"exclusive\" }, () => {\n        promote(onElected);\n\n        // Never resolves: holding the lock for the lifetime of the tab is what\n        // keeps other tabs from opening a second worker. The browser releases it\n        // when the tab goes away.\n        return new Promise<never>(() => {});\n    });"
         },
         {
           "file": "apps/standalone/src/local-bridge.ts",
@@ -10277,7 +10277,7 @@
         {
           "file": "CLAUDE.md",
           "lines": "23-25",
-          "quote": "- **Never run ESLint** (`dev:linter-check`, `dev:linter-fix`, `npx eslint`) \u2014 it dies with an out-of-memory error, so a run tells you nothing. CI does not lint either \u2014 there is no `eslint`/`linter-check` step anywhere in `.github/workflows/`, so lint findings never block a merge; the gates are `pnpm typecheck` and the per-package `test --coverage` runs. (`packages/*` is ignored by the ESLint config anyway.)\n- **Never run `pnpm test:all`, `test:parallel`, `test:sequential`, or a whole-package `coverage`** during development \u2014 CI runs them on every push. Run the **narrowest** suite that covers what you touched: `pnpm --filter <pkg> test <pattern>` (Vitest treats the trailing argument as a substring filter over spec paths). Core specs need **two** runs, server and standalone (see Testing). Only reach for a full suite if the user asks or wants a final check.\n- **Typecheck with `pnpm typecheck`, not a raw `tsc`** \u2014 it resolves the project references a hand-written `tsc -p \u2026` gets wrong, and is far cheaper than a test suite. Still, run it **once, after a piece of work is finished** \u2014 not after every edit: it builds the project references, and repeating it is a common way to lose minutes across a session. Two ways its output misleads: the incremental build does not recheck the files that use an ambient `.d.ts` (`types-lib.d.ts`) after it changes \u2014 delete `apps/client/dist/*.tsbuildinfo` (gitignored) before trusting the result; and a dependent project (`tsconfig.spec.json`, `apps/build-docs`) is checked only once the app project compiles, so its errors appear only after the app's are fixed, and some vanish with them."
+          "quote": "- **Never run ESLint** (`dev:linter-check`, `dev:linter-fix`, `npx eslint`) — it dies with an out-of-memory error, so a run tells you nothing. CI does not lint either — there is no `eslint`/`linter-check` step anywhere in `.github/workflows/`, so lint findings never block a merge; the gates are `pnpm typecheck` and the per-package `test --coverage` runs. (`packages/*` is ignored by the ESLint config anyway.)\n- **Never run `pnpm test:all`, `test:parallel`, `test:sequential`, or a whole-package `coverage`** during development — CI runs them on every push. Run the **narrowest** suite that covers what you touched: `pnpm --filter <pkg> test <pattern>` (Vitest treats the trailing argument as a substring filter over spec paths). Core specs need **two** runs, server and standalone (see Testing). Only reach for a full suite if the user asks or wants a final check.\n- **Typecheck with `pnpm typecheck`, not a raw `tsc`** — it resolves the project references a hand-written `tsc -p …` gets wrong, and is far cheaper than a test suite. Still, run it **once, after a piece of work is finished** — not after every edit: it builds the project references, and repeating it is a common way to lose minutes across a session. Two ways its output misleads: the incremental build does not recheck the files that use an ambient `.d.ts` (`types-lib.d.ts`) after it changes — delete `apps/client/dist/*.tsbuildinfo` (gitignored) before trusting the result; and a dependent project (`tsconfig.spec.json`, `apps/build-docs`) is checked only once the app project compiles, so its errors appear only after the app's are fixed, and some vanish with them."
         },
         {
           "file": "apps/server/vite.config.mts",
@@ -10304,5 +10304,372 @@
     "schema_validation": "all findings passed",
     "taxonomy_rows": 446,
     "markdown_json_membership": "all finding IDs present"
+  },
+  "remediation": {
+    "date": "2026-10-17T09:20:22.591062-04:00",
+    "status": "completed_with_partial_verification",
+    "base_commit": "526aacde24888fed746a3c27ed36bfe755ed3fd0",
+    "branch": "fix/comprehensive-audit-20261017",
+    "worktree_state": "uncommitted repair patch; no commit or push performed",
+    "scope": "The 18 accepted findings only; original security/data/playtest exclusions remain. Historical audit findings and evidence describe their pinned snapshot.",
+    "counts": {
+      "fixed": 18,
+      "behavior_repairs": 15,
+      "documentation_repairs": 3,
+      "unpatched_accepted_findings": 0
+    },
+    "findings": [
+      {
+        "id": "DES-TRIL-002",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "ActionButton always exposes a plain-text accessible name, including HTML tooltips and touch mode.",
+        "verification": "ActionButton.spec.tsx and ActionButton.mobile.spec.tsx; actual assistive technology not exercised."
+      },
+      {
+        "id": "WFG-TRIL-001",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Per-note/action applied, skipped and failed outcomes cross the commons/core HTTP contract. Main dialog and saved searches share truthful notifications; silent callers reject failures.",
+        "verification": "Bulk service, both routes under both core hosts, client service/dialog/search tests and board consumer regressions."
+      },
+      {
+        "id": "WFG-TRIL-002",
+        "disposition": "fixed",
+        "repair_kind": "documentation",
+        "change": "Renamed the switch to Show AI features and documented existing-chat execution separately. Existing visibility policy is preserved; this is not an inference-disable switch.",
+        "verification": "UI copy and AI/Privacy guide checked against current gates; no execution policy change."
+      },
+      {
+        "id": "REL-TRIL-003",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Total deadlines cancel Node sockets or Electron requests; early settlement clears timers and late errors remain handled. Shared policy also covers image requests.",
+        "verification": "Node/Electron-shaped transport fault tests; Electron bridge specs pass. No live remote outage experiment."
+      },
+      {
+        "id": "REL-TRIL-006",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "File streams own their error listener, fall back to console, and retry on a write after 30 seconds; late old-stream errors cannot disable a replacement.",
+        "verification": "Injected write-stream failure/recovery regression plus existing server log specs."
+      },
+      {
+        "id": "WFG-TRI17-005",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Production uses the static cache; development bypasses it. Entry pages are precached, hashed files are cache-first, other static files are network-first.",
+        "verification": "Development/production worker tests and production build with compiled-cache inspection. Real-browser offline/upgrade behavior not exercised."
+      },
+      {
+        "id": "ARC-TRI17-001",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Async provider construction publishes only into the cache generation captured before awaiting.",
+        "verification": "Deferred old construction resolving after cache invalidation tested on server and standalone."
+      },
+      {
+        "id": "DES-TRIL-003",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Tab close/new/scroll actions use native buttons, unavailable scroll actions are disabled, and PDF attachment downloads use the shared Button.",
+        "verification": "DOM/focus/handler tests for tabs and PDF attachments; native keyboard activation and visual layout not browser-tested."
+      },
+      {
+        "id": "DES-TRIL-001",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Removed the maximum-scale=1 viewport restriction.",
+        "verification": "Source inspection and production client build via standalone; touch/native pinch zoom not exercised."
+      },
+      {
+        "id": "DES-TRIL-005",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Shared widget mounts have an isolated render boundary and Retry fallback. Movable widgets keep a stable mount; shared retry controls load after initialization to avoid a new import cycle.",
+        "verification": "Crash, retry, sibling-root and moved-root regressions; content renderer, script render and table formatter tests pass."
+      },
+      {
+        "id": "REL-TRIL-007",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Completed task contexts are evicted only after commit; abandoned groups expire lazily after 24 hours without activity.",
+        "verification": "Commit/rollback, active-versus-idle retention, progress and grouped erase tests on both core hosts."
+      },
+      {
+        "id": "WFG-TRI17-004",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Tooltip cleanup removes the exact native show callback it registered.",
+        "verification": "Same-element option-change regression plus shared hook lifecycle tests."
+      },
+      {
+        "id": "FSR-TRI17-001",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Worker failure settles restore, ordinary request, security-change and backup waiters, clears ownership maps, and refuses new operations until reload.",
+        "verification": "onerror, WORKER_ERROR and FATAL_ERROR restore fault tests, late-result cleanup and all existing bridge specs."
+      },
+      {
+        "id": "WFG-TRIL-003",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "A content-free successful completion becomes a visible retryable error. Abort and already-reported failures keep their separate behavior.",
+        "verification": "Empty completion/manual retry regression and existing chat stream tests; no automatic inference retry."
+      },
+      {
+        "id": "REL-TRI17-001",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "timeLimit clears the deadline on early fulfillment and rejection.",
+        "verification": "Timer ownership regression and existing success/reject/timeout tests under both core hosts."
+      },
+      {
+        "id": "ARC-TRIL-007",
+        "disposition": "fixed",
+        "repair_kind": "behavior",
+        "change": "Removed unreachable print-note and export-as-pdf handlers after confirming no supported preload/renderer callers. Preview printing remains the supported path.",
+        "verification": "Printing lifecycle assertions ported to supported preview/save channels; absent legacy channels and preload parity verified. Existing print guide already describes the unified flow."
+      },
+      {
+        "id": "CMP-TRIL-001",
+        "disposition": "fixed",
+        "repair_kind": "documentation",
+        "change": "Added a dated correction to the old security report: twelve missing temporary logs are unavailable historical claims, not retained verification evidence.",
+        "verification": "Missing files were not fabricated or reconstructed. Current verification logs are retained with this repository artifact."
+      },
+      {
+        "id": "ARC-TRI17-002",
+        "disposition": "fixed",
+        "repair_kind": "documentation",
+        "change": "Repository instructions now require remote discovery and identify this checkout origin as cephalopod-ai/Trilium.",
+        "verification": "git remote get-url origin and current checkout identity verified."
+      }
+    ],
+    "verification": [
+      {
+        "command": "CI=true pnpm --filter client exec vitest run src/widgets/tab_row.spec.ts src/widgets/react/react_utils.spec.tsx src/widgets/sidebar/pdf/PdfAttachments.spec.tsx src/widgets/collections/table/columns.spec.ts src/services/content_renderer.spec.ts src/services/render.spec.tsx src/widgets/react/ActionButton.spec.tsx src/widgets/react/ActionButton.mobile.spec.tsx src/services/bulk_action.spec.ts src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx src/services/i18n.spec.ts",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/client-verified.log",
+        "sha256": "48576d0e4e843d7224b073849fb80ed52ffac3c182d433ab0b3c724e820d6777",
+        "passed_tests": 188,
+        "result": "passed"
+      },
+      {
+        "command": "CI=true pnpm --filter client exec vitest run src/services/bulk_action.spec.ts src/widgets/dialogs/bulk_actions.spec.tsx src/widgets/search/SearchDefinition.spec.tsx src/widgets/collections/board/api.spec.ts src/widgets/collections/board/index.spec.tsx",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/bulk-consumers-verified.log",
+        "sha256": "91a5046a05cfe9b8b77801efd056576e41eaa793f9017342457730af0eafc68f",
+        "passed_tests": 332,
+        "result": "passed"
+      },
+      {
+        "command": "CI=true pnpm --filter client exec vitest run src/widgets/react/hooks.spec.tsx",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/hooks-verified.log",
+        "sha256": "eb29ad0ced8676f6e244bdd865c1f41400f02ccae1230f5036488712138dff91",
+        "passed_tests": 25,
+        "result": "passed"
+      },
+      {
+        "command": "pnpm --filter server test services/utils/index.spec.ts services/bulk_actions.spec.ts routes/api/bulk_action.spec.ts services/task_context.spec.ts services/llm/index.spec.ts src/services/request.spec.ts src/log_provider.spec.ts",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/server-final.log",
+        "sha256": "58904de004e9d61cafdd127875b764b498bbcd9494c737fbc81389e95398a565",
+        "passed_tests": 350,
+        "result": "passed"
+      },
+      {
+        "command": "pnpm --filter server test routes/api/search.spec.ts",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/search-server.log",
+        "sha256": "c7b9d9d894441a53a0573a881809b548585070c7b7341068205d759b87a04a18",
+        "passed_tests": 27,
+        "result": "passed"
+      },
+      {
+        "command": "pnpm --filter standalone test services/utils/index.spec.ts services/bulk_actions.spec.ts routes/api/bulk_action.spec.ts services/task_context.spec.ts services/llm/index.spec.ts sw.spec.ts local-bridge.spec.ts",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/standalone-final.log",
+        "sha256": "0a83c4b62f762b736a294399406a7becbc5f49ad3e70b34974d863207f57ae01",
+        "passed_tests": 387,
+        "result": "passed"
+      },
+      {
+        "command": "pnpm --filter standalone test routes/api/search.spec.ts local-bridge.spec.ts",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/search-standalone.log",
+        "sha256": "df4ca6b87a882aec244d5d26cb041db22c7702e68f07b01afcfdeb92069e0789",
+        "passed_tests": 86,
+        "result": "passed"
+      },
+      {
+        "command": "pnpm --filter desktop test src/services/printing.spec.ts src/services/request.spec.ts src/preload.spec.ts",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/desktop-verified.log",
+        "sha256": "fe892afe5c31a260a94afc51af325430518ab18bf8c924ea6db4b1f5695c0697",
+        "passed_tests": 127,
+        "result": "passed"
+      },
+      {
+        "command": "pnpm typecheck",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/typecheck-verified.log",
+        "sha256": "280ff84833bed1f95591fa5a9493c2673e9a0e942dc639eb5d2d9dac4ed970a0",
+        "passed_tests": null,
+        "result": "passed"
+      },
+      {
+        "command": "pnpm --filter standalone build",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/standalone-build.log",
+        "sha256": "a531e786efbb54320fa0edc444391421fa4ec6d0ade8850c79887980c9ad65f2",
+        "passed_tests": null,
+        "result": "passed"
+      },
+      {
+        "command": "node .claude/skills/writing-documentation/docs.mjs sync",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/docs-sync.log",
+        "sha256": "f5e107ca6cc42f9a135befd31153a26e417faf768ce0166dd8c6bc769c2c47f7",
+        "passed_tests": null,
+        "result": "passed"
+      },
+      {
+        "command": "node .claude/skills/writing-documentation/docs.mjs check",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/docs-check.log",
+        "sha256": "b2e78a58b69aeef1832551fc98337622b52ad558af81c5a9c55b099bbab000d3",
+        "passed_tests": null,
+        "result": "passed"
+      },
+      {
+        "command": "node .claude/skills/working-with-translations/i18n.mjs missing",
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/i18n-missing.log",
+        "sha256": "5163868a470cd6c67b6b088a7ef87c09c5a4706262628457996d21963c7e9355",
+        "passed_tests": null,
+        "result": "advisory: 8 existing references, including one intentional test probe"
+      },
+      {
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/diagnostic-stage-client.log",
+        "sha256": "f5a6c80b2ea597d5678b93360a892b4b78f0f98e45508779cb3a53a88961a701",
+        "result": "superseded diagnostic failure; cause and correction recorded in the repair addendum"
+      },
+      {
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/diagnostic-stage-client-2.log",
+        "sha256": "f909dbfcb545a593bc615383ace5f5c9fd85ecc85b7b656a77f49e204a9734b0",
+        "result": "superseded diagnostic failure; cause and correction recorded in the repair addendum"
+      },
+      {
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/diagnostic-client-final.log",
+        "sha256": "69823c7328af043ca83ab494c158625c1fa7b7f1d963c74e1f22976c3705dfc3",
+        "result": "superseded diagnostic failure; cause and correction recorded in the repair addendum"
+      },
+      {
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/diagnostic-typecheck.log",
+        "sha256": "d733081954b51574c7210f8663e7bf99751d5c2c0e4f90f9eff2b54573febc55",
+        "result": "superseded diagnostic failure; cause and correction recorded in the repair addendum"
+      },
+      {
+        "log": "audit-evidence/comprehensive-repair-2026-10-17/diagnostic-typecheck-final.log",
+        "sha256": "856bf457edb1c00d3b10672080985c6b853ddf8f39f5f7fc437a9fbd4d7c20ce",
+        "result": "superseded diagnostic failure; cause and correction recorded in the repair addendum"
+      }
+    ],
+    "toolchain": {
+      "node": "v24.13.0",
+      "pnpm": "12.11.2"
+    },
+    "production_service_worker": {
+      "path": "apps/standalone/dist/sw.js",
+      "sha256": "7d5afd6c547eb01289dcb2a76b41288fd6392e145f1cc4b36818531f0fc71f0f",
+      "bytes": 5087,
+      "production_cache_code_present": true,
+      "development_bypass_absent": true
+    },
+    "patch_files_sha256": {
+      "CLAUDE.md": "d449ad1020fa83b5d61ec566651744e54d15d54cfcef5f13bfcfc5825cc6fd9d",
+      "apps/client/index.html": "82b5a3eb90a195e388dcf02dd454c82f86bf160ec49a5e98c72accb566e6bcbc",
+      "apps/client/src/services/bulk_action.spec.ts": "02c853dfc652e7328252e055cb963294ee187777757c5fd6fa79c19b15ae9aec",
+      "apps/client/src/services/bulk_action.ts": "c6a65666a1de6142658335caae8a7174c84333074736fb48268ad2c445c0aace",
+      "apps/client/src/translations/en/translation.json": "1c79e6b69212fdbf53ea5ddb518a4f22bed48c4a7a0f4b356337d16c63ae8e7a",
+      "apps/client/src/widgets/dialogs/bulk_actions.spec.tsx": "6438b3885b6d1d116296710ff28c0140a0ba3a4e714da9bbf1e8f5d6267a8983",
+      "apps/client/src/widgets/dialogs/bulk_actions.tsx": "ab17bc45adb40f58cfd12a016d97a646f86db01b5f7afa9b23d7b811414e25ce",
+      "apps/client/src/widgets/react/ActionButton.mobile.spec.tsx": "6146aff7f26e6e2cf37f473ba1dda0ed8475a90e496e2d3fc7ace52d0ddf9289",
+      "apps/client/src/widgets/react/ActionButton.spec.tsx": "03b16f3e99bc4084349916dce3afc791d125232573b2726323f708b52c777a35",
+      "apps/client/src/widgets/react/ActionButton.tsx": "6591432accae833bf433b70dba337b98943f9167fc9f14ebf4f75e25a528bce1",
+      "apps/client/src/widgets/react/hooks.tsx": "52fe48e179df01aacd4d1a756f551b1d76943cd29dc9748f1de891c8eb25dded",
+      "apps/client/src/widgets/react/react_utils.css": "abbefc8e0a24b57d4c9923ba8dc826ebbddfd8e61a4b02f5d91fddbdbc2a51e5",
+      "apps/client/src/widgets/react/react_utils.spec.tsx": "722ddcfa3fe2d71f8d16fa5f85af866d49428d180f0bae60dfa2683e0b64baa4",
+      "apps/client/src/widgets/react/react_utils.tsx": "24471632d9f39a6343392d5e8d8a79d5046c861feb2f16acc438f24b3a7e2974",
+      "apps/client/src/widgets/search/SearchDefinition.spec.tsx": "1902a25c981912a49a0fd0f9f0b0a5fa064788140032d10566183470e3734035",
+      "apps/client/src/widgets/search/SearchDefinition.tsx": "9a235dd89d5848ddb745d015c1b5f7b7e00bb7689fed3871fb3d794f82d2c6ed",
+      "apps/client/src/widgets/sidebar/pdf/PdfAttachments.css": "c5d31421efe766bada1a86c4b07850ca64146cde342cde1c700aa04182dfc1ab",
+      "apps/client/src/widgets/sidebar/pdf/PdfAttachments.spec.tsx": "610d08bd67172f6a77b30c49b09d1ecd8ad621a5426375f01c510a7264ae16f1",
+      "apps/client/src/widgets/sidebar/pdf/PdfAttachments.tsx": "ef7fc973654ec4f01df2d066d226a1e93063fba234dfe0e6bec0106c962dc37c",
+      "apps/client/src/widgets/tab_row.spec.ts": "e66ea5aed69b950906d42c2049e1aad3c9a0fba70d7d8016fe367ad69cf2f9f1",
+      "apps/client/src/widgets/tab_row.ts": "e9e9f6f413f5e97eb14252d47955c9d58bb0fc3c6c038fdefdfc9a1c04b0cfc8",
+      "apps/client/src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx": "69fb9edc1889bab84c5fff50599bdffb49fc976b9ded1c19aee292c80143f1f4",
+      "apps/client/src/widgets/type_widgets/llm_chat/useLlmChat.ts": "79b41863c22f98330855298f4dfd1248107ab0b434493cd8c1d97ccdccb52b29",
+      "apps/desktop/src/services/printing.spec.ts": "ed2814f7f0778230d8b785cdb49bd78f0fe9cc8bf3ca9c0cd273c0364cf1e860",
+      "apps/desktop/src/services/printing.ts": "8c9a61314e68cd0f395a83110b6fbc7e31cf98304ae4e05c0896bf34812baab5",
+      "apps/server/src/assets/doc_notes/en/User Guide/!!!meta.json": "4550203812db4abb19785644f3d8bcbe0c268926ccc8015c5e561c85305af102",
+      "apps/server/src/assets/doc_notes/en/User Guide/User Guide/AI.html": "b40420e7e8d60c559a9703a92ae70bdc17c115ce88de27bd2ccc70770632036f",
+      "apps/server/src/assets/doc_notes/en/User Guide/User Guide/AI/Privacy.html": "d685904b7c050c29c35a1376af49d2e3e6cc5a5346e638b1337dea637ca5a15b",
+      "apps/server/src/assets/doc_notes/en/User Guide/User Guide/Advanced Usage/Bulk Actions.html": "637b91b9fa0f7581c411e7c08921cc24578070b0b3444a7c6b10e833aa99aa60",
+      "apps/server/src/assets/doc_notes/en/User Guide/User Guide/Basic Concepts and Features/UI Elements/Tabs.html": "bc95de6f6af9d7fc8229a7d8911395e970fc8842c67c7d34d1077129dea336e3",
+      "apps/server/src/assets/doc_notes/en/User Guide/User Guide/Basic Concepts and Features/UI Elements/Zoom.html": "6a3814dabb0fa0497f28f932b2b1eda9ecdd6f713bacc0befe00ef177d76d37b",
+      "apps/server/src/assets/doc_notes/en/User Guide/User Guide/Installation & Setup/Standalone web app.html": "257708f96989402f83aacedbe469023373dcc10f243dc6f1d2aae3aaeed089ec",
+      "apps/server/src/assets/doc_notes/en/User Guide/User Guide/Note Types/File/PDFs.html": "b5a675a0cbb69a8ad159a0c6d77a953442bcfebca0d0d4fc7850d9ee196ae791",
+      "apps/server/src/assets/doc_notes/en/User Guide/User Guide/Quick Start.html": "d11943ac20d3a032cf3890aeaeaf9f11d9a3040c722f52de149238b803c2f8c0",
+      "apps/server/src/assets/doc_notes/en/User Guide/User Guide/Troubleshooting.html": "fab7cf13140090bbd5b2000aceca56ec57ec512f83c82d4a4a32d995d7e18182",
+      "apps/server/src/assets/doc_notes/en/User Guide/User Guide/Troubleshooting/Error logs/Backend (server) logs.html": "8c9140f56ba7c3601435f05353415392d1cb7c5bf9d13dfbbe5f69d8968ad511",
+      "apps/server/src/log_provider.spec.ts": "19252a013835d13fef8bf9498119a18bc47b3e61861138e8512420689c548990",
+      "apps/server/src/log_provider.ts": "a74a8529233fa03bc15b40c81b574d38ff9ea3edc85cf5c638ba73af567536f9",
+      "apps/server/src/services/request.spec.ts": "04903417969e3b45a42eae6b0f847876de2cb9457f8e7fdbc10e7ced54b44708",
+      "apps/server/src/services/request.ts": "08eb5d5284fd295984c76ec71698421eb2148f491f1960d4869232ec6cf0cf68",
+      "apps/standalone/src/assets/help_meta.json": "3bf9371294fffc3a75b59bcada5d9f941b5401beeded9f210a24a9679cc23b11",
+      "apps/standalone/src/local-bridge.spec.ts": "e1ffddd3ed5b6c4801c900cca547977bc6b9c52b1615cb200ddd93509ad985e0",
+      "apps/standalone/src/local-bridge.ts": "a4ae32916a7f6e58358df55c3cbd31ac62c6534d4fcd9db17246bfd9b19cbaeb",
+      "apps/standalone/src/sw.spec.ts": "541ccbeb49d550eafed7a5f870b9750cd3ae6aa5429c0290352d985157260f00",
+      "apps/standalone/src/sw.ts": "34d0ad618294acc88181fda3183ce3e9216636ac15780e606d96b4335a6564dd",
+      "docs/User Guide/!!!meta.json": "813d24625e48591d7f0477216893003ea91673bc2541b8909081791e18cb87f9",
+      "docs/User Guide/User Guide/AI.md": "e9669a6d02f3d0104d31db80afbd15e68e6e8420b555c43aec42db93932e44d2",
+      "docs/User Guide/User Guide/AI/Privacy.md": "03331c82fdf1ef0bfcb420c4c3b81b7aa24be9c5124db9931eb2d9923065e11f",
+      "docs/User Guide/User Guide/Advanced Usage/Bulk Actions.md": "2e85b816f7d568dcca37854af224f5f2a69127a48d92b845518f71e85bec827e",
+      "docs/User Guide/User Guide/Basic Concepts and Features/UI Elements/Tabs.md": "096ad56b9d1f24ad8bf1e25f33dece51104eb1fd4cb6ceed225edd2c3816ff77",
+      "docs/User Guide/User Guide/Basic Concepts and Features/UI Elements/Zoom.md": "1fcbc34c658c801b33fd1f45ff11636bcbc7ae9dc265c3af9a3fe194f1aa125a",
+      "docs/User Guide/User Guide/Installation & Setup/Standalone web app.md": "97b38de6b486c45338371433891dd4638f2bca239bdd76275c55520cd91d80cc",
+      "docs/User Guide/User Guide/Note Types/File/PDFs.md": "0e31c3d208ee2f25f056dac1baf1cc334f367e8d02d3ea410dfa350b56d0b9e2",
+      "docs/User Guide/User Guide/Quick Start.md": "cb4213ce37998069e0ae9d205cc461a6e68bacb3b224caee4f24a06d29b05a51",
+      "docs/User Guide/User Guide/Troubleshooting.md": "5408b352b96c1243bd5ee829f013e4b9b81107a226746ebd2c9d97667ed625d4",
+      "docs/User Guide/User Guide/Troubleshooting/Error logs/Backend (server) logs.md": "9074fb3f6844be4b96146740d96a9e9c5c491a968deebadbe583d7a6bb157bd7",
+      "grok-audit-security-14OCT2026.md": "07b212b088bf84d848a2654ea813bbc173a316b6a677391bed9167caaa12c9cc",
+      "packages/commons/src/lib/bulk_actions.ts": "59cfe381da6fff917bf6b961f26495f71c64b1be18637855b2c202f018fa87f7",
+      "packages/trilium-core/src/routes/api/bulk_action.spec.ts": "7832fe589608b9c3b5370089c161a7a9db9bee4195f2c69d77d7757cb3ebdf1d",
+      "packages/trilium-core/src/routes/api/bulk_action.ts": "45c7c669ef1116d4c17cbbf1183e3f4884e70748d6f8d98549bbd0865419db8b",
+      "packages/trilium-core/src/routes/api/search.spec.ts": "de25680168c6827c11cb80d2ea599ed13d6119b5af94363446a6c3da101b3a15",
+      "packages/trilium-core/src/routes/api/search.ts": "fadd9cba88ac6d793a64084111095ee16dd1cddd29620c273dd9a4a66a999dff",
+      "packages/trilium-core/src/services/bulk_actions.spec.ts": "c8ddcd83981481c2b8d09f8521d95dccc7779a1734305807c313f6c6c635851b",
+      "packages/trilium-core/src/services/bulk_actions.ts": "282a233c835f80dc7b65cfda073c774b8596bd8ebb3c9af2228cce376f6345c6",
+      "packages/trilium-core/src/services/llm/index.spec.ts": "fb7c90b1ad5eaec8c86c6038177131eefe4d0d57a5d170e78bcf8f47a5786ff5",
+      "packages/trilium-core/src/services/llm/index.ts": "5cafa03b04f22723249fafbddca04bef426860b17b6b7f92d58dcabe6f7611a7",
+      "packages/trilium-core/src/services/task_context.spec.ts": "feff5a29d02fe784396500c93b9e0d87a9d9f6f9da3f67caaf134edcdd42209b",
+      "packages/trilium-core/src/services/task_context.ts": "3f0be8ff5e722ae2838b47b3091ed55a6b2c89b9904aebd179a0330fa1ca9a36",
+      "packages/trilium-core/src/services/utils/index.spec.ts": "7a95d9b4b4b1840a49ec6512ed470a197d46b591ca76e91819fec2d0ff967e5f",
+      "packages/trilium-core/src/services/utils/index.ts": "fcac126b5e7b648a3f52abcd99f3e3b4b8cf96549b9461c23fe79c03d43b1a66"
+    },
+    "reviews": [
+      "Repository instructions and repair-defect-patchset skill governed the finite stages; shared wire types stay in commons and host-only I/O stays outside core.",
+      "Adversarial review found and fixed the new static Button import cycle, the moved-fragment fallback bug, and duplicate success reporters in the main dialog and saved-search path.",
+      "A separate closure pass traced result producers/consumers, async ownership, terminal cleanup and commit/rollback behavior. No database schema, sync protocol, dependency version or core Node import was added.",
+      "Existing assertions were preserved except exact obsolete contracts: unnamed mobile button, bodyless bulk/search HTTP responses and retired print channels. Print lifecycle assertions were ported to supported channels rather than removed.",
+      "Initial typecheck failures exposed an optional timeout type, an interpolation argument type, then transitive mock return types. The client helper retained its original void return contract to avoid widening caller behavior; final typecheck passes.",
+      "The retry test now awaits the lazy module within act instead of racing a polling timeout. Production code was not changed to satisfy that runner timing.",
+      "Docs impact output includes unchanged Other/New tab strings because only their JSON commas changed. Affected feature pages and precise-term matches were reviewed; generated help was regenerated and checked."
+    ],
+    "limits": [
+      "No app walkthrough, real assistive-technology session, native touch zoom, Electron print dialog or browser offline/update playtest was run, following repository test guidance.",
+      "Standalone caching covers visited static assets, not every lazily loaded feature or external service. Cache quota, browser eviction and full platform upgrade behavior remain unverified.",
+      "No independent reviewer or live multi-peer/production fault replay; original audit gate limits are not retroactively marked passed.",
+      "Translation scanner reports 8 pre-existing references, including one intentional test probe; none belongs to a new repair string.",
+      "Historical /tmp security verification logs remain unavailable. Their author-reported counts were not used as current proof."
+    ],
+    "artifact_validation": {
+      "finding_schema": "18 passed",
+      "finding_disposition_membership": "exactly 18 original IDs, all fixed",
+      "patch_file_hashes": "all 70 passed",
+      "retained_log_hashes": "all 18 passed",
+      "log_normalization": "ANSI escapes, local path prefixes and trailing whitespace normalized",
+      "git_diff_check": "passed"
+    }
   }
 }

@@ -1,0 +1,821 @@
+
+ RUN  v5.0.3 <repo>/apps/client
+
+ ✓ src/widgets/collections/board/api.spec.ts:116 > BoardApi filtering > stores a submitted filter query and clears it for an empty one 3ms
+ ✓ src/widgets/collections/board/api.spec.ts:130 > BoardApi filtering > does not save for a cleared filter that was never set 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:137 > BoardApi filtering > removes a column's value from the cards the filter is not showing too 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:163 > BoardApi column mutations > hands the caller a new config object rather than mutating in place 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:181 > BoardApi column mutations > does not save anything for a duplicate column 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:187 > BoardApi column mutations > puts a new column on either side of the one it is given 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:204 > BoardApi column mutations > keeps the icon of a column it puts one beside 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:219 > BoardApi column mutations > keeps the icon of every column it reorders 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:231 > BoardApi column mutations > stores an icon, creating the entry a resolved column may not have yet 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:245 > BoardApi column mutations > clears the icon back to the default rather than storing an empty one 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:254 > BoardApi column mutations > reads back the icon a column carries, falling back to the default 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:265 > BoardApi column mutations > reads a relation column's icon off the note the column is 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:272 > BoardApi column mutations > reads back the colour a column carries as the classes that tint with it 4ms
+ ✓ src/widgets/collections/board/api.spec.ts:281 > BoardApi column mutations > stores a colour beside the icon, without either clearing the other 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:295 > BoardApi column mutations > archives a column and brings it back, storing nothing once it is not 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:312 > BoardApi column mutations > asks the server to rename the column, rather than writing each place itself 11ms
+ ✓ src/widgets/collections/board/api.spec.ts:328 > BoardApi column mutations > records what each column it renames away or deletes became 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:350 > BoardApi column mutations > keeps no record of a rename or a deletion the server refused 2ms
+ ✓ src/widgets/collections/board/api.spec.ts:366 > BoardApi column mutations > restores the record of an earlier rename when a later one is refused 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:383 > BoardApi column mutations > takes back only its own record when overlapping mutations fail 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:400 > BoardApi column mutations > leaves a mutation still in flight alone when another one fails 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:426 > BoardApi column mutations > leaves a key a later rename has taken over alone when the earlier one fails 2ms
+ ✓ src/widgets/collections/board/api.spec.ts:450 > BoardApi column mutations > leaves no record behind when two identical writes both fail 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:475 > BoardApi column mutations > leaves an identical record made by another write alone when one fails 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:497 > BoardApi column mutations > follows a rename through when the one before it has not landed yet 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:514 > BoardApi column mutations > preserves persisted columns missing from the derived column list 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:568 > BoardApi card operations > opening a card > navigates the board's own pane rather than the focused one 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:587 > BoardApi card operations > opening a card > opens the card itself where it redirects nowhere 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:601 > BoardApi card operations > opening a card > redirects through the board:cardRedirectTo relation 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:601 > BoardApi card operations > opening a card > redirects through the boardCardRedirectTo relation 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:626 > BoardApi card operations > files a card moved to another column before the one it was dropped on 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:638 > BoardApi card operations > files a card arriving from another column before the one it was dropped on 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:680 > BoardApi card operations > files a card dropped past the last card of another column after it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:691 > BoardApi card operations > files a card dropped into a column a filter empties after the cards it hides 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:701 > BoardApi card operations > files a card dropped past the last card shown after that one, not the hidden 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:711 > BoardApi card operations > sends a card after the last one drawn in a column a filter narrows 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:721 > BoardApi card operations > sends a card past the cards a filter hides when it draws none of them 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:735 > BoardApi card operations > reports every card it gains, so a filter does not swallow it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:748 > BoardApi card operations > makes a card at the head of a column above the first one drawn 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:758 > BoardApi card operations > reorders within a column, and places past the last card after it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:777 > BoardApi card operations > sends each card past the one it sent before, without waiting for a redraw 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:796 > BoardApi card operations > forgets what it sent to a column once the board has drawn that column again 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:821 > BoardApi card operations > moves nothing for a drop that leaves the cards a filter draws where they are 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:835 > BoardApi card operations > moves nothing for a card dropped where it is, or one it cannot find 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:848 > BoardApi card operations > takes a card off the board by removing the value it is grouped by 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:864 > BoardApi card operations > covers a value the card inherits rather than uncovering it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:881 > BoardApi card operations > takes a card off a relation board by removing that relation 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:895 > BoardApi card operations > says why a card cannot leave a column it takes from elsewhere 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:912 > BoardApi card operations > trims the title it renames a card to 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:922 > BoardApi card operations > inserts a card beside another, named and iconed as it was typed 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:950 > BoardApi card operations > creates a card above the one a field stands over 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:973 > BoardApi card operations > reports a card it could not create rather than filing nothing 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:981 > BoardApi card operations > creates a card in a column, and reports a failure without throwing 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:1013 > BoardApi card operations > makes a card at the head of a column against that column's first card 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1033 > BoardApi card operations > sends a card to the head of its column, and leaves one already there alone 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1051 > BoardApi card operations > offers the stock templates until the board has its own, and remembers the last used 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1077 > BoardApi card operations > makes an inserted card from the template last used 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1110 > BoardApi card operations > refuses to store an empty set of templates 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1121 > BoardApi card operations > makes a card from the template it is given 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:1153 > BoardApi card operations > hands the editing state straight through to the board 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1196 > BoardApi.addExistingItem > clones a note from outside the board, then files it in the column 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1208 > BoardApi.addExistingItem > only changes the column of a note already under the board 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1215 > BoardApi.addExistingItem > warns before taking a note that carries the grouping label from elsewhere 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1228 > BoardApi.addExistingItem > does not warn for a note that carries no value of its own 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:1257 > BoardApi.syncColumnsToDefinition > gives a board with no definition its own promoted select carrying the resolved columns 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1279 > BoardApi.syncColumnsToDefinition > addresses the definition by name, so overlapping syncs cannot each create one 2ms
+ ✓ src/widgets/collections/board/api.spec.ts:1297 > BoardApi.syncColumnsToDefinition > names a board grouping by its own label after that label rather than after status 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1313 > BoardApi.syncColumnsToDefinition > keeps an existing definition unpromoted rather than promoting it on the way past 2ms
+ ✓ src/widgets/collections/board/api.spec.ts:1327 > BoardApi.syncColumnsToDefinition > writes nothing when the definition already offers exactly those columns 16ms
+ ✓ src/widgets/collections/board/api.spec.ts:1337 > BoardApi.syncColumnsToDefinition > updates its own definition in place when a column appeared from outside the board 6ms
+ ✓ src/widgets/collections/board/api.spec.ts:1353 > BoardApi.syncColumnsToDefinition > keeps a differently ordered list, since the order is the one the user arranged 2ms
+ ✓ src/widgets/collections/board/api.spec.ts:1363 > BoardApi.syncColumnsToDefinition > copies a definition it does not own into one of its own rather than editing it 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:1386 > BoardApi.syncColumnsToDefinition > leaves the definition alone for grouping by a relation 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1386 > BoardApi.syncColumnsToDefinition > leaves the definition alone for a definition owned by an ancestor 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1386 > BoardApi.syncColumnsToDefinition > leaves the definition alone for a multi-valued definition 25ms
+ ✓ src/widgets/collections/board/api.spec.ts:1386 > BoardApi.syncColumnsToDefinition > leaves the definition alone for a definition typed as something else 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1395 > BoardApi.syncColumnsToDefinition > does not invent an empty definition, but does empty one the board owns 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1417 > BoardApi column storage > reads what a column is drawn with from the grouping's own key 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1426 > BoardApi column storage > stores a new column under its key, leaving the other grouping's alone 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1435 > BoardApi column storage > keeps a column's icon and colour out of the other grouping's list 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1446 > BoardApi column storage > removes a column from the grouping's key alone 3ms
+stderr | src/widgets/collections/board/api.spec.ts:1551 > removing a column with the question put first > drops it only once agreed, and says so when the write is refused
+Failed to delete the board column: Error: offline
+    at <repo>/apps/client/src/widgets/collections/board/api.spec.ts:1570:61
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file://<repo>/node_modules/vitest/dist/chunks/run.BTlFXlnv.js:2783:20
+
+stdout | src/widgets/collections/board/api.spec.ts:2132 > the promoted attributes a card shows > lists what the cards define through another note, after the board's own
+Unrecognized attribute definition token: relation
+Unrecognized attribute definition token: relation
+
+stdout | src/widgets/collections/board/api.spec.ts:2746 > references to a board's columns and cards > stores the id it generated when the server cannot be reached
+09:16:37 error:  board_view.column-definition-save-error
+
+ ✓ src/widgets/collections/board/api.spec.ts:1455 > BoardApi column storage > stores the default grouping under the key every board already uses 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1469 > BoardApi column storage > refuses a sync made for a grouping it is not on 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:1529 > pending writes shared between the views of a board > hands every view of one board the same record, and another board its own 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:1541 > pending writes shared between the views of a board > keeps a board's record after the writes on it have all landed 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1551 > removing a column with the question put first > drops it only once agreed, and says so when the write is refused 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:1579 > removing a column with the question put first > deletes the notes in the column when the offer is taken 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1596 > removing a column with the question put first > strips the grouping value when the offer is left untaken 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1611 > duplicating a card > copies it into the board and puts the copy straight after the original 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1629 > what the board calls the field it groups by > uses the promoted alias, and the stock word where the definition gives none 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1649 > what the board calls the field it groups by > falls back where the alias is empty 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1666 > renaming a column to nothing > leaves the column and its cards alone 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1683 > collapsing a column > stores the flag and clears it rather than storing it false 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1697 > collapsing a column > answers to the volatile collapse in place of the stored flags while set 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1722 > collapsing a column > collapses the column as it is set to stay collapsed 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1747 > collapsing a column > writes a column with no entry yet where the board draws it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1767 > collapsing a column > stores a new column with the icon picked for it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1785 > collapsing a column > collapses every column, and opens the ones that are not kept collapsed 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1802 > collapsing a column > leaves the column's other properties alone 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1823 > reordering around the inbox > refuses to carry the inbox off the front 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1830 > reordering around the inbox > refuses to place another column in front of it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1837 > reordering around the inbox > leaves the columns behind it free to move among themselves 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1852 > reordering columns the board is not showing all of > keeps a stored column the render list does not carry 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1874 > reordering columns the board is not showing all of > keeps a hidden column beside the column it followed 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1892 > reordering columns the board is not showing all of > keeps a run of hidden columns in order behind the same column 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1912 > the icon the inbox column wears > is an inbox until one is picked for it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1921 > the icon the inbox column wears > gives way to the one picked for it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1931 > renaming a column that names itself > writes the inbox a name of its own and leaves its cards alone 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1949 > renaming a column that names itself > renames any other column by the value its cards carry 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:1960 > renaming a column that names itself > leaves either kind alone when given nothing 6ms
+ ✓ src/widgets/collections/board/api.spec.ts:1976 > renaming a column to a name already taken > refuses the rename, says so and leaves both columns alone 20ms
+ ✓ src/widgets/collections/board/api.spec.ts:1994 > renaming a column to a name already taken > counts a column with no cards yet, and the name the inbox goes by 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2015 > renaming a column to a name already taken > takes a free name, and a column keeping the one it has 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2033 > filing a card under the inbox > refuses a relation card that would still point somewhere 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2051 > filing a card under the inbox > still removes what such a card owns when it is taken off the board 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2072 > the limit set on a column > reads no limit for the inbox and writes none to it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2100 > the promoted attributes a card shows > lists what the cards can draw, whatever the board hides on itself 2ms
+ ✓ src/widgets/collections/board/api.spec.ts:2114 > the promoted attributes a card shows > shows every one of them until the reader arranges them 13ms
+ ✓ src/widgets/collections/board/api.spec.ts:2121 > the promoted attributes a card shows > follows the stored order, and leaves out what is hidden 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2132 > the promoted attributes a card shows > lists what the cards define through another note, after the board's own 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2157 > the promoted attributes a card shows > stores the whole list, an attribute the board has dropped along with it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2171 > how a column orders its cards > reads a column nobody has sorted as taking the board's order 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2178 > how a column orders its cards > reads a column stored as manual as the order the user arranged 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2189 > how a column orders its cards > stores what a column sorts by, and writes the manual order out 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2211 > how a column orders its cards > stores the direction and clears it rather than storing it false 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2224 > how a column orders its cards > keeps the direction while the key changes, and reads a stale key as manual 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2242 > how a column orders its cards > writes an entry for a column that has none yet, where the board draws it 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2260 > a column that takes the board's order > keeps the stored value apart from the order the column is drawn in 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2272 > a column that takes the board's order > keeps the manual order while the board holds none 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2281 > a column that takes the board's order > leaves a column with an order of its own alone 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2291 > a column that takes the board's order > stores the value a pick names 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2302 > the order the board offers its columns > reads the labels the board carries, and a board with none as the manual order 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2315 > the order the board offers its columns > reads a key it does not know as the manual order 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2323 > the order the board offers its columns > writes what is picked to the board note, and takes the label off for the manual order 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2341 > the order the board offers its columns > puts every column back to the board's order, keeping what else each one holds 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2405 > moving a card into or inside a sorted column > writes the value alone when a card crosses into one 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2416 > moving a card into or inside a sorted column > writes nothing at all for a move inside one 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2426 > moving a card into or inside a sorted column > still places a card in a column left in the manual order 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2436 > moving a card into or inside a sorted column > sends a card across to a sorted column by value alone 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2445 > moving a card into or inside a sorted column > refuses to send a card to the head of a sorted column 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2453 > moving a card into or inside a sorted column > answers which columns order their own cards 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2499 > a selection of cards > names the cards a column draws, in the order it draws them 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2506 > a selection of cards > says which column a card stands in, and nothing for one it is not drawing 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2518 > a selection of cards > resolves a selection in board order, leaving out what it no longer holds 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2525 > a selection of cards > files every card under the column and places them before the card dropped on 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2543 > a selection of cards > places a set dropped past the last card after the one staying at the end 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2557 > a selection of cards > writes no placement into a column that sorts itself 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2577 > how wide the board draws its columns > reads the label, falling back to the default for a width it does not offer 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2588 > how wide the board draws its columns > writes the label for a width other than the default 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2599 > how wide the board draws its columns > takes the label off for the default width 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2613 > how wide the board draws its columns > writes the default out where the board inherits another width 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2636 > the columns as the right pane lists them > names each column, gives it its icon and counts the cards it holds 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2661 > the columns as the right pane lists them > names a relation board's columns by the notes they point at 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2677 > references to a board's columns and cards > keeps the id a column already has, without asking the server 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2696 > references to a board's columns and cards > asks the server to assign an id for a column that has none, and uses its answer 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2717 > references to a board's columns and cards > names the grouping the column belongs to when asking for an id 0ms
+ ✓ src/widgets/collections/board/api.spec.ts:2734 > references to a board's columns and cards > stores the id itself when the server reports it stored nothing 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:2746 > references to a board's columns and cards > stores the id it generated when the server cannot be reached 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:2758 > references to a board's columns and cards > builds the links the menu copies, from the path the pane reached the board by 1ms
+ ✓ src/widgets/collections/board/api.spec.ts:2787 > references to a board's columns and cards > loads a relation column's note before naming it 17ms
+ ✓ src/widgets/collections/board/api.spec.ts:2809 > references to a board's columns and cards > falls back to the board's own id where the pane names no path 0ms
+ ✓ src/services/bulk_action.spec.ts:56 > bulk_action service > exposes the action metadata via the default export 3ms
+ ✓ src/services/bulk_action.spec.ts:85 > bulk_action service > addAction posts an action attribute and waits for sync 1ms
+ ✓ src/services/bulk_action.spec.ts:99 > bulk_action service > parseActions instantiates known actions and skips invalid/unknown ones 1ms
+ ✓ src/services/bulk_action.spec.ts:128 > bulk_action service > executeBulkActions posts the actions, waits for sync, and toasts (default includeDescendants) 1ms
+ ✓ src/services/bulk_action.spec.ts:145 > bulk_action service > executeBulkActions forwards includeDescendants when provided 0ms
+ ✓ src/services/bulk_action.spec.ts:158 > bulk_action service > uses an error notice when any action failed 0ms
+ ✓ src/services/bulk_action.spec.ts:168 > bulk_action service > rejects partial failures for silent callers so their own UI can handle them 1ms
+ ✓ src/services/bulk_action.spec.ts:175 > bulk_action service > executeBulkActions still applies the actions when told to stay silent 0ms
+ ✓ src/widgets/dialogs/bulk_actions.spec.tsx:35 > uses the shared outcome notification when the main dialog executes a partial failure 15ms
+ ✓ src/widgets/search/SearchDefinition.spec.tsx:52 > the search definition > saves a search string still being typed before the search button runs it 19ms
+ ✓ src/widgets/search/SearchDefinition.spec.tsx:52 > the search definition > saves a search string still being typed before the search & execute button runs it 7ms
+ ✓ src/widgets/search/SearchDefinition.spec.tsx:71 > the search definition > shows partial action failures instead of a success notification 9ms
+ ✓ src/widgets/search/SearchDefinition.spec.tsx:83 > the search definition > saves the search string before Enter runs it 8ms
+stdout | src/widgets/collections/board/index.spec.tsx:332 > Collapsed board columns > draws a stored collapsed column as a strip without its cards
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:347 > Collapsed board columns > opens the column when it is selected and closes it when another one is
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:332 > Collapsed board columns > draws a stored collapsed column as a strip without its cards 72ms
+stdout | src/widgets/collections/board/index.spec.tsx:367 > Collapsed board columns > stays closed while its header is dragged
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:387 > Collapsed board columns > announces the strip as a control that opens the column
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:407 > Collapsed board columns > leaves the column closed when focus reaches its header
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:418 > Collapsed board columns > closes an open column when focus reaches another one
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:436 > Collapsed board columns > stays open while a control rendered outside it is used
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:347 > Collapsed board columns > opens the column when it is selected and closes it when another one is 38ms
+ ✓ src/widgets/collections/board/index.spec.tsx:367 > Collapsed board columns > stays closed while its header is dragged 19ms
+ ✓ src/widgets/collections/board/index.spec.tsx:387 > Collapsed board columns > announces the strip as a control that opens the column 19ms
+ ✓ src/widgets/collections/board/index.spec.tsx:407 > Collapsed board columns > leaves the column closed when focus reaches its header 6ms
+ ✓ src/widgets/collections/board/index.spec.tsx:418 > Collapsed board columns > closes an open column when focus reaches another one 15ms
+stdout | src/widgets/collections/board/index.spec.tsx:459 > Collapsed board columns > opens a collapsed column for good, clearing the stored flag
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:475 > Collapsed board columns > holds the cards unpainted while the column widens
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:436 > Collapsed board columns > stays open while a control rendered outside it is used 86ms
+ ✓ src/widgets/collections/board/index.spec.tsx:459 > Collapsed board columns > opens a collapsed column for good, clearing the stored flag 17ms
+stdout | src/widgets/collections/board/index.spec.tsx:491 > Collapsed board columns > marks an open the reader asked for
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:503 > Collapsed board columns > marks a collapse the reader asked for, and leaves a peek closing unmarked
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:528 > Collapsed board columns > keeps a peeked column open once it is no longer kept collapsed
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:557 > Collapsed board columns > collapses and expands every column from the board's menu
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:475 > Collapsed board columns > holds the cards unpainted while the column widens 383ms
+ ✓ src/widgets/collections/board/index.spec.tsx:491 > Collapsed board columns > marks an open the reader asked for 16ms
+ ✓ src/widgets/collections/board/index.spec.tsx:503 > Collapsed board columns > marks a collapse the reader asked for, and leaves a peek closing unmarked 30ms
+ ✓ src/widgets/collections/board/index.spec.tsx:528 > Collapsed board columns > keeps a peeked column open once it is no longer kept collapsed 40ms
+stdout | src/widgets/collections/board/index.spec.tsx:604 > Collapsed board columns > collapses and expands every column from the overlay group
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:631 > Collapsed board columns > settles a board-wide peek on the column pressed in
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:557 > Collapsed board columns > collapses and expands every column from the board's menu 112ms
+ ✓ src/widgets/collections/board/index.spec.tsx:604 > Collapsed board columns > collapses and expands every column from the overlay group 26ms
+stdout | src/widgets/collections/board/index.spec.tsx:670 > Collapsed board columns > opens the column editor and toggles what the board shows, from its menu
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:704 > Collapsed board columns > leaves out the add-column button when hidden, and still opens its editor from the menu
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:631 > Collapsed board columns > settles a board-wide peek on the column pressed in 119ms
+ ✓ src/widgets/collections/board/index.spec.tsx:670 > Collapsed board columns > opens the column editor and toggles what the board shows, from its menu 86ms
+stdout | src/widgets/collections/board/index.spec.tsx:739 > Collapsed board columns > leaves a press inside a column to the column
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:751 > Collapsed board columns > leaves a strip open when it is double clicked open
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:769 > Collapsed board columns > keeps the flag through an open where the column is kept collapsed
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:781 > Collapsed board columns > collapses the column when Space is pressed on its heading
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:704 > Collapsed board columns > leaves out the add-column button when hidden, and still opens its editor from the menu 26ms
+ ✓ src/widgets/collections/board/index.spec.tsx:739 > Collapsed board columns > leaves a press inside a column to the column 11ms
+ ✓ src/widgets/collections/board/index.spec.tsx:751 > Collapsed board columns > leaves a strip open when it is double clicked open 17ms
+ ✓ src/widgets/collections/board/index.spec.tsx:769 > Collapsed board columns > keeps the flag through an open where the column is kept collapsed 16ms
+stdout | src/widgets/collections/board/index.spec.tsx:800 > Collapsed board columns > closes the column as soon as the menu entry collapses it
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:829 > Collapsed board columns > does not carry an open column over to another board
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:781 > Collapsed board columns > collapses the column when Space is pressed on its heading 84ms
+ ✓ src/widgets/collections/board/index.spec.tsx:800 > Collapsed board columns > closes the column as soon as the menu entry collapses it 17ms
+stdout | src/widgets/collections/board/index.spec.tsx:860 > Collapsed board columns > offers no icon picker or title editor while collapsed
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:829 > Collapsed board columns > does not carry an open column over to another board 117ms
+stdout | src/widgets/collections/board/index.spec.tsx:892 > A board in a tab the reader is not looking at > does not redraw for a change while its tab is in the background
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:963 > A board in a tab the reader is not looking at > redraws for a change while it is the split the reader is not focused on
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1089 > Board column creation > scrolls the board to its end as a column is added
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1137 > Board column creation > renders a newly added column without leaving the view
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:860 > Collapsed board columns > offers no icon picker or title editor while collapsed 137ms
+ ✓ src/widgets/collections/board/index.spec.tsx:892 > A board in a tab the reader is not looking at > does not redraw for a change while its tab is in the background 36ms
+ ✓ src/widgets/collections/board/index.spec.tsx:963 > A board in a tab the reader is not looking at > redraws for a change while it is the split the reader is not focused on 13ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1089 > Board column creation > scrolls the board to its end as a column is added 21ms
+stdout | src/widgets/collections/board/index.spec.tsx:1147 > Board column creation > sets every collapsed title upright once a column is named in CJK
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1219 > Board column rename > leaves the stored columns alone while a write on the board is running
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1219 > Board column rename > leaves the stored columns alone while a write on the board is running
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:1137 > Board column creation > renders a newly added column without leaving the view 174ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1147 > Board column creation > sets every collapsed title upright once a column is named in CJK 64ms
+stdout | src/widgets/collections/board/index.spec.tsx:1257 > Board column rename > leaves a stored column list alone, and writes one only for a board with none
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:1219 > Board column rename > leaves the stored columns alone while a write on the board is running 58ms
+stdout | src/widgets/collections/board/index.spec.tsx:1257 > Board column rename > leaves a stored column list alone, and writes one only for a board with none
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1257 > Board column rename > leaves a stored column list alone, and writes one only for a board with none
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1288 > Board column rename > offers its keys as contextual shortcut hints
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1368 > Board column rename > keeps a drawn view on the record later writes go into
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:1257 > Board column rename > leaves a stored column list alone, and writes one only for a board with none 283ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1288 > Board column rename > offers its keys as contextual shortcut hints 9ms
+stdout | src/widgets/collections/board/index.spec.tsx:1409 > Board column rename > collapses the column when its header is double clicked
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1425 > Board column rename > hints at the double click and Space on an open column's heading
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1441 > Board column rename > counts the cards a column holds, and says so when hovered
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1453 > Board column rename > tells the archived cards apart from the rest where the board shows them
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1490 > Board column rename > shows the limit beside the count, and marks a column over it
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1540 > Board column rename > follows the count when a card leaves the column
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:1368 > Board column rename > keeps a drawn view on the record later writes go into 18ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1409 > Board column rename > collapses the column when its header is double clicked 32ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1425 > Board column rename > hints at the double click and Space on an open column's heading 17ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1441 > Board column rename > counts the cards a column holds, and says so when hovered 20ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1453 > Board column rename > tells the archived cards apart from the rest where the board shows them 8ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1490 > Board column rename > shows the limit beside the count, and marks a column over it 14ms
+stdout | src/widgets/collections/board/index.spec.tsx:1617 > Board column rename > refuses a name another column already has and keeps the editor open
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:1540 > Board column rename > follows the count when a card leaves the column 19ms
+stdout | src/widgets/collections/board/index.spec.tsx:1640 > Board column rename > asks the server to rename the column, and writes nothing of its own
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1659 > Board column rename > does not carry a pending rename over to the next board
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:1617 > Board column rename > refuses a name another column already has and keeps the editor open 220ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1640 > Board column rename > asks the server to rename the column, and writes nothing of its own 70ms
+stdout | src/widgets/collections/board/index.spec.tsx:1693 > Board column rename > shows each column's icon, defaulting it, and keeps it while editing
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1716 > Board column rename > tints only the columns given a colour that has a hue
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1736 > Board column rename > hides an archived column, unless the board is set to show archived notes
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1736 > Board column rename > hides an archived column, unless the board is set to show archived notes
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:1659 > Board column rename > does not carry a pending rename over to the next board 93ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1693 > Board column rename > shows each column's icon, defaulting it, and keeps it while editing 15ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1716 > Board column rename > tints only the columns given a colour that has a hue 16ms
+stdout | src/widgets/collections/board/index.spec.tsx:1762 > Board column rename > opens the new-item editor from the menu, as the button below the column does
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1785 > Board column rename > picks out every card in the column from the menu
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1809 > Board column rename > keeps the new-item slot out of the column's scrolling body
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1823 > Board column rename > clears the new-item editor on Enter and leaves it open
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:1864 > Board column rename > reveals the card the editor just made
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:1736 > Board column rename > hides an archived column, unless the board is set to show archived notes 47ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1762 > Board column rename > opens the new-item editor from the menu, as the button below the column does 20ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1785 > Board column rename > picks out every card in the column from the menu 15ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1809 > Board column rename > keeps the new-item slot out of the column's scrolling body 23ms
+ ✓ src/widgets/collections/board/index.spec.tsx:1823 > Board column rename > clears the new-item editor on Enter and leaves it open 31ms
+stdout | src/widgets/collections/board/index.spec.tsx:1933 > Board column rename > keeps the field standing until the card it made takes its place
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:1864 > Board column rename > reveals the card the editor just made 21ms
+stdout | src/widgets/collections/board/index.spec.tsx:2067 > Board column rename > shows only the card the column made, not one that merely arrived
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2122 > Board column rename > reveals a card inserted next to another one, without leaving its place
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2170 > Board column rename > opens the field at the head of the column for Enter on its heading
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2187 > Board column rename > opens the field at the foot of the column for Shift+Enter on its heading
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2208 > Board column rename > inserts with the field the column's own footer uses
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2237 > Board column rename > leaves the card it made focused, and a card added in the footer unfocused
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:1933 > Board column rename > keeps the field standing until the card it made takes its place 112ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2067 > Board column rename > shows only the card the column made, not one that merely arrived 30ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2122 > Board column rename > reveals a card inserted next to another one, without leaving its place 24ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2170 > Board column rename > opens the field at the head of the column for Enter on its heading 10ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2187 > Board column rename > opens the field at the foot of the column for Shift+Enter on its heading 10ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2208 > Board column rename > inserts with the field the column's own footer uses 16ms
+stdout | src/widgets/collections/board/index.spec.tsx:2274 > Board column rename > closes a card editor onto its own card, not the one focus came from
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2305 > Board column rename > gives up what is typed in the new-item editor when it loses focus
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2346 > Board column rename > clears the add-column editor on Enter, and closes it when it loses focus
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2388 > Board column rename > keeps what is typed into the add-column field
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:2237 > Board column rename > leaves the card it made focused, and a card added in the footer unfocused 24ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2274 > Board column rename > closes a card editor onto its own card, not the one focus came from 12ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2305 > Board column rename > gives up what is typed in the new-item editor when it loses focus 44ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2346 > Board column rename > clears the add-column editor on Enter, and closes it when it loses focus 27ms
+stdout | src/widgets/collections/board/index.spec.tsx:2411 > Board column rename > makes a column with the icon picked in the editor, and keeps it for the next
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2444 > Board column rename > offers both ends of the board from the add-column button
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2505 > Board column rename > makes a card from the button inside the new-item editor, and clears it
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2539 > Board column rename > makes a card from the template picked in the pill, and remembers it
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:2388 > Board column rename > keeps what is typed into the add-column field 14ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2411 > Board column rename > makes a column with the icon picked in the editor, and keeps it for the next 19ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2444 > Board column rename > offers both ends of the board from the add-column button 20ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2505 > Board column rename > makes a card from the button inside the new-item editor, and clears it 25ms
+stdout | src/widgets/collections/board/index.spec.tsx:2612 > Board column rename > stays open while the template pill's menu has the focus
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2655 > Board column rename > reads the templates again when one is made or taken away
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2687 > Board column rename > reads the templates again when one it offers is given another icon
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2743 > Board column rename > keeps the newest reading of what a card can be made from
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:2539 > Board column rename > makes a card from the template picked in the pill, and remembers it 37ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2612 > Board column rename > stays open while the template pill's menu has the focus 20ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2655 > Board column rename > reads the templates again when one is made or taken away 17ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2687 > Board column rename > reads the templates again when one it offers is given another icon 21ms
+stdout | src/widgets/collections/board/index.spec.tsx:2778 > Board column rename > takes an older answer when the newer read fails
+Cannot find action 'showShortcutHints'
+
+stderr | src/widgets/collections/board/index.spec.tsx:2778 > Board column rename > takes an older answer when the newer read fails
+Failed to read what a note can be made from: Error: offline
+    at <repo>/apps/client/src/widgets/collections/board/index.spec.tsx:2795:35
+    at Module.u (file://<repo>/node_modules/preact/test-utils/dist/testUtils.mjs:1:623)
+    at <repo>/apps/client/src/widgets/collections/board/index.spec.tsx:2794:19
+    at async file://<repo>/node_modules/vitest/dist/chunks/run.BTlFXlnv.js:2783:20
+
+stdout | src/widgets/collections/board/index.spec.tsx:2807 > Board column rename > opens the board's properties from the pill, listing what it offers in order
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:2743 > Board column rename > keeps the newest reading of what a card can be made from 68ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2778 > Board column rename > takes an older answer when the newer read fails 26ms
+stdout | src/widgets/collections/board/index.spec.tsx:2860 > Board column rename > makes a card with the icon picked in the editor, and keeps it for the next
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2901 > Board column rename > moves the card's icon to the template picked, unless one was picked by hand
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:2949 > Board column rename > stays open while the icon picker has the focus
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:2807 > Board column rename > opens the board's properties from the pill, listing what it offers in order 168ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2860 > Board column rename > makes a card with the icon picked in the editor, and keeps it for the next 24ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2901 > Board column rename > moves the card's icon to the template picked, unless one was picked by hand 56ms
+stdout | src/widgets/collections/board/index.spec.tsx:2987 > Board column rename > offers no create button while a card's title is edited
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3008 > Board column rename > writes the icon picked while a card's title is edited
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3044 > Board column rename > makes a card at the head of the column on Shift+Enter
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3072 > Board column rename > offers both ends of the column from the button's own menu
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:2949 > Board column rename > stays open while the icon picker has the focus 33ms
+ ✓ src/widgets/collections/board/index.spec.tsx:2987 > Board column rename > offers no create button while a card's title is edited 18ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3008 > Board column rename > writes the icon picked while a card's title is edited 21ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3044 > Board column rename > makes a card at the head of the column on Shift+Enter 36ms
+stdout | src/widgets/collections/board/index.spec.tsx:3118 > Board column rename > opens the placement menu on a hold, and gives it up for a scroll
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3173 > Board column rename > offers an existing note from the new-item button while the field is empty
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3203 > Board column rename > starts the new item off with the character typed on its button
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3219 > Board column rename > opens the new item empty for Enter, and ignores keys that are not characters
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:3072 > Board column rename > offers both ends of the column from the button's own menu 28ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3118 > Board column rename > opens the placement menu on a hold, and gives it up for a scroll 21ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3173 > Board column rename > offers an existing note from the new-item button while the field is empty 21ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3203 > Board column rename > starts the new item off with the character typed on its button 44ms
+stdout | src/widgets/collections/board/index.spec.tsx:3244 > Board column rename > does not undo the next board's identical rename when the last one fails
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3298 > Board column rename > says so when what was typed could not be saved
+Cannot find action 'showShortcutHints'
+
+stderr | src/widgets/collections/board/index.spec.tsx:3298 > Board column rename > says so when what was typed could not be saved
+Failed to save what the board editor was given: Error: offline
+    at <repo>/apps/client/src/widgets/collections/board/index.spec.tsx:3301:55
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at process.processTimers (node:internal/timers:541:7)
+    at async file://<repo>/node_modules/vitest/dist/chunks/run.BTlFXlnv.js:2783:20
+
+stdout | src/widgets/collections/board/index.spec.tsx:3309 > Board column rename > lets an IME finish composing before taking the Enter as a save
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3335 > Board column rename > keeps the cards of the renamed column under it
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:3219 > Board column rename > opens the new item empty for Enter, and ignores keys that are not characters 14ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3244 > Board column rename > does not undo the next board's identical rename when the last one fails 46ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3298 > Board column rename > says so when what was typed could not be saved 16ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3309 > Board column rename > lets an IME finish composing before taking the Enter as a save 25ms
+stdout | src/widgets/collections/board/index.spec.tsx:3364 > Board editors and menus > opens the add-column editor with Enter, and names the column typed into it
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3388 > Board editors and menus > says so rather than adding a column the board already has
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3398 > Board editors and menus > leaves the title alone when the editor is dismissed with Escape
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3423 > Board editors and menus > opens the column menu from its button as well as from a right click
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3435 > Board editors and menus > puts a column beside another from the menu, ready to be named
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3461 > Board editors and menus > keeps a wheel inside a scrolling column from also scrolling the board
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3503 > Board editors and menus > marks the board and the one column while a card title is being edited
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:3335 > Board column rename > keeps the cards of the renamed column under it 26ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3364 > Board editors and menus > opens the add-column editor with Enter, and names the column typed into it 22ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3388 > Board editors and menus > says so rather than adding a column the board already has 12ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3398 > Board editors and menus > leaves the title alone when the editor is dismissed with Escape 24ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3423 > Board editors and menus > opens the column menu from its button as well as from a right click 12ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3435 > Board editors and menus > puts a column beside another from the menu, ready to be named 8ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3461 > Board editors and menus > keeps a wheel inside a scrolling column from also scrolling the board 8ms
+stdout | src/widgets/collections/board/index.spec.tsx:3533 > Board editors and menus > marks a field opened between cards, and leaves the one at a column's foot unmarked
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3620 > Board grouped by a relation > names its columns with a link to the note each stands for
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3628 > Board grouped by a relation > picks a note rather than typing a name when a column is renamed
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3690 > the promoted attributes a card shows > draws every one of them until the board's config arranges them
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3696 > the promoted attributes a card shows > draws them in the stored order, and leaves out what is hidden
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3702 > the promoted attributes a card shows > draws an attribute the config has never named, after the ones it has
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3852 > Board filtering > sends a card to the end of the column, not to the end of what the filter shows
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:3503 > Board editors and menus > marks the board and the one column while a card title is being edited 21ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3533 > Board editors and menus > marks a field opened between cards, and leaves the one at a column's foot unmarked 18ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3620 > Board grouped by a relation > names its columns with a link to the note each stands for 12ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3628 > Board grouped by a relation > picks a note rather than typing a name when a column is renamed 14ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3690 > the promoted attributes a card shows > draws every one of them until the board's config arranges them 19ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3696 > the promoted attributes a card shows > draws them in the stored order, and leaves out what is hidden 14ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3702 > the promoted attributes a card shows > draws an attribute the config has never named, after the ones it has 14ms
+stdout | src/widgets/collections/board/index.spec.tsx:3875 > Board filtering > shows only the matched cards, in their own order, keeping every column
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3885 > Board filtering > counts the visible cards in the badge while the limit reads the real column
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3898 > Board filtering > draws what a re-run matches
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3924 > Board filtering > draws no cards until the stored query has resolved
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:3976 > Board filtering > marks the matched tokens in the card titles
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:3852 > Board filtering > sends a card to the end of the column, not to the end of what the filter shows 47ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3875 > Board filtering > shows only the matched cards, in their own order, keeping every column 17ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3885 > Board filtering > counts the visible cards in the badge while the limit reads the real column 19ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3898 > Board filtering > draws what a re-run matches 22ms
+ ✓ src/widgets/collections/board/index.spec.tsx:3924 > Board filtering > draws no cards until the stored query has resolved 12ms
+stdout | src/widgets/collections/board/index.spec.tsx:3992 > Board filtering > collapses the columns the filter leaves empty, without writing, until it is cleared
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:3976 > Board filtering > marks the matched tokens in the card titles 47ms
+stdout | src/widgets/collections/board/index.spec.tsx:4043 > Board filtering > holds the columns' widths for two frames after the filter is cleared
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:3992 > Board filtering > collapses the columns the filter leaves empty, without writing, until it is cleared 194ms
+stdout | src/widgets/collections/board/index.spec.tsx:4087 > a column that sorts its cards > draws the sorted column in its own order and the others in branch order
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4094 > a column that sorts its cards > draws it backwards when the column asks for that
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4100 > a column that sorts its cards > leaves every column in branch order while none of them sorts
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4106 > a column that sorts its cards > asks for no creation dates at all while no column sorts
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4112 > a column that sorts its cards > draws the column again when a title it sorts by changes
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4125 > a column that sorts its cards > sorts by a promoted attribute, keeping the cards that have no value last
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:4043 > Board filtering > holds the columns' widths for two frames after the filter is cleared 73ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4087 > a column that sorts its cards > draws the sorted column in its own order and the others in branch order 18ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4094 > a column that sorts its cards > draws it backwards when the column asks for that 16ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4100 > a column that sorts its cards > leaves every column in branch order while none of them sorts 9ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4106 > a column that sorts its cards > asks for no creation dates at all while no column sorts 16ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4112 > a column that sorts its cards > draws the column again when a title it sorts by changes 31ms
+stdout | src/widgets/collections/board/index.spec.tsx:4134 > a column that sorts its cards > sorts a select by the order its own definition offers the options in
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4145 > a column that sorts its cards > reorders the column as soon as the sort is picked from its menu
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4161 > a column that sorts its cards > shows no sort button while the column is arranged by hand
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4167 > a column that sorts its cards > shows the way the order runs, and turns the arrow over for a descending one
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4167 > a column that sorts its cards > shows the way the order runs, and turns the arrow over for a descending one
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4179 > a column that sorts its cards > draws a column stored as default in the board's own order, button and all
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:4125 > a column that sorts its cards > sorts by a promoted attribute, keeping the cards that have no value last 24ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4134 > a column that sorts its cards > sorts a select by the order its own definition offers the options in 12ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4145 > a column that sorts its cards > reorders the column as soon as the sort is picked from its menu 31ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4161 > a column that sorts its cards > shows no sort button while the column is arranged by hand 11ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4167 > a column that sorts its cards > shows the way the order runs, and turns the arrow over for a descending one 31ms
+stdout | src/widgets/collections/board/index.spec.tsx:4179 > a column that sorts its cards > draws a column stored as default in the board's own order, button and all
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4194 > a column that sorts its cards > leaves a column stored as default alone while the board holds no order
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4201 > a column that sorts its cards > opens the sort menu, and takes the column away once it is arranged by hand
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4220 > a column that sorts its cards > opens the menu against the button when a keyboard presses it
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:4179 > a column that sorts its cards > draws a column stored as default in the board's own order, button and all 36ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4194 > a column that sorts its cards > leaves a column stored as default alone while the board holds no order 35ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4201 > a column that sorts its cards > opens the sort menu, and takes the column away once it is arranged by hand 22ms
+stdout | src/widgets/collections/board/index.spec.tsx:4236 > a column that sorts its cards > shows the button on a strip, with nothing to be done to it
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4446 > Switchable board grouping > names the grouping in force and re-groups the cards when it changes
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4466 > Switchable board grouping > stores the new grouping's columns under its own key and nowhere else
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:4220 > a column that sorts its cards > opens the menu against the button when a keyboard presses it 36ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4236 > a column that sorts its cards > shows the button on a strip, with nothing to be done to it 15ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4446 > Switchable board grouping > names the grouping in force and re-groups the cards when it changes 40ms
+stdout | src/widgets/collections/board/index.spec.tsx:4480 > Switchable board grouping > leaves the grouping it left exactly as it was
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4495 > Switchable board grouping > moves a pre-switching column list under the grouping it belongs to
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4563 > Board properties from the note menu > opens the dialog for its own tab, and not for another one
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:4466 > Switchable board grouping > stores the new grouping's columns under its own key and nowhere else 45ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4480 > Switchable board grouping > leaves the grouping it left exactly as it was 53ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4495 > Switchable board grouping > moves a pre-switching column list under the grouping it belongs to 14ms
+stdout | src/widgets/collections/board/index.spec.tsx:4586 > Board properties from the note menu > opens the dialog from the collection settings menu, below a divider
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:4563 > Board properties from the note menu > opens the dialog for its own tab, and not for another one 72ms
+stdout | src/widgets/collections/board/index.spec.tsx:4664 > a column windowed for its size > draws a slice of a big column and stands spacers for the rest
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4698 > a column windowed for its size > says on each column how many cards it holds, drawn or not
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4711 > a column windowed for its size > gives each card the place it holds in the column, not among the ones drawn
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4774 > how wide the board draws its columns > carries the width its label names, and no class where it names none
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4774 > how wide the board draws its columns > carries the width its label names, and no class where it names none
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4774 > how wide the board draws its columns > carries the width its label names, and no class where it names none
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:4774 > how wide the board draws its columns > carries the width its label names, and no class where it names none
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:4586 > Board properties from the note menu > opens the dialog from the collection settings menu, below a divider 78ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4664 > a column windowed for its size > draws a slice of a big column and stands spacers for the rest 27ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4698 > a column windowed for its size > says on each column how many cards it holds, drawn or not 25ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4711 > a column windowed for its size > gives each card the place it holds in the column, not among the ones drawn 17ms
+stdout | src/widgets/collections/board/index.spec.tsx:4838 > what the board hands the right pane > publishes its columns, scrolls to one on request, and takes them back
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:4774 > how wide the board draws its columns > carries the width its label names, and no class where it names none 39ms
+ ✓ src/widgets/collections/board/index.spec.tsx:4838 > what the board hands the right pane > publishes its columns, scrolls to one on request, and takes them back 13ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5043 > Card toolbar on mobile > follows the focus onto a card and leaves with it, over the board 15ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5076 > Card toolbar on mobile > hands over between cards without sliding out and in 20ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5101 > Card toolbar on mobile > reveals no earlier focus while a card is carried 47ms
+stdout | src/widgets/collections/board/index.spec.tsx:5162 > Card toolbar on mobile > is left out off mobile, where the card has its menu
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:5138 > Card toolbar on mobile > goes off the screen with its card and comes back with it 18ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5162 > Card toolbar on mobile > is left out off mobile, where the card has its menu 10ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5170 > Card toolbar on mobile > inserts, renames, removes and opens the menu for the focused card 67ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5213 > Card toolbar on mobile > offers to delete the note instead where the board has an inbox 22ms
+stdout | src/widgets/collections/board/index.spec.tsx:5384 > Selection mode on mobile > is left out off mobile
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:5235 > Card toolbar on mobile > stands through a lift, hides once the card is carried, and is back after 20ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5357 > Selection mode on mobile > is switched on from the header and covers that row while it lasts 29ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5374 > Selection mode on mobile > offers no way to delete what is picked out of a read-only board 40ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5384 > Selection mode on mobile > is left out off mobile 26ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5395 > Selection mode on mobile > closes and opens every column from the header 22ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5417 > Selection mode on mobile > picks cards out with a tap instead of opening them 35ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5446 > Selection mode on mobile > keeps the selection rail alone when a heading is focused 21ms
+stdout | src/widgets/collections/board/index.spec.tsx:5710 > BoardView, read-only > offers no way to add a card or a column, nor to rename either
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:5459 > Selection mode on mobile > selects the column of the last picked card, and acts on the whole selection 34ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5492 > Selection mode on mobile > gives the selection up with the mode when another board is shown 26ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5594 > Column toolbar on mobile > follows the focus onto a heading, which a tap gives it 12ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5610 > Column toolbar on mobile > leaves the collapse hint off the heading 13ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5616 > Column toolbar on mobile > collapses and opens the column, offering only the open on a strip 17ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5633 > Column toolbar on mobile > leaves a strip collapsed when it is tapped, and opens it from the rail 15ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5647 > Column toolbar on mobile > opens the sort menu and the title editor 12ms
+stdout | src/widgets/collections/board/index.spec.tsx:5735 > BoardView, read-only > offers as hints only the keys that change nothing
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:5757 > BoardView, read-only > changes nothing from the keyboard or from a note dropped from the tree
+Cannot find action 'showShortcutHints'
+
+stdout | src/widgets/collections/board/index.spec.tsx:5813 > BoardView, read-only > keeps only the entries that change nothing in the menus, and shows none for the board
+Cannot find action 'showShortcutHints'
+
+ ✓ src/widgets/collections/board/index.spec.tsx:5710 > BoardView, read-only > offers no way to add a card or a column, nor to rename either 12ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5735 > BoardView, read-only > offers as hints only the keys that change nothing 5ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5757 > BoardView, read-only > changes nothing from the keyboard or from a note dropped from the tree 38ms
+ ✓ src/widgets/collections/board/index.spec.tsx:5813 > BoardView, read-only > keeps only the entries that change nothing in the menus, and shows none for the board 7ms
+
+ Test Files  5 passed (5)
+      Tests  332 passed (332)
+   Start at  09:16:19
+   Duration  26.50s (transform 85%, tests 7%, environment 4%, import 4%, setup 1%)
+
+  Transform  transforming modules took 84.18s · 85% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             on CI this only helps when the cache directory is persisted between runs
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+
+ HTML  Report is generated
+       You can run npx vite preview --outDir .vitest to see the test results.
+JUNIT report written to <repo>/apps/client/test-output/vitest/junit.xml

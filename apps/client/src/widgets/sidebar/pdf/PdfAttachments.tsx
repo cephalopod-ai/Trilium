@@ -3,6 +3,7 @@ import "./PdfAttachments.css";
 import { t } from "../../../services/i18n";
 import { formatSize } from "../../../services/utils";
 import { useActiveNoteContext, useGetContextData, useNoteProperty } from "../../react/hooks";
+import Button from "../../react/Button";
 import Icon from "../../react/Icon";
 import RightPanelWidget from "../RightPanelWidget";
 
@@ -51,13 +52,13 @@ function PdfAttachmentItem({
     const sizeText = formatSize(attachment.size);
 
     return (
-        <div className="pdf-attachment-item" onClick={() => onDownload(attachment.id)}>
+        <Button className="pdf-attachment-item" kind="lowProfile" onClick={() => onDownload(attachment.id)} text={<>
             <Icon icon="bx bx-paperclip" />
-            <div className="pdf-attachment-info">
-                <div className="pdf-attachment-filename">{attachment.filename}</div>
-                <div className="pdf-attachment-size">{sizeText}</div>
-            </div>
+            <span className="pdf-attachment-info">
+                <span className="pdf-attachment-filename">{attachment.filename}</span>
+                <span className="pdf-attachment-size">{sizeText}</span>
+            </span>
             <Icon icon="bx bx-download" />
-        </div>
+        </>} />
     );
 }

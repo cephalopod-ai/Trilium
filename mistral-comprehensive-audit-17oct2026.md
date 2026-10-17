@@ -1,5 +1,7 @@
 # Trilium comprehensive audit — recovered Mistral work, completed 17 October 2026
 
+**Repair update (17 October 2026):** all 18 accepted findings have patches or documentation corrections. See [Repair closure](#repair-closure-2026-10-17) for current dispositions, retained verification and platform limits. The audit sections below retain their historical snapshot.
+
 **Audited snapshot:** `3e893fd876b26e8ddf5c1b899a5295e2fc8f2f8c` on `main`, `/Users/eric/Work/vscode/Trilium`.
 **Authorship:** Mistral produced the recovered lane evidence; Codex recovered, reconciled, supplemented and assembled this report. The filename preserves the original requested name. This is not a claim that Mistral finished the interrupted engagement.
 **Mode:** report-only static audit. Security, data-audit and playtest skills remain excluded as the saved original request specified. Product source, configuration, dependencies and Git history were not changed. This report and its JSON companion are the requested output artifacts.
@@ -2729,3 +2731,74 @@ The original five lane reports and checkpoint snapshots remain outside the repo;
 ## 15. Machine-readable companion
 
 `mistral-comprehensive-audit-17oct2026.json` contains `findings`, `counts`, `provenance`, `candidate_adjudication`, `lens_coverage`, `taxonomy_coverage`, `excluded_candidates`, `source_evidence_files`, `recovered_lane_artifacts`, `skill_contract_hashes`, `shared_contract_hashes`, `surface_inventory` and `artifact_validation`. Every finding uses the catalog schema; report-level metadata stays outside finding objects.
+
+## Repair closure (2026-10-17)
+
+**Status: completed_with_partial_verification.** All 18 accepted findings are dispositioned fixed: 15 behavior repairs and 3 documentation corrections. No accepted finding is silently deferred. The patch is uncommitted on `fix/comprehensive-audit-20261017`, based on `526aacde24888fed746a3c27ed36bfe755ed3fd0`; no commit or push was performed. Original finding severity, confidence and source citations remain historical evidence against the audited snapshot. This closure is separate from the report-only completion run.
+
+| Finding | Repair | Verification |
+| --- | --- | --- |
+| DES-TRIL-002 | ActionButton always exposes a plain-text accessible name, including HTML tooltips and touch mode. | ActionButton.spec.tsx and ActionButton.mobile.spec.tsx; actual assistive technology not exercised. |
+| WFG-TRIL-001 | Per-note/action applied, skipped and failed outcomes cross the commons/core HTTP contract. Main dialog and saved searches share truthful notifications; silent callers reject failures. | Bulk service, both routes under both core hosts, client service/dialog/search tests and board consumer regressions. |
+| WFG-TRIL-002 | Renamed the switch to Show AI features and documented existing-chat execution separately. Existing visibility policy is preserved; this is not an inference-disable switch. | UI copy and AI/Privacy guide checked against current gates; no execution policy change. |
+| REL-TRIL-003 | Total deadlines cancel Node sockets or Electron requests; early settlement clears timers and late errors remain handled. Shared policy also covers image requests. | Node/Electron-shaped transport fault tests; Electron bridge specs pass. No live remote outage experiment. |
+| REL-TRIL-006 | File streams own their error listener, fall back to console, and retry on a write after 30 seconds; late old-stream errors cannot disable a replacement. | Injected write-stream failure/recovery regression plus existing server log specs. |
+| WFG-TRI17-005 | Production uses the static cache; development bypasses it. Entry pages are precached, hashed files are cache-first, other static files are network-first. | Development/production worker tests and production build with compiled-cache inspection. Real-browser offline/upgrade behavior not exercised. |
+| ARC-TRI17-001 | Async provider construction publishes only into the cache generation captured before awaiting. | Deferred old construction resolving after cache invalidation tested on server and standalone. |
+| DES-TRIL-003 | Tab close/new/scroll actions use native buttons, unavailable scroll actions are disabled, and PDF attachment downloads use the shared Button. | DOM/focus/handler tests for tabs and PDF attachments; native keyboard activation and visual layout not browser-tested. |
+| DES-TRIL-001 | Removed the maximum-scale=1 viewport restriction. | Source inspection and production client build via standalone; touch/native pinch zoom not exercised. |
+| DES-TRIL-005 | Shared widget mounts have an isolated render boundary and Retry fallback. Movable widgets keep a stable mount; shared retry controls load after initialization to avoid a new import cycle. | Crash, retry, sibling-root and moved-root regressions; content renderer, script render and table formatter tests pass. |
+| REL-TRIL-007 | Completed task contexts are evicted only after commit; abandoned groups expire lazily after 24 hours without activity. | Commit/rollback, active-versus-idle retention, progress and grouped erase tests on both core hosts. |
+| WFG-TRI17-004 | Tooltip cleanup removes the exact native show callback it registered. | Same-element option-change regression plus shared hook lifecycle tests. |
+| FSR-TRI17-001 | Worker failure settles restore, ordinary request, security-change and backup waiters, clears ownership maps, and refuses new operations until reload. | onerror, WORKER_ERROR and FATAL_ERROR restore fault tests, late-result cleanup and all existing bridge specs. |
+| WFG-TRIL-003 | A content-free successful completion becomes a visible retryable error. Abort and already-reported failures keep their separate behavior. | Empty completion/manual retry regression and existing chat stream tests; no automatic inference retry. |
+| REL-TRI17-001 | timeLimit clears the deadline on early fulfillment and rejection. | Timer ownership regression and existing success/reject/timeout tests under both core hosts. |
+| ARC-TRIL-007 | Removed unreachable print-note and export-as-pdf handlers after confirming no supported preload/renderer callers. Preview printing remains the supported path. | Printing lifecycle assertions ported to supported preview/save channels; absent legacy channels and preload parity verified. Existing print guide already describes the unified flow. |
+| CMP-TRIL-001 | Added a dated correction to the old security report: twelve missing temporary logs are unavailable historical claims, not retained verification evidence. | Missing files were not fabricated or reconstructed. Current verification logs are retained with this repository artifact. |
+| ARC-TRI17-002 | Repository instructions now require remote discovery and identify this checkout origin as cephalopod-ai/Trilium. | git remote get-url origin and current checkout identity verified. |
+
+### Verification evidence
+
+Exact commands, source/document hashes, per-run results and retained log hashes are in the JSON companion’s `remediation` object. Logs are retained alongside this report under [`audit-evidence/comprehensive-repair-2026-10-17/`](audit-evidence/comprehensive-repair-2026-10-17/), with local paths normalized. They do not depend on `/tmp` retention. The current tests use fixture databases and mocked external providers, not production credentials. Overlapping reruns are listed separately and are not a distinct-test coverage claim.
+
+| Check | Result | Retained log |
+| --- | --- | --- |
+| `CI=true pnpm --filter client exec vitest run src/widgets/tab_row.spec.ts src/widgets/react/react_utils.spec.tsx src/widgets/sidebar/pdf/PdfAttachments.spec.tsx src/widgets/collections/table/columns.spec.ts src/services/content_renderer.spec.ts src/services/render.spec.tsx src/widgets/react/ActionButton.spec.tsx src/widgets/react/ActionButton.mobile.spec.tsx src/services/bulk_action.spec.ts src/widgets/type_widgets/llm_chat/useLlmChat.spec.tsx src/services/i18n.spec.ts` | 188 passed | [client-verified.log](audit-evidence/comprehensive-repair-2026-10-17/client-verified.log) |
+| `CI=true pnpm --filter client exec vitest run src/services/bulk_action.spec.ts src/widgets/dialogs/bulk_actions.spec.tsx src/widgets/search/SearchDefinition.spec.tsx src/widgets/collections/board/api.spec.ts src/widgets/collections/board/index.spec.tsx` | 332 passed | [bulk-consumers-verified.log](audit-evidence/comprehensive-repair-2026-10-17/bulk-consumers-verified.log) |
+| `CI=true pnpm --filter client exec vitest run src/widgets/react/hooks.spec.tsx` | 25 passed | [hooks-verified.log](audit-evidence/comprehensive-repair-2026-10-17/hooks-verified.log) |
+| `pnpm --filter server test services/utils/index.spec.ts services/bulk_actions.spec.ts routes/api/bulk_action.spec.ts services/task_context.spec.ts services/llm/index.spec.ts src/services/request.spec.ts src/log_provider.spec.ts` | 350 passed | [server-final.log](audit-evidence/comprehensive-repair-2026-10-17/server-final.log) |
+| `pnpm --filter server test routes/api/search.spec.ts` | 27 passed | [search-server.log](audit-evidence/comprehensive-repair-2026-10-17/search-server.log) |
+| `pnpm --filter standalone test services/utils/index.spec.ts services/bulk_actions.spec.ts routes/api/bulk_action.spec.ts services/task_context.spec.ts services/llm/index.spec.ts sw.spec.ts local-bridge.spec.ts` | 387 passed | [standalone-final.log](audit-evidence/comprehensive-repair-2026-10-17/standalone-final.log) |
+| `pnpm --filter standalone test routes/api/search.spec.ts local-bridge.spec.ts` | 86 passed | [search-standalone.log](audit-evidence/comprehensive-repair-2026-10-17/search-standalone.log) |
+| `pnpm --filter desktop test src/services/printing.spec.ts src/services/request.spec.ts src/preload.spec.ts` | 127 passed | [desktop-verified.log](audit-evidence/comprehensive-repair-2026-10-17/desktop-verified.log) |
+| `pnpm typecheck` | passed | [typecheck-verified.log](audit-evidence/comprehensive-repair-2026-10-17/typecheck-verified.log) |
+| `pnpm --filter standalone build` | passed | [standalone-build.log](audit-evidence/comprehensive-repair-2026-10-17/standalone-build.log) |
+| `node .claude/skills/writing-documentation/docs.mjs sync` | passed | [docs-sync.log](audit-evidence/comprehensive-repair-2026-10-17/docs-sync.log) |
+| `node .claude/skills/writing-documentation/docs.mjs check` | 0 errors, 70 warnings | [docs-check.log](audit-evidence/comprehensive-repair-2026-10-17/docs-check.log) |
+| `node .claude/skills/working-with-translations/i18n.mjs missing` | advisory: 8 existing references, including one intentional test probe | [i18n-missing.log](audit-evidence/comprehensive-repair-2026-10-17/i18n-missing.log) |
+
+The production service worker contains cache reads/writes with the development bypass compiled out; its SHA-256 is `7d5afd6c547eb01289dcb2a76b41288fd6392e145f1cc4b36818531f0fc71f0f`. The production build passed. This proves build-mode selection, not a real-browser offline or upgrade scenario.
+
+### Equivalence and closing review
+
+Repository instructions and repair-defect-patchset skill governed the finite stages; shared wire types stay in commons and host-only I/O stays outside core.
+
+Adversarial review found and fixed the new static Button import cycle, the moved-fragment fallback bug, and duplicate success reporters in the main dialog and saved-search path.
+
+A separate closure pass traced result producers/consumers, async ownership, terminal cleanup and commit/rollback behavior. No database schema, sync protocol, dependency version or core Node import was added.
+
+Existing assertions were preserved except exact obsolete contracts: unnamed mobile button, bodyless bulk/search HTTP responses and retired print channels. Print lifecycle assertions were ported to supported channels rather than removed.
+
+Initial typecheck failures exposed an optional timeout type, an interpolation argument type, then transitive mock return types. The client helper retained its original void return contract to avoid widening caller behavior; final typecheck passes.
+
+The retry test now awaits the lazy module within act instead of racing a polling timeout. Production code was not changed to satisfy that runner timing.
+
+Docs impact output includes unchanged Other/New tab strings because only their JSON commas changed. Affected feature pages and precise-term matches were reviewed; generated help was regenerated and checked.
+
+### Remaining verification limits
+
+* No app walkthrough, real assistive-technology session, native touch zoom, Electron print dialog or browser offline/update playtest was run, following repository test guidance.
+* Standalone caching covers visited static assets, not every lazily loaded feature or external service. Cache quota, browser eviction and full platform upgrade behavior remain unverified.
+* No independent reviewer or live multi-peer/production fault replay; original audit gate limits are not retroactively marked passed.
+* Translation scanner reports 8 pre-existing references, including one intentional test probe; none belongs to a new repair string.
+* Historical /tmp security verification logs remain unavailable. Their author-reported counts were not used as current proof.

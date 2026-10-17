@@ -1350,13 +1350,14 @@ export function useStaticTooltip(
         Tooltip.getInstance(element)?.dispose();
 
         const tooltip = new Tooltip(element, config);
-        element.addEventListener("show.bs.tooltip", () => {
+        const hideOtherTooltips = () => {
             // Hide all the other tooltips.
             for (const otherTooltip of tooltips) {
                 if (otherTooltip === tooltip) continue;
                 otherTooltip.hide();
             }
-        });
+        };
+        element.addEventListener("show.bs.tooltip", hideOtherTooltips);
         tooltips.add(tooltip);
 
         // A tooltip triggered by hover *and focus* — Bootstrap's default — outstays the press that
@@ -1431,6 +1432,7 @@ export function useStaticTooltip(
 
         return () => {
             disposeDelegateTracking();
+            element.removeEventListener("show.bs.tooltip", hideOtherTooltips);
             element.removeEventListener("click", dismissOnPress);
             tooltips.delete(tooltip);
             // Dispose even when the trigger element is already detached (e.g. a keyed remount

@@ -126,7 +126,7 @@ describe("bulk_action service", () => {
     });
 
     it("executeBulkActions posts the actions, waits for sync, and toasts (default includeDescendants)", async () => {
-        server.post = vi.fn(async () => ({})) as typeof server.post;
+        server.post = vi.fn(async () => ({ applied: 2, skipped: 0, failed: 0, outcomes: [] })) as typeof server.post;
         const toastSpy = vi.spyOn(toast, "showMessage").mockImplementation(() => {});
         const actions = [{ name: "addLabel" }] as any;
 
@@ -143,7 +143,7 @@ describe("bulk_action service", () => {
     });
 
     it("executeBulkActions forwards includeDescendants when provided", async () => {
-        server.post = vi.fn(async () => ({})) as typeof server.post;
+        server.post = vi.fn(async () => ({ applied: 2, skipped: 0, failed: 0, outcomes: [] })) as typeof server.post;
         vi.spyOn(toast, "showMessage").mockImplementation(() => {});
 
         await executeBulkActions(["x"], [] as any, { includeDescendants: true });
@@ -155,8 +155,25 @@ describe("bulk_action service", () => {
         });
     });
 
+    it("uses an error notice when any action failed", async () => {
+        const result = { applied: 1, skipped: 2, failed: 1, outcomes: [] };
+        server.post = vi.fn(async () => result) as typeof server.post;
+        const failed = vi.spyOn(toast, "showError").mockImplementation(() => {});
+        const success = vi.spyOn(toast, "showMessage").mockImplementation(() => {});
+        await executeBulkActions(["x"], []);
+        expect(failed).toHaveBeenCalledOnce();
+        expect(success).not.toHaveBeenCalled();
+    });
+
+    it("rejects partial failures for silent callers so their own UI can handle them", async () => {
+        server.post = vi.fn(async () => ({ applied: 1, skipped: 0, failed: 1, outcomes: [] })) as typeof server.post;
+        const error = vi.spyOn(toast, "showError").mockImplementation(() => {});
+        await expect(executeBulkActions(["x"], [], { silent: true })).rejects.toBeInstanceOf(Error);
+        expect(error).not.toHaveBeenCalled();
+    });
+
     it("executeBulkActions still applies the actions when told to stay silent", async () => {
-        server.post = vi.fn(async () => ({})) as typeof server.post;
+        server.post = vi.fn(async () => ({ applied: 2, skipped: 0, failed: 0, outcomes: [] })) as typeof server.post;
         const toastSpy = vi.spyOn(toast, "showMessage").mockImplementation(() => {});
 
         await executeBulkActions(["x"], [] as any, { silent: true });

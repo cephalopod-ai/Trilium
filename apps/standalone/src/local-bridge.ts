@@ -9,6 +9,7 @@ import { showErrorOverlay } from "./error-overlay.js";
 import { isLeader } from "./leader_election.js";
 import LocalServerWorker from "./local-server-worker?worker";
 let localWorker: Worker | null = null;
+let workerFailure: Error | null = null;
 const pending = new Map();
 /** Restores in flight, by id, each with the progress callback that stays on this side. */
 const restores = new Map<string, {
@@ -16,6 +17,21 @@ const restores = new Map<string, {
     reject: (reason: unknown) => void;
     onProgress?: (progress: StandaloneRestoreProgress) => void;
 }>();
+
+/** Settle every channel owned by the failed worker, including the separate restore channel. */
+function failWorkerWaiters(error: Error): void {
+    workerFailure = error;
+    for (const resolver of pending.values()) resolver.reject(error);
+    pending.clear();
+    for (const resolver of restores.values()) resolver.reject(error);
+    restores.clear();
+    for (const settle of securityChanges.values()) settle(false);
+    setBackupPinging(false);
+    settlePendingDownload({ status: "failed", message: error.message });
+    for (const fail of backupStreamFailures) fail(error);
+}
+
+const backupStreamFailures = new Set<(error: Error) => void>();
 
 /**
  * Carries the worker's WebSocket-style messages from the leader tab to the
@@ -85,17 +101,23 @@ export function restoreBackup(opts: {
         ));
     }
 
+    if (workerFailure) return Promise.reject(workerFailure);
     const worker = startLocalServerWorker();
     const id = Math.random().toString(36).slice(2);
 
     return new Promise((resolve, reject) => {
         restores.set(id, { resolve, reject, onProgress: opts.onProgress });
-        worker.postMessage({
-            type: "RESTORE_BACKUP",
-            id,
-            backup: opts.backup,
-            passphrase: opts.passphrase
-        });
+        try {
+            worker.postMessage({
+                type: "RESTORE_BACKUP",
+                id,
+                backup: opts.backup,
+                passphrase: opts.passphrase
+            });
+        } catch (error) {
+            restores.delete(id);
+            reject(error);
+        }
     });
 }
 
@@ -122,7 +144,7 @@ let securityPort: MessagePort | null = null;
  * Only the leader tab has that worker. A follower is refused rather than served, as for a backup.
  */
 export function requestSecurityChange(setting: string, enabled: boolean): Promise<boolean> {
-    if (!isLeader()) {
+    if (workerFailure || !isLeader()) {
         return Promise.resolve(false);
     }
 
@@ -315,6 +337,17 @@ async function* backupChunks(passphrase: string | undefined): AsyncGenerator<Uin
 
     const arrived: unknown[] = [];
     let waiting: ((message: unknown) => void) | null = null;
+    const fail = (error: Error) => {
+        const message = { type: "error", message: error.message };
+        if (waiting) {
+            const resolve = waiting;
+            waiting = null;
+            resolve(message);
+        } else {
+            arrived.push(message);
+        }
+    };
+    backupStreamFailures.add(fail);
     port.onmessage = (event) => {
         if (waiting) {
             const resolve = waiting;
@@ -328,9 +361,8 @@ async function* backupChunks(passphrase: string | undefined): AsyncGenerator<Uin
         ? Promise.resolve(arrived.shift())
         : new Promise((resolve) => { waiting = resolve; });
 
-    worker.postMessage({ type: "BACKUP_STREAM", port: channel.port2, passphrase }, [ channel.port2 ]);
-
     try {
+        worker.postMessage({ type: "BACKUP_STREAM", port: channel.port2, passphrase }, [ channel.port2 ]);
         const begin = await next() as { type?: string; message?: string } | null;
         if (begin?.type !== "begin") {
             throw new Error(begin?.message ?? "The backup stream did not start.");
@@ -357,6 +389,7 @@ async function* backupChunks(passphrase: string | undefined): AsyncGenerator<Uin
     } finally {
         // Ends the stream for a consumer that stopped early — a failed write, say — rather than
         // leaving the worker reading pages nothing will collect.
+        backupStreamFailures.delete(fail);
         port.postMessage({ type: "cancel" });
         port.close();
     }
@@ -451,6 +484,7 @@ export function registerNativeHttpHandler(handler: NativeHttpHandler) {
 }
 
 export function startLocalServerWorker() {
+    if (workerFailure) throw workerFailure;
     if (localWorker) return localWorker;
     localWorker = new LocalServerWorker();
 
@@ -479,11 +513,7 @@ export function startLocalServerWorker() {
             "Trilium couldn't start",
             event.message || "The database worker failed to start. See the console for details."
         );
-        // Reject all pending requests
-        for (const [, resolver] of pending) {
-            resolver.reject(new Error(`Worker error: ${event.message}`));
-        }
-        pending.clear();
+        failWorkerWaiters(new Error(`Worker error: ${event.message}`));
     };
 
     localWorker.onmessage = (event) => {
@@ -512,6 +542,7 @@ export function startLocalServerWorker() {
         if (msg?.type === "FATAL_ERROR") {
             console.error("[LocalBridge] Fatal error:", msg.message);
             showErrorOverlay("Trilium crashed", msg.message);
+            failWorkerWaiters(new Error(msg.message || "The database worker crashed."));
             return;
         }
 
@@ -529,11 +560,7 @@ export function startLocalServerWorker() {
                 msg.error?.message || "The database worker reported an error.",
                 msg.error?.stack
             );
-            // Reject all pending requests with the error
-            for (const [, resolver] of pending) {
-                resolver.reject(new Error(msg.error?.message || "Unknown worker error"));
-            }
-            pending.clear();
+            failWorkerWaiters(new Error(msg.error?.message || "Unknown worker error"));
             return;
         }
 

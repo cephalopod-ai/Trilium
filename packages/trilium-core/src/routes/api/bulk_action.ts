@@ -8,7 +8,7 @@ function execute(req: Request) {
         throw new Error("noteIds must be an array");
     }
 
-    const affectedNoteIds = getAffectedNoteIds(noteIds, includeDescendants);
+    const affectedNoteIds = getAffectedNoteIds(noteIds, includeDescendants, true);
 
     const bulkActionNote = becca.getNoteOrThrow("_bulkAction");
 
@@ -18,9 +18,9 @@ function execute(req: Request) {
                 throw new Error("Action must have a name");
             }
         }
-        bulkActionService.executeActions(actions, affectedNoteIds);
+        return bulkActionService.executeActions(actions, affectedNoteIds);
     } else {
-        bulkActionService.executeActionsFromNote(bulkActionNote, affectedNoteIds);
+        return bulkActionService.executeActionsFromNote(bulkActionNote, affectedNoteIds);
     }
 }
 
@@ -34,13 +34,14 @@ function getAffectedNoteCount(req: Request) {
     };
 }
 
-function getAffectedNoteIds(noteIds: string[], includeDescendants: boolean) {
+function getAffectedNoteIds(noteIds: string[], includeDescendants: boolean, includeMissing = false) {
     const affectedNoteIds = new Set<string>();
 
     for (const noteId of noteIds) {
         const note = becca.getNote(noteId);
 
         if (!note) {
+            if (includeMissing) affectedNoteIds.add(noteId);
             continue;
         }
 

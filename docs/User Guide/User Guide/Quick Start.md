@@ -17,3 +17,5 @@
 2.  <a class="reference-link" href="Installation%20%26%20Setup/Mobile%20Frontend.md">Mobile Frontend</a> (optional)
 3.  <a class="reference-link" href="Installation%20%26%20Setup/Desktop%20Installation.md">Desktop Installation</a>
 4.  <a class="reference-link" href="Installation%20%26%20Setup/Synchronization.md">Synchronization</a>
+
+**Standalone browser storage** - The <a class="reference-link" href="Installation%20%26%20Setup/Standalone%20web%20app.md">Standalone web app</a> runs Trilium in the browser with a local database and cached application files.

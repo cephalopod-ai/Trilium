@@ -1,9 +1,18 @@
+import "./react_utils.css";
+
 import { ComponentChild, createContext, render, type JSX, type RefObject } from "preact";
-import { useContext } from "preact/hooks";
+import { lazy, Suspense } from "preact/compat";
+import { useContext, useErrorBoundary } from "preact/hooks";
 
 import type { CommandMappings, CommandNames } from "../../components/app_context";
 import Component from "../../components/component";
 import NoteContext from "../../components/note_context";
+import { t } from "../../services/i18n";
+import Alert from "./Alert";
+
+// The shared button imports hooks that depend on this module. Load it only on failure,
+// after widget initialization, to keep the normal mount path free of that import cycle.
+const RetryButton = lazy(() => import("./Button"));
 
 export const ParentComponent = createContext<Component | null>(null);
 
@@ -80,22 +89,41 @@ export function refToJQuerySelector<T extends HTMLElement>(
  * @returns the rendered wrapped DOM element.
  */
 export function renderReactWidget(parentComponent: Component | null, el: JSX.Element) {
-    return renderReactWidgetAtElement(parentComponent, el, new DocumentFragment()).children();
+    // Keep the Preact mount with its children when the caller inserts it elsewhere. A fragment
+    // loses its children on insertion, so a later root replacement would render off-screen.
+    const container = document.createElement("div");
+    container.className = "react-widget-mount";
+    return renderReactWidgetAtElement(parentComponent, el, container);
 }
 
 export function renderReactWidgetAtElement(parentComponent: Component | null, el: JSX.Element, container: Element | DocumentFragment) {
     render((
         <ParentComponent.Provider value={parentComponent}>
-            {el}
+            <WidgetErrorBoundary>{el}</WidgetErrorBoundary>
         </ParentComponent.Provider>
     ), container);
     return $(container) as JQuery<HTMLElement>;
 }
 
+/** Isolates render/lifecycle failures to this mount. Event and async errors keep their own owners. */
+function WidgetErrorBoundary({ children }: { children: ComponentChild }) {
+    const [error, retry] = useErrorBoundary((cause) => console.error("Widget render failed:", cause));
+    if (error !== undefined) {
+        return <div role="alert">
+            <Alert type="danger" title={t("widget.render_failed")}>
+                <Suspense fallback={null}>
+                    <RetryButton text={t("note_detail.content_load_retry")} onClick={retry} />
+                </Suspense>
+            </Alert>
+        </div>;
+    }
+    return <>{children}</>;
+}
+
 /**
  * Unmounts the tree rendered into `container`, running every effect cleanup and releasing the DOM
  * the vnodes still point at. `container` has to be the element the tree was rendered *into* -- for a
- * widget built by `renderReactWidget()` that is the fragment, not the `$widget` it returned.
+ * widget built by `renderReactWidget()` that is the returned mount element.
  */
 export function disposeReactWidget(container: Element | DocumentFragment) {
     render(null, container);

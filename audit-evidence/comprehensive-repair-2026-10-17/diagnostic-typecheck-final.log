@@ -1,0 +1,10 @@
+$ tsx scripts/filter-tsc-output.mts
+[1] apps/client/src/widgets/collections/board/api.spec.ts(409,68): error TS2322: Type 'Promise<void>' is not assignable to type 'Promise<BulkActionResult>'.
+  Type 'void' is not assignable to type 'BulkActionResult'.
+[2] apps/client/src/widgets/collections/board/api.spec.ts(484,68): error TS2322: Type 'Promise<void>' is not assignable to type 'Promise<BulkActionResult>'.
+  Type 'void' is not assignable to type 'BulkActionResult'.
+[3] apps/client/src/widgets/collections/board/index.spec.tsx(3252,70): error TS2322: Type '(value: BulkActionResult | PromiseLike<BulkActionResult>) => void' is not assignable to type '() => void'.
+  Target signature provides too few arguments. Expected 1 or more, but got 0.
+
+3 error(s) found.
+[ELIFECYCLE] Command failed with exit code 1.

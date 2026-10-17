@@ -2,13 +2,12 @@ import { useEffect, useState, useCallback } from "preact/hooks";
 import { t } from "../../services/i18n";
 import Modal from "../react/Modal";
 import "./bulk_actions.css";
-import { BulkActionAffectedNotes } from "@triliumnext/commons";
+import { type BulkAction, BulkActionAffectedNotes } from "@triliumnext/commons";
 import server from "../../services/server";
 import FormCheckbox from "../react/FormCheckbox";
 import Button from "../react/Button";
-import bulk_action from "../../services/bulk_action";
+import bulk_action, { executeBulkActions } from "../../services/bulk_action";
 import dialog from "../../services/dialog";
-import toast from "../../services/toast";
 import AbstractBulkAction from "../bulk_actions/abstract_bulk_action";
 import FNote from "../../entities/fnote";
 import froca from "../../services/froca";
@@ -78,15 +77,9 @@ export default function BulkActionsDialog() {
                 const actions = existingActions.map((action) => ({
                     ...action.actionDef,
                     name: (action.constructor as typeof AbstractBulkAction).actionName
-                }));
+                })) as BulkAction[];
 
-                await server.post("bulk-action/execute", {
-                    noteIds: selectedOrActiveNoteIds,
-                    includeDescendants,
-                    actions
-                });
-
-                toast.showMessage(t("bulk_actions.bulk_actions_executed"), 3000);
+                await executeBulkActions(selectedOrActiveNoteIds ?? [], actions, { includeDescendants });
                 setShown(false);
             }}
             onHidden={() => setShown(false)}

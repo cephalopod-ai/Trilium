@@ -174,21 +174,14 @@ export function timeLimit<T>(promise: Promise<T>, limitMs: number, errorMessage?
     const errorTimeLimit = new Error(errorMessage || `Process exceeded time limit ${limitMs}`);
 
     return new Promise((res, rej) => {
-        let resolved = false;
-
-        promise
-            .then((result) => {
-                resolved = true;
-
-                res(result);
-            })
-            .catch((error) => rej(error));
-
-        setTimeout(() => {
-            if (!resolved) {
-                rej(errorTimeLimit);
-            }
-        }, limitMs);
+        const timer = setTimeout(() => rej(errorTimeLimit), limitMs);
+        promise.then((result) => {
+            clearTimeout(timer);
+            res(result);
+        }, (error) => {
+            clearTimeout(timer);
+            rej(error);
+        });
     });
 }
 

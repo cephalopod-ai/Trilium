@@ -76,7 +76,7 @@ describe("Bulk action API (core)", () => {
                     ]
                 }
             });
-            expect(exec.status).toBe(204);
+            expect(exec.status).toBe(200);
 
             const after = await getLabels(noteId);
             const added = after.body.find((attr) => attr.name === "bulkAdded");
@@ -104,7 +104,7 @@ describe("Bulk action API (core)", () => {
                     actions: [ { name: "deleteLabel", labelName: "toRemove" } ]
                 }
             });
-            expect(exec.status).toBe(204);
+            expect(exec.status).toBe(200);
 
             const afterDelete = await getLabels(noteId);
             expect(afterDelete.body.some((attr) => attr.name === "toRemove")).toBe(false);
@@ -116,7 +116,7 @@ describe("Bulk action API (core)", () => {
             const exec = await api.post("/api/bulk-action/execute", {
                 body: { noteIds: [ noteId ], actions: [] }
             });
-            expect(exec.status).toBe(204);
+            expect(exec.status).toBe(200);
         });
     });
 

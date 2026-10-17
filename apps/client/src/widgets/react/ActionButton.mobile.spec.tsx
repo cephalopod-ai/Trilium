@@ -38,13 +38,13 @@ describe("ActionButton on a touch screen", () => {
         expect(button?.getAttribute("aria-label")).toBe("Back");
     });
 
-    it("keeps the tooltip, and leaves the name to it, for a button that did not ask", async () => {
+    it("keeps both the tooltip and an accessible name when the tooltip is enabled", async () => {
         await act(async () => render(
             <ActionButton icon="bx bx-refresh" text="Measure again" />, container));
 
         const button = container.querySelector("button");
 
         expect(button && Tooltip.getInstance(button)).not.toBeNull();
-        expect(button?.getAttribute("aria-label")).toBeNull();
+        expect(button?.getAttribute("aria-label")).toBe("Measure again");
     });
 });

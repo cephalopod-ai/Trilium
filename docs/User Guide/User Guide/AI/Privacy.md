@@ -53,6 +53,8 @@ The same applies to the <a class="reference-link" href="../Note%20Types/Text/In
 
 ## What you control
 
+_Show AI features_ controls visibility, including the sidebar and creation of chat notes. Existing chats can still send messages when it is off. Stop an active response with the chat's stop control; turn off note access separately when you want to revoke its tools.
+
 *   **Which provider**: the single decision that determines whether anything leaves your machine at all.
 *   **Note access**: turn it off in the <span class="tn-icon bx bx-shield-quarter"></span> _Tools_ menu at the bottom of the chat, and the model can read nothing beyond what you type.
 *   **The current note:** the file icon in the sidebar chat.

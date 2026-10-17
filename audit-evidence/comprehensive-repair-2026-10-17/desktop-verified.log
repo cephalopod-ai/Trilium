@@ -1,0 +1,154 @@
+$ vitest --config vitest.config.mts src/services/printing.spec.ts src/services/request.spec.ts src/preload.spec.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.mts:7:11). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.3 <repo>/apps/desktop
+
+stdout | src/preload.spec.ts
+Migration with JS module
+
+stdout | src/services/printing.spec.ts
+Migration with JS module
+
+stdout | src/services/request.spec.ts
+Migration with JS module
+
+ ✓ src/preload.spec.ts > preload script > exposes electronApi on the window 8ms
+ ✓ src/preload.spec.ts > preload script > window > setZoomFactor delegates to webFrame 1ms
+ ✓ src/preload.spec.ts > preload script > window > getZoomFactor delegates to webFrame 0ms
+ ✓ src/preload.spec.ts > preload script > window > setNativeThemeSource sends correct IPC message 1ms
+ ✓ src/preload.spec.ts > preload script > window > setTitleBarOverlay sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > setWindowButtonPosition sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > onEnterFullScreen registers and forwards enter-full-screen channel 1ms
+ ✓ src/preload.spec.ts > preload script > window > onLeaveFullScreen registers and forwards leave-full-screen channel 1ms
+ ✓ src/preload.spec.ts > preload script > window > isFullScreen uses sendSync 0ms
+ ✓ src/preload.spec.ts > preload script > window > setFullScreen sends correct IPC message 1ms
+ ✓ src/preload.spec.ts > preload script > window > minimizeWindow sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > maximizeWindow sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > unmaximizeWindow sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > isMaximized uses sendSync 0ms
+ ✓ src/preload.spec.ts > preload script > window > closeWindow sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > isAlwaysOnTop uses sendSync 1ms
+ ✓ src/preload.spec.ts > preload script > window > setAlwaysOnTop sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > toggleDevTools sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > isDevToolsDocked uses sendSync 0ms
+ ✓ src/preload.spec.ts > preload script > window > onDevToolsDockChanged registers and forwards the dock state 1ms
+ ✓ src/preload.spec.ts > preload script > window > reloadAllWindows sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > restartApp sends correct IPC message 1ms
+ ✓ src/preload.spec.ts > preload script > window > toggleAllWindows sends correct IPC message 1ms
+ ✓ src/preload.spec.ts > preload script > window > showWindow sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > reportStartupMetric sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > window > clearCache invokes correct IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > window > setBackgroundMaterial sends correct IPC message 1ms
+ ✓ src/preload.spec.ts > preload script > window > setVibrancy sends correct IPC message 1ms
+ ✓ src/preload.spec.ts > preload script > window > onGlobalShortcut registers and forwards globalShortcut channel 1ms
+ ✓ src/preload.spec.ts > preload script > window > onOpenInSameTab registers and forwards openInSameTab channel 1ms
+ ✓ src/services/printing.spec.ts > printing — pure helpers > parseMargins > expands presets to uniform numeric margins (mm → inches) 1ms
+ ✓ src/services/printing.spec.ts > printing — pure helpers > parseMargins > parses a four-part custom margin spec 0ms
+ ✓ src/services/printing.spec.ts > printing — pure helpers > parseMargins > falls back to 1cm uniform for malformed specs 0ms
+ ✓ src/services/printing.spec.ts > printing — pure helpers > parsePageRangesForPrint > returns undefined for empty / whitespace input 0ms
+ ✓ src/services/printing.spec.ts > printing — pure helpers > parsePageRangesForPrint > parses ranges and single pages, skipping blanks and NaNs 0ms
+ ✓ src/services/printing.spec.ts > printing — pure helpers > parsePageRangesForPrint > returns undefined when nothing parses 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > print-from-preview lifecycle > prints successfully and forwards the print report 2ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > print-from-preview lifecycle > shows an error box on print failure but not on user cancel 1ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > print-from-preview lifecycle > reports an error payload and destroys the window when the print window fails to load 2ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > print-from-preview lifecycle > uses offscreen rendering off Linux and forwards console output + progress 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > print-from-preview lifecycle > stringifies a non-Error rejection in the error payload 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > print-from-preview lifecycle > survives a failed error-handler injection and a failed note-ready wait 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > registers only the supported preview printing channels 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > PDF preview and save lifecycle > generates a PDF preview, then saves and opens its bytes 1ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > PDF preview and save lifecycle > does not write when the user cancels the save dialog 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > PDF preview and save lifecycle > returns preview generation errors to the preview dialog 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > PDF preview and save lifecycle > shows an error box when writing the file fails 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > PDF preview and save lifecycle > returns window errors to the preview dialog (Error and non-Error) 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > export-as-pdf-preview > returns the rendered buffer to the renderer 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > export-as-pdf-preview > returns an error result when rendering fails (Error and non-Error) 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > export-as-pdf-preview > returns an error result and destroys the window when the print window fails (Error and non-Error) 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > render timeout > fails the preview and destroys the window when the note never becomes ready 9ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > render timeout > restarts the timeout on every progress report 19ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > render timeout > ignores progress reports from other print windows 4ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > save-pdf > writes and opens the supplied buffer 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > save-pdf > does nothing without a focused window 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > save-pdf > does nothing when the save dialog is cancelled 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > save-pdf > shows an error box when writing fails 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > get-printers > maps printer metadata across the platform variants 1ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > get-printers > returns an empty list when enumeration throws 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > print-from-preview > prints with mapped options (Ledger → Tabloid) 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > print-from-preview > shows an error box on failure but not on cancel, and signals done 0ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > print-from-preview > reports an error payload when the print window fails (Error and non-Error) 6ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > live printing > previews the sender's own window, leaving it prepared 1ms
+ ✓ src/services/printing.spec.ts > setupPrintingHandlers > live printing > prints the sender's own window and reports print-done so it is restored 0ms
+ ✓ src/services/request.spec.ts > ElectronRequestProvider > uses electron.net for proxyless requests once the app is ready 1ms
+ ✓ src/services/request.spec.ts > ElectronRequestProvider > awaits app readiness before returning electron.net when not yet ready 0ms
+ ✓ src/services/request.spec.ts > ElectronRequestProvider > uses Node for a pinned image request, without Electron redirect following 2ms
+ ✓ src/services/request.spec.ts > ElectronRequestProvider > falls through to Node http(s) when an explicit proxy is configured 0ms
+ ✓ src/preload.spec.ts > preload script > clipboard > copyImageToClipboard sends correct IPC message 23ms
+ ✓ src/preload.spec.ts > preload script > clipboard > readText invokes correct IPC channel 1ms
+ ✓ src/preload.spec.ts > preload script > clipboard > readHTML invokes correct IPC channel 8ms
+ ✓ src/preload.spec.ts > preload script > shell > openExternal sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > shell > openPath invokes correct IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > shell > showItemInFolder sends correct IPC message 2ms
+ ✓ src/preload.spec.ts > preload script > shell > openFileUrl invokes correct IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > shell > downloadURL sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > shell > openCustom sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > contextMenu > onContextMenu registers and forwards context-menu channel 0ms
+ ✓ src/preload.spec.ts > preload script > contextMenu > webContentsAction sends action and optional text 0ms
+ ✓ src/preload.spec.ts > preload script > spellcheck > addWordToDictionary sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > spellcheck > getAvailableSpellCheckerLanguages uses sendSync 0ms
+ ✓ src/preload.spec.ts > preload script > spellcheck > setSpellCheckerLanguages sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > spellcheck > setSpellCheckerEnabled sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > systemIntegration > reloadTray sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > systemIntegration > reapplyLaunchOnStartup sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > printing > sendPrintProgress sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > printing > onPrintProgress registers and forwards print-progress channel 0ms
+ ✓ src/preload.spec.ts > preload script > printing > onPrintDone registers and forwards print-done channel 1ms
+ ✓ src/preload.spec.ts > preload script > printing > removePrintListeners clears both print listeners 0ms
+ ✓ src/preload.spec.ts > preload script > printing > getPrinters invokes correct IPC channel 1ms
+ ✓ src/preload.spec.ts > preload script > printing > exportAsPdfPreview sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > printing > onExportAsPdfPreviewResult registers and forwards channel 1ms
+ ✓ src/preload.spec.ts > preload script > printing > removeExportAsPdfPreviewResultListener clears listener 1ms
+ ✓ src/preload.spec.ts > preload script > printing > savePdf sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > printing > printFromPreview sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > navigation > clearNavigationHistory sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > navigation > navigationCanGoBack uses sendSync 0ms
+ ✓ src/preload.spec.ts > preload script > navigation > navigationCanGoForward uses sendSync 0ms
+ ✓ src/preload.spec.ts > preload script > navigation > navigationGetAllEntries uses sendSync 0ms
+ ✓ src/preload.spec.ts > preload script > navigation > navigationGetActiveIndex uses sendSync 0ms
+ ✓ src/preload.spec.ts > preload script > navigation > navigationLength uses sendSync 0ms
+ ✓ src/preload.spec.ts > preload script > navigation > navigationGoToIndex sends correct IPC message 0ms
+ ✓ src/preload.spec.ts > preload script > navigation > onDidNavigate registers and forwards did-navigate channel 0ms
+ ✓ src/preload.spec.ts > preload script > navigation > onDidNavigateInPage registers and forwards did-navigate-in-page channel 0ms
+ ✓ src/preload.spec.ts > preload script > navigation > removeDidNavigateListeners clears both navigation listeners 0ms
+ ✓ src/preload.spec.ts > preload script > ws > send forwards the message on the trilium-ws-from-renderer channel 0ms
+ ✓ src/preload.spec.ts > preload script > ws > onMessage subscribes to trilium-ws-message and forwards payloads 0ms
+ ✓ src/preload.spec.ts > preload script > ws > onMessage returns an unsubscribe that detaches only its own listener 0ms
+ ✓ src/preload.spec.ts > preload script > security > setBackendScriptingEnabled invokes the corresponding IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > security > setSqlConsoleEnabled invokes the corresponding IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > security > setLanAccessEnabled invokes the corresponding IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > backupPassphrase > getStatus invokes the corresponding IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > backupPassphrase > set invokes the corresponding IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > backupPassphrase > clear invokes the corresponding IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > backupPassphrase > exposes no way to read the passphrase back 0ms
+ ✓ src/preload.spec.ts > preload script > onenote > login invokes the corresponding IPC channel 1ms
+ ✓ src/preload.spec.ts > preload script > nativeExport > exportSubtreeToFile invokes the corresponding IPC channel with the options 0ms
+ ✓ src/preload.spec.ts > preload script > nativeImport > pickFiles invokes the open-dialog IPC channel with no path argument 0ms
+ ✓ src/preload.spec.ts > preload script > nativeImport > importFromToken forwards the token + options (never a path) to its IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > nativeImport > grantDroppedFiles resolves File objects to paths and forwards only those (dropping unresolved) 0ms
+ ✓ src/preload.spec.ts > preload script > dialog > pickDirectory forwards the starting location to its IPC channel 0ms
+ ✓ src/preload.spec.ts > preload script > dialog > pickDirectory may be called without a starting location 0ms
+ ✓ src/preload.spec.ts > preload script > dialog > confirmStartOver invokes its IPC channel, passing nothing it could steer 0ms
+ ✓ src/preload.spec.ts > preload script > restore > pickBackup invokes the open-dialog IPC channel, passing nothing it could steer 0ms
+ ✓ src/preload.spec.ts > preload script > transcription > start, stop, getState and renameSpeaker invoke their IPC channels 0ms
+ ✓ src/preload.spec.ts > preload script > transcription > onStateChanged relays each state until unsubscribed 0ms
+
+ Test Files  3 passed (3)
+      Tests  127 passed (127)
+   Start at  09:13:38
+   Duration  3.80s (transform 80%, setup 17%, tests 3%)
+
+  Transform  transforming modules took 8.85s · 80% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+
+JUNIT report written to <repo>/apps/desktop/test-output/vitest/junit.xml

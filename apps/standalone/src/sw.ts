@@ -1,11 +1,10 @@
 // public/sw.js
-const VERSION = "localserver-v1.4";
+const VERSION = "localserver-v1.5";
 const STATIC_CACHE = `static-${VERSION}`;
 
-// Check if running in dev mode (passed via URL parameter)
-const isDev = true;
+// Vite replaces this at build time; development always fetches fresh assets.
+const isDev = import.meta.env.DEV;
 
-/* v8 ignore next 3 -- @preserve: isDev is hardcoded true, so the dev-mode log always runs and has no testable alternate branch. */
 if (isDev) {
     console.log('[Service Worker] Running in DEV mode - caching disabled');
 }
@@ -20,23 +19,16 @@ const LOCAL_FIRST_PREFIXES = [
     "/custom/"
 ];
 
-// Optional: basic precache list (keep small; you can expand later)
-const PRECACHE_URLS = [
-    // "/",
-    // "/index.html",
-    // "/manifest.webmanifest",
-    // "/favicon.ico",
-];
+// Seed the entry page even when registration happens after the first navigation.
+const PRECACHE_URLS = ["/", "/index.html"];
 
 self.addEventListener("install", (event) => {
     event.waitUntil((async () => {
         // Skip precaching in dev mode
-        /* v8 ignore start -- @preserve: isDev is hardcoded true, so precaching never runs. */
         if (!isDev) {
             const cache = await caches.open(STATIC_CACHE);
             await cache.addAll(PRECACHE_URLS);
         }
-        /* v8 ignore stop */
         self.skipWaiting();
     })());
 });
@@ -45,7 +37,7 @@ self.addEventListener("activate", (event) => {
     event.waitUntil((async () => {
     // Cleanup old caches
         const keys = await caches.keys();
-        await Promise.all(keys.map((k) => (k === STATIC_CACHE ? Promise.resolve() : caches.delete(k))));
+        await Promise.all(keys.map((k) => (k === STATIC_CACHE || !k.startsWith("static-") ? Promise.resolve() : caches.delete(k))));
         await self.clients.claim();
     })());
 });
@@ -68,7 +60,6 @@ function isShareRequest(pathname) {
 }
 
 async function cacheFirst(request) {
-    /* v8 ignore start -- @preserve: isDev is hardcoded true, so only the dev bypass executes; the cache implementation is dead code. */
     // In dev mode, always bypass cache
     if (isDev) {
         return fetch(request);
@@ -80,13 +71,13 @@ async function cacheFirst(request) {
 
     const fresh = await fetch(request);
     // Cache only successful GETs
-    if (request.method === "GET" && fresh.ok) cache.put(request, fresh.clone());
+    if (request.method === "GET" && fresh.ok) {
+        try { await cache.put(request, fresh.clone()); } catch { /* A full cache must not break online use. */ }
+    }
     return fresh;
-    /* v8 ignore stop */
 }
 
 async function networkFirst(request) {
-    /* v8 ignore start -- @preserve: isDev is hardcoded true, so only the dev bypass executes; the cache implementation is dead code. */
     // In dev mode, always bypass cache
     if (isDev) {
         return fetch(request);
@@ -96,7 +87,9 @@ async function networkFirst(request) {
     try {
         const fresh = await fetch(request);
         // Cache only successful GETs
-        if (request.method === "GET" && fresh.ok) cache.put(request, fresh.clone());
+        if (request.method === "GET" && fresh.ok) {
+            try { await cache.put(request, fresh.clone()); } catch { /* A full cache must not break online use. */ }
+        }
         return fresh;
     } catch (error) {
         // Fallback to cache if network fails
@@ -104,7 +97,6 @@ async function networkFirst(request) {
         if (cached) return cached;
         throw error;
     }
-    /* v8 ignore stop */
 }
 
 // Only one tab owns the database (it holds the Web Lock and is the only one with
@@ -438,9 +430,11 @@ self.addEventListener("fetch", (event) => {
         return;
     }
 
-    // Static assets: cache-first for performance
+    // Content-hashed assets are immutable. Unhashed assets must pick up new builds.
     if (event.request.method === "GET") {
-        event.respondWith(cacheFirst(event.request));
+        event.respondWith(/-[\w-]{8,}\.[\w.]+$/.test(url.pathname)
+            ? cacheFirst(event.request)
+            : networkFirst(event.request));
         return;
     }
 

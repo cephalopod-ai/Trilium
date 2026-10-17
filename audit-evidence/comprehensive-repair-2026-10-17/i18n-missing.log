@@ -1,0 +1,13 @@
+--- apps/client/src (resolves against client + entry)
+  apps/client/src/services/i18n.spec.ts:111  t("escaping.probe")
+  apps/client/src/widgets/type_widgets/canvas/CanvasDrawingMenu.tsx:28  t("toolBar.library")
+  apps/client/src/widgets/type_widgets/canvas/CanvasEmbedTools.tsx:300  t("toolBar.lock")
+  apps/client/src/widgets/type_widgets/canvas/CanvasEmbedTools.tsx:314  t("toolBar.extraTools")
+  apps/client/src/widgets/type_widgets/canvas/CanvasEmbedTools.tsx:356  t("buttons.zoomOut")
+  apps/client/src/widgets/type_widgets/canvas/CanvasEmbedTools.tsx:363  t("buttons.resetZoom")
+  apps/client/src/widgets/type_widgets/canvas/CanvasEmbedTools.tsx:370  t("buttons.zoomIn")
+--- apps/server/src, apps/desktop/src, packages/trilium-core/src (resolves against server)
+  packages/trilium-core/src/services/hidden_subtree_launcherbar.ts:143  t("hidden-subtree.llm-chat-title")
+
+8 key(s) used in code but absent from their catalog.
+Each is either a typo or a string never added — `find --key <fragment>` to check for a near-miss.

@@ -648,6 +648,24 @@ describe("saveDatabase", () => {
 });
 
 describe("restoreBackup", () => {
+    it.each(["onerror", "WORKER_ERROR", "FATAL_ERROR"])("settles all restore waiters on %s and ignores late results", async (kind) => {
+        const bridge = await freshBridge();
+        const progress = vi.fn();
+        const first = bridge.restoreBackup({ backup: new File(["one"], "one.db"), onProgress: progress });
+        const second = bridge.restoreBackup({ backup: new File(["two"], "two.db") });
+        const firstFailure = expect(first).rejects.toThrow("crash");
+        const secondFailure = expect(second).rejects.toThrow("crash");
+        const worker = lastWorker();
+        const { id } = restoreMessage(worker);
+        if (kind === "onerror") worker.onerror?.({ message: "crash" });
+        else worker.onmessage?.({ data: { type: kind, message: "crash", error: { message: "crash" } } });
+        await Promise.all([firstFailure, secondFailure]);
+        await expect(bridge.restoreBackup({ backup: new File(["three"], "three.db") })).rejects.toThrow("crash");
+        worker.onmessage?.({ data: { type: "RESTORE_PROGRESS", id, progress: {} } });
+        worker.onmessage?.({ data: { type: "RESTORE_RESULT", id, result: { status: "restored" } } });
+        expect(progress).not.toHaveBeenCalled();
+    });
+
     /** The message the bridge sent to the worker to start a restore. */
     function restoreMessage(worker: MockWorker) {
         const sent = worker.postMessage.mock.calls

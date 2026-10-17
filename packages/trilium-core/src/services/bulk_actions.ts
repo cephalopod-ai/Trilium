@@ -1,4 +1,4 @@
-import { ActionHandlers, BulkAction, BulkActionData, evaluateTemplate } from "@triliumnext/commons";
+import { ActionHandlers, BulkAction, BulkActionData, type BulkActionResult, evaluateTemplate } from "@triliumnext/commons";
 import branchService from "./branches";
 import eraseService from "./erase.js";
 
@@ -11,7 +11,8 @@ import { executeBundle } from "./script.js";
 import { assertScriptingEnabled } from "./scripting_guard.js";
 import { randomString } from "./utils/index.js";
 
-type ActionHandler<T> = (action: T, note: BNote) => void;
+/** Returning a reason marks an intentionally skipped action. Failures throw. */
+type ActionHandler<T> = (action: T, note: BNote) => void | string;
 
 type ActionHandlerMap = {
     [K in keyof ActionHandlers]: ActionHandler<BulkActionData<K>>;
@@ -34,7 +35,7 @@ const ACTION_HANDLERS: ActionHandlerMap = {
         // rather than throwing and aborting the whole batch.
         if (!note.isContentAvailable()) {
             getLog().info(`Skipping saveRevision for protected note ${note.noteId}.`);
-            return;
+            return "Protected note content is unavailable.";
         }
         note.saveRevision({ description: action.revisionName ?? "", source: "manual" });
     },
@@ -101,7 +102,7 @@ const ACTION_HANDLERS: ActionHandlerMap = {
         if (!targetParentNote) {
             getLog().info(`Cannot execute moveNote because note ${action.targetParentNoteId} doesn't exist.`);
 
-            return;
+            return "The target parent note does not exist.";
         }
 
         let res;
@@ -113,18 +114,20 @@ const ACTION_HANDLERS: ActionHandlerMap = {
         }
 
         if ("success" in res && !res.success) {
-            getLog().info(`Moving/cloning note ${note.noteId} to ${action.targetParentNoteId} failed with error ${JSON.stringify(res)}`);
+            throw new Error(`Moving/cloning note failed: ${JSON.stringify(res)}`);
         }
     },
     convertNote: (action, note) => {
         // Only converts notes matching the conversion's expected source type; others are skipped.
-        noteFormatConversionService.convertNoteByConversionId(note, action.conversion);
+        if (!noteFormatConversionService.convertNoteByConversionId(note, action.conversion)) {
+            return "The conversion does not apply or the note content is unavailable.";
+        }
     },
     executeScript: (action, note) => {
         assertScriptingEnabled();
         if (!action.script || !action.script.trim()) {
             getLog().info("Ignoring executeScript since the script is empty.");
-            return;
+            return "The script is empty.";
         }
 
         // Route through the script service's executeBundle instead of raw
@@ -180,25 +183,34 @@ function executeActionsFromNote(note: BNote, noteIds: string[] | Set<string>) {
     return executeActions(actions, noteIds);
 }
 
-function executeActions(actions: BulkAction[], noteIds: string[] | Set<string>) {
+function executeActions(actions: BulkAction[], noteIds: string[] | Set<string>): BulkActionResult {
+    const result: BulkActionResult = { applied: 0, skipped: 0, failed: 0, outcomes: [] };
     for (const resultNoteId of noteIds) {
         const resultNote = becca.getNote(resultNoteId);
 
-        if (!resultNote) {
-            continue;
-        }
-
         for (const action of actions) {
             try {
+                if (!resultNote) {
+                    result.skipped++;
+                    result.outcomes.push({ noteId: resultNoteId, actionName: action.name, status: "skipped", message: "The note no longer exists." });
+                    continue;
+                }
                 getLog().info(`Applying action handler to note ${resultNote.noteId}: ${JSON.stringify(action)}`);
 
-                const handler = ACTION_HANDLERS[action.name] as (a: typeof action, n: BNote) => void;
-                handler(action, resultNote);
+                const handler = ACTION_HANDLERS[action.name] as ActionHandler<typeof action>;
+                const message = handler(action, resultNote);
+                const status = message ? "skipped" : "applied";
+                result[status]++;
+                result.outcomes.push({ noteId: resultNoteId, actionName: action.name, status, ...(message ? { message } : {}) });
             } catch (e: any) {
-                getLog().error(`ExecuteScript search action failed with ${e.message}`);
+                const message = e instanceof Error ? e.message : String(e);
+                getLog().error(`Bulk action ${action.name} failed on note ${resultNoteId}: ${message}`);
+                result.failed++;
+                result.outcomes.push({ noteId: resultNoteId, actionName: action.name, status: "failed", message });
             }
         }
     }
+    return result;
 }
 
 export default {

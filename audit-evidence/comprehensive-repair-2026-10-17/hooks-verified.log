@@ -1,0 +1,37 @@
+
+ RUN  v5.0.3 <repo>/apps/client
+
+ ✓ src/widgets/react/hooks.spec.tsx:92 > useDelayedVisibility > never shows when loading finishes within the grace period 3ms
+ ✓ src/widgets/react/hooks.spec.tsx:103 > useDelayedVisibility > shows after the grace period and stays for the minimum visible time 1ms
+ ✓ src/widgets/react/hooks.spec.tsx:120 > useDelayedVisibility > escalates to stalled after continuous loading, then hides immediately once loading ends 1ms
+ ✓ src/widgets/react/hooks.spec.tsx:136 > useDetachedNoteContext > registers the context while it is in use, and unregisters it once replaced or unmounted 1ms
+ ✓ src/widgets/react/hooks.spec.tsx:202 > useFocusWithin > follows the focus into the element and out of it, but not out of the window 5ms
+ ✓ src/widgets/react/hooks.spec.tsx:223 > useFocusWithin > counts the focus in a frame inside, which only the window reports 2ms
+ ✓ src/widgets/react/hooks.spec.tsx:263 > useStaticTooltip > removes a shown tooltip popup when the trigger element is remounted (#10567) 8ms
+ ✓ src/widgets/react/hooks.spec.tsx:280 > useStaticTooltip > puts the tooltip away on a press, which would otherwise leave it standing over what the press opened 3ms
+ ✓ src/widgets/react/hooks.spec.tsx:319 > useStaticTooltip > removes an orphaned popup when a delegated tooltip's hovered child is removed without a mouseleave (#10680) 4ms
+ ✓ src/widgets/react/hooks.spec.tsx:351 > useStaticTooltip > stops tracking a delegated tooltip that was put away normally, and leaves its instance alone 3ms
+ ✓ src/widgets/react/hooks.spec.tsx:391 > useStaticTooltip > leaves a shown delegated tooltip standing when the mutation removed something else 2ms
+ ✓ src/widgets/react/hooks.spec.tsx:420 > useStaticTooltip > removes the popup by its aria-describedby link when the instance is already gone 2ms
+ ✓ src/widgets/react/hooks.spec.tsx:477 > useTooltip > keeps a manually shown tooltip up after a hover too short for its fade-in 127ms
+ ✓ src/widgets/react/hooks.spec.tsx:560 > useImperativeSearchHighlighlighting > wraps a diacritic match when searching a plain, unaccented token (#10616) 2ms
+ ✓ src/widgets/react/hooks.spec.tsx:565 > useImperativeSearchHighlighlighting > wraps a CJK substring match inside a larger word 0ms
+ ✓ src/widgets/react/hooks.spec.tsx:570 > useImperativeSearchHighlighlighting > clears previous highlights once the tokens are cleared 1ms
+ ✓ src/widgets/react/hooks.spec.tsx:590 > useImperativeSearchHighlighlighting > does not touch an element that was never highlighted 0ms
+ ✓ src/widgets/react/hooks.spec.tsx:602 > useImperativeSearchHighlighlighting > wraps every match of a regex-typed token (#5332) 0ms
+ ✓ src/widgets/react/hooks.spec.tsx:607 > useImperativeSearchHighlighlighting > skips an invalid regex token without throwing 0ms
+ ✓ src/widgets/react/hooks.spec.tsx:612 > useImperativeSearchHighlighlighting > still highlights when given legacy string[] input 0ms
+ ✓ src/widgets/react/hooks.spec.tsx:617 > useImperativeSearchHighlighlighting > is a no-op for null or undefined tokens 0ms
+ ✓ src/widgets/react/hooks.spec.tsx:629 > useImperativeSearchHighlighlighting > highlights matches and opens the collapsed <details> that contains them 0ms
+ ✓ src/widgets/react/hooks.spec.tsx:635 > useImperativeSearchHighlighlighting > leaves a collapsed block closed when it holds no match 0ms
+ ✓ src/widgets/react/hooks.spec.tsx:657 > useNoteLabelBoolean > draws a consumer once for a label that has not changed 2ms
+ ✓ src/widgets/react/hooks.spec.tsx:678 > useMediaQuery > follows whether the query matches, and stops listening once unmounted 0ms
+
+ Test Files  1 passed (1)
+      Tests  25 passed (25)
+   Start at  09:18:20
+   Duration  1.16s (transform 49%, tests 21%, environment 17%, import 11%, setup 2%)
+
+JUNIT report written to <repo>/apps/client/test-output/vitest/junit.xml
+ HTML  Report is generated
+       You can run npx vite preview --outDir .vitest to see the test results.

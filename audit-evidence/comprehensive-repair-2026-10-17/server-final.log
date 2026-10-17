@@ -1,0 +1,414 @@
+$ vitest services/utils/index.spec.ts services/bulk_actions.spec.ts routes/api/bulk_action.spec.ts services/task_context.spec.ts services/llm/index.spec.ts src/services/request.spec.ts src/log_provider.spec.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.mts:5:26). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.3 <repo>/apps/server
+
+Migration with JS module
+Migration with JS module
+Migration with JS module
+Migration with JS module
+Got error  Error: rollback
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/services/task_context.spec.ts:240:19)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/services/task_context.spec.ts:238:55
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at <repo>/packages/trilium-core/src/services/task_context.spec.ts:238:35
+    at Proxy.assertThrows (file://<repo>/node_modules/chai/index.js:2798:5)
+    at Proxy.methodWrapper (file://<repo>/node_modules/chai/index.js:1700:25)
+    at Proxy.<anonymous> (file://<repo>/node_modules/vitest/dist/chunks/index.C4tKZ0yW.js:1990:12)
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:29 > TaskContext > construction > emits an initial progress message on creation with the task metadata 2ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:43 > TaskContext > construction > exposes the provided data and a default noteDeletionHandlerTriggered flag 0ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:50 > TaskContext > construction > does not emit any message for the reserved no-progress-reporting task id 0ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:58 > TaskContext > increaseProgressCount > throttles progress messages to at most once per 300ms window 2ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:90 > TaskContext > increaseProgressCount > never sends progress messages for the reserved no-progress-reporting id 0ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:102 > TaskContext > increaseProgressCount > includes the total once set, and omits it until then 0ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:119 > TaskContext > setPhase > tags subsequent progress messages with the phase and flushes the next one immediately 1ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:141 > TaskContext > reportPhase and clearPhase > pushes the phase immediately and drops it from the next flushed count 1ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:172 > TaskContext > reportPhase and clearPhase > stays silent for the reserved no-progress-reporting id 0ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:180 > TaskContext > reportError > broadcasts a taskError message with the failure text and task metadata 0ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:198 > TaskContext > taskSucceeded > broadcasts a taskSucceeded message carrying the result payload 0ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:216 > TaskContext > scheduled erases > accumulates deleteIds across a task group and hands them over exactly once 1ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:230 > TaskContext > keeps a task group until its success transaction commits and preserves it on rollback 2ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:245 > TaskContext > releases completed contexts and expires abandoned groups without evicting active ones 1ms
+ ✓ ../../packages/trilium-core/src/services/task_context.spec.ts:261 > TaskContext > getInstance > creates a single cached context per task id and reuses it on later lookups 0ms
+Migration with JS module
+Migration with JS module
+ ✓ ../../packages/trilium-core/src/services/request.spec.ts:18 > request provider (core) > throws and reports uninitialized until a provider is installed 1ms
+ ✓ ../../packages/trilium-core/src/services/request.spec.ts:23 > request provider (core) > delegates exec/getImage/fetchResource to the installed provider 1ms
+ ✓ ../../packages/trilium-core/src/services/request.spec.ts:48 > request provider (core) > refuses an address before anything is sent to it 1ms
+ ✓ ../../packages/trilium-core/src/services/request.spec.ts:61 > readCappedResponse > reads a body whole and normalises what it came under 22ms
+ ✓ ../../packages/trilium-core/src/services/request.spec.ts:75 > readCappedResponse > answers a non-2xx rather than throwing, so the caller can read what it was 0ms
+ ✓ ../../packages/trilium-core/src/services/request.spec.ts:82 > readCappedResponse > names no content type where the server named none 3ms
+ ✓ ../../packages/trilium-core/src/services/request.spec.ts:89 > readCappedResponse > refuses a size the server advertises over the ceiling, without reading it 1ms
+ ✓ ../../packages/trilium-core/src/services/request.spec.ts:101 > readCappedResponse > abandons a stream that goes over the ceiling partway through 0ms
+ ✓ ../../packages/trilium-core/src/services/request.spec.ts:116 > readCappedResponse > keeps a body that fits exactly 0ms
+(node:44560) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:46 > bulk_actions service (real DB) > executeActions > returns applied, skipped and failed outcomes while continuing the batch 43ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:95 > llm/index provider registry > getProvider > does not publish a construction across cache invalidation 2ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:111 > llm/index provider registry > getProvider > returns the first provider when no id is given and caches it 1ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:119 > llm/index provider registry > getProvider > returns the provider matching a given id 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:125 > llm/index provider registry > getProvider > instantiates each known provider type via its factory 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:152 > llm/index provider registry > getProvider > throws when no providers are configured (null and empty array) 1ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:159 > llm/index provider registry > getProvider > throws when the requested id is not found 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:164 > llm/index provider registry > getProvider > throws for an unknown provider type 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:169 > llm/index provider registry > getProvider > builds every host-provided type through the factory its host registered 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:181 > llm/index provider registry > getProvider > names the provider when no host in this build can build it 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:190 > llm/index provider registry > getProvider > drops cached instances when the llmProviders option changes 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:205 > llm/index provider registry > getConfiguredProviders error handling (via hasConfiguredProviders) > treats malformed JSON as no providers and logs the error 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:211 > llm/index provider registry > getConfiguredProviders error handling (via hasConfiguredProviders) > treats a null option as no providers 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:216 > llm/index provider registry > getConfiguredProviders error handling (via hasConfiguredProviders) > reports true when providers exist 1ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:221 > llm/index provider registry > getConfiguredProviders error handling (via hasConfiguredProviders) > finds a search provider by config id, never a chat provider 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:234 > llm/index provider registry > getConfiguredProviders error handling (via hasConfiguredProviders) > leaves search providers out of the chat providers 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:247 > llm/index provider registry > getProviderByType > returns the first provider of the given type 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:253 > llm/index provider registry > getProviderByType > throws when no provider of that type is configured 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:260 > llm/index provider registry > listProviderModels > lists models for ad-hoc credentials, tagged with the recommended flag 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:271 > llm/index provider registry > listProviderModels > throws for an unknown provider type 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:275 > llm/index provider registry > listProviderModels > falls back to getAvailableModels for a provider without dynamic listing 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:291 > llm/index provider registry > getSelectedModel > finds a stored selected model by config id and model id 0ms
+ ✓ ../../packages/trilium-core/src/services/llm/index.spec.ts:300 > llm/index provider registry > getSelectedModel > returns undefined for a missing provider, model, or providerId 0ms
+ ✓ src/services/request.spec.ts:164 > NodeRequestProvider.exec > cancels a stalled node transport, including after headers 5ms
+ ✓ src/services/request.spec.ts:164 > NodeRequestProvider.exec > cancels a stalled electron transport, including after headers 1ms
+ ✓ src/services/request.spec.ts:185 > NodeRequestProvider.exec > selects the http client and resolves parsed JSON on 200 1ms
+ ✓ src/services/request.spec.ts:204 > NodeRequestProvider.exec > selects the https client based on the URL scheme 0ms
+ ✓ src/services/request.spec.ts:216 > NodeRequestProvider.exec > throws for an unrecognized protocol 0ms
+ ✓ src/services/request.spec.ts:222 > NodeRequestProvider.exec > sends paging headers (text/plain) when pageCount > 1 and stores response cookies 1ms
+ ✓ src/services/request.spec.ts:256 > NodeRequestProvider.exec > passes a string body through unchanged and defaults the cookie header to empty 1ms
+ ✓ src/services/request.spec.ts:269 > NodeRequestProvider.exec > rejects on a request error 1ms
+ ✓ src/services/request.spec.ts:274 > NodeRequestProvider.exec > rejects and logs when a successful response body is not valid JSON 1ms
+ ✓ src/services/request.spec.ts:286 > NodeRequestProvider.exec > rejects non-2xx responses using the JSON error message 0ms
+ ✓ src/services/request.spec.ts:297 > NodeRequestProvider.exec > rejects non-2xx responses with an empty message when JSON has no message field 0ms
+ ✓ src/services/request.spec.ts:310 > NodeRequestProvider.exec > rejects non-2xx responses falling back to a truncated body when not JSON 0ms
+ ✓ src/services/request.spec.ts:325 > NodeRequestProvider.exec > does not store cookies when the response has no set-cookie header 0ms
+ ✓ src/services/request.spec.ts:338 > NodeRequestProvider.exec > proxy handling > builds an HttpProxyAgent for http URLs with a proxy 0ms
+ ✓ src/services/request.spec.ts:350 > NodeRequestProvider.exec > proxy handling > builds an HttpsProxyAgent for https URLs with a proxy 1ms
+ ✓ src/services/request.spec.ts:363 > NodeRequestProvider.exec > proxy handling > resets the special 'noproxy' value to no proxy agent 0ms
+ ✓ src/services/request.spec.ts:375 > NodeRequestProvider.exec > proxy handling > ignores a proxy when the target URL protocol is unsupported 0ms
+ ✓ src/services/request.spec.ts:385 > NodeRequestProvider.exec > cookie jar handling (#10548) > replays a multi-Set-Cookie response as a single string of name=value pairs 0ms
+ ✓ src/services/request.spec.ts:416 > NodeRequestProvider.exec > cookie jar handling (#10548) > merges newly set cookies into the jar instead of replacing it 0ms
+ ✓ src/services/request.spec.ts:442 > NodeRequestProvider.exec > cookie jar handling (#10548) > updates an existing cookie's value in place 0ms
+ ✓ src/services/request.spec.ts:466 > NodeRequestProvider.exec > rejects if the client throws synchronously while preparing the request 0ms
+ ✓ src/services/request.spec.ts:473 > NodeRequestProvider.exec > rejects rather than rethrowing when the response stream fails mid-body 54ms
+ ✓ src/services/request.spec.ts:521 > NodeRequestProvider.getImage > address validation > refuses an address inside the network the server itself sits on 9ms
+ ✓ src/services/request.spec.ts:539 > NodeRequestProvider.getImage > address validation > refuses a hostname that resolves into that network, however public it looks 8ms
+ ✓ src/services/request.spec.ts:550 > NodeRequestProvider.getImage > address validation > connects only to the address it validated, so a second lookup cannot redirect it 0ms
+ ✓ src/services/request.spec.ts:566 > NodeRequestProvider.getImage > address validation > refuses a URL that is not http(s), or that carries credentials 0ms
+ ✓ src/services/request.spec.ts:578 > NodeRequestProvider.getImage > downloads image bytes and resolves an ArrayBuffer 0ms
+ ✓ src/services/request.spec.ts:591 > NodeRequestProvider.getImage > does not let a sync proxy bypass image DNS pinning 0ms
+ ✓ src/services/request.spec.ts:604 > NodeRequestProvider.getImage > treats the 'noproxy' sync proxy value as no proxy 0ms
+ ✓ src/services/request.spec.ts:616 > NodeRequestProvider.getImage > rejects non-2xx image responses, and a late body does not override the rejection 1ms
+ ✓ src/services/request.spec.ts:631 > NodeRequestProvider.getImage > rejects on a request error 1ms
+ ✓ src/services/request.spec.ts:638 > NodeRequestProvider.getImage > rejects on a request abort 0ms
+ ✓ src/services/request.spec.ts:645 > NodeRequestProvider.getImage > rejects if the client throws synchronously 0ms
+ ✓ src/services/request.spec.ts:654 > NodeRequestProvider.getImage > rejects rather than rethrowing when the response stream fails mid-body 52ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:59 > bulk_actions service (real DB) > executeActions > skips note IDs that don't resolve to a note 1ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:71 > bulk_actions service (real DB) > executeActions > accepts both an array and a Set of note IDs 2ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:86 > bulk_actions service (real DB) > executeActions > isolates per-note handler failures and keeps applying to remaining notes 16ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:102 > bulk_actions service (real DB) > label actions > addLabel / updateLabelValue / renameLabel / deleteLabel 1ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:138 > bulk_actions service (real DB) > relation actions > addRelation / updateRelationTarget / renameRelation / deleteRelation 1ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:176 > bulk_actions service (real DB) > renameNote > evaluates the new title as a template with `note` in scope 1ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:189 > bulk_actions service (real DB) > renameNote > leaves the title untouched when the evaluated value is identical 1ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:205 > bulk_actions service (real DB) > executeScript > runs the script against the note and persists changes 5ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:218 > bulk_actions service (real DB) > executeScript > persists mutations even when the script returns early 1ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:236 > bulk_actions service (real DB) > executeScript > is a no-op for an empty / whitespace-only script 2ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:250 > bulk_actions service (real DB) > deleteNote > marks the targeted note as deleted 3ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:262 > bulk_actions service (real DB) > saveRevision > saves a named revision capturing the note's current content 4ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:276 > bulk_actions service (real DB) > saveRevision > saves an unnamed revision when no name is provided 1ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:290 > bulk_actions service (real DB) > deleteRevisions > erases all revisions of the targeted note 1ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:305 > bulk_actions service (real DB) > moveNote > moves a single-parent note to the target parent 3ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:320 > bulk_actions service (real DB) > moveNote > clones (rather than moves) a note that has multiple parents 7ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:343 > bulk_actions service (real DB) > moveNote > is a no-op when the target parent does not exist 0ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:361 > bulk_actions service (real DB) > executeActionsFromNote > reads, parses and applies actions stored in the note's `action` labels 1ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:378 > bulk_actions service (real DB) > executeActionsFromNote > skips malformed JSON and unknown action handlers, applying only the valid ones 1ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:415 > bulk_actions service (real DB) > convertNote > converts only notes matching the conversion's source type, skipping the rest 30ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:434 > bulk_actions service (real DB) > convertNote > converts a Markdown note back to a text note 32ms
+ ✓ ../../packages/trilium-core/src/services/bulk_actions.spec.ts:449 > bulk_actions service (real DB) > convertNote > does nothing for an unknown or unset conversion 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > 'testName' should return 'testName' 1ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > 'test_name' should return 'test_name' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > 'test with space' should return 'test_with_space' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > 'test:with:colon' should return 'test:with:colon' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > '123456' should return '123456' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > '123:456' should return '123:456' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > '123456 abc' should return '123456_abc' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > 'ε' should return 'ε' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > 'attribute ε' should return 'attribute_ε' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > 'test/name' should return 'test_name' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > 'test%name' should return 'test_name' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > '/' should return '_' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:31 > sanitizeAttributeName unit tests > '' should return 'unnamed' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:42 > #newEntityId > should return a string with a length of 12 1ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:50 > #isValidEntityId > accepts only letters, digits and underscores with a length of 4 to 128 2ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:65 > #randomString > should return a string with a length as per argument 1ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:79 > #randomSecureToken > should return a string and use 32 bytes by default 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:85 > #randomSecureToken > should return a string and use passed byte length 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:125 > #isEmptyOrWhitespace > w/ 'null' it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:125 > #isEmptyOrWhitespace > w/ 'null' it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:125 > #isEmptyOrWhitespace > w/ undefined it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:125 > #isEmptyOrWhitespace > w/ empty string '' it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:125 > #isEmptyOrWhitespace > w/ single whitespace string ' ' it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:125 > #isEmptyOrWhitespace > w/ multiple whitespace string '   ' it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:125 > #isEmptyOrWhitespace > w/ non-empty string ' t  ' it should return false 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:146 > #sanitizeSqlIdentifier > w/ 'test' it should not strip anything 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:146 > #sanitizeSqlIdentifier > w/ 'test123' it should not strip anything 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:146 > #sanitizeSqlIdentifier > w/ 'tEst_TeSt' it should not strip anything 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:146 > #sanitizeSqlIdentifier > w/ 'test_test' it should not strip '_' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:146 > #sanitizeSqlIdentifier > w/ 'test-' it should strip the '-' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:146 > #sanitizeSqlIdentifier > w/ 'test-test' it should strip the '-' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:146 > #sanitizeSqlIdentifier > w/ 'test; --test' it should strip the '; --' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:146 > #sanitizeSqlIdentifier > w/ 'test test' it should strip the ' ' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:154 > #escapeHtml > should re-export 'escape-html' npm module as escapeHtml 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:160 > #unescapeHtml > decodes the five default HTML entities (named and numeric short forms) 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:169 > #unescapeHtml > leaves entities outside the default set untouched 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:175 > #unescapeHtml > handles double-escaped entities and query-string URLs 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:180 > #unescapeHtml > returns an empty string for empty or non-string input 1ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:188 > #toObject > should return an object with keys and value being set from the supplied Function 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:220 > #stripTags > should strip all tags and only return the content, leaving new lines and spaces in tact 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:220 > #stripTags > should strip all tags and only return the content 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:262 > #getContentDisposition > when passed filename is empty, it should fallback to default value 'file' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:262 > #getContentDisposition > when passed filename '..' would cause sanitized filename to be empty, it should fallback to default value 'file' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:262 > #getContentDisposition > when passed filename 'COM1' would cause sanitized filename to be empty, it should fallback to default value 'file' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:262 > #getContentDisposition > sanitized passed filename should be returned URIEncoded 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:316 > #isStringNote > w/ 'undefined' note type, but a string mime type, it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:316 > #isStringNote > w/ non-string note type, it should return false 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:316 > #isStringNote > w/ string note type (text), it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:316 > #isStringNote > w/ string note type (code), it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:316 > #isStringNote > w/ non-string note type (file), but string mime type, it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:316 > #isStringNote > w/ non-string note type (file), but mime type starting with 'text/', it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:316 > #isStringNote > w/ 'undefined' note type and the InkML mime type, it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:316 > #isStringNote > w/ 'undefined' note type and the mime type of a canvas drawing, it should return true 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:341 > #removeFileExtension > w/ 'test.md' it should strip '.md' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:341 > #removeFileExtension > w/ 'test.markdown' it should strip '.markdown' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:341 > #removeFileExtension > w/ 'test.html' it should strip '.html' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:341 > #removeFileExtension > w/ 'test.htm' it should strip '.htm' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:341 > #removeFileExtension > w/ 'test.xlsx' it should strip '.xlsx' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:341 > #removeFileExtension > w/ 'test.csv' it should strip '.csv' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:341 > #removeFileExtension > w/ 'test.gpx' it should strip '.gpx' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:341 > #removeFileExtension > w/ 'test.zip' it should NOT strip '.zip' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when file has no spaces, and no special file extension, it should return the filename unaltered 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when replaceUnderscoresWithSpaces is false, it should keep the underscores in the title 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when replaceUnderscoresWithSpaces is true, it should replace the underscores in the title 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when filePath ends with one of the extra handled endings (.md), it should strip the file extension from the title 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when filePath ends with one of the extra handled endings (.md) and replaceUnderscoresWithSpaces is true, it should strip the file extension from the title and replace underscores 2ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when filepath contains a full path, it should only return the basename of the file 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when filepath contains a full path and has extra handled ending (.html), it should only return the basename of the file and strip the file extension 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when a noteMeta object is passed, it should use the title from the noteMeta, if present 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when a noteMeta object is passed with an empty title, it should keep the note untitled 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when a noteMeta object is passed with a blank title, it should keep the note untitled 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:409 > #getNoteTitle > when a noteMeta object is passed without a title, it should handle the filename as if no noteMeta was passed 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:418 > #timeLimit > releases its deadline after early fulfillment and rejection 4ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:431 > #timeLimit > when promise execution does NOT exceed timeout, it should resolve with promises' value 202ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:442 > #timeLimit > does nothing when the internal timeout fires after the promise already resolved 46ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:451 > #timeLimit > when promise execution rejects within timeout, it should return the original promises' rejected value, not the custom set one 101ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:462 > #timeLimit > when promise execution exceeds the set timeout, and 'errorMessage' is NOT set, it should reject the promise and display default error message 204ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:472 > #timeLimit > when promise execution exceeds the set timeout, and 'errorMessage' is set, it should reject the promise and display set error message 201ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:484 > #timeLimit > when the passed promise is not a promise but 'undefined', it should return 'undefined' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:490 > #timeLimit > when the passed promise is not a promise, it should return the passed value 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:507 > #removeDiacritic > w/ 'Äpfel' it should replace the 'Ä' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:507 > #removeDiacritic > w/ 'Été' it should replace the 'É' and 'é' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:507 > #removeDiacritic > w/ 'Fête' it should replace the 'ê' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:507 > #removeDiacritic > w/ 'Αλφαβήτα' it should replace the 'ή' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:507 > #removeDiacritic > w/ '' (empty string) it should return empty string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:525 > #normalize > w/ 'Äpfel' it should replace the 'Ä' and return lowercased 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:525 > #normalize > w/ 'Été' it should replace the 'É' and 'é' and return lowercased 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:525 > #normalize > w/ 'FêTe' it should replace the 'ê' and return lowercased 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:525 > #normalize > w/ 'ΑλΦαβήΤα' it should replace the 'ή' and return lowercased 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:525 > #normalize > w/ '' (empty string) it should return empty string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:533 > #toMap > should return an instace of Map, with the correct size and keys, when supplied with a list and existing keys 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:540 > #toMap > should return an instace of Map, with an empty size, when the supplied list does not contain the supplied key 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:547 > #toMap > collapses entries when keys collide (last write wins) 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ 'true' it should return boolean 'true' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ 'True' it should return boolean 'true' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ 'TRUE' it should return boolean 'true' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ 'true ' it should return boolean 'true' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ 'false' it should return boolean 'false' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ 'False' it should return boolean 'false' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ 'FALSE' it should return boolean 'false' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ 'false ' it should return boolean 'false' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ 'whatever' (non-boolean string) it should return undefined 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ '-' (non-boolean string) it should return undefined 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ '' (empty string) it should return undefined 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ ' ' (white space string) it should return undefined 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ undefined it should return undefined 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:584 > #envToBoolean > w/ number 1 it should return undefined 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:594 > #isElectron > should export a boolean 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:600 > #isMac > should export a boolean 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:606 > #isWindows > should export a boolean 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:612 > #isLinux > should export a boolean 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:618 > #safeExtractMessageAndStackFromError > should correctly extract the message and stack property if it gets passed an instance of an Error 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:626 > #safeExtractMessageAndStackFromError > should pass a thrown string through as the message, with no stack 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:633 > #safeExtractMessageAndStackFromError > should use the fallback 'Unknown Error' message, if it gets passed something that is neither an Error nor a string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["","text",""]', it should return 'untitled.html' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["","canvas",""]', it should return 'untitled.json' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["",null,""]', it should return 'untitled' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file","canvas",""]', it should return 'test_file.json' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file","relationMap",""]', it should return 'test_file.json' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file","search",""]', it should return 'test_file.json' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file",null,"text/csv"]', it should return 'test_file.csv' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file_wo_ext","image","image/svg+xml"]', it should return 'test_file_wo_ext.svg' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file_wo_ext","file","application/json"]', it should return 'test_file_wo_ext.json' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file_w_fake_ext.ext","image","image/svg+xml"]', it should return 'test_file_w_fake_ext.ext.svg' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file_w_correct_ext.svg","image","image/svg+xml"]', it should return 'test_file_w_correct_ext.svg' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file_w_correct_ext.svgz","image","image/svg+xml"]', it should return 'test_file_w_correct_ext.svgz' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file.zip","file","application/zip"]', it should return 'test_file.zip' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file","file","application/zip"]', it should return 'test_file.zip' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file","file","application/octet-stream"]', it should return 'test_file' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file.zip","file","application/octet-stream"]', it should return 'test_file.zip' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file.unknown",null,"application/octet-stream"]', it should return 'test_file.unknown' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test/file",null,"application/octet-stream"]', it should return 'testfile' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test:file.zip","file","application/zip"]', it should return 'testfile.zip' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '[":::","file","application/zip"]', it should return '.zip' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '[":::a","file","application/zip"]', it should return 'a.zip' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:753 > #formatDownloadTitle > With args '["test_file","file","application/x-this-mime-has-no-extension"]', it should return 'test_file' 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should remove trailing slash from simple URL 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should remove trailing slash from URL with path 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should preserve URL without trailing slash 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should preserve URL without trailing slash with path 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should preserve protocol-only URLs 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should preserve protocol-only URLs 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should fix double slashes in path 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should handle multiple double slashes 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should handle trailing slash with double slashes 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should preserve protocol double slash 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should handle empty string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should handle whitespace-only string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should trim whitespace 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should handle null as empty 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:781 > #normalizeUrl > should handle undefined as empty 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:789 > #trimTrailingSlashes > removes every trailing slash and nothing else 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:796 > #trimTrailingSlashes > stays linear on a long run of slashes 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should handle pattern without ending - add both versions 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should handle pattern with trailing slash - add both versions 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should handle pattern ending with $ - add optional slash 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should handle pattern with trailing slash and $ - add both versions 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should preserve existing optional slash pattern 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should preserve existing optional slash pattern (alternative) 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should handle regex pattern with special chars 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should handle complex regex pattern 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should handle empty string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should handle whitespace-only string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should handle null 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:821 > #normalizeCustomHandlerPattern > should handle undefined 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:829 > #slugify > should return a slugified string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:836 > #slugify > supports CJK characters without alteration 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:843 > #slugify > supports Cyrillic characters without alteration 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:851 > #slugify > preserves diacritic marks 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:860 > #slugifyHeadings > slugifies each heading in order 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:864 > #slugifyHeadings > disambiguates duplicate titles with a numeric suffix 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:868 > #slugifyHeadings > avoids colliding a suffix with an existing slug 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:873 > #slugifyHeadings > skips the reserved slugs 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:877 > #slugifyHeadings > strips HTML tags before slugifying 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:881 > #slugifyHeadings > returns an empty array for no headings 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:887 > #sanitizeSvg > should remove script elements 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:893 > #sanitizeSvg > should remove script elements with attributes 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:899 > #sanitizeSvg > should remove multiline script elements 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:908 > #sanitizeSvg > should remove onclick event handlers with double quotes 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:914 > #sanitizeSvg > should remove onclick event handlers with single quotes 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:920 > #sanitizeSvg > should remove onload event handlers 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:926 > #sanitizeSvg > should remove onerror event handlers 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:932 > #sanitizeSvg > should remove onmouseover event handlers 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:938 > #sanitizeSvg > should remove event handlers without quotes 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:944 > #sanitizeSvg > should replace javascript: URLs in href with # 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:950 > #sanitizeSvg > should replace javascript: URLs in xlink:href with # 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:956 > #sanitizeSvg > should preserve valid SVG content 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:962 > #sanitizeSvg > should preserve valid href URLs 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:968 > #sanitizeSvg > should handle multiple malicious elements 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:974 > #sanitizeSvg > should handle empty SVG 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:980 > #sanitizeSvg > should be case insensitive for script tags 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:986 > #sanitizeSvg > should be case insensitive for event handlers 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:994 > #isDev > returns a boolean derived from the TRILIUM_ENV platform var 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1000 > #md5 > produces the canonical lowercase hex digest 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1006 > #md5 > accepts a byte buffer and yields a 32-char hex string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1013 > #hashedBlobId > returns a 20-char id without '+' or '/' characters 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1019 > #hashedBlobId > is deterministic for identical content 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1023 > #hashedBlobId > treats null and undefined content as empty string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1033 > #quoteRegex > escapes regex metacharacters 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1040 > #replaceAll > replaces every occurrence, escaping the search term 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1048 > #escapeRegExp > escapes regex metacharacters in a string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1065 > #stringToInt > w/ a numeric string it returns the parsed integer 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1065 > #stringToInt > w/ a decimal string it truncates at the decimal point 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1065 > #stringToInt > w/ a non-numeric string it returns undefined 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1065 > #stringToInt > w/ an empty string it returns undefined 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1065 > #stringToInt > w/ undefined it returns undefined 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1072 > #formatUtcTime > replaces the ISO 'T' separator and truncates to seconds 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1088 > #formatSize > w/ null it returns an empty string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1088 > #formatSize > w/ undefined it returns an empty string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1088 > #formatSize > w/ 0 bytes it rounds up to the 1 KiB minimum 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1088 > #formatSize > w/ a sub-MiB value it reports KiB 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1088 > #formatSize > w/ a multi-MiB value it reports MiB 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1095 > #removeFileExtension (media types) > strips the extension for video and audio mime types 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1100 > #removeFileExtension (media types) > strips the extension for the fonts Trilium draws, and leaves the rest alone 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > equal versions return 0 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > greater major returns 1 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > lesser major returns -1 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > greater minor returns 1 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > lesser minor returns -1 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > greater patch returns 1 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > lesser patch returns -1 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > strips a leading 'v' prefix 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > ignores a pre-release suffix after a dash 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > pads a shorter first version with zeros 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1128 > #compareVersions > pads a shorter second version with zeros 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1135 > #escapeCssString > hex-escapes the characters that could escape a double-quoted CSS string 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1140 > #escapeCssString > hex-escapes the markup characters that could end the surrounding <style> element 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1146 > #escapeCssString > leaves the private-use glyphs an icon pack actually carries untouched 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1152 > #decodeCssEscapes > decodes a hex escape with or without its terminating space 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1159 > #decodeCssEscapes > resolves the code points CSS maps to the replacement character 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1165 > #decodeCssEscapes > leaves text carrying no hex escape untouched 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1172 > #decodeCssEscapes > cannot widen what the generated stylesheet emits, since escaping follows it 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1184 > #escapeInlineStylesheet > escapes every closing style tag, whatever its casing 0ms
+ ✓ ../../packages/trilium-core/src/services/utils/index.spec.ts:1190 > #escapeInlineStylesheet > leaves a stylesheet without a closing style tag byte-identical 0ms
+Migration with JS module
+Migration with JS module
+ ✓ src/log_provider.spec.ts:10 > ServerLogService console echo > writes the entry to the log file but does not echo it under vitest 3ms
+ ✓ src/log_provider.spec.ts:35 > ServerLogService console echo > echoes to the console outside vitest, so container logs still show activity 1ms
+ ✓ src/log_provider.spec.ts:59 > ServerLogService request logging > keeps polling routes out of the log, the docker healthcheck included 1ms
+ ✓ src/log_provider.spec.ts:98 > ServerLogService I/O recovery > contains stream errors, backs off, and reopens without recursive logging 2ms
+Got error  Error: noteIds must be an array
+    at execute (<repo>/packages/trilium-core/src/routes/api/bulk_action.ts:8:15)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21)
+Got error  Error: Action must have a name
+    at execute (<repo>/packages/trilium-core/src/routes/api/bulk_action.ts:18:23)
+    at sqliteTransaction.<anonymous> (<repo>/packages/trilium-core/src/test/api_tester.ts:220:57)
+    at sqliteTransaction (<repo>/node_modules/better-sqlite3/lib/methods/transaction.js:65:24)
+    at SqlService.transactional (<repo>/packages/trilium-core/src/services/sql/sql.ts:425:67)
+    at <repo>/packages/trilium-core/src/test/api_tester.ts:220:37
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at AsyncLocalStorageExecutionContext.init (<repo>/apps/server/src/cls_provider.ts:36:24)
+    at Object.run (<repo>/packages/trilium-core/src/test/api_tester.ts:218:51)
+    at CoreApiTester.request (<repo>/packages/trilium-core/src/test/api_tester.ts:344:37)
+    at CoreApiTester.post (<repo>/packages/trilium-core/src/test/api_tester.ts:361:21)
+ ✓ ../../packages/trilium-core/src/routes/api/bulk_action.spec.ts:32 > Bulk action API (core) > affected note count > counts a single existing note 8ms
+ ✓ ../../packages/trilium-core/src/routes/api/bulk_action.spec.ts:42 > Bulk action API (core) > affected note count > includes descendants when requested 3ms
+ ✓ ../../packages/trilium-core/src/routes/api/bulk_action.spec.ts:57 > Bulk action API (core) > affected note count > ignores note IDs that do not exist 0ms
+ ✓ ../../packages/trilium-core/src/routes/api/bulk_action.spec.ts:67 > Bulk action API (core) > executing actions > adds a label to the targeted notes (round-trip) 3ms
+ ✓ ../../packages/trilium-core/src/routes/api/bulk_action.spec.ts:87 > Bulk action API (core) > executing actions > deletes a label from the targeted notes (round-trip) 2ms
+ ✓ ../../packages/trilium-core/src/routes/api/bulk_action.spec.ts:113 > Bulk action API (core) > executing actions > falls back to the _bulkAction note when no actions are provided 1ms
+ ✓ ../../packages/trilium-core/src/routes/api/bulk_action.spec.ts:124 > Bulk action API (core) > error handling > errors when noteIds is not an array 2ms
+ ✓ ../../packages/trilium-core/src/routes/api/bulk_action.spec.ts:131 > Bulk action API (core) > error handling > errors when an action is missing a name 5ms
+Migration with JS module
+ ✓ src/services/llm/index.spec.ts:33 > registerServerLlmExtensions > hands core every piece of the stack that needs Node 3ms
+
+ Test Files  9 passed (9)
+      Tests  350 passed (350)
+   Start at  09:11:23
+   Duration  5.43s (transform 69%, setup 23%, tests 6%, import 2%)
+
+  Transform  transforming modules took 19.35s · 69% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+
+JUNIT report written to <repo>/apps/server/test-output/vitest/junit.xml
+ HTML  Report is generated
+       You can run npx vite preview --outDir .vitest to see the test results.

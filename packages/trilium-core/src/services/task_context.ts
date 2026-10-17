@@ -5,9 +5,12 @@ import { getSql } from "./sql";
 import ws from "./ws.js";
 
 // taskId => TaskContext
-const taskContexts: Record<string, TaskContext<any>> = {};
+const taskContexts = new Map<string, TaskContext<any>>();
+/** Abandoned request groups expire after a day without progress or another request. */
+const TASK_IDLE_TTL_MS = 24 * 60 * 60 * 1000;
 
 class TaskContext<T extends TaskType> {
+    private lastActivityTs = Date.now();
     private taskId: string;
     private taskType: TaskType;
     private progressCount: number;
@@ -39,11 +42,17 @@ class TaskContext<T extends TaskType> {
     }
 
     static getInstance<T extends TaskType>(taskId: string, taskType: T, data: TaskData<T>): TaskContext<T> {
-        if (!taskContexts[taskId]) {
-            taskContexts[taskId] = new TaskContext(taskId, taskType, data);
+        const now = Date.now();
+        for (const [id, context] of taskContexts) {
+            if (now - context.lastActivityTs >= TASK_IDLE_TTL_MS) taskContexts.delete(id);
         }
-
-        return taskContexts[taskId];
+        let context = taskContexts.get(taskId);
+        if (!context) {
+            context = new TaskContext(taskId, taskType, data);
+            taskContexts.set(taskId, context);
+        }
+        context.lastActivityTs = now;
+        return context;
     }
 
     /**
@@ -82,6 +91,7 @@ class TaskContext<T extends TaskType> {
      * leave the client showing the previous label (and a seemingly hung count) the whole time.
      */
     reportPhase(phase: ProgressPhase) {
+        this.lastActivityTs = Date.now();
         this.phase = phase;
         this.sendProgressMessage();
     }
@@ -105,6 +115,7 @@ class TaskContext<T extends TaskType> {
      * has yet to send.
      */
     scheduleErase(deleteId: string) {
+        this.lastActivityTs = Date.now();
         this.scheduledEraseDeleteIds.push(deleteId);
     }
 
@@ -116,6 +127,7 @@ class TaskContext<T extends TaskType> {
     }
 
     increaseProgressCount() {
+        this.lastActivityTs = Date.now();
         this.progressCount++;
 
         if (Date.now() - this.lastSentCountTs >= 300) {
@@ -141,6 +153,7 @@ class TaskContext<T extends TaskType> {
     }
 
     reportError(message: string) {
+        this.lastActivityTs = Date.now();
         ws.sendMessageToAllClients({
             type: "taskError",
             taskId: this.taskId,
@@ -151,13 +164,16 @@ class TaskContext<T extends TaskType> {
     }
 
     taskSucceeded(result: TaskResult<T>) {
-        getSql().afterCommit(() => ws.sendMessageToAllClients({
-            type: "taskSucceeded",
-            taskId: this.taskId,
-            taskType: this.taskType,
-            data: this.data,
-            result
-        } as WebSocketMessage));
+        getSql().afterCommit(() => {
+            if (taskContexts.get(this.taskId) === this) taskContexts.delete(this.taskId);
+            ws.sendMessageToAllClients({
+                type: "taskSucceeded",
+                taskId: this.taskId,
+                taskType: this.taskType,
+                data: this.data,
+                result
+            } as WebSocketMessage);
+        });
     }
 }
 

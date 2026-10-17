@@ -1,7 +1,7 @@
 # AI
 Trilium can connect to a large language model and use it as an assistant that works directly on your notes: ask questions about the note you're reading, have it draft or restructure content, or get it to write scripts and widgets for you.
 
-The integration is off by default and does nothing until you enable it and configure a provider; Trilium ships no model of its own. The provider you pick decides how your notes travel: a cloud API billed per use, a subscription you already pay for, or a model running on your own hardware, in which case nothing leaves the machine. See <a class="reference-link" href="AI/Providers.md">Providers</a> for what each involves, and <a class="reference-link" href="AI/Privacy.md">Privacy</a> for exactly what gets sent.
+AI entry points are hidden by default, and sending a message requires a configured provider; Trilium ships no model of its own. The provider you pick decides how your notes travel: a cloud API billed per use, a subscription you already pay for, or a model running on your own hardware, in which case nothing leaves the machine. See <a class="reference-link" href="AI/Providers.md">Providers</a> for what each involves, and <a class="reference-link" href="AI/Privacy.md">Privacy</a> for exactly what gets sent.
 
 Once enabled, the assistant is available as:
 
@@ -50,7 +50,9 @@ For more information about each provider, see <a class="reference-link" href="A
 
 ## Enabling the AI integration
 
-To enable the AI integration, simply go to <a class="reference-link" href="Basic%20Concepts%20and%20Features/UI%20Elements/Options.md">Options</a> → _AI / LLM_ and press the toggle in the top-right of the dialog and configure a provider.
+To enable the AI integration, simply go to <a class="reference-link" href="Basic%20Concepts%20and%20Features/UI%20Elements/Options.md">Options</a> → _AI / LLM_ and turn on _Show AI features_, then configure a provider.
+
+_Show AI features_ controls the sidebar, creation of new chat notes, and AI settings visibility. Turning it off keeps existing chat notes and configured providers available; it does not cancel active requests or prevent an existing chat from sending messages.
 
 ## Creating a new chat
 
@@ -80,6 +82,8 @@ The models are retrieved dynamically from the provider, only when the model sele
 Pricing information is displayed for known models. The pricing information (price per million tokens) is embedded in the application (using a subset of LiteLLM's data) and is updated with new versions of Trilium. Local providers are considered free, whereas custom endpoint providers don't offer any pricing information.
 
 ## Features
+
+If a provider finishes without returning content, the conversation shows an error with _Retry_. Retrying starts another request; Trilium does not retry automatically.
 
 ### Web search
 

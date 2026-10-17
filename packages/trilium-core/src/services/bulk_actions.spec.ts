@@ -43,6 +43,19 @@ describe("bulk_actions service (real DB)", () => {
     });
 
     describe("executeActions", () => {
+        it("returns applied, skipped and failed outcomes while continuing the batch", () => {
+            const { note } = createNote("root");
+            const result = getContext().init(() => bulkActionService.executeActions([
+                { name: "executeScript", script: "throw new Error('item failure')" },
+                { name: "moveNote", targetParentNoteId: "missingParent" },
+                { name: "addLabel", labelName: "afterFailure" }
+            ], [note.noteId, "missingNote"]));
+            expect(result).toMatchObject({ applied: 1, skipped: 4, failed: 1 });
+            expect(result.outcomes).toHaveLength(6);
+            expect(result.outcomes[0]).toMatchObject({ noteId: note.noteId, status: "failed", message: "item failure" });
+            expect(note.hasLabel("afterFailure")).toBe(true);
+        });
+
         it("skips note IDs that don't resolve to a note", () => {
             // No note exists for this id, so nothing should throw and no handler runs.
             expect(() =>

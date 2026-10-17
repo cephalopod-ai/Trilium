@@ -1,3 +1,6 @@
+import { EventEmitter } from "node:events";
+import fs from "node:fs";
+
 import type { Request, Response } from "express";
 import { describe, expect, it, vi } from "vitest";
 
@@ -89,3 +92,38 @@ function logRequest(log: ServerLogService, url: string) {
 
     log.request(req, res, 1, 15);
 }
+
+
+describe("ServerLogService I/O recovery", () => {
+    it("contains stream errors, backs off, and reopens without recursive logging", () => {
+        const streams = Array.from({ length: 2 }, () => Object.assign(new EventEmitter(), {
+            write: vi.fn(), end: vi.fn(), destroy: vi.fn()
+        }));
+        const create = vi.spyOn(fs, "createWriteStream")
+            .mockReturnValueOnce(streams[0] as unknown as fs.WriteStream)
+            .mockReturnValueOnce(streams[1] as unknown as fs.WriteStream);
+        const warning = vi.spyOn(console, "error").mockImplementation(() => {});
+        let now = Date.now();
+        const clock = vi.spyOn(Date, "now").mockImplementation(() => now);
+        try {
+            const log = new ServerLogService();
+            expect(() => streams[0].emit("error", new Error("disk full"))).not.toThrow();
+            log.info("during backoff");
+            expect(create).toHaveBeenCalledTimes(1);
+            expect(warning).toHaveBeenCalledOnce();
+            expect(streams[0].destroy).toHaveBeenCalledOnce();
+            now += 30_001;
+            log.info("recovered");
+            expect(create).toHaveBeenCalledTimes(2);
+            expect(streams[1].write).toHaveBeenCalledWith(expect.stringContaining("recovered"));
+            streams[0].emit("error", new Error("late old stream error"));
+            log.info("still healthy");
+            expect(streams[1].write).toHaveBeenCalledTimes(2);
+            expect(warning).toHaveBeenCalledOnce();
+        } finally {
+            create.mockRestore();
+            warning.mockRestore();
+            clock.mockRestore();
+        }
+    });
+});

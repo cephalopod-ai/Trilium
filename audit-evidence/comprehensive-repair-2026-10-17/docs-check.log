@@ -1,0 +1,72 @@
+warn   user: docs/User Guide/User Guide/Installation & Setup/Desktop Installation/Using the desktop application as a server.md (nRqcgfTb97uV): no iconClass
+warn   user: docs/User Guide/User Guide/Installation & Setup/Desktop Installation/Tray icon & automatic startup.md (7iwde4lsKc6O): no iconClass
+warn   user: docs/User Guide/User Guide/Installation & Setup/Desktop Installation/Troubleshooting.md (hvRfsDr591WP): no iconClass
+warn   user: docs/User Guide/User Guide/Installation & Setup/Server Installation/2. Reverse proxy.md (vcjrb3VVYPZI): no iconClass
+warn   user: docs/User Guide/User Guide/Installation & Setup/Server Installation/2. Reverse proxy/Nginx.md (ud6MShXL4WpO): no iconClass
+warn   user: docs/User Guide/User Guide/Installation & Setup/Server Installation/2. Reverse proxy/Apache using Docker.md (fDLvzOx29Pfg): no iconClass
+warn   user: docs/User Guide/User Guide/Installation & Setup/Server Installation/2. Reverse proxy/Trusted proxy.md (LLzSMXACKhUs): no iconClass
+warn   user: docs/User Guide/User Guide/Installation & Setup/Server Installation/2. Reverse proxy/Traefik.md (5ERVJb9s4FRD): no iconClass
+warn   user: docs/User Guide/User Guide/Installation & Setup/Server Installation/Signing in with OpenID Connect/Setting up with various providers.md (IgkTHSaFfq6A): no iconClass
+warn   user: docs/User Guide/User Guide/Basic Concepts and Features/UI Elements/Right Sidebar/AI chat tab.md (LrKznOtw9cQD): no shareAlias — no public URL, and dropped from the standalone help
+warn   user: docs/User Guide/User Guide/Basic Concepts and Features/Navigation/Workspaces.md (9sRHySam5fXb): shares notePosition 90 with "Quick edit"
+warn   user: docs/User Guide/User Guide/Note Types/Text/In-editor AI assistant/Custom AI quick actions.md (mVEYwt20exhO): no iconClass
+warn   user: docs/User Guide/User Guide/Note Types/Text/Include Note.md (nBAXQFj20hS1): no iconClass
+warn   user: docs/User Guide/User Guide/Note Types/Text/Text Snippets.md (pwc194wlRzcH): no shareAlias — no public URL, and dropped from the standalone help
+warn   user: docs/User Guide/User Guide/Note Types/Text/Text Snippets.md (pwc194wlRzcH): no iconClass
+warn   user: docs/User Guide/User Guide/Note Types/File/Office documents.md (KG48zgNY31NW): no shareAlias — no public URL, and dropped from the standalone help
+warn   user: docs/User Guide/User Guide/Advanced Usage/Snippets/Code Snippets.md (IEgsWp5hHH35): notePosition 21 is not a multiple of 10
+warn   user: docs/User Guide/User Guide/Advanced Usage/Text Extraction (OCR).md (TiQbQDgP8L5t): no iconClass
+warn   user: docs/User Guide/User Guide/AI/Providers/Subscription-based providers.md (eFhxp9laTW1S): no iconClass
+warn   user: docs/User Guide/User Guide/AI/Privacy.md (cRRrdZjgyhNc): no shareAlias — no public URL, and dropped from the standalone help
+warn   user: docs/User Guide/User Guide/Scripting/Frontend Basics/Custom Widgets/Widget Basics.md (SynTBQiBsdYJ): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Frontend Basics/Custom Widgets/Note context aware widget.md (GhurYZjh8e1V): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Frontend Basics/Custom Widgets/Right pane widget.md (M8IppdwVHSjG): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Frontend Basics/Custom Widgets/Word count widget.md (YNxAqkI5Kg1M): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Frontend Basics/Custom Widgets/CSS.md (VqGQnnPGnqAU): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Frontend Basics/Custom Widgets/Troubleshooting.md (gMkgcLJ6jBkg): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Frontend Basics/Examples/Downloading responses from Google Forms.md (7kZPMD0uFwkH): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Frontend Basics/Examples/Using promoted attributes to configure scripts.md (DL92EjAaXT26): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Frontend Basics/Launch Bar Widgets/Note Title Widget.md (IPArqVfDQ4We): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Frontend Basics/Launch Bar Widgets/Analog Watch.md (gcI7RPbaNSh3): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Backend scripts/Server-side imports.md (fZ2IGYFXjkEy): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Breaking changes/v0.106.0 Removal of cheerio.md (kTx7WqLdZ3Ry): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Breaking changes/v0.104.0 Disabling the Node integration in Electron.md (YeOa2l7Pu39I): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Breaking changes/v0.103.0 Removal of axios.md (fqAK6opjUagR): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Breaking changes/v0.103.0 `cheerio` is now deprecated.md (pAJ0jWz16xFm): no iconClass
+warn   user: docs/User Guide/User Guide/Scripting/Breaking changes/v0.102.0 Upgrade to jQuery 4.0.0.md (72dxvnbnkDFY): no iconClass
+warn   user: docs/User Guide/User Guide/Miscellaneous/Privacy Policy.md (WFbFXrgnDyyU): no iconClass
+warn   user: docs/User Guide/User Guide/Miscellaneous/Patterns of personal knowledge.md (NcsmUYZRWEW4): no iconClass
+warn   user: docs/User Guide/User Guide/Miscellaneous/License.md (d1Ap6Pg6IjaJ): no iconClass
+warn   user: docs/User Guide/User Guide/Basic Concepts and Features/UI Elements/Note Tooltip.md:22: reference-link text "Calendar View" differs from the target's title "Calendar"
+warn   user: docs/User Guide/User Guide/Basic Concepts and Features/UI Elements/Note Tooltip.md:23: reference-link text "Table View" differs from the target's title "Table"
+warn   user: docs/User Guide/User Guide/Basic Concepts and Features/Navigation/Search/How search matches your text.md:131: British spelling (the docs are US English)
+warn   user: docs/User Guide/User Guide/Basic Concepts and Features/Themes.md:82: plain-text shortcut — write each key as <kbd>…</kbd>
+warn   user: docs/User Guide/User Guide/Basic Concepts and Features/Themes.md:115: plain-text shortcut — write each key as <kbd>…</kbd>
+warn   user: docs/User Guide/User Guide/Basic Concepts and Features/Themes.md:134: British spelling (the docs are US English)
+warn   user: docs/User Guide/User Guide/Quick Start.md:14: British spelling (the docs are US English)
+warn   user: docs/User Guide/User Guide/Note Types/Text/Developer-specific formatting/Code blocks.md:28: plain-text shortcut — write each key as <kbd>…</kbd>
+warn   user: docs/User Guide/User Guide/Collections/Geo Map.md:172: British spelling (the docs are US English)
+warn   user: docs/User Guide/User Guide/Theme development/Creating a custom theme.md:43: plain-text shortcut — write each key as <kbd>…</kbd>
+warn   user: docs/User Guide/User Guide/Theme development/Custom app-wide CSS.md:10: plain-text shortcut — write each key as <kbd>…</kbd>
+warn   user: docs/User Guide/User Guide/Advanced Usage/Configuration (config.ini or environment variables)/Trilium instance.md:2: British spelling (the docs are US English)
+warn   user: docs/User Guide/User Guide/AI.md:32: reference-link text "Gosling gateway" differs from the target's title "Gosling"
+warn   user: docs/User Guide/User Guide/AI.md:187: plain-text shortcut — write each key as <kbd>…</kbd>
+warn   user: docs/User Guide/User Guide/AI/Privacy.md:80: reference-link text "Gosling chat notes" differs from the target's title "Gosling"
+warn   dev: docs/Developer Guide/Developer Guide/Architecture/Database/Database structure/entity_changes.md (ohhExR078MPU): notePosition 51 is not a multiple of 10
+warn   dev: docs/Developer Guide/Developer Guide/Architecture/Database/Database structure/etapi_tokens.md (bRqbIg633nCs): notePosition 52 is not a multiple of 10
+warn   dev: docs/Developer Guide/Developer Guide/Architecture/Database/Database structure/notes.md (DSkl8C325tEC): notePosition 53 is not a multiple of 10
+warn   dev: docs/Developer Guide/Developer Guide/Architecture/Database/Database structure/options.md (4oeftEmy77Bt): notePosition 54 is not a multiple of 10
+warn   dev: docs/Developer Guide/Developer Guide/Architecture/Database/Database structure/recent_notes.md (VyFirdgAOoh5): notePosition 55 is not a multiple of 10
+warn   dev: docs/Developer Guide/Developer Guide/Architecture/Database/Database structure/revisions.md (s7ZBiaJVNumK): notePosition 56 is not a multiple of 10
+warn   dev: docs/Developer Guide/Developer Guide/Architecture/Database/Database structure/sessions.md (6DG1au6rgOTl): notePosition 66 is not a multiple of 10
+warn   dev: docs/Developer Guide/Developer Guide/Architecture/Database/Database structure/user_data.md (zWY2LKmas9os): notePosition 76 is not a multiple of 10
+warn   dev: docs/Developer Guide/Developer Guide/Architecture/Database/Database structure/user_data.md (zWY2LKmas9os): no shareAlias — no public URL, and dropped from the standalone help
+warn   dev: docs/Developer Guide/Developer Guide/Interoperability/Exported content with extended task states.md (dSgzBgbagtYP): no shareAlias — no public URL, and dropped from the standalone help
+warn   dev: docs/Developer Guide/Developer Guide/Interoperability/Trilium Backup Container (.tnbackup) file format.md (Gntibtjmzi7e): no shareAlias — no public URL, and dropped from the standalone help
+warn   dev: docs/Developer Guide/Developer Guide/Concepts/Backlinks.md: empty page
+warn   dev: docs/Developer Guide/Developer Guide/Concepts/Branch prefixes.md: empty page
+warn   dev: docs/Developer Guide/Developer Guide/Concepts/Deleted notes.md: empty page
+warn   dev: docs/Developer Guide/Developer Guide/Testing/Integration testing.md: empty page
+warn   release: docs/Release Notes/Release Notes (hD3V4hiu2VW4): attribute positions are not ascending
+
+0 error(s), 70 warning(s)

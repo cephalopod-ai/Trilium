@@ -686,8 +686,10 @@ export function useLlmChat(
                 content: [{ type: "text", content: "Incomplete agent turn. Partial output and tool activity follow; only successful tool results establish applied changes.\n\n" }, ...activity] }];
         };
 
+        let streamFailed = false;
+
         /** Shared cleanup: finalize collected content and reset streaming state. */
-        function finalizeStream() {
+        function finalizeStream(completed = false) {
             if (!isCurrentTurn()) return;
             // Reveal any remaining smoothed text instantly so the trailing chars
             // don't get clipped when the streaming placeholder is swapped for
@@ -710,7 +712,15 @@ export function useLlmChat(
                 }
             }
 
-            if (contentBlocks.length > 0) {
+            if (completed && !streamFailed && contentBlocks.length === 0) {
+                setMessages([...conversation, {
+                    id: randomString(),
+                    role: "assistant",
+                    content: t("llm.empty_response"),
+                    createdAt: new Date().toISOString(),
+                    type: "error"
+                }]);
+            } else if (!streamFailed && contentBlocks.length > 0) {
                 setMessages([...conversation, {
                     id: randomString(),
                     role: "assistant",
@@ -862,6 +872,7 @@ export function useLlmChat(
                 },
                 onError: (errorMsg, errorDetails) => {
                     if (!isCurrentTurn()) return;
+                    streamFailed = true;
                     console.error("Chat error:", errorMsg, errorDetails);
                     const errorMessage: StoredMessage = {
                         id: randomString(),
@@ -879,7 +890,7 @@ export function useLlmChat(
                     setIsStreaming(false);
                 },
                 onDone: () => {
-                    finalizeStream();
+                    finalizeStream(true);
                 }
             },
             abortController.signal

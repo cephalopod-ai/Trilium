@@ -162,9 +162,11 @@ export async function getProvider(providerId?: string): Promise<LlmProvider> {
         return cachedProviders[config.id];
     }
 
-    // Create new provider instance
+    // Capture this generation before awaiting: invalidation replaces the cache object.
+    // An older construction must never publish into that replacement.
+    const cache = cachedProviders;
     const provider = await createProviderInstance(config.provider, config.apiKey, config.baseURL);
-    cachedProviders[config.id] = provider;
+    cache[config.id] = provider;
     return provider;
 }
 

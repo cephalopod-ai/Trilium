@@ -101,6 +101,22 @@ describe("useLlmChat", () => {
         streamChatCompletionMock.mockReset();
     });
 
+    it("turns a content-free completion into a retryable error without retrying automatically", async () => {
+        await mountChat();
+        await act(async () => { api().setInput("Hello"); });
+        await act(async () => { await api().handleSubmit(new Event("submit")); });
+        expect(api().messages.at(-1)).toMatchObject({ role: "assistant", type: "error", content: "llm.empty_response" });
+        expect(api().isStreaming).toBe(false);
+        expect(streamChatCompletionMock).toHaveBeenCalledTimes(1);
+        streamChatCompletionMock.mockImplementation(async (_messages, _options, callbacks) => {
+            callbacks.onChunk("answer");
+            callbacks.onDone();
+        });
+        await act(async () => { await api().retryLast(); });
+        expect(api().messages.at(-1)?.type).not.toBe("error");
+        expect(streamChatCompletionMock).toHaveBeenCalledTimes(2);
+    });
+
     it("provides the latest messages and note access to a synchronous save snapshot", async () => {
         let snapshot: ReturnType<LlmChatApi["getContent"]> | undefined;
         onMessagesSnapshot = () => { snapshot = api().getContent(); };

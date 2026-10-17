@@ -20,6 +20,8 @@ Depending on the <a class="reference-link" href="Vertical%20and%20horizontal%20
 
 ## Keyboard interaction
 
+The new-tab, close-tab, and tab-scroll buttons can be reached with <kbd>Tab</kbd> and activated with <kbd>Enter</kbd> or <kbd>Space</kbd>. A scroll button is disabled when there are no more tabs in that direction.
+
 Since tabs are a commonly used feature, there are multiple keyboard shortcuts that can be used:
 
 *   <kbd>Ctrl</kbd>+<kbd>T</kbd> to open a new tab.

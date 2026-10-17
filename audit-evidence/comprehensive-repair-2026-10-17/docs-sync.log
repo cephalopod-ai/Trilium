@@ -1,0 +1,33 @@
+regenerating every docs tree headless (import → export, ~10 s)…
+$ pnpm run --filter edit-docs sync-docs
+$ cross-env TRILIUM_DATA_DIR=data TRILIUM_INTEGRATION_TEST=memory-no-store TRILIUM_ENV=dev TRILIUM_RESOURCE_DIR=../server/src tsx src/sync-docs.ts
+
+synced. 23 file(s) differ from HEAD across the docs trees (12 first touched by this sync):
+  docs/ Markdown: 10
+    M docs/User Guide/User Guide/AI.md
+    M docs/User Guide/User Guide/AI/Privacy.md
+    M docs/User Guide/User Guide/Advanced Usage/Bulk Actions.md
+    M docs/User Guide/User Guide/Basic Concepts and Features/UI Elements/Tabs.md
+    M docs/User Guide/User Guide/Basic Concepts and Features/UI Elements/Zoom.md
+    M docs/User Guide/User Guide/Note Types/File/PDFs.md
+    M docs/User Guide/User Guide/Quick Start.md
+    M docs/User Guide/User Guide/Troubleshooting.md
+    … 2 more
+  docs/ !!!meta.json: 1
+    M docs/User Guide/!!!meta.json
+  help HTML (doc_notes): 10
+    M apps/server/src/assets/doc_notes/en/User Guide/User Guide/AI.html
+    M apps/server/src/assets/doc_notes/en/User Guide/User Guide/AI/Privacy.html
+    M apps/server/src/assets/doc_notes/en/User Guide/User Guide/Advanced Usage/Bulk Actions.html
+    M apps/server/src/assets/doc_notes/en/User Guide/User Guide/Basic Concepts and Features/UI Elements/Tabs.html
+    M apps/server/src/assets/doc_notes/en/User Guide/User Guide/Basic Concepts and Features/UI Elements/Zoom.html
+    M apps/server/src/assets/doc_notes/en/User Guide/User Guide/Note Types/File/PDFs.html
+    M apps/server/src/assets/doc_notes/en/User Guide/User Guide/Quick Start.html
+    M apps/server/src/assets/doc_notes/en/User Guide/User Guide/Troubleshooting.html
+    … 2 more
+  help meta: 2
+    M apps/server/src/assets/doc_notes/en/User Guide/!!!meta.json
+    M apps/standalone/src/assets/help_meta.json
+
+Review with `git diff -- docs` (your Markdown, normalized) and `git diff --stat -- apps/server/src/assets/doc_notes`.
+Reflow, shifted &nbsp; and <li><p> churn in the HTML is expected; a changed href, a dropped <img> or lost text is not.
