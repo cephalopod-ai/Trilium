@@ -6,7 +6,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import Component from "../../components/component";
 import type FNote from "../../entities/fnote";
-import type { EntityChange } from "../../server_types";
+import type { EntityChange } from "@triliumnext/commons";
 import LoadResults from "../../services/load_results";
 import searchService from "../../services/search";
 import { buildNote } from "../../test/easy-froca";

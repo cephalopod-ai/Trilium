@@ -142,7 +142,8 @@ function renderSheet(sheet: IWorksheetData, styles: Record<string, IStyleData | 
     for (let row = minRow; row <= maxRow; row++) {
         const cells: string[] = [];
         for (let col = minCol; col <= maxCol; col++) {
-            cells.push(escapeCsvField(cellText(cellData[row]?.[col], styles)));
+            const cell = cellData[row]?.[col];
+            cells.push(escapeCsvField(cellText(cell, styles), typeof cell?.v === "number"));
         }
         lines.push(cells.join(","));
     }
@@ -196,7 +197,9 @@ export function formatDate(pattern: string, serial: number): string | null {
  * Quotes a field per RFC 4180 when it contains a comma, double quote, CR, or LF;
  * embedded double quotes are doubled. Plain fields pass through unchanged.
  */
-function escapeCsvField(value: string): string {
+function escapeCsvField(value: string, numeric = false): string {
+    // Quoting CSV syntax alone does not stop spreadsheet engines interpreting formulas.
+    if (!numeric && /^[\s\uFEFF]*[=+@-]|^[\t\r\n]/.test(value)) value = `'${value}`;
     if (/[",\r\n]/.test(value)) {
         return `"${value.replace(/"/g, '""')}"`;
     }

@@ -12,11 +12,6 @@ function getHost() {
         return config["Security"]["allowLanAccess"] ? "0.0.0.0" : "127.0.0.1";
     }
 
-    const envHost = process.env.TRILIUM_HOST;
-    if (envHost) {
-        return envHost;
-    }
-
     return config["Network"]["host"];
 }
 

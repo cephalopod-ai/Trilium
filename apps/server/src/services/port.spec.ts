@@ -21,8 +21,9 @@ describe("port", () => {
         vi.resetModules();
         vi.doMock("./utils.js", () => ({ isDev: opts.isDev, isElectron: opts.isElectron }));
         vi.doMock("./config.js", () => ({
-            default: { Network: { port: opts.configPort } },
-            DEFAULT_NETWORK_PORT: "8080"
+            default: { Network: { port: process.env.TRILIUM_NETWORK_PORT ?? process.env.TRILIUM_PORT ?? opts.configPort } },
+            DEFAULT_NETWORK_PORT: "8080",
+            getNetworkPortOverride: () => process.env.TRILIUM_NETWORK_PORT ?? process.env.TRILIUM_PORT
         }));
         vi.doMock("./data_dir.js", () => ({ default: { CONFIG_INI_PATH: "/test/config.ini" } }));
         return (await import("./port.js")).default;
@@ -31,6 +32,11 @@ describe("port", () => {
     it("uses TRILIUM_PORT env var when valid", async () => {
         process.env.TRILIUM_PORT = "8123";
         expect(await loadPort({ isElectron: false, isDev: false, configPort: "8080" })).toBe(8123);
+    });
+
+    it("preserves an explicit port override on desktop", async () => {
+        process.env.TRILIUM_PORT = "8123";
+        expect(await loadPort({ isElectron: true, isDev: false, configPort: "8080" })).toBe(8123);
     });
 
     it("exits on an invalid TRILIUM_PORT env var", async () => {

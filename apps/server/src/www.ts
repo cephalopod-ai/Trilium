@@ -14,7 +14,7 @@ import host from "./services/host.js";
 import { registerServerLlmExtensions } from "./services/llm/index.js";
 import port from "./services/port.js";
 import { installProcessErrorHandlers, markAppReady } from "./services/process_errors.js";
-import { isScriptingEnabled } from "./services/scripting_guard.js";
+import { isScriptingEnabled } from "@triliumnext/core/src/services/scripting_guard.js";
 import { publishHealthcheckTarget } from "./services/healthcheck.js";
 import { getDbSize } from "./services/sql_init.js";
 import { isHttpAttachableMessagingProvider } from "./services/ws_messaging_provider.js";

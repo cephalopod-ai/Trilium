@@ -1,30 +1,51 @@
 # Project Structure
-As the application grew in complexity, we decided to switch to a monorepo based on `pnpm`. Our initial monorepo implementation used NX, but we've switched to pure `pnpm` workspaces and our own build scripts.
+Trilium uses pnpm workspaces, with runnable applications under `apps/*` and shared libraries under `packages/*`. `pnpm-workspace.yaml` defines those workspace roots.
 
-## Project structure
+## Applications
 
-The mono-repo is mainly structured in:
+| Directory | Purpose |
+| --- | --- |
+| `apps/client` | Shared frontend for server, desktop, standalone and mobile. |
+| `apps/server` | Node.js host, Express transport, ETAPI and platform providers. |
+| `apps/desktop` | Electron host and native integrations. |
+| `apps/standalone` | Browser worker host, SQLite WASM and OPFS storage. |
+| `apps/mobile` | Capacitor shell around standalone. |
+| `apps/web-clipper` | Firefox and Chromium browser extension. |
+| `apps/website` | Public website. |
+| `apps/db-compare` | Database comparison tool. |
+| `apps/dump-db` | Database export tool. |
+| `apps/edit-docs` | Documentation editor and synchronization tools. |
+| `apps/build-docs` | Documentation build tooling. |
+| `apps/icon-pack-builder` | Icon font generation. |
+| `apps/script-deployer` | Script deployment tooling. |
 
-*   `apps`, representing runnable entry-points such as the `desktop`, the `server` but also additional tooling.
-    *   `client`, representing the front-end that is used both by the server and the desktop application.
-    *   `server`, representing the Node.js / server version of the application.
-    *   `desktop`, representing the Electron-based desktop application.
-    *   `web-clipper`, representing the browser extension to easily clip web pages into Trilium, with support for both Firefox and Chrome (manifest V3).
-*   `packages`, containing dependencies used by one or more `apps`.
-    *   `commons`, containing shared code for all the apps.
+## Packages
 
-## Working with the project
+| Directory | Purpose |
+| --- | --- |
+| `packages/trilium-core` | Portable backend entities, services, SQL abstractions, sync, migrations and shared routes. |
+| `packages/commons` | Types and utilities shared with the frontend and hosts. |
+| `packages/trilium-e2e` | Shared Playwright end-to-end tests. |
+| `packages/trilium-backup-container` | Compressed and encrypted backup format. |
+| `packages/ckeditor5` | Rich text editor and in-tree plugins. |
+| `packages/codemirror` | Code editor integration. |
+| `packages/highlightjs` | Syntax highlighting. |
+| `packages/pdfjs-viewer` | PDF viewer integration. |
+| `packages/share-theme` | Shared-note rendering theme. |
+| `packages/splitjs` | Split-pane support. |
+| `packages/turndown-plugin-gfm` | Markdown conversion support. |
 
-For example to run the server instance:
+The Docker build context under `apps/server/docker` has a packaging manifest; it is not a separate top-level workspace application.
 
-```
+## Development commands
+
+```sh
 pnpm server:start
+pnpm standalone:start
+pnpm desktop:start
+pnpm --filter server test <spec-path>
+pnpm --filter standalone test <core-spec-path>
+pnpm typecheck
 ```
 
-## Running and building
-
-Each application has a number of tasks. Here's a non-exhaustive list of the tasks that are useful during development. See <a class="reference-link" href="Building">Building</a>.
-
-## Managing dependencies across the mono-repo
-
-We are using [pnpm workspaces](https://pnpm.io/workspaces) to manage the project structure. The workspace configuration is in `pnpm-workspace.yaml` at project level but it generally should not be modified.
+Core specifications run through both server and standalone providers. See [Architecture](Architecture.md) for runtime boundaries and [Backend](Architecture/Backend.md) for service ownership.

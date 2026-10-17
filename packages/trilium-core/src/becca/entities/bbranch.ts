@@ -2,9 +2,12 @@
 
 import type { BranchRow } from "@triliumnext/commons";
 
+import becca from "../becca";
+
 import dateUtils from "../../services/utils/date";
 import handlers from "../../services/handlers.js";
 import { getLog } from "../../services/log.js";
+import { getSql } from "../../services/sql";
 import TaskContext from "../../services/task_context.js";
 import AbstractBeccaEntity from "./abstract_becca_entity.js";
 import BNote from "./bnote.js";
@@ -210,7 +213,9 @@ class BBranch extends AbstractBeccaEntity<BBranch> {
             throw new Error(`noteId and parentNoteId are mandatory properties for Branch`);
         }
 
-        this.branchId = `${this.parentNoteId}_${this.noteId}`;
+        const branchId = `${this.parentNoteId}_${this.noteId}`;
+        assertBranchIdentity(branchId, this.noteId, this.parentNoteId);
+        this.branchId = branchId;
 
         if (this.notePosition === undefined || this.notePosition === null) {
             let maxNotePos = 0;
@@ -261,6 +266,29 @@ class BBranch extends AbstractBeccaEntity<BBranch> {
         };
     }
 
+    /** Shifts sibling positions without changing their sync timestamps or hashes. */
+    shiftSiblingPositions(inclusive: boolean) {
+        const originalPosition = this.notePosition;
+        getSql().execute(
+            `UPDATE branches SET notePosition = notePosition + 10 WHERE parentNoteId = ? AND notePosition ${inclusive ? ">=" : ">"} ? AND isDeleted = 0`,
+            [this.parentNoteId, originalPosition]
+        );
+        for (const branch of this.parentNote?.getChildBranches() ?? []) {
+            if (inclusive ? branch.notePosition >= originalPosition : branch.notePosition > originalPosition) {
+                branch.notePosition += 10;
+            }
+        }
+    }
+
+    /** Expansion is local UI state and deliberately creates no entity change. */
+    static setExpandedLocally(branchIds: string[], expanded: boolean) {
+        getSql().executeMany(`UPDATE branches SET isExpanded = ${+expanded} WHERE branchId IN (???)`, branchIds);
+        for (const branchId of branchIds) {
+            const branch = becca.branches[branchId];
+            if (branch) branch.isExpanded = expanded;
+        }
+    }
+
     createClone(parentNoteId: string, notePosition?: number) {
         const existingBranch = this.becca.getBranchFromChildAndParent(this.noteId, parentNoteId);
 
@@ -287,3 +315,13 @@ class BBranch extends AbstractBeccaEntity<BBranch> {
 }
 
 export default BBranch;
+
+/** Reject ambiguous legacy composite IDs before an upsert can replace another placement. */
+export function assertBranchIdentity(branchId: string, noteId: string, parentNoteId: string) {
+    const existing = getSql().getRowOrNull<BranchRow>(
+        "SELECT noteId, parentNoteId FROM branches WHERE branchId = ?", [branchId]
+    );
+    if (existing && (existing.noteId !== noteId || existing.parentNoteId !== parentNoteId)) {
+        throw new Error(`Branch ID collision for '${branchId}'.`);
+    }
+}

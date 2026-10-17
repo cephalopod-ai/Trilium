@@ -8,15 +8,10 @@ import { join } from "path";
 const { languages } = require("tesseract.js");
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import {
-    changeLanguage,
-    getCurrentLocale,
-    initializeTranslations,
-    ordinal
-} from "./i18n.js";
-// i18n.ts uses the server-local sql_init wrapper (not core's), so the spy must
-// target this same singleton for `isDbInitialized` to be intercepted.
-import sqlInit from "./sql_init.js";
+import { initializeTranslationsWithParams } from "./i18n.js";
+import { i18n, sql_init as sqlInit } from "@triliumnext/core";
+const { changeLanguage, getCurrentLocale, ordinal } = i18n;
+const initializeTranslations = () => i18n.initTranslations(initializeTranslationsWithParams);
 
 describe("i18n", () => {
     it("translations are valid JSON with no duplicate keys", () => {

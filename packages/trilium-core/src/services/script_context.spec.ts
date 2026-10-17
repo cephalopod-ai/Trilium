@@ -79,6 +79,10 @@ describe("ScriptContext", () => {
         const ctx = new ScriptContext([moduleNote], { startNote: moduleNote });
 
         // "lodash" is not a Trilium module note but is whitelisted, so it resolves via Node's require.
+        if (typeof window !== "undefined") {
+            expect(() => ctx.require([moduleNote.noteId])("lodash")).toThrow(/unavailable on this platform/);
+            return;
+        }
         const lodash = ctx.require([moduleNote.noteId])("lodash");
         expect(typeof (lodash as { join?: unknown }).join).toBe("function");
     });

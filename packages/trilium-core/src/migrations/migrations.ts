@@ -9,6 +9,10 @@ export function getMaxMigrationVersion() {
 
 // Migrations should be kept in descending order, so the latest migration is first.
 export const MIGRATIONS: (SqlMigration | JsMigration)[] = [
+    {
+        version: 242,
+        module: () => import("./0242__repair_metadata_columns.js")
+    },
     // Delete the globe icon the web clipper wrote onto clippings, so they take the icon of their clipType
     {
         version: 241,
@@ -28,11 +32,7 @@ export const MIGRATIONS: (SqlMigration | JsMigration)[] = [
     // Add description column to revisions table for manual revision comments
     {
         version: 238,
-        sql: /*sql*/`
-            ALTER TABLE revisions ADD COLUMN description TEXT DEFAULT '' NOT NULL;
-            ALTER TABLE revisions ADD COLUMN source TEXT DEFAULT 'auto' NOT NULL;
-        `,
-        ignoreErrors: true
+        module: async () => ({ default: (await import("./0242__repair_metadata_columns.js")).ensureRevisionMetadataColumns })
     },
     // Clean up obsolete keyboard shortcut options from renamed actions
     {
@@ -47,10 +47,7 @@ export const MIGRATIONS: (SqlMigration | JsMigration)[] = [
     // Add text representation column to blobs table
     {
         version: 236,
-        sql: /*sql*/`\
-            ALTER TABLE blobs ADD COLUMN textRepresentation TEXT DEFAULT NULL;
-        `,
-        ignoreErrors: true
+        module: async () => ({ default: (await import("./0242__repair_metadata_columns.js")).ensureBlobTextRepresentation })
     },
     // Add missing database indices for query performance
     {

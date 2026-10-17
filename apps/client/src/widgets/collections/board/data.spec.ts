@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import FBranch from "../../../entities/fbranch";
 import froca from "../../../services/froca";
 import LoadResults from "../../../services/load_results";
-import type { EntityChange } from "../../../server_types";
+import type { EntityChange } from "@triliumnext/commons";
 import { buildNote } from "../../../test/easy-froca";
 import type { PromotedAttribute } from "../promoted_attributes";
 import type { SortContext, SortKey } from "../sorting";

@@ -1,4 +1,5 @@
 import type BNote from "../becca/entities/bnote.js";
+import { getPlatform } from "./platform";
 import BackendScriptApi from "./backend_script_api.js";
 import type { ApiParams } from "./backend_script_api_interface.js";
 import { toObject } from "./utils/index.js";
@@ -80,7 +81,11 @@ class ScriptContext {
 
                 // Allow if in whitelist
                 if (ALLOWED_MODULES.has(moduleName)) {
-                    return require(moduleName);
+                    const platform = getPlatform();
+                    if (!platform.requireScriptModule) {
+                        throw new Error(`Module '${moduleName}' is unavailable on this platform.`);
+                    }
+                    return platform.requireScriptModule(moduleName);
                 }
 
                 throw new Error(

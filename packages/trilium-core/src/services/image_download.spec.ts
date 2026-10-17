@@ -3,6 +3,8 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vites
 import type BNote from "../becca/entities/bnote.js";
 import { getContext } from "./context.js";
 import { downloadImages, downloadPictureToAttachment, storeLinkPreviewPictures } from "./image_download.js";
+import { awaitPendingImageWrites } from "./image";
+import { getImageProvider } from "./image_provider";
 import noteService from "./notes.js";
 import optionService from "./options.js";
 import { fakeRequestProvider } from "../test/request_provider.js";
@@ -50,6 +52,11 @@ let asked: string[] = [];
 let answerWith: (url: string) => Buffer | undefined = () => PIXEL_PNG;
 
 beforeAll(() => {
+    vi.spyOn(getImageProvider(), "processImage").mockImplementation(async (buffer) => {
+        const format = getImageProvider().getImageType(buffer);
+        if (!format) throw new Error("Unknown image fixture");
+        return { buffer, format };
+    });
     initRequest(fakeRequestProvider({
         getImage: async (url: string) => {
             asked.push(url);
@@ -64,8 +71,10 @@ beforeAll(() => {
     }));
 });
 
-afterAll(() => {
+afterAll(async () => {
+    await awaitPendingImageWrites();
     initRequest(fakeRequestProvider());
+    vi.restoreAllMocks();
 });
 
 beforeEach(() => {
@@ -271,6 +280,22 @@ describe("downloadImages (real DB)", () => {
         await vi.waitFor(() => expect(note.getAttachments()).toHaveLength(1));
         expect(asked).toEqual([ url ]);
     });
+    it("keeps the same remote image owned separately by each note", async () => {
+        const first = createNote("<p>first</p>");
+        const second = createNote("<p>second</p>");
+        const url = freshUrl();
+        const content = `<img src="${url}">`;
+        withDownloads(true, () => downloadImages(first.noteId, content));
+        await vi.waitFor(() => expect(first.getAttachments()).toHaveLength(1));
+        withDownloads(true, () => downloadImages(second.noteId, content));
+        await vi.waitFor(() => expect(second.getAttachments()).toHaveLength(1));
+        const [one] = first.getAttachments();
+        const [two] = second.getAttachments();
+        expect(one.attachmentId).not.toBe(two.attachmentId);
+        expect(withDownloads(true, () => downloadImages(second.noteId, content))).toContain(two.attachmentId);
+        expect(asked).toEqual([url, url]);
+    });
+
 });
 
 describe("storeLinkPreviewPictures (real DB)", () => {

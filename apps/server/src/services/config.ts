@@ -361,11 +361,13 @@ const configMapping = {
             // Web/server only — desktop ignores this and resolves its bind
             // address from the `allowLanAccess` security override (see host.ts).
             standardEnvVar: 'TRILIUM_NETWORK_HOST',
+            aliasEnvVars: ['TRILIUM_HOST'],
             iniGetter: () => getIniSection("Network")?.host,
             defaultValue: '0.0.0.0'
         },
         port: {
             standardEnvVar: 'TRILIUM_NETWORK_PORT',
+            aliasEnvVars: ['TRILIUM_PORT'],
             iniGetter: () => getIniSection("Network")?.port,
             defaultValue: DEFAULT_NETWORK_PORT
         },
@@ -755,3 +757,15 @@ const config: TriliumConfig = {
  * });
  */
 export default config;
+
+
+/** Returns an explicit network-port override for hosts with their own default port. */
+export function getNetworkPortOverride(): string | undefined {
+    const setting = configMapping.Network.port;
+    for (const name of [setting.standardEnvVar, ...(setting.aliasEnvVars ?? [])]) {
+        if (!name) continue;
+        const value = process.env[name];
+        if (value) return value;
+    }
+    return undefined;
+}

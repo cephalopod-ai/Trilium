@@ -22,6 +22,7 @@ export interface SqlServiceParams {
 
 export class SqlService {
 
+    private commitCallbacks: Array<Array<() => void>> = [];
     private dbConnection: DatabaseProvider;
     private statementCache: Record<string, Statement> = {};
     private params: Omit<SqlServiceParams, "provider">;
@@ -396,21 +397,42 @@ export class SqlService {
         return result;
     }
 
+    /** Runs a notification once its enclosing transaction has durably committed. */
+    afterCommit(callback: () => void) {
+        const pending = this.commitCallbacks.at(-1);
+        if (pending) pending.push(callback);
+        else if (!this.dbConnection.inTransaction) callback();
+        else throw new Error("Transaction notifications require a managed transaction.");
+    }
+
+    private finishCommitCallbacks(callbacks: Array<() => void>) {
+        const parent = this.commitCallbacks.at(-1);
+        if (parent) {
+            parent.push(...callbacks);
+            return;
+        }
+        for (const callback of callbacks) {
+            try { callback(); }
+            catch (error) { this.log.error(`Post-commit notification failed: ${error}`); }
+        }
+    }
+
     transactional<T>(func: (statement: Statement) => T) {
+        const callbacks: Array<() => void> = [];
+        this.commitCallbacks.push(callbacks);
+        let result: T;
         try {
-            const ret = (this.dbConnection.transaction(func) as any).deferred();
-
-            if (!this.dbConnection.inTransaction) {
-                // i.e. transaction was really committed (and not just savepoint released)
-                this.params.onTransactionCommit();
-            }
-
-            return ret as T;
+            result = (this.dbConnection.transaction(func) as any).deferred() as T;
         } catch (e) {
+            this.commitCallbacks.pop();
             console.warn("Got error ", e);
             this.params.onTransactionRollback();
             throw e;
         }
+        this.commitCallbacks.pop();
+        if (!this.dbConnection.inTransaction) this.params.onTransactionCommit();
+        this.finishCommitCallbacks(callbacks);
+        return result;
     }
 
     /**
@@ -419,18 +441,22 @@ export class SqlService {
      */
     async transactionalAsync<T>(func: () => Promise<T>): Promise<T> {
         this.execute("BEGIN IMMEDIATE");
+        const callbacks: Array<() => void> = [];
+        this.commitCallbacks.push(callbacks);
+        let result: T;
         try {
-            const result = await func();
+            result = await func();
             this.execute("COMMIT");
-            if (!this.dbConnection.inTransaction) {
-                this.params.onTransactionCommit();
-            }
-            return result;
         } catch (e) {
+            this.commitCallbacks.pop();
             this.execute("ROLLBACK");
             this.params.onTransactionRollback();
             throw e;
         }
+        this.commitCallbacks.pop();
+        this.params.onTransactionCommit();
+        this.finishCommitCallbacks(callbacks);
+        return result;
     }
 
     fillParamList(paramIds: string[] | Set<string>, truncate = true) {

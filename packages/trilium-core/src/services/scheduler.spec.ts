@@ -178,6 +178,20 @@ describe("scheduler", () => {
         expect(reloadFrontend).toHaveBeenCalledWith(expect.any(String));
     });
 
+    it("applies runAtHour only to hourly scripts", async () => {
+        const script = buildBackendScript();
+        const otherHour = String((new Date().getHours() + 2) % 24);
+        script.getLabelValues = (name) => name === "runAtHour" ? [otherHour] : [];
+        getNotesWithLabel.mockReturnValue([script]);
+        startScheduler();
+        await settleDbReady();
+        await vi.advanceTimersByTimeAsync(10 * SECOND);
+        expect(executeNoteNoException).toHaveBeenCalledTimes(1);
+        getNotesWithLabel.mockImplementation((_name: string, value: string) => value === "daily" ? [script] : []);
+        await vi.advanceTimersByTimeAsync(24 * HOUR);
+        expect(executeNoteNoException).toHaveBeenCalledTimes(2);
+    });
+
     it("honors runOnInstance / runAtHour filters and tolerates malformed runAtHour", async () => {
         const runnable = buildBackendScript(); // no filters → always runs
 

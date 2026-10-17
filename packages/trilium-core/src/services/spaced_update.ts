@@ -1,6 +1,7 @@
 type Updater = () => void;
 
 class SpacedUpdate {
+    private updateTimeout?: ReturnType<typeof setTimeout>;
     private updater: Updater;
     private lastUpdated: number;
     private changed: boolean;
@@ -18,7 +19,13 @@ class SpacedUpdate {
     scheduleUpdate() {
         if (!this.changeForbidden) {
             this.changed = true;
-            setTimeout(() => this.triggerUpdate());
+            if (!this.updateTimeout) {
+                const remaining = Math.max(1, this.updateInterval - (Date.now() - this.lastUpdated));
+                this.updateTimeout = setTimeout(() => {
+                    this.updateTimeout = undefined;
+                    this.triggerUpdate();
+                }, remaining);
+            }
         }
     }
 
@@ -49,7 +56,7 @@ class SpacedUpdate {
             return;
         }
 
-        if (Date.now() - this.lastUpdated > this.updateInterval) {
+        if (Date.now() - this.lastUpdated >= this.updateInterval) {
             this.updater();
             this.lastUpdated = Date.now();
             this.changed = false;

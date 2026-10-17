@@ -10,6 +10,6 @@ export async function initSql(instance: SqlService) {
 }
 
 export function getSql(): SqlService {
-    if (!sql) throw new Error("SQL not initialized");
+    if (!sql) throw new Error("SQL not initialized. Call initializeCore() and await initialization before accessing database services.");
     return sql;
 }

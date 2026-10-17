@@ -20,7 +20,7 @@ describe("host", () => {
         vi.doMock("./utils.js", () => ({ isElectron: opts.isElectron }));
         vi.doMock("./config.js", () => ({
             default: {
-                Network: { host: opts.configHost ?? "" },
+                Network: { host: process.env.TRILIUM_NETWORK_HOST ?? process.env.TRILIUM_HOST ?? opts.configHost ?? "" },
                 Security: { allowLanAccess: opts.allowLanAccess ?? false }
             }
         }));

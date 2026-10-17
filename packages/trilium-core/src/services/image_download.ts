@@ -19,7 +19,6 @@
  */
 
 import { type ImageAttachmentRole, imageExtensionForMime, isHttpUrl, linkPreviewImageName, safeHostname } from "@triliumnext/commons";
-import url from "url";
 
 import becca from "../becca/becca.js";
 import type BNote from "../becca/entities/bnote.js";
@@ -32,7 +31,7 @@ import optionService from "./options.js";
 import request from "./request.js";
 import { getSql } from "./sql/index.js";
 import { decodeBase64 } from "./utils/binary.js";
-import { quoteRegex, unescapeHtml } from "./utils/index.js";
+import { hash, quoteRegex, unescapeHtml } from "./utils/index.js";
 import { basename } from "./utils/path.js";
 
 /** A picture that has been stored, and the two ways the rest of the code refers to it. */
@@ -117,7 +116,8 @@ export async function downloadPictureToAttachment(
     }
 }
 
-const imageUrlToAttachmentIdMapping: Record<string, string> = {};
+// Only active requests are retained; durable reuse is scoped to the owning note's attachments.
+const imageDownloads = new Map<string, Promise<{ attachmentId?: string; title: string } | undefined>>();
 
 async function downloadImage(noteId: string, imageUrl: string) {
     const unescapedUrl = unescapeHtml(imageUrl);
@@ -136,31 +136,32 @@ async function downloadImage(noteId: string, imageUrl: string) {
 
     try {
         const imageBuffer = new Uint8Array(await request.getImage(unescapedUrl));
-
-        const parsedUrl = url.parse(unescapedUrl);
-        const title = basename(parsedUrl.pathname || "");
+        if (!becca.getNote(noteId)) return;
+        const title = downloadedImageTitle(unescapedUrl);
 
         // Given a context of its own, as the link rewrite below is: the download resumes long
         // after the request that started it has answered, and a write with no context around it
         // has nowhere to record its entity change.
         const attachment = cls.getContext().init(
-            () => imageService.saveImageToAttachment(noteId, imageBuffer, title, true, true)
+            () => imageService.saveImageToAttachment(noteId, imageBuffer, title, true, false)
         );
 
-        if (attachment.attachmentId) {
-            imageUrlToAttachmentIdMapping[imageUrl] = attachment.attachmentId;
-        } else {
+        if (!attachment.attachmentId) {
             getLog().error(`Download of '${imageUrl}' for note '${noteId}' failed due to no attachment ID.`);
         }
 
-        getLog().info(`Download of '${imageUrl}' succeeded and was saved as image attachment '${attachment.attachmentId}' of note '${noteId}'`);
+        return attachment;
     } catch (e: any) {
         getLog().error(`Download of '${imageUrl}' for note '${noteId}' failed with error: ${e.message} ${e.stack}`);
     }
 }
 
-/** url => download promise */
-const downloadImagePromises: Record<string, Promise<void>> = {};
+/** A stable per-URL attachment title keeps reuse correct across saves and process restarts. */
+function downloadedImageTitle(imageUrl: string) {
+    const path = new URL(imageUrl).pathname;
+    const name = basename(path).replace(/[^a-zA-Z0-9._-]/g, "_").slice(-80) || "image";
+    return `${hash(imageUrl).slice(0, 16)}-${name}`;
+}
 
 /**
  * How far into an `<img>` tag to look for its `src`.
@@ -180,6 +181,8 @@ function replaceUrl(content: string, url: string, attachment: { attachmentId?: s
 }
 
 export function downloadImages(noteId: string, content: string) {
+    const imageUrlToAttachmentIdMapping: Record<string, string> = {};
+    const downloadImagePromises: Array<Promise<void>> = [];
     const imageRe = new RegExp(`<img[^>]{0,${MAX_ATTRIBUTES_BEFORE_SRC}}?\\ssrc=['"]([^'">]+)['"]`, "gi");
     let imageMatch;
 
@@ -209,29 +212,27 @@ export function downloadImages(noteId: string, content: string) {
                 continue;
             }
 
-            if (url in imageUrlToAttachmentIdMapping) {
-                const attachment = becca.getAttachment(imageUrlToAttachmentIdMapping[url]);
-
-                if (!attachment) {
-                    delete imageUrlToAttachmentIdMapping[url];
-                } else {
-                    content = replaceUrl(content, url, attachment);
-                    continue;
-                }
-            }
-
-            if (url in downloadImagePromises) {
-                // download is already in progress
+            if (!isHttpUrl(unescapeHtml(url))) continue;
+            const sourceKey = `${hash(unescapeHtml(url)).slice(0, 16)}-`;
+            const existing = becca.getNote(noteId)?.getAttachments()
+                .find((attachment) => attachment.role === "image" && attachment.title.startsWith(sourceKey));
+            if (existing) {
+                content = replaceUrl(content, url, existing);
                 continue;
             }
-
-            // this is done asynchronously, it would be too slow to wait for the download
-            // given that save can be triggered very often
-            downloadImagePromises[url] = downloadImage(noteId, url);
+            const key = JSON.stringify([noteId, url]);
+            let pending = imageDownloads.get(key);
+            if (!pending) {
+                pending = downloadImage(noteId, url).finally(() => imageDownloads.delete(key));
+                imageDownloads.set(key, pending);
+            }
+            downloadImagePromises.push(pending.then((attachment) => {
+                if (attachment?.attachmentId) imageUrlToAttachmentIdMapping[url] = attachment.attachmentId;
+            }));
         }
     }
 
-    Promise.all(Object.values(downloadImagePromises)).then(() => {
+    if (downloadImagePromises.length > 0) void Promise.all(downloadImagePromises).then(() => {
         setTimeout(() => {
             // the normal expected flow of the offline image saving is that users will paste the image(s)
             // which will get asynchronously downloaded, during that time they keep editing the note
@@ -243,40 +244,40 @@ export function downloadImages(noteId: string, content: string) {
 
             cls.getContext().init(() => {
                 getSql().transactional(() => {
-                const imageNotes = becca.getNotes(Object.values(imageUrlToAttachmentIdMapping), true);
+
                     const log = getLog();
 
-                const origNote = becca.getNote(noteId);
+                    const origNote = becca.getNote(noteId);
 
-                if (!origNote) {
-                    log.error(`Cannot find note '${noteId}' to replace image link.`);
-                    return;
-                }
-
-                const origContent = origNote.getContent();
-                let updatedContent = origContent;
-
-                if (typeof updatedContent !== "string") {
-                    log.error(`Note '${noteId}' has a non-string content, cannot replace image link.`);
-                    return;
-                }
-
-                for (const url in imageUrlToAttachmentIdMapping) {
-                    const imageNote = imageNotes.find((note) => note.noteId === imageUrlToAttachmentIdMapping[url]);
-
-                    if (imageNote) {
-                        updatedContent = replaceUrl(updatedContent, url, imageNote);
+                    if (!origNote) {
+                        log.error(`Cannot find note '${noteId}' to replace image link.`);
+                        return;
                     }
-                }
 
-                // update only if the links have not been already fixed.
-                if (updatedContent !== origContent) {
-                    origNote.setContent(updatedContent);
+                    const origContent = origNote.getContent();
+                    let updatedContent = origContent;
 
-                    void noteService.asyncPostProcessContent(origNote, updatedContent);
+                    if (typeof updatedContent !== "string") {
+                        log.error(`Note '${noteId}' has a non-string content, cannot replace image link.`);
+                        return;
+                    }
 
-                    console.log(`Fixed the image links for note '${noteId}' to the offline saved.`);
-                }
+                    for (const url in imageUrlToAttachmentIdMapping) {
+                        const imageNote = becca.getAttachment(imageUrlToAttachmentIdMapping[url]);
+
+                        if (imageNote?.ownerId === noteId) {
+                            updatedContent = replaceUrl(updatedContent, url, imageNote);
+                        }
+                    }
+
+                    // update only if the links have not been already fixed.
+                    if (updatedContent !== origContent) {
+                        origNote.setContent(updatedContent);
+
+                        void noteService.asyncPostProcessContent(origNote, updatedContent);
+
+                        console.log(`Fixed the image links for note '${noteId}' to the offline saved.`);
+                    }
                 });
             });
         }, 5000);
@@ -339,8 +340,9 @@ export async function storeLinkPreviewPictures(note: BNote) {
 
     rewritten += content.slice(cursor);
 
-    if (rewritten !== content) {
-        getSql().transactional(() => note.setContent(rewritten));
+    const fresh = becca.getNote(note.noteId);
+    if (fresh && !fresh.isDeleted && fresh.getContent() === content && rewritten !== content) {
+        getSql().transactional(() => fresh.setContent(rewritten));
     }
 }
 

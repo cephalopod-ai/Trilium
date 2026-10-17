@@ -339,10 +339,8 @@ class BNote extends AbstractBeccaEntity<BNote> {
      *
      * @returns the return value of the executed script
      */
-    executeScript() {
-        // Lazy require to avoid circular dependency (script.ts imports BNote as a type).
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        const scriptService = require("../../services/script.js").default;
+    async executeScript() {
+        const { default: scriptService } = await import("../../services/script.js");
         return scriptService.executeNote(this, { originEntity: this });
     }
 
@@ -1321,13 +1319,12 @@ class BNote extends AbstractBeccaEntity<BNote> {
      * @param value - value of the attribute - text for labels, target note ID for relations; optional.
      */
     addAttribute(type: AttributeType, name: string, value: string = "", isInheritable: boolean = false, position: number | null = null): BAttribute {
+        const existing = this.getOwnedAttributes().find((attribute) => attribute.type === type
+            && attribute.name === name && attribute.value === value
+            && attribute.isInheritable === isInheritable);
+        if (existing) return existing;
         return new BAttribute({
-            noteId: this.noteId,
-            type,
-            name,
-            value,
-            isInheritable,
-            position
+            noteId: this.noteId, type, name, value, isInheritable, position
         }).save();
     }
 
@@ -1767,7 +1764,13 @@ class BNote extends AbstractBeccaEntity<BNote> {
         sql.execute(/*sql*/`UPDATE blobs SET utcDateModified = ? WHERE blobId = ?`, [this.utcDateModified, this.blobId]);
     }
 
-    override beforeSaving() {
+    override beforeSaving(opts?: { allowDeleted?: boolean }) {
+        // Only the explicit undelete path can revive a persisted tombstone.
+        if (this.noteId && !opts?.allowDeleted && getSql().getValue(
+            "SELECT isDeleted FROM notes WHERE noteId = ?", [this.noteId]
+        )) {
+            throw new Error(`Cannot save deleted note '${this.noteId}'.`);
+        }
         super.beforeSaving();
 
         this.becca.addNote(this.noteId, this);

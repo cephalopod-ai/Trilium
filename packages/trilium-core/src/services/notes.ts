@@ -5,7 +5,7 @@ import { parse as parseHtml } from "node-html-parser";
 import becca from "../becca/becca.js";
 import BAttachment from "../becca/entities/battachment.js";
 import BAttribute from "../becca/entities/battribute.js";
-import BBranch from "../becca/entities/bbranch.js";
+import BBranch, { assertBranchIdentity } from "../becca/entities/bbranch.js";
 import BNote from "../becca/entities/bnote.js";
 import { ValidationError } from "../errors.js";
 import { getLog } from "../services/log.js";
@@ -252,6 +252,14 @@ function createNewNote(params: NoteParams): {
             + "Only letters, digits and underscores are allowed, with a length of 4 to 128.");
     }
 
+    if (params.noteId && getSql().getValue("SELECT 1 FROM notes WHERE noteId = ?", [params.noteId])) {
+        throw new ValidationError(`Note ID '${params.noteId}' already exists.`);
+    }
+
+    if (params.noteId) {
+        assertBranchIdentity(`${params.parentNoteId}_${params.noteId}`, params.noteId, params.parentNoteId);
+    }
+
     // When creating from a template, inherit the template's type and mime if not explicitly provided.
     // This ensures binary types (PDF, images, etc.) get the correct mime from the start.
     if (params.templateNoteId) {
@@ -275,9 +283,6 @@ function createNewNote(params: NoteParams): {
                 cls.disableEntityEvents();
             }
 
-            // TODO: think about what can happen if the note already exists with the forced ID
-            //       I guess on DB it's going to be fine, but becca references between entities
-            //       might get messed up (two note instances for the same ID existing in the references)
             note = new BNote({
                 noteId: params.noteId, // optionally can force specific noteId
                 title: params.title,
@@ -1345,7 +1350,7 @@ function restoreNoteAndDescendants(noteRow: NoteRow, deleteId: string, taskConte
     }
 
     noteEntity.updateFromRow(noteRow);
-    noteEntity.save();
+    noteEntity.save({ allowDeleted: true });
 
     const attributeRows = sql.getRows<AttributeRow>(
         `

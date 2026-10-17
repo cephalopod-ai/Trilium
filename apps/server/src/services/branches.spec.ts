@@ -1,7 +1,7 @@
 import { becca, cls, note_service as noteService } from "@triliumnext/core";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 
-import branches from "./branches.js";
+import branches from "@triliumnext/core/src/services/branches.js";
 import sql_init from "./sql_init.js";
 
 function createNote(parentNoteId: string, title: string) {

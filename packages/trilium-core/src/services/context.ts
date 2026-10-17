@@ -15,7 +15,7 @@ export function initContext(context: ExecutionContext) {
 }
 
 export function getContext(): ExecutionContext {
-    if (!ctx) throw new Error("Context not initialized");
+    if (!ctx) throw new Error("Context not initialized. Call initializeCore() before accessing execution-context services.");
     return ctx;
 }
 

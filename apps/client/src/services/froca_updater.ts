@@ -5,7 +5,7 @@ import FAttachment, { type FAttachmentRow } from "../entities/fattachment.js";
 import FAttribute, { type FAttributeRow } from "../entities/fattribute.js";
 import FBranch, { type FBranchRow } from "../entities/fbranch.js";
 import type { default as FNote, FNoteRow } from "../entities/fnote.js";
-import type { EntityChange } from "../server_types.js";
+import type { EntityChange } from "@triliumnext/commons";
 import froca from "./froca.js";
 import { invalidateNoteImages } from "./image_urls.js";
 import LoadResults from "./load_results.js";

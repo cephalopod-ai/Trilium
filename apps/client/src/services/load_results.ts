@@ -1,7 +1,7 @@
 import type { AttachmentRow, EtapiTokenRow, NoteType, OptionNames } from "@triliumnext/commons";
 
 import type { AttributeType } from "../entities/fattribute.js";
-import type { EntityChange } from "../server_types.js";
+import type { EntityChange } from "@triliumnext/commons";
 
 // TODO: Deduplicate with server.
 

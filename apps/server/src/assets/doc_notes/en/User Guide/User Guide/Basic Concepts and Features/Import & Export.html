@@ -133,3 +133,12 @@
     not have: maintains note IDs, contains the options/tokens and handle&nbsp;<a
     class="reference-link" href="#root/_help_bwg0e8ewQMak">Protected Notes</a>&nbsp;better.</p>
 </aside>
+<h2>Import safeguards</h2>
+<p>Safe import also disables active labels supplied by Markdown YAML front
+  matter. ZIP imports are limited to 100,000 entries, 512 MiB per decompressed
+  entry and 8 GiB of decompressed content in total. The browser reads entries
+  on demand instead of decompressing the whole archive at once.</p>
+<p>If a ZIP import fails, Trilium removes newly created notes from its completed
+  batches. Imports that overwrite existing identities or restore onto the
+  root can leave changes to existing records; keep a backup before those
+  operations.</p>

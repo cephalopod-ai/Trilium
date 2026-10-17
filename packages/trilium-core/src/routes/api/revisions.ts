@@ -177,7 +177,7 @@ function restoreRevision(req: Request<{ revisionId: string }>) {
     const revision = becca.getRevision(req.params.revisionId);
 
     if (revision) {
-        const note = revision.getNote();
+        const note = becca.getNoteOrThrow(revision.noteId);
 
         getSql().transactional(() => {
             note.saveRevision({ source: "restore" });

@@ -11,6 +11,19 @@ describe("SpacedUpdate", () => {
         vi.useRealTimers();
     });
 
+    it("coalesces rapid changes into one timer without polling before the interval", async () => {
+        const updater = vi.fn();
+        const update = new SpacedUpdate(updater, 1000);
+        for (let i = 0; i < 5; i++) update.scheduleUpdate();
+        expect(vi.getTimerCount()).toBe(1);
+        await vi.advanceTimersByTimeAsync(500);
+        expect(updater).not.toHaveBeenCalled();
+        expect(vi.getTimerCount()).toBe(1);
+        await vi.advanceTimersByTimeAsync(500);
+        expect(updater).toHaveBeenCalledTimes(1);
+        expect(vi.getTimerCount()).toBe(0);
+    });
+
     describe("scheduleUpdate / triggerUpdate", () => {
         it("fires the updater once the interval has elapsed", async () => {
             const updater = vi.fn();

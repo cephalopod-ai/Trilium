@@ -4,7 +4,7 @@ import appContext from "../components/app_context.js";
 import FAttachment from "../entities/fattachment.js";
 import FAttribute from "../entities/fattribute.js";
 import FBranch from "../entities/fbranch.js";
-import type { EntityChange } from "../server_types.js";
+import type { EntityChange } from "@triliumnext/commons";
 import froca from "./froca.js";
 import frocaUpdater from "./froca_updater.js";
 import { getNoteImageSourceToLoad } from "./image_urls.js";

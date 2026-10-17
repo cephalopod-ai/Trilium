@@ -1,7 +1,7 @@
 import { WebSocketMessage } from "@triliumnext/commons";
 
 import appContext from "../components/app_context.js";
-import type { EntityChange } from "../server_types.js";
+import type { EntityChange } from "@triliumnext/commons";
 import bundleService from "./bundle.js";
 import froca from "./froca.js";
 import frocaUpdater from "./froca_updater.js";
@@ -79,25 +79,21 @@ export async function dispatchMessage(message: WebSocketMessage) {
         messageHandler(message);
     }
 
-    // Use string type for flexibility - server sends more message types than are typed
-    const messageType = message.type as string;
-    const msg = message as any;
-
     // Process the message
-    if (messageType === "ping") {
+    if (message.type === "ping") {
         lastPingTs = Date.now();
 
         // The backend expires the protected session with a one-shot `reload-frontend` broadcast;
         // if the connection was down at that moment, the client would keep showing decrypted
         // notes indefinitely. Ping replies carry the live backend state, so recover here.
-        if (msg.protectedSessionAvailable === false && glob.isProtectedSessionAvailable) {
+        if (message.protectedSessionAvailable === false && glob.isProtectedSessionAvailable) {
             utils.reloadFrontendApp("protected session expired on the backend");
         }
-    } else if (messageType === "reload-frontend") {
+    } else if (message.type === "reload-frontend") {
         utils.reloadFrontendApp("received request from backend to reload frontend");
-    } else if (messageType === "frontend-update") {
-        await executeFrontendUpdate(msg.data.entityChanges);
-    } else if (messageType === "sync-hash-check-failed") {
+    } else if (message.type === "frontend-update") {
+        await executeFrontendUpdate(message.data.entityChanges);
+    } else if (message.type === "sync-hash-check-failed") {
         // Not auto-dismissed after the usual few seconds: syncing stays broken until the user acts,
         // and the backend only reports it once (it would otherwise recur with every sync attempt).
         // The sector list is interpolated unescaped ({{- }}) since the toast renders its message as
@@ -105,21 +101,21 @@ export async function dispatchMessage(message: WebSocketMessage) {
         // literal `&#x2F;`.
         toastService.showErrorTitleAndMessage(
             t("ws.sync-hash-check-failed-title"),
-            t("ws.sync-hash-check-failed", { sectors: (msg.sectors ?? []).join(", ") }),
+            t("ws.sync-hash-check-failed", { sectors: (message.sectors ?? []).join(", ") }),
             50 * 60000
         );
-    } else if (messageType === "consistency-checks-failed") {
+    } else if (message.type === "consistency-checks-failed") {
         toastService.showError(t("ws.consistency-checks-failed"), 50 * 60000);
-    } else if (messageType === "api-log-messages") {
-        appContext.triggerEvent("apiLogMessages", { noteId: msg.noteId, messages: msg.messages });
-    } else if (messageType === "toast") {
-        toastService.showMessage(msg.message, msg.timeout);
-    } else if (messageType === "unhandled-error") {
-        showUnhandledError(msg.message, msg.stack);
-    } else if (messageType === "execute-script") {
-        const originEntity = msg.originEntityId ? await froca.getNote(msg.originEntityId) : null;
+    } else if (message.type === "api-log-messages") {
+        appContext.triggerEvent("apiLogMessages", { noteId: message.noteId, messages: message.messages });
+    } else if (message.type === "toast") {
+        toastService.showMessage(message.message, message.timeout);
+    } else if (message.type === "unhandled-error") {
+        showUnhandledError(message.message, message.stack);
+    } else if (message.type === "execute-script") {
+        const originEntity = message.originEntityId ? await froca.getNote(message.originEntityId) : null;
 
-        bundleService.getAndExecuteBundle(msg.currentNoteId, originEntity, msg.script, msg.params);
+        bundleService.getAndExecuteBundle(message.currentNoteId, originEntity, message.script, message.params);
     }
 }
 

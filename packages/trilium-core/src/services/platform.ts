@@ -5,6 +5,8 @@ export interface PlatformProvider {
     crash(message: string): void;
     /** Returns the value of an environment variable, or undefined if not set. */
     getEnv(key: string): string | undefined;
+    /** Loads an allowlisted script dependency in hosts that support Node modules. */
+    requireScriptModule?(name: string): unknown;
     readonly isElectron: boolean;
     /**
      * `true` in the standalone build, where core runs inside a browser worker rather than on Node.

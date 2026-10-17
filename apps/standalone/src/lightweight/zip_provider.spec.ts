@@ -287,3 +287,11 @@ describe("BrowserZipProvider filename re-decoding", () => {
         expect(names).toEqual(["þ.txt"]);
     });
 });
+
+
+it("rejects an oversized declared entry before inflating it", async () => {
+    const zip = makeZip({ "oversized.txt": "small" });
+    new DataView(zip.buffer, zip.byteOffset, zip.byteLength).setUint32(22, 512 * 1024 * 1024 + 1, true);
+    const process = () => Promise.resolve();
+    await expect(provider.readZipFile(zip, process)).rejects.toThrow(/resource limits/);
+});

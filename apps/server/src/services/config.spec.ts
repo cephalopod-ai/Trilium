@@ -56,6 +56,22 @@ describe("Config Service", () => {
         vi.clearAllMocks();
     });
 
+    it("resolves legacy port/host aliases in the config owner and prefers canonical names", async () => {
+        process.env.TRILIUM_PORT = "8123";
+        process.env.TRILIUM_HOST = "legacy-host";
+        const { default: config, getNetworkPortOverride } = await import("./config.js");
+        expect(config.Network.port).toBe("8123");
+        expect(config.Network.host).toBe("legacy-host");
+        expect(getNetworkPortOverride()).toBe("8123");
+        process.env.TRILIUM_NETWORK_PORT = "9123";
+        process.env.TRILIUM_NETWORK_HOST = "canonical-host";
+        vi.resetModules();
+        const canonical = await import("./config.js");
+        expect(canonical.default.Network.port).toBe("9123");
+        expect(canonical.default.Network.host).toBe("canonical-host");
+        expect(canonical.getNetworkPortOverride()).toBe("9123");
+    });
+
     describe("Environment Variable Naming", () => {
         it("should use standard environment variables following TRILIUM_[SECTION]_[KEY] pattern", async () => {
             // Set standard env vars

@@ -385,13 +385,18 @@ async function writeBackup(
             await writeContainer(backupFile, baseName, format, onProgress);
         } else {
             // A plain copy has nothing to report along the way, only that it is over.
-            await sql.copyDatabase(backupFile);
+            const partial = `${backupFile}.part`;
+            try {
+                await sql.copyDatabase(partial);
+                fs.renameSync(partial, backupFile);
+            } finally {
+                fs.rmSync(partial, { force: true });
+            }
         }
         onProgress?.(1);
     } catch (e) {
         // Whatever was written before the failure is not a usable backup, and would otherwise be
         // listed and offered for download as if it were one.
-        fs.rmSync(backupFile, { force: true });
         throw new Error(withoutDirectory(e, directory));
     }
 

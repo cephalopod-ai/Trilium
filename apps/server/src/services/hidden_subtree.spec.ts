@@ -1,9 +1,9 @@
 import { deferred, LOCALES } from "@triliumnext/commons";
-import { becca, becca_loader, binary_utils, cls, hidden_subtree as hiddenSubtreeService, i18n, note_service as notes, TaskContext } from "@triliumnext/core";
+import { getSql, becca, becca_loader, binary_utils, cls, hidden_subtree as hiddenSubtreeService, i18n, note_service as notes, TaskContext } from "@triliumnext/core";
 import protectedSessionService from "@triliumnext/core/src/services/protected_session.js";
 import { beforeAll, describe, expect, it } from "vitest";
 
-import branches from "./branches.js";
+import branches from "@triliumnext/core/src/services/branches.js";
 import sql_init from "./sql_init.js";
 
 describe("Hidden Subtree", () => {
@@ -171,6 +171,10 @@ describe("Hidden Subtree", () => {
             let llmNote = becca.getNote(noteId);
 
             cls.init(() => {
+                if (!llmNote && getSql().getValue("SELECT 1 FROM notes WHERE noteId = ?", [noteId])) {
+                    notes.undeleteNote(noteId, new TaskContext("no-progress-reporting", "undeleteNotes", null));
+                    llmNote = becca.getNote(noteId);
+                }
                 if (!llmNote) {
                     llmNote = notes.createNewNote({
                         parentNoteId: "_lbVisibleLaunchers",

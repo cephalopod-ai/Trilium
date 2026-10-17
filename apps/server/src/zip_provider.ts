@@ -1,8 +1,9 @@
+import { MAX_ZIP_ENTRIES, MAX_ZIP_ENTRY_BYTES, MAX_ZIP_TOTAL_BYTES } from "@triliumnext/core/src/services/zip_provider.js";
 import type { FileStream, ZipArchive, ZipArchiveEntryOptions, ZipEntry, ZipProvider, ZipSource } from "@triliumnext/core/src/services/zip_provider.js";
 import { ZipArchive as ArchiverZip } from "archiver";
 import fs from "fs";
 import type { FileHandle } from "fs/promises";
-import type { Stream } from "stream";
+import type { Readable } from "stream";
 import * as yauzl from "yauzl";
 
 import { asBuffer } from "./services/binary.js";
@@ -88,13 +89,18 @@ class NodejsZipArchive implements ZipArchive {
     }
 }
 
-function streamToBuffer(stream: Stream): Promise<Buffer> {
+async function streamToBuffer(stream: Readable): Promise<Buffer> {
     const chunks: Uint8Array[] = [];
-    stream.on("data", (chunk: Uint8Array) => chunks.push(chunk));
-    return new Promise((res, rej) => {
-        stream.on("end", () => res(Buffer.concat(chunks)));
-        stream.on("error", rej);
-    });
+    let bytes = 0;
+    for await (const chunk of stream) {
+        bytes += chunk.length;
+        if (bytes > MAX_ZIP_ENTRY_BYTES) {
+            stream.destroy();
+            throw new Error("ZIP entry exceeds the decompressed-size limit.");
+        }
+        chunks.push(chunk);
+    }
+    return Buffer.concat(chunks);
 }
 
 async function openZip(source: ZipSource) {
@@ -135,8 +141,15 @@ export default class NodejsZipProvider implements ZipProvider {
         const zipfile = await openZip(source);
 
         const samples: Buffer[] = [];
+        let entryCount = 0;
+        let totalBytes = 0;
         try {
             for await (const entry of zipfile.eachEntry()) {
+                if (++entryCount > MAX_ZIP_ENTRIES || entry.uncompressedSize > MAX_ZIP_ENTRY_BYTES) {
+                    throw new Error("ZIP archive exceeds the import resource limits.");
+                }
+                totalBytes += entry.uncompressedSize;
+                if (totalBytes > MAX_ZIP_TOTAL_BYTES) throw new Error("ZIP archive exceeds the decompressed-size limit.");
                 const isUtf8Flagged = !!(entry.generalPurposeBitFlag & 0x800);
                 if (!isUtf8Flagged) {
                     samples.push(entry.fileNameRaw);
@@ -184,8 +197,15 @@ export default class NodejsZipProvider implements ZipProvider {
     ): Promise<void> {
         const zipfile = await openZip(source);
 
+        let entryCount = 0;
+        let totalBytes = 0;
         try {
             for await (const entry of zipfile.eachEntry()) {
+                if (++entryCount > MAX_ZIP_ENTRIES || entry.uncompressedSize > MAX_ZIP_ENTRY_BYTES) {
+                    throw new Error("ZIP archive exceeds the import resource limits.");
+                }
+                totalBytes += entry.uncompressedSize;
+                if (totalBytes > MAX_ZIP_TOTAL_BYTES) throw new Error("ZIP archive exceeds the decompressed-size limit.");
                 // yauzl with decodeStrings: false leaves file names undecoded.
                 // Use the detected encoding for non-UTF-8-flagged entries,
                 // falling back to UTF-8.
@@ -195,7 +215,9 @@ export default class NodejsZipProvider implements ZipProvider {
 
                 const readContent = async () => {
                     const readStream = await zipfile.openReadStreamPromise(entry);
-                    return await streamToBuffer(readStream);
+                    const content = await streamToBuffer(readStream);
+                    if (content.byteLength !== entry.uncompressedSize) throw new Error("ZIP entry size does not match its metadata.");
+                    return content;
                 };
 
                 await processEntry({ fileName, lastModified: entry.getLastModDate() }, readContent);

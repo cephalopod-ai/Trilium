@@ -65,6 +65,8 @@ async function importNotesToBranch(req: ImportRequest<{ parentNoteId: string }>)
         getLog().error(message + errStack);
 
         return [500, message];
+    } finally {
+        becca_loader.load();
     }
 
     if (!note) {
@@ -82,9 +84,6 @@ async function importNotesToBranch(req: ImportRequest<{ parentNoteId: string }>)
             1000
         );
     }
-
-    // import has deactivated note events so becca is not updated, instead we force it to reload
-    becca_loader.load();
 
     return note.getPojo();
 }

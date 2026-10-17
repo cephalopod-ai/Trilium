@@ -697,3 +697,21 @@ describe("ServerBackupService.adoptPassphrase", () => {
         await expect(serverService(null).adoptPassphrase("a password")).resolves.toBeUndefined();
     });
 });
+
+
+it("retains the last complete plain backup when its replacement fails", async () => {
+    const target = path.join(DEFAULT_DIR, "backup-interrupted.db");
+    fs.mkdirSync(DEFAULT_DIR, { recursive: true });
+    fs.writeFileSync(target, "last-complete-backup");
+    let writtenPath: string | undefined;
+    copyDatabase.mockImplementationOnce(async (partial) => {
+        writtenPath = partial;
+        fs.writeFileSync(partial, "torn-copy");
+        throw new Error("injected backup failure");
+    });
+    await expect(serverService(null).backupNow("interrupted")).rejects.toThrow("injected backup failure");
+    expect(fs.existsSync(target)).toBe(true);
+    expect(fs.readFileSync(target, "utf8")).toBe("last-complete-backup");
+    expect(writtenPath).toBe(`${target}.part`);
+    expect(fs.existsSync(`${target}.part`)).toBe(false);
+});

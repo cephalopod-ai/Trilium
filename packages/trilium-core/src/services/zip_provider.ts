@@ -1,3 +1,8 @@
+/** Import resource limits apply before buffering decompressed entries. */
+export const MAX_ZIP_ENTRY_BYTES = 512 * 1024 * 1024;
+export const MAX_ZIP_TOTAL_BYTES = 8 * 1024 * 1024 * 1024;
+export const MAX_ZIP_ENTRIES = 100000;
+
 /**
  * A zip to read: either its raw bytes, or — server/desktop only — a filesystem path the provider opens
  * and reads *in place* (no full-buffer copy, no ~2 GiB `fs.readFile` ceiling). The browser/WASM provider

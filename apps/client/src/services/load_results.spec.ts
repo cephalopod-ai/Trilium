@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { EntityChange } from "../server_types.js";
+import type { EntityChange } from "@triliumnext/commons";
 import LoadResults from "./load_results.js";
 
 function ec(entityName: EntityChange["entityName"], entityId: string, entity?: object): EntityChange {

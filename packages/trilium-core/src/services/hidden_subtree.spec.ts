@@ -13,6 +13,8 @@ import hiddenSubtreeService, {
     LBTPL_SPACER,
     LBTPL_WIDGET
 } from "./hidden_subtree.js";
+import { getSql } from "./sql";
+import TaskContext from "./task_context";
 import noteService from "./notes.js";
 
 /**
@@ -21,7 +23,11 @@ import noteService from "./notes.js";
  * deprecated entries live directly under "_options" in the definition.
  */
 function materialiseDeprecatedNote(noteId: string) {
-    getContext().init(() =>
+    getContext().init(() => {
+        if (getSql().getValue("SELECT 1 FROM notes WHERE noteId = ?", [noteId])) {
+            noteService.undeleteNote(noteId, new TaskContext("no-progress-reporting", "undeleteNotes", null));
+            return;
+        }
         noteService.createNewNote({
             noteId,
             title: `deprecated-${noteId}`,
@@ -29,8 +35,8 @@ function materialiseDeprecatedNote(noteId: string) {
             parentNoteId: "_options",
             content: "",
             ignoreForbiddenParents: true
-        })
-    );
+        });
+    });
 }
 
 function checkHiddenSubtree(force = false) {

@@ -47,7 +47,7 @@ export const NOTE_TYPES: NoteTypeMapping[] = [
 
     // Graphic notes
     { type: "canvas", mime: "application/json", title: t("note_types.canvas"), icon: "bx-pen" },
-    { type: "mermaid", mime: "text/mermaid", title: t("note_types.mermaid-diagram"), icon: "bx-selection" },
+    { type: "mermaid", mime: "text/vnd.mermaid", title: t("note_types.mermaid-diagram"), icon: "bx-selection" },
 
     // Map notes
     { type: "mindMap", mime: "application/json", title: t("note_types.mind-map"), icon: "bx-sitemap" },

@@ -1,4 +1,4 @@
-import config, { DEFAULT_NETWORK_PORT } from "./config.js";
+import config, { DEFAULT_NETWORK_PORT, getNetworkPortOverride } from "./config.js";
 import { isDev, isElectron } from "./utils.js";
 import dataDir from "./data_dir.js";
 
@@ -15,8 +15,9 @@ function parseAndValidate(portStr: string, source: string) {
 
 let port: number;
 
-if (process.env.TRILIUM_PORT) {
-    port = parseAndValidate(process.env.TRILIUM_PORT, "environment variable TRILIUM_PORT");
+const envPort = getNetworkPortOverride();
+if (envPort) {
+    port = parseAndValidate(envPort, "network port environment variable");
 } else if (isElectron) {
     port = isDev ? 37740 : 37840;
 } else {

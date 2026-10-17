@@ -17,7 +17,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import appContext from "../../../components/app_context";
 import Component from "../../../components/component";
 import type FNote from "../../../entities/fnote";
-import type { EntityChange } from "../../../server_types";
+import type { EntityChange } from "@triliumnext/commons";
 import LoadResults from "../../../services/load_results";
 import { buildNote } from "../../../test/easy-froca";
 import { ParentComponent } from "../../react/react_utils";

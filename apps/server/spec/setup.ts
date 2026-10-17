@@ -1,8 +1,9 @@
 import { beforeAll } from "vitest";
 import { readFileSync } from "fs";
 import { join } from "path";
-import { initializeCore, options } from "@triliumnext/core";
+import { initializeCore, options, becca_loader } from "@triliumnext/core";
 import { serverZipExportProviderFactory } from "../src/services/export/zip/factory.js";
+import config from "../src/services/config.js";
 import ServerBackupService from "../src/backup_provider.js";
 import AsyncLocalStorageExecutionContext from "../src/cls_provider.js";
 import NodejsCryptoProvider from "../src/crypto_provider.js";
@@ -39,6 +40,7 @@ beforeAll(async () => {
             onTransactionCommit() {},
             onTransactionRollback() {}
         },
+        config,
         crypto: new NodejsCryptoProvider(),
         zip: new NodejsZipProvider(),
         zipExportProviderFactory: serverZipExportProviderFactory,
@@ -51,6 +53,8 @@ beforeAll(async () => {
         log: new ServerLogService(),
         image: serverImageProvider
     });
+
+    await becca_loader.beccaLoaded;
 
     // The share specs render real share-theme templates, which the provider reads from disk.
     registerShareProvider();

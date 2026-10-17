@@ -527,27 +527,34 @@ async function exportToZip(taskContext: TaskContext<"export">, branch: BBranch, 
     // buffering the whole export. Trade-off: a failure while reading content mid-
     // export can no longer produce a clean HTTP error (bytes are already on the
     // wire); the validation that can fail cleanly runs in the try/catch above.
-    archive.pipe(res);
+    try {
+        archive.pipe(res);
 
-    const metaFileJson = JSON.stringify(metaFile, null, "\t");
+        const metaFileJson = JSON.stringify(metaFile, null, "\t");
 
-    archive.append(metaFileJson, { name: "!!!meta.json" });
+        archive.append(metaFileJson, { name: "!!!meta.json" });
 
-    // The metadata pass above already drove the bare progress count. Reset it and seed the total with the
-    // number of notes about to be written so the content-writing pass renders a clean 0→100% progress bar.
-    taskContext.resetProgressCount();
-    const noteCount = countMetaNodes(rootMeta);
-    taskContext.setTotalCount(noteCount);
+        // The metadata pass above already drove the bare progress count. Reset it and seed the total with the
+        // number of notes about to be written so the content-writing pass renders a clean 0→100% progress bar.
+        taskContext.resetProgressCount();
+        const noteCount = countMetaNodes(rootMeta);
+        taskContext.setTotalCount(noteCount);
 
-    // A single summary line instead of one log entry per note — per-note logging floods the log file and
-    // stdout on large exports (e.g. 20k lines for a 20k-note subtree) for no operational benefit.
-    log.info(`Exporting ${noteCount} notes with format '${format}'`);
+        // A single summary line instead of one log entry per note — per-note logging floods the log file and
+        // stdout on large exports (e.g. 20k lines for a 20k-note subtree) for no operational benefit.
+        log.info(`Exporting ${noteCount} notes with format '${format}'`);
 
-    await saveNote(rootMeta, "");
+        await saveNote(rootMeta, "");
 
-    provider.afterDone(rootMeta);
+        provider.afterDone(rootMeta);
 
-    await archive.finalize();
+        await archive.finalize();
+    } catch (error) {
+        if ("destroy" in res && typeof res.destroy === "function") {
+            res.destroy(error instanceof Error ? error : new Error(String(error)));
+        }
+        throw error;
+    }
 
     // Report success here only for an HTTP response, whose bytes are on the wire once finalize() resolves.
     // A file (or other) stream isn't durably written until its "finish" event — which the caller awaits via

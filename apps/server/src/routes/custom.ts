@@ -2,7 +2,7 @@ import { cls, type Request as CoreRequest, routes } from "@triliumnext/core";
 import type { Request, Response, Router } from "express";
 
 import { bindEmitter } from "../cls_provider.js";
-import { isScriptingEnabled } from "../services/scripting_guard.js";
+import { isScriptingEnabled } from "@triliumnext/core/src/services/scripting_guard.js";
 import auth from "../services/auth.js";
 import etapiTokens from "../services/etapi_tokens.js";
 import { doubleCsrfProtection } from "./csrf_protection.js";

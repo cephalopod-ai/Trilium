@@ -1,6 +1,7 @@
 "use strict";
 
 import type { ProgressPhase, TaskData, TaskResult, TaskType, WebSocketMessage } from "@triliumnext/commons";
+import { getSql } from "./sql";
 import ws from "./ws.js";
 
 // taskId => TaskContext
@@ -150,13 +151,13 @@ class TaskContext<T extends TaskType> {
     }
 
     taskSucceeded(result: TaskResult<T>) {
-        ws.sendMessageToAllClients({
+        getSql().afterCommit(() => ws.sendMessageToAllClients({
             type: "taskSucceeded",
             taskId: this.taskId,
             taskType: this.taskType,
             data: this.data,
             result
-        } as WebSocketMessage);
+        } as WebSocketMessage));
     }
 }
 

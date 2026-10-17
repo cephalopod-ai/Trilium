@@ -365,3 +365,13 @@ describe("rich-text cells", () => {
         expect(csv).toBe("Caf\u00e9,12.5");
     });
 });
+
+describe("CSV formula safety", () => {
+    it("neutralizes formula-like text while retaining numeric negatives and ordinary text", () => {
+        expect(renderSpreadsheetToCsv(workbook({ 0: {
+            0: { v: "=HYPERLINK(\"https://example.org\")" }, 1: { v: "+SUM(A1)" },
+            2: { v: "-2" }, 3: { v: "@SUM(A1)" }, 4: { v: "\tformula" },
+            5: { v: -2 }, 6: { v: "plain" }
+        } }))).toBe('"\'=HYPERLINK(""https://example.org"")",\'+SUM(A1),\'-2,\'@SUM(A1),\'\tformula,-2,plain');
+    });
+});

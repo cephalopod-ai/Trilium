@@ -1,4 +1,5 @@
 import { getLog, PlatformProvider } from "@triliumnext/core";
+import { createRequire } from "module";
 import path from "path";
 
 import dataDir from "./services/data_dir.js";
@@ -13,6 +14,10 @@ export default class ServerPlatformProvider implements PlatformProvider {
     crash(message: string): void {
         getLog().banner(message);
         process.exit(1);
+    }
+
+    requireScriptModule(name: string): unknown {
+        return createRequire(import.meta.url)(name);
     }
 
     getEnv(key: string): string | undefined {

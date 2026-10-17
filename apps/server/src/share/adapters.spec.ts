@@ -13,7 +13,7 @@ afterEach(() => {
     vi.doUnmock("../services/data_dir.js");
     vi.doUnmock("../services/sql_init.js");
     vi.doUnmock("../services/utils.js");
-    vi.doUnmock("../services/scripting_guard.js");
+    vi.doUnmock("@triliumnext/core/src/services/scripting_guard.js");
     vi.unstubAllEnvs();
     vi.restoreAllMocks();
     vi.resetModules();
@@ -44,6 +44,7 @@ describe("share routes", () => {
 
         const sent: unknown[][] = [];
         const res = {
+            locals: {},
             redirect: (url: string) => sent.push([ "redirect", url ]),
             setHeader: (name: string, value: string) => sent.push([ "header", name, value ]),
             sendStatus: (status: number) => sent.push([ "sendStatus", status ]),
@@ -103,7 +104,7 @@ describe("share provider", () => {
             readFileSync
         }));
         vi.doMock("../services/utils.js", () => ({ getResourceDir: () => "/resources" }));
-        vi.doMock("../services/scripting_guard.js", () => ({ isScriptingEnabled: () => false }));
+        vi.doMock("@triliumnext/core/src/services/scripting_guard.js", () => ({ isScriptingEnabled: () => false }));
         const { registerShareProvider } = await import("./share_provider.js");
         registerShareProvider();
         registerShareProvider();

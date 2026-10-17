@@ -66,3 +66,9 @@ You can easily move the notes onto the root using the tree's <a class="referenc
 
 > [!TIP]
 > Instead of exporting full ZIPs (including the root note), consider using [backups](../Installation%20%26%20Setup/Backup.md) instead. Backups always contain the entire structure, as well as additional information a ZIP export does not have: maintains note IDs, contains the options/tokens and handle <a class="reference-link" href="Notes/Protected%20Notes.md">Protected Notes</a> better.
+
+## Import safeguards
+
+Safe import also disables active labels supplied by Markdown YAML front matter. ZIP imports are limited to 100,000 entries, 512 MiB per decompressed entry and 8 GiB of decompressed content in total. The browser reads entries on demand instead of decompressing the whole archive at once.
+
+If a ZIP import fails, Trilium removes newly created notes from its completed batches. Imports that overwrite existing identities or restore onto the root can leave changes to existing records; keep a backup before those operations.

@@ -6,6 +6,7 @@ import noteService from "../../services/notes.js";
 import protectedSessionService from "../protected_session.js";
 import type TaskContext from "../task_context.js";
 import type { File } from "./common.js";
+import { sanitizeImportedAttribute } from "./utils";
 import { extractFrontmatter } from "./frontmatter.js";
 import markdownService from "./markdown.js";
 import mimeService from "./mime.js";
@@ -255,7 +256,8 @@ function importMarkdown(taskContext: TaskContext<"importNotes">, file: File, par
     });
 
     for (const attribute of attributes) {
-        note.addLabel(attribute.name, attribute.value);
+        const safe = sanitizeImportedAttribute(attribute, taskContext.data?.safeImport);
+        note.addLabel(safe.name, safe.value);
     }
 
     taskContext.increaseProgressCount();

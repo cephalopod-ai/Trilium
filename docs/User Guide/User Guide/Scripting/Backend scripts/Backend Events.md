@@ -23,7 +23,7 @@ Global events are attached to the script note via label. Simply create a `run` l
         </tr>
         <tr>
             <td><code>runAtHour</code></td>
-            <td>On which hour should this run. Should be used together with <code>#run=hourly</code>. Can be defined multiple times for more runs during the day.</td>
+            <td>On which hour should this run. Should be used together with <code>#run=hourly</code>. Can be defined multiple times for more runs during the day. It does not filter <code>#run=daily</code> or <code>#run=backendStartup</code>.</td>
         </tr>
     </tbody>
 </table>

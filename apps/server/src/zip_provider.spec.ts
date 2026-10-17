@@ -273,3 +273,12 @@ describe("NodejsZipProvider", () => {
         });
     });
 });
+
+
+it("rejects an oversized declared entry before opening its content stream", async () => {
+    const buffer = await buildZip([{ name: "oversized.txt", content: "small" }]);
+    const central = buffer.indexOf(Buffer.from([0x50, 0x4b, 0x01, 0x02]));
+    expect(central).toBeGreaterThanOrEqual(0);
+    buffer.writeUInt32LE(512 * 1024 * 1024 + 1, central + 24);
+    await expect(readZip(buffer)).rejects.toThrow(/resource limits/);
+});

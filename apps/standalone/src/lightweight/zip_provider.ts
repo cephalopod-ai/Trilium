@@ -1,5 +1,6 @@
+import { MAX_ZIP_ENTRIES, MAX_ZIP_ENTRY_BYTES, MAX_ZIP_TOTAL_BYTES } from "@triliumnext/core/src/services/zip_provider.js";
 import type { FileStream, ZipArchive, ZipEntry, ZipProvider, ZipSource } from "@triliumnext/core/src/services/zip_provider.js";
-import { strToU8, unzip, zipSync } from "fflate";
+import { strToU8, Unzip, UnzipInflate, type UnzipFile, zipSync } from "fflate";
 
 /** The browser/WASM build has no filesystem, so a `path` source is unsupported here — only raw bytes. */
 function requireBuffer(source: ZipSource): Uint8Array {
@@ -85,27 +86,49 @@ export default class BrowserZipProvider implements ZipProvider {
         filenameEncoding?: string
     ): Promise<void> {
         const buffer = requireBuffer(source);
-        return new Promise<void>((res, rej) => {
-            // Read inside the executor so a malformed archive rejects rather than throwing
-            // synchronously, matching how an unzip() failure surfaces.
+        return (async () => {
             const fileNames = readCentralDirectory(buffer);
-
-            unzip(buffer, async (err, files) => {
-                if (err) { rej(err); return; }
-
-                try {
-                    for (const [fileName, data] of Object.entries(files)) {
-                        await processEntry(
-                            { fileName: decodeZipFileName(fileName, fileNames.get(fileName), filenameEncoding) },
-                            () => Promise.resolve(data)
-                        );
-                    }
-                    res();
-                } catch (e) {
-                    rej(e);
+            const files: UnzipFile[] = [];
+            const reader = new Unzip((file) => {
+                if (files.length >= MAX_ZIP_ENTRIES || (file.originalSize ?? 0) > MAX_ZIP_ENTRY_BYTES) {
+                    throw new Error("ZIP archive exceeds the import resource limits.");
                 }
+                files.push(file);
             });
-        });
+            reader.register(UnzipInflate);
+            // Retain compressed chunks until each entry is requested, instead of inflating the archive at once.
+            const CHUNK_BYTES = 64 * 1024;
+            for (let offset = 0; offset < buffer.length; offset += CHUNK_BYTES) {
+                reader.push(buffer.subarray(offset, offset + CHUNK_BYTES), offset + CHUNK_BYTES >= buffer.length);
+            }
+            let totalBytes = 0;
+            for (const file of files) {
+                let content: Promise<Uint8Array> | undefined;
+                const readContent = () => content ??= new Promise<Uint8Array>((resolve, reject) => {
+                    const chunks: Uint8Array[] = [];
+                    let bytes = 0;
+                    file.ondata = (error, chunk, final) => {
+                        if (error) { reject(error); return; }
+                        bytes += chunk.length;
+                        totalBytes += chunk.length;
+                        if (bytes > MAX_ZIP_ENTRY_BYTES || totalBytes > MAX_ZIP_TOTAL_BYTES) {
+                            reject(new Error("ZIP archive exceeds the decompressed-size limit."));
+                            file.terminate();
+                            throw new Error("ZIP archive exceeds the decompressed-size limit.");
+                        }
+                        chunks.push(chunk);
+                        if (final) {
+                            const data = new Uint8Array(bytes);
+                            let offset = 0;
+                            for (const part of chunks) { data.set(part, offset); offset += part.length; }
+                            resolve(data);
+                        }
+                    };
+                    file.start();
+                });
+                await processEntry({ fileName: decodeZipFileName(file.name, fileNames.get(file.name), filenameEncoding) }, readContent);
+            }
+        })();
     }
 }
 
@@ -217,7 +240,9 @@ function readCentralDirectory(buffer: Uint8Array): Map<string, FileNameInfo> {
     let offset = view.getUint32(eocd + 16, true);
     const end = Math.min(buffer.byteLength, offset + view.getUint32(eocd + 12, true));
 
+    let entryCount = 0;
     while (offset + CENTRAL_HEADER_LENGTH <= end && view.getUint32(offset, true) === CENTRAL_HEADER_SIGNATURE) {
+        if (++entryCount > MAX_ZIP_ENTRIES) throw new Error("ZIP archive exceeds the entry-count limit.");
         const isUtf8Flagged = !!(view.getUint16(offset + 8, true) & UTF8_FLAG);
         const nameLength = view.getUint16(offset + 28, true);
         const extraLength = view.getUint16(offset + 30, true);

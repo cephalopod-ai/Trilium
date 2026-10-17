@@ -59,13 +59,10 @@ async function migrate() {
 
                 log.info(`Migration to version ${mig.dbVersion} has been successful.`);
             } catch (e: any) {
-                if (mig.ignoreErrors) {
-                    log.info(`Migration to version ${mig.dbVersion} failed, but ignoreErrors is set. Continuing. Error: ${e.message}`);
-                } else {
-                    console.error(e);
-                    getPlatform().crash(t("migration.error_message", { version: mig.dbVersion, stack: e.stack }));
-                    break; // crash() is sometimes async
-                }
+                log.error(`Migration to version ${mig.dbVersion} failed: ${e.message}`);
+                getPlatform().crash(t("migration.error_message", { version: mig.dbVersion, stack: e.stack }));
+                // Some hosts report crashes asynchronously. The transaction must still roll back.
+                throw e;
             }
         }
     });

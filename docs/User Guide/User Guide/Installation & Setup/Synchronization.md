@@ -80,3 +80,7 @@ If you edit the same note on multiple instances before synchronization, Trilium 
 ### Hash Check
 
 After each synchronization, Trilium computes a hash of all synced data on both the client and the sync server. If there is a discrepancy, Trilium will automatically initiate a recovery mechanism to resolve the issue.
+
+## Simultaneous edits
+
+When two devices modify a note at the same recorded time, synchronization selects the same winner on every peer and saves the overwritten local note as a revision. If the affected local note is protected and locked, unlock it before retrying synchronization so its revision can be saved.

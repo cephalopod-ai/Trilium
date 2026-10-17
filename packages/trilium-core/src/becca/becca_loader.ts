@@ -1,4 +1,6 @@
 import type { BranchRow, EtapiTokenRow, NoteRow, OptionRow } from "@triliumnext/commons";
+import entityChanges from "../services/entity_changes";
+import * as cls from "../services/context";
 import eventService from "../services/events";
 
 import entityConstructor from "../becca/entity_constructor.js";
@@ -90,6 +92,13 @@ const BRANCH_COLUMNS = [
 const ATTRIBUTE_COLUMNS = [
     "attributeId", "noteId", "type", "name", "value", "isInheritable", "position", "utcDateModified"
 ];
+
+/** Restores the cache and change cursor after a database rollback, including nested savepoints. */
+function recoverTransactionRollback() {
+    cls.getAndClearEntityChangeIds();
+    if (becca.loaded) load();
+    entityChanges.recalculateMaxEntityChangeId();
+}
 
 function reload(reason: string) {
     load();
@@ -325,10 +334,11 @@ eventService.subscribeBeccaLoader(eventService.ENTER_PROTECTED_SESSION, () => {
 
 eventService.subscribeBeccaLoader(eventService.LEAVE_PROTECTED_SESSION, load);
 
-export { load, reload };
+export { load, reload, recoverTransactionRollback };
 
 export default {
     load,
     reload,
+    recoverTransactionRollback,
     beccaLoaded
 };

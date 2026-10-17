@@ -264,8 +264,11 @@ const partialRequests: Record<
     {
         createdAt: number;
         payload: string;
+        pageCount: number;
+        nextPageIndex: number;
+        lastPage: string;
     }
-> = {};
+> = Object.create(null);
 
 /**
  * @swagger
@@ -333,26 +336,36 @@ function update(req: Request) {
             throw new Error("Missing request ID.");
         }
 
-        if (pageIndex === 0) {
+        if (!Number.isSafeInteger(pageCount) || pageCount < 2 || pageCount > 10000
+            || !Number.isSafeInteger(pageIndex) || pageIndex < 0 || pageIndex >= pageCount
+            || requestId.length > 128 || typeof req.body !== "string") {
+            throw new ValidationError("Invalid partial sync request.");
+        }
+        if (pageIndex === 0 && !partialRequests[requestId]) {
+            if (Object.keys(partialRequests).length >= 16) throw new ValidationError("Too many partial sync requests.");
             partialRequests[requestId] = {
-                createdAt: Date.now(),
-                payload: ""
+                createdAt: Date.now(), payload: "", pageCount, nextPageIndex: 0, lastPage: ""
             };
         }
-
-        if (!partialRequests[requestId]) {
-            throw new Error(`Partial request ${requestId}, page ${pageIndex + 1} of ${pageCount} of pages does not have expected record.`);
+        const partial = partialRequests[requestId];
+        if (!partial || partial.pageCount !== pageCount) {
+            throw new Error(`Partial request ${requestId} does not have expected record.`);
         }
+        if (pageIndex === partial.nextPageIndex - 1 && req.body === partial.lastPage) return;
+        if (pageIndex !== partial.nextPageIndex) throw new ValidationError("Partial sync pages arrived out of order.");
 
-        partialRequests[requestId].payload += req.body;
-
-        getLog().info(`Receiving a partial request ${requestId}, page ${pageIndex + 1} out of ${pageCount} pages.`);
-
-        if (pageIndex !== pageCount - 1) {
-            return;
+        // Bound unfinished uploads together, including clients that abandon their request IDs.
+        const buffered = Object.values(partialRequests).reduce((size, request) => size + request.payload.length, 0);
+        if (buffered + req.body.length > 768 * 1024 * 1024) {
+            delete partialRequests[requestId];
+            throw new ValidationError("Partial sync payload exceeds the buffer limit.");
         }
-        body = JSON.parse(partialRequests[requestId].payload);
+        partial.payload += req.body;
+        partial.lastPage = req.body;
+        partial.nextPageIndex++;
+        if (pageIndex !== pageCount - 1) return;
         delete partialRequests[requestId];
+        body = JSON.parse(partial.payload);
     }
 
     const { entities, instanceId } = body;

@@ -1,3 +1,4 @@
+import BBranch from "../../becca/entities/bbranch";
 import branchService from "../../services/branches.js";
 import eraseService from "../../services/erase.js";
 import eventService from "../../services/events.js";
@@ -68,19 +69,8 @@ function moveBranchBeforeNote(req: Request<{ branchId: string, beforeBranchId: s
 
     const originalBeforeNotePosition = beforeBranch.notePosition;
 
-    // we don't change utcDateModified, so other changes are prioritized in case of conflict
-    // also we would have to sync all those modified branches otherwise hash checks would fail
-
-    getSql().execute("UPDATE branches SET notePosition = notePosition + 10 WHERE parentNoteId = ? AND notePosition >= ? AND isDeleted = 0", [beforeBranch.parentNoteId, originalBeforeNotePosition]);
-
-    // also need to update becca positions
     const parentNote = becca.getNoteOrThrow(beforeBranch.parentNoteId);
-
-    for (const childBranch of parentNote.getChildBranches()) {
-        if (childBranch.notePosition >= originalBeforeNotePosition) {
-            childBranch.notePosition += 10;
-        }
-    }
+    beforeBranch.shiftSiblingPositions(true);
 
     if (branchToMove.parentNoteId === beforeBranch.parentNoteId) {
         branchToMove.notePosition = originalBeforeNotePosition;
@@ -116,18 +106,8 @@ function moveBranchAfterNote(req: Request<{ branchId: string, afterBranchId: str
 
     const originalAfterNotePosition = afterNote.notePosition;
 
-    // we don't change utcDateModified, so other changes are prioritized in case of conflict
-    // also we would have to sync all those modified branches otherwise hash checks would fail
-    getSql().execute("UPDATE branches SET notePosition = notePosition + 10 WHERE parentNoteId = ? AND notePosition > ? AND isDeleted = 0", [afterNote.parentNoteId, originalAfterNotePosition]);
-
-    // also need to update becca positions
     const parentNote = becca.getNoteOrThrow(afterNote.parentNoteId);
-
-    for (const childBranch of parentNote.getChildBranches()) {
-        if (childBranch.notePosition > originalAfterNotePosition) {
-            childBranch.notePosition += 10;
-        }
-    }
+    afterNote.shiftSiblingPositions(false);
 
     const movedNotePosition = originalAfterNotePosition + 10;
 
@@ -156,20 +136,7 @@ function setExpanded(req: Request<{ branchId: string, expanded: string }>) {
     const expanded = parseInt(req.params.expanded);
 
     if (branchId !== "none_root") {
-        getSql().execute("UPDATE branches SET isExpanded = ? WHERE branchId = ?", [expanded, branchId]);
-        // we don't sync expanded label
-        // also this does not trigger updates to the frontend, this would trigger too many reloads
-
-        const branch = becca.branches[branchId];
-
-        if (branch) {
-            branch.isExpanded = !!expanded;
-        }
-
-        eventService.emit(eventService.ENTITY_CHANGED, {
-            entityName: "branches",
-            entity: branch
-        });
+        BBranch.setExpandedLocally([branchId], !!expanded);
     }
 }
 
@@ -198,18 +165,7 @@ function setExpandedForSubtree(req: Request<{ branchId: string, expanded: string
         [ branchId, expanded ]
     );
 
-    sql.executeMany(
-        /*sql*/`UPDATE branches SET isExpanded = ${expanded} WHERE branchId IN (???)`,
-        branchIds
-    );
-
-    for (const branchId of branchIds) {
-        const branch = becca.branches[branchId];
-
-        if (branch) {
-            branch.isExpanded = !!expanded;
-        }
-    }
+    BBranch.setExpandedLocally(branchIds, !!expanded);
 
     return {
         branchIds

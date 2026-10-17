@@ -7,7 +7,7 @@ const mockState = {
 };
 
 // Mock config module so Security section can be controlled per test
-vi.mock("./config.js", () => ({
+vi.mock("@triliumnext/core/src/services/config.js", () => ({
     default: {
         Security: {
             get backendScriptingEnabled() {
@@ -31,7 +31,7 @@ describe("scripting_guard", () => {
         it("should throw when scripting is disabled", async () => {
             mockState.scriptingEnabled = false;
 
-            const { assertScriptingEnabled } = await import("./scripting_guard.js");
+            const { assertScriptingEnabled } = await import("@triliumnext/core/src/services/scripting_guard.js");
             expect(() => assertScriptingEnabled()).toThrow(
                 /Backend script execution is disabled/
             );
@@ -40,7 +40,7 @@ describe("scripting_guard", () => {
         it("should not throw when scripting is enabled", async () => {
             mockState.scriptingEnabled = true;
 
-            const { assertScriptingEnabled } = await import("./scripting_guard.js");
+            const { assertScriptingEnabled } = await import("@triliumnext/core/src/services/scripting_guard.js");
             expect(() => assertScriptingEnabled()).not.toThrow();
         });
     });
@@ -49,7 +49,7 @@ describe("scripting_guard", () => {
         it("should throw when SQL console is disabled", async () => {
             mockState.sqlConsoleEnabled = false;
 
-            const { assertSqlConsoleEnabled } = await import("./scripting_guard.js");
+            const { assertSqlConsoleEnabled } = await import("@triliumnext/core/src/services/scripting_guard.js");
             expect(() => assertSqlConsoleEnabled()).toThrow(
                 /SQL console is disabled/
             );
@@ -58,7 +58,7 @@ describe("scripting_guard", () => {
         it("should not throw when SQL console is enabled", async () => {
             mockState.sqlConsoleEnabled = true;
 
-            const { assertSqlConsoleEnabled } = await import("./scripting_guard.js");
+            const { assertSqlConsoleEnabled } = await import("@triliumnext/core/src/services/scripting_guard.js");
             expect(() => assertSqlConsoleEnabled()).not.toThrow();
         });
     });
@@ -67,14 +67,14 @@ describe("scripting_guard", () => {
         it("should return false when disabled", async () => {
             mockState.scriptingEnabled = false;
 
-            const { isScriptingEnabled } = await import("./scripting_guard.js");
+            const { isScriptingEnabled } = await import("@triliumnext/core/src/services/scripting_guard.js");
             expect(isScriptingEnabled()).toBe(false);
         });
 
         it("should return true when enabled", async () => {
             mockState.scriptingEnabled = true;
 
-            const { isScriptingEnabled } = await import("./scripting_guard.js");
+            const { isScriptingEnabled } = await import("@triliumnext/core/src/services/scripting_guard.js");
             expect(isScriptingEnabled()).toBe(true);
         });
     });

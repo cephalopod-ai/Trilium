@@ -158,31 +158,33 @@ function eraseNotesWithDeleteIds(deleteIds: string[]) {
     }
 
     const sql = getSql();
-    const noteIdsToErase = sql.getManyRows<{ noteId: string }>(
-        /*sql*/`SELECT noteId FROM notes WHERE isDeleted = 1 AND deleteId IN (???)`,
-        deleteIds
-    ).map((row) => row.noteId);
-    eraseNotes(noteIdsToErase);
+    sql.transactional(() => {
+        const noteIdsToErase = sql.getManyRows<{ noteId: string }>(
+            /*sql*/`SELECT noteId FROM notes WHERE isDeleted = 1 AND deleteId IN (???)`,
+            deleteIds
+        ).map((row) => row.noteId);
+        eraseNotes(noteIdsToErase);
 
-    const branchIdsToErase = sql.getManyRows<{ branchId: string }>(
-        /*sql*/`SELECT branchId FROM branches WHERE isDeleted = 1 AND deleteId IN (???)`,
-        deleteIds
-    ).map((row) => row.branchId);
-    eraseBranches(branchIdsToErase);
+        const branchIdsToErase = sql.getManyRows<{ branchId: string }>(
+            /*sql*/`SELECT branchId FROM branches WHERE isDeleted = 1 AND deleteId IN (???)`,
+            deleteIds
+        ).map((row) => row.branchId);
+        eraseBranches(branchIdsToErase);
 
-    const attributeIdsToErase = sql.getManyRows<{ attributeId: string }>(
-        /*sql*/`SELECT attributeId FROM attributes WHERE isDeleted = 1 AND deleteId IN (???)`,
-        deleteIds
-    ).map((row) => row.attributeId);
-    eraseAttributes(attributeIdsToErase);
+        const attributeIdsToErase = sql.getManyRows<{ attributeId: string }>(
+            /*sql*/`SELECT attributeId FROM attributes WHERE isDeleted = 1 AND deleteId IN (???)`,
+            deleteIds
+        ).map((row) => row.attributeId);
+        eraseAttributes(attributeIdsToErase);
 
-    const attachmentIdsToErase = sql.getManyRows<{ attachmentId: string }>(
-        /*sql*/`SELECT attachmentId FROM attachments WHERE isDeleted = 1 AND deleteId IN (???)`,
-        deleteIds
-    ).map((row) => row.attachmentId);
-    eraseAttachments(attachmentIdsToErase);
+        const attachmentIdsToErase = sql.getManyRows<{ attachmentId: string }>(
+            /*sql*/`SELECT attachmentId FROM attachments WHERE isDeleted = 1 AND deleteId IN (???)`,
+            deleteIds
+        ).map((row) => row.attachmentId);
+        eraseAttachments(attachmentIdsToErase);
 
-    eraseUnusedBlobs();
+        eraseUnusedBlobs();
+    });
 }
 
 function eraseDeletedNotesNow() {

@@ -12,6 +12,7 @@ import migrationService from "./migration.js";
 import noteService from "./notes.js";
 import { getLog } from "./log.js";
 import { getSql } from "./sql/index.js";
+import TaskContext from "./task_context";
 import { seedDefaultTaskStates } from "./task_states.js";
 
 export const LBTPL_ROOT = "_lbTplRoot";
@@ -458,6 +459,13 @@ function checkHiddenSubtreeRecursively(
     if (item.enforceDeleted) {
         note?.deleteNote();
         return;
+    }
+
+    if (!note && getSql().getValue("SELECT 1 FROM notes WHERE noteId = ? AND isDeleted = 1", [item.id])) {
+        noteService.undeleteNote(item.id, new TaskContext("no-progress-reporting", "undeleteNotes", null), {
+            fallbackParentNoteId: parentNoteId
+        });
+        note = becca.getNote(item.id) ?? undefined;
     }
 
     if (!note) {

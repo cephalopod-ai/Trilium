@@ -155,15 +155,13 @@ async function sync() {
             };
         });
     } catch (e: any) {
-        // we're dynamically switching whether we're using proxy or not based on whether we encountered error with the current method
-        proxyToggle = !proxyToggle;
-
         const log = getLog();
         if (
             e.message?.includes("ECONNREFUSED") ||
             e.message?.includes("ERR_") || // node network errors
             e.message?.includes("Bad Gateway")
         ) {
+            proxyToggle = !proxyToggle;
             ws.syncFailed();
 
             log.info("No connection to sync server.");

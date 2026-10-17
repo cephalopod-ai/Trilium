@@ -24,6 +24,7 @@ Starting with v0.104.0, Trilium provides a level of data intercompatibility betw
 *   Comma-Separated Values (.csv)
     *   Since it's a text-based format, any formatting is lost.
     *   Formulas are evaluated and turned into their final value instead.
+    *   Text beginning with a formula marker (`=`, `+`, `-` or `@`) or a tab or line break is prefixed with an apostrophe so spreadsheet applications treat it as text. Numeric negative values remain numbers.
     *   Multi-sheets spreadsheets are exported as a single ZIP containing a CSV file per sheet.
 
 Both [import and export](../Basic%20Concepts%20and%20Features/Import%20%26%20Export.md) are supported, as follows:

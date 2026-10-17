@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import LoadResults from "../../../services/load_results";
-import type { EntityChange, EntityType } from "../../../server_types";
+import type { EntityChange } from "@triliumnext/commons";
+import type { EntityType } from "../../../server_types";
 import { findRefreshReason } from ".";
 
 const BOARD_ID = "boardNote";

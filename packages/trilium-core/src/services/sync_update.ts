@@ -1,4 +1,7 @@
-import type { EntityChange, EntityChangeRecord, EntityRow } from "@triliumnext/commons";
+import type { BranchRow, EntityChange, EntityChangeRecord, EntityRow } from "@triliumnext/commons";
+
+import becca from "../becca/becca.js";
+import { assertBranchIdentity } from "../becca/entities/bbranch.js";
 
 import entityChangesService from "./entity_changes.js";
 import { getLog } from "./log.js";
@@ -76,7 +79,21 @@ function updateEntity(remoteEC: EntityChange, remoteEntityRow: EntityRow | undef
 
 function updateNormalEntity(remoteEC: EntityChange, remoteEntityRow: EntityRow | undefined, instanceId: string, updateContext: UpdateContext) {
     const localEC = getSql().getRow<EntityChange | undefined>(/*sql*/`SELECT * FROM entity_changes WHERE entityName = ? AND entityId = ?`, [remoteEC.entityName, remoteEC.entityId]);
-    const localECIsOlderOrSameAsRemote = localEC && localEC.utcDateChanged && remoteEC.utcDateChanged && localEC.utcDateChanged <= remoteEC.utcDateChanged;
+    const sameTimeConflict = localEC && !!localEC.utcDateChanged && localEC.utcDateChanged === remoteEC.utcDateChanged
+        && (localEC.hash !== remoteEC.hash || !!localEC.isErased !== !!remoteEC.isErased);
+    // Every peer uses the same tie-breaker, so equal-second edits cannot oscillate.
+    const remoteWinsTie = localEC && `${+!!remoteEC.isErased}:${remoteEC.hash}` > `${+!!localEC.isErased}:${localEC.hash}`;
+    const localECIsOlderOrSameAsRemote = localEC && localEC.utcDateChanged && remoteEC.utcDateChanged
+        && (localEC.utcDateChanged < remoteEC.utcDateChanged
+            || (localEC.utcDateChanged === remoteEC.utcDateChanged && (!sameTimeConflict || remoteWinsTie)));
+
+    if (sameTimeConflict && remoteWinsTie && remoteEC.entityName === "notes") {
+        const note = becca.getNote(remoteEC.entityId);
+        if (note) {
+            if (!note.isContentAvailable()) throw new Error("Unlock protected notes before resolving a sync conflict.");
+            note.saveRevision({ description: "Sync conflict: equal modification time" });
+        }
+    }
 
     if (!localEC || localECIsOlderOrSameAsRemote) {
         if (remoteEC.isErased) {
@@ -92,6 +109,10 @@ function updateNormalEntity(remoteEC: EntityChange, remoteEntityRow: EntityRow |
                 throw new Error(`Empty entity row for: ${JSON.stringify(remoteEC)}`);
             }
 
+            if (remoteEC.entityName === "branches") {
+                const branch = remoteEntityRow as BranchRow;
+                assertBranchIdentity(branch.branchId ?? remoteEC.entityId, branch.noteId, branch.parentNoteId);
+            }
             preProcessContent(remoteEC, remoteEntityRow);
 
             getSql().replace(remoteEC.entityName, remoteEntityRow);

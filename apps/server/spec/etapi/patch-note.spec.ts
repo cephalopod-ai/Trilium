@@ -45,7 +45,7 @@ describe("etapi/patch-note", () => {
     it("patches type, mime and creation dates", async () => {
         const changes = {
             "title": "Wassup",
-            "type": "html",
+            "type": "text",
             "mime": "text/html",
             "dateCreated": "2023-08-21 23:38:51.123+0200",
             "utcDateCreated": "2023-08-21 23:38:51.123Z"
@@ -56,6 +56,14 @@ describe("etapi/patch-note", () => {
             .send(changes)
             .expect(200);
         await expectNoteToMatch(changes);
+    });
+
+    it("rejects unknown note-type strings without changing the note", async () => {
+        const previousType = becca.getNoteOrThrow(createdNoteId).type;
+        await supertest(app).patch(`/etapi/notes/${createdNoteId}`)
+            .auth("etapi", token, { type: "basic" })
+            .send({ type: "invalid-note-type" }).expect(400);
+        expect(becca.getNoteOrThrow(createdNoteId).type).toBe(previousType);
     });
 
     it("refuses setting protection", async () => {
