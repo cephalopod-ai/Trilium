@@ -1,4 +1,4 @@
-import {beforeEach, describe, expect, it, vi} from "vitest";
+import {beforeEach, describe, expect, it} from "vitest";
 import {note, NoteBuilder} from "../test/becca_mocking.js";
 import becca from "../becca/becca.js";
 import BBranch from "../becca/entities/bbranch.js";
@@ -7,29 +7,8 @@ import tree from "./tree.js";
 import {buildNote} from "../test/becca_easy_mocking.js";
 import { getContext } from "./context.js";
 
-vi.mock("./sql.js", () => {
-    return {
-        default: {
-            transactional: (cb: Function) => {
-                cb();
-            },
-            execute: () => {},
-            replace: () => {},
-            getMap: () => {}
-        }
-    };
-});
-
-vi.mock("./sql_init.js", () => {
-    const mock = {
-        initializeDb: () => {},
-        dbReady: Promise.resolve()
-    };
-    return { default: mock, ...mock };
-});
-
 describe("Tree", () => {
-    let rootNote!: NoteBuilder;
+    let rootNote: NoteBuilder;
 
     beforeEach(() => {
         becca.reset();
@@ -153,6 +132,68 @@ describe("Tree", () => {
         });
         const orderedTitles = note.children.map((child) => child.title);
         expect(orderedTitles).toStrictEqual(["top", "p1", "p2", "1", "2", "3", "5", "bottom"]);
+    });
+
+    it("moves archived notes below #bottom ones when #sortArchivedLast is set", () => {
+        const note = buildNote({
+            children: [
+                {title: "archived bottom", "#bottom": "", "#archived": ""},
+                {title: "bottom", "#bottom": ""},
+                {title: "b", "#archived": ""},
+                {title: "2"},
+                {title: "archived top", "#top": "", "#archived": ""},
+                {title: "a", "#archived": ""},
+                {title: "1"},
+                {title: "top", "#top": ""}
+            ],
+            "#sorted": "",
+            "#sortArchivedLast": ""
+        });
+        getContext().init(() => {
+            tree.sortNotesIfNeeded(note.noteId);
+        });
+        const orderedTitles = note.children.map((child) => child.title);
+        expect(orderedTitles).toStrictEqual([
+            "top", "1", "2", "bottom",
+            "archived top", "a", "b", "archived bottom"
+        ]);
+    });
+
+    it("keeps archived notes last when sorting desc with #sortFoldersFirst", () => {
+        const note = buildNote({
+            children: [
+                {title: "a"},
+                {title: "archived folder", "#archived": "", children: [{title: "1.1"}]},
+                {title: "b", "#archived": ""},
+                {title: "folder", children: [{title: "2.1"}]},
+                {title: "c"}
+            ],
+            "#sorted": "",
+            "#sortDirection": "desc",
+            "#sortFoldersFirst": "",
+            "#sortArchivedLast": ""
+        });
+        getContext().init(() => {
+            tree.sortNotesIfNeeded(note.noteId);
+        });
+        const orderedTitles = note.children.map((child) => child.title);
+        expect(orderedTitles).toStrictEqual(["c", "a", "folder", "b", "archived folder"]);
+    });
+
+    it("sorts archived notes like the rest without #sortArchivedLast", () => {
+        const note = buildNote({
+            children: [
+                {title: "c"},
+                {title: "a", "#archived": ""},
+                {title: "b"}
+            ],
+            "#sorted": ""
+        });
+        getContext().init(() => {
+            tree.sortNotesIfNeeded(note.noteId);
+        });
+        const orderedTitles = note.children.map((child) => child.title);
+        expect(orderedTitles).toStrictEqual(["a", "b", "c"]);
     });
 
     it("sorts notes accordingly when #sortNatural is set", () => {

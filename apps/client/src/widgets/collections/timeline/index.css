@@ -1,0 +1,57 @@
+.timeline-view .timeline-row {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+
+    .timeline-row-title {
+        flex-grow: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: start;
+    }
+
+    .timeline-row-add {
+        opacity: 0;
+    }
+
+    &:hover .timeline-row-add,
+    &:focus-within .timeline-row-add,
+    .timeline-row-add:focus-visible {
+        opacity: 1;
+    }
+}
+
+.timeline-view .timeline-new-row {
+    color: var(--muted-text-color);
+}
+
+.timeline-view .timeline-attribute-cell {
+    min-height: 1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.timeline-view button.timeline-attribute-cell {
+    width: 100%;
+    text-align: start;
+}
+
+@media (hover: none) {
+    .timeline-view .timeline-row-add {
+        opacity: 1;
+    }
+}
+
+.timeline-view .timeline-attribute-cell-editor {
+    label:not(.tn-checkbox) {
+        display: none;
+    }
+
+    .promoted-attribute-cell {
+        margin: 0;
+        padding: 0;
+    }
+}

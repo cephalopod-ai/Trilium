@@ -98,3 +98,7 @@ Collections by themselves are simply notes with no content that rely on the <a 
 By default, new collections use predefined <a class="reference-link" href="Advanced%20Usage/Templates.md">Templates</a> that are stored safely in the <a class="reference-link" href="Advanced%20Usage/Hidden%20Notes.md">Hidden Notes</a> to define some basic configuration such as the type of view, but also some <a class="reference-link" href="Advanced%20Usage/Attributes/Promoted%20Attributes.md">Promoted Attributes</a> to make editing easier.
 
 Collections don't store their configuration (e.g. the position on the map, the hidden columns in a table) in the content of the note itself, but as attachments.
+
+## Timeline
+
+The <a class="reference-link" href="Collections/Timeline.md">Timeline</a> displays dated notes as bars on a horizontal time axis, with one row per note. It uses the same dates as the Calendar and also shows rows for notes without dates.

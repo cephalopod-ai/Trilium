@@ -5,7 +5,7 @@ The _Collection Properties_ is a toolbar that is displayed at the top of every [
 
 The collection properties has:
 
-*   A quick selector for the view type (e.g. grid, calendar, board).
+*   A quick selector for the view type (e.g. grid, calendar, timeline, board).
 *   A settings button with:
     *   Settings for the current view, for example hiding the weekends in a calendar.
     *   Generic settings for the collection, such as [hiding the child notes](../Basic%20Concepts%20and%20Features/UI%20Elements/Note%20Tree/Hiding%20the%20subtree.md) or showing [archived notes](../Basic%20Concepts%20and%20Features/Notes/Archived%20Notes.md).

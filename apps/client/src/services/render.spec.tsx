@@ -9,8 +9,10 @@ vi.mock("./bundle.js", () => ({
 
 // Spy on the actual JSX rendering so we don't depend on Preact mounting.
 const renderAtElementMock = vi.fn();
+const disposeMock = vi.fn();
 vi.mock("../widgets/react/react_utils.jsx", () => ({
-    renderReactWidgetAtElement: (...args: unknown[]) => renderAtElementMock(...args)
+    renderReactWidgetAtElement: (...args: unknown[]) => renderAtElementMock(...args),
+    disposeReactWidget: (...args: unknown[]) => disposeMock(...args)
 }));
 
 import FAttribute from "../entities/fattribute.js";
@@ -72,6 +74,7 @@ describe("render", () => {
         const result = await render(note, $el);
 
         expect(result).toBe(false);
+        expect(disposeMock).toHaveBeenCalledWith($el[0]);
         expect($el.children().length).toBe(0);
         expect($el.css("display")).toBe("none");
         expect(server.postWithSilentInternalServerError).not.toHaveBeenCalled();
@@ -261,6 +264,25 @@ describe("render", () => {
         expect(renderAtElementMock).toHaveBeenCalledOnce();
         expect(renderAtElementMock.mock.calls[0][0]).toBe(closest);
         expect(renderAtElementMock.mock.calls[0][2]).toBe($el[0]);
+    });
+
+    it("ignores a late JSX result after cancellation and retains the parent component argument", async () => {
+        const target = buildNote({ title: "Cancelled render", type: "code" });
+        target.mime = "text/jsx";
+        const note = buildNote({ title: "Cancelled host", "~renderNote": target.noteId });
+        server.postWithSilentInternalServerError = vi.fn(async () => ({
+            script: "", html: "", noteId: target.noteId, allNoteIds: []
+        })) as typeof server.postWithSilentInternalServerError;
+        let finishExecution: (value: unknown) => void = () => {};
+        executeMock.mockReturnValue(new Promise(resolve => { finishExecution = resolve; }));
+        const controller = new AbortController();
+        const $el = $("<div class='component'>");
+        const parent = {} as import("../components/component.js").default;
+        await render(note, $el, vi.fn(), parent, controller.signal);
+        controller.abort();
+        finishExecution(() => null);
+        await waitForPendingRenders($el[0]);
+        expect(renderAtElementMock).not.toHaveBeenCalled();
     });
 
     it("holds waitForPendingRenders until the script and its JSX mount have settled", async () => {

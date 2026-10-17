@@ -65,6 +65,26 @@ describe("pending renders", () => {
         expect(completion.done).toBe(true);
     });
 
+    it("releases print waits when a render is cancelled, including an already-aborted render", async () => {
+        const first = deferred();
+        const controller = new AbortController();
+        trackPendingRender(child, first.promise, controller.signal);
+        const completion = watchCompletion(root);
+        await flushMicrotasks();
+        expect(completion.done).toBe(false);
+        controller.abort();
+        await flushMicrotasks();
+        expect(completion.done).toBe(true);
+
+        const second = deferred();
+        trackPendingRender(child, second.promise, AbortSignal.abort());
+        const alreadyCancelled = watchCompletion(root);
+        await flushMicrotasks();
+        expect(alreadyCancelled.done).toBe(true);
+        first.resolve();
+        second.reject(new Error("late cancelled error"));
+    });
+
     it("ignores work rendering outside the root", async () => {
         const unrelated = deferred();
         trackPendingRender(elsewhere, unrelated.promise);

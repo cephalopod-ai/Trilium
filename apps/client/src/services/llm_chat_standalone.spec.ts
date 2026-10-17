@@ -109,6 +109,36 @@ describe("streamChatCompletion in standalone", () => {
         expect(cb.onToolUse.mock.invocationCallOrder[0]).toBeLessThan(cb.onChunk.mock.invocationCallOrder[0]);
     });
 
+    it("reports an interruption when the stream ends without a done or error chunk", async () => {
+        const cb = makeCallbacks();
+        const streaming = streamChatCompletion(messages, config, cb);
+        await Promise.resolve();
+
+        broadcast(chunk({ type: "text", content: "partial" }));
+        broadcast(end);
+
+        await streaming;
+        expect(cb.onDone).not.toHaveBeenCalled();
+        expect(cb.onError.mock.calls).toEqual([[
+            "The chat stream ended before the turn completed."
+        ]]);
+    });
+
+    it("delivers one terminal callback and ignores subsequent chunks", async () => {
+        for (const terminal of [{ type: "done" }, { type: "error", error: "provider failed" }] as const) {
+            const cb = makeCallbacks();
+            const streaming = streamChatCompletion(messages, config, cb);
+            await Promise.resolve();
+            broadcast(chunk(terminal));
+            broadcast(chunk({ type: "text", content: "late" }));
+            broadcast(chunk({ type: "done" }));
+            broadcast(end);
+            await streaming;
+            expect(cb.onDone.mock.calls.length + cb.onError.mock.calls.length).toBe(1);
+            expect(cb.onChunk).not.toHaveBeenCalled();
+        }
+    });
+
     it("reports a failure to start the completion, and does not wait for a stream that never began", async () => {
         server.post = vi.fn(async () => { throw JSON.stringify({ message: "No LLM providers configured." }); }) as typeof server.post;
 

@@ -60,6 +60,10 @@ Here are the steps to creating a simple render note:
 3.  In the parent render note, define a `~renderNote` relation pointing to the newly created child.
 4.  Refresh the render note and it should display a “Hello world” message.
 
+## Script dialogs
+
+The `Modal` component from `trilium:preact` opens above the app interface. It retains the render note's scoped styles and source pane, so note links inside the dialog open in the correct pane. Refreshing or closing the render note also removes its dialogs.
+
 ## Refreshing the note
 
 It's possible to refresh the note via:

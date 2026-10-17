@@ -132,7 +132,7 @@ const BUILTIN_ATTRIBUTES = [
     { type: "label", name: "yearNote", valueType: "text", hasUserValue: true },
     { type: "label", name: "pageSize", valueType: "number" },
     { type: "label", name: "viewType", valueType: "select", selectOptions: [
-        "list", "grid", "calendar", "table", "geoMap", "board", "presentation", "dashboard"
+        "list", "grid", "calendar", "timeline", "table", "geoMap", "board", "presentation", "dashboard"
     ] },
     { type: "label", name: "mapRootNoteId", valueType: "text" },
     { type: "label", name: "mapExcludeRelation", valueType: "text" },
@@ -145,6 +145,7 @@ const BUILTIN_ATTRIBUTES = [
     { type: "label", name: "sortFoldersFirst", valueType: "boolean" },
     { type: "label", name: "sortNatural", valueType: "boolean" },
     { type: "label", name: "sortLocale", valueType: "text" },
+    { type: "label", name: "sortArchivedLast", valueType: "boolean" },
     { type: "label", name: "top", valueType: "boolean" },
     { type: "label", name: "bottom", valueType: "boolean" },
     { type: "label", name: "fullContentWidth", valueType: "boolean" },
@@ -302,6 +303,7 @@ const BUILTIN_ATTRIBUTES = [
     { type: "label", name: "calendar:startTime", valueType: "text", hasUserValue: true },
     { type: "label", name: "calendar:endTime", valueType: "text", hasUserValue: true },
     { type: "label", name: "calendar:recurrence", valueType: "text", hasUserValue: true },
+    { type: "label", name: "timeline:view", valueType: "text", hasUserValue: true },
     { type: "label", name: "startDate", valueType: "date", hasUserValue: true },
     { type: "label", name: "endDate", valueType: "date", hasUserValue: true },
     { type: "label", name: "startTime", valueType: "time", hasUserValue: true },

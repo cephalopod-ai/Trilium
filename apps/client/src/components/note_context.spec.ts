@@ -36,7 +36,7 @@ describe("NoteContext read-only capability", () => {
         // read-only badge over a collection that can be changed.
         const viewTypes = [
             [ "board", true ], [ "calendar", true ], [ "dashboard", true ], [ "geoMap", true ],
-            [ "presentation", true ], [ "table", true ], [ "list", false ], [ "grid", false ]
+            [ "presentation", true ], [ "table", true ], [ "timeline", true ], [ "list", false ], [ "grid", false ]
         ] as const;
         for (const [ viewType, expected ] of viewTypes) {
             const note = buildNote({

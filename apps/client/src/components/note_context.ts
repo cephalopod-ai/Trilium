@@ -56,7 +56,8 @@ const READ_ONLY_CAPABLE_VIEW_TYPES: string[] = [
     "dashboard",
     "geoMap",
     "presentation",
-    "table"
+    "table",
+    "timeline"
 ];
 
 export interface NoteContextDataMap {

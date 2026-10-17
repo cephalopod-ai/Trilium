@@ -831,7 +831,8 @@
     "share_logo": "An image note used as the logo of the shared page. It has to sit inside the shared subtree.",
     "share_open_graph_image_relation": "An image note served as the <code>og:image</code> of the shared page. Set the label of the same name instead to point at an address.",
     "share_html": "An HTML note injected into the shared page, where <code>#shareHtmlLocation</code> on that note says. It has to sit inside the shared subtree.",
-    "meeting_recording": "Marks a note created by the \"Transcribe meeting\" button in the launch bar, which holds the transcript of a meeting."
+    "meeting_recording": "Marks a note created by the \"Transcribe meeting\" button in the launch bar, which holds the transcript of a meeting.",
+    "sort_archived_last": "Archived notes should be sorted at the bottom, below every other note, including those with <code>#bottom</code>. Ignored unless <code>#sorted</code> is set."
   },
   "attribute_editor": {
     "help_text_body1": "To add label, just type e.g. <code>#rock</code> or if you want to add also value then e.g. <code>#year = 2020</code>",
@@ -1311,7 +1312,8 @@
     "open_all_in_tabs_tooltip": "Open all results in new tabs",
     "open_all_confirm_one": "This will open {{count}} note in new tabs. Continue?",
     "open_all_confirm_other": "This will open {{count}} notes in new tabs. Continue?",
-    "open_all_limit_exceeded": "Too many notes to open at once ({{count}}). The maximum is {{max}}, try narrowing the results first."
+    "open_all_limit_exceeded": "Too many notes to open at once ({{count}}). The maximum is {{max}}, try narrowing the results first.",
+    "timeline": "Timeline"
   },
   "edited_notes": {
     "no_edited_notes_found": "No edited notes on this day yet..."
@@ -4649,5 +4651,14 @@
   },
   "widget": {
     "render_failed": "This panel could not be displayed."
+  },
+  "timeline": {
+    "previous": "Previous",
+    "next": "Next",
+    "title_column": "Note",
+    "add_note": "Add a note",
+    "add_child_note": "Add a child note",
+    "new_row": "New note",
+    "load_failed": "The timeline could not be loaded."
   }
 }

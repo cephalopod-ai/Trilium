@@ -1,6 +1,6 @@
 import "./Render.css";
 
-import { useContext, useEffect, useRef, useState } from "preact/hooks";
+import { useCallback, useContext, useLayoutEffect, useRef, useState } from "preact/hooks";
 
 import FNote from "../../entities/fnote";
 import attributes from "../../services/attributes";
@@ -14,7 +14,7 @@ import { FormListItem } from "../react/FormList";
 import { useEffectiveReadOnly, useNoteRelation, useTriliumEvent } from "../react/hooks";
 import NoItems from "../react/NoItems";
 import NoteAutocomplete from "../react/NoteAutocomplete";
-import { ParentComponent, refToJQuerySelector } from "../react/react_utils";
+import { disposeReactWidget, ParentComponent, refToJQuerySelector } from "../react/react_utils";
 import RenderErrorCard from "../react/RenderErrorCard";
 import SetupForm from "./helpers/SetupForm";
 import { TypeWidgetProps } from "./type_widget";
@@ -55,16 +55,29 @@ export default function Render(props: TypeWidgetProps) {
 
 function RenderContent({ note, noteContext, ntxId }: TypeWidgetProps) {
     const contentRef = useRef<HTMLDivElement>(null);
+    const renderController = useRef<AbortController | null>(null);
     const [ error, setError ] = useState<{ error: unknown; noteId?: string } | null>(null);
     const parentComponent = useContext(ParentComponent);
 
-    function refresh() {
-        if (!contentRef) return;
+    const refresh = useCallback(() => {
+        if (!contentRef.current) return;
+        renderController.current?.abort();
+        const controller = new AbortController();
+        renderController.current = controller;
         setError(null);
-        render.render(note, refToJQuerySelector(contentRef), (e, noteId) => setError({ error: e, noteId }), parentComponent ?? undefined);
-    }
+        void render.render(note, refToJQuerySelector(contentRef),
+            (e, noteId) => setError({ error: e, noteId }),
+            parentComponent ?? undefined, controller.signal);
+    }, [ note, parentComponent ]);
 
-    useEffect(refresh, [ note ]);
+    useLayoutEffect(() => {
+        refresh();
+        const container = contentRef.current;
+        return () => {
+            renderController.current?.abort();
+            if (container) disposeReactWidget(container);
+        };
+    }, [ refresh ]);
 
     // Keyboard shortcut.
     useTriliumEvent("renderActiveNote", ({ ntxId: eventNtxId }) => {

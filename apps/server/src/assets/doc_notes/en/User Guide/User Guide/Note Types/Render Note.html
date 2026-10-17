@@ -68,6 +68,11 @@ $dateEl.text(new Date());</code></pre>
     <p>Refresh the render note and it should display a “Hello world” message.</p>
   </li>
 </ol>
+<h2>Script dialogs</h2>
+<p>The <code>Modal</code> component from <code>trilium:preact</code> opens above
+  the app interface. It retains the render note's scoped styles and source
+  pane, so note links inside the dialog open in the correct pane. Refreshing
+  or closing the render note also removes its dialogs.</p>
 <h2>Refreshing the note</h2>
 <p>It's possible to refresh the note via:</p>
 <ul>

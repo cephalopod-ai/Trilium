@@ -27,6 +27,7 @@ export const byBookType: Record<ViewTypeOptions, string | null> = {
     list: "mULW0Q3VojwY",
     grid: "8QqnMzx393bx",
     calendar: "xWbu3jpNWapp",
+    timeline: "zhz17ghRkApP",
     table: "2FvYrpmOXm29",
     geoMap: "81SGnPGMk7Xc",
     board: "CtBQqbwXDx1w",

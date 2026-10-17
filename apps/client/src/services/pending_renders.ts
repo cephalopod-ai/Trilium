@@ -24,11 +24,21 @@ interface PendingRender {
 
 const pending = new Set<PendingRender>();
 
-/** Registers async render work against its container, for {@link waitForPendingRenders} to await. */
-export function trackPendingRender(container: Node, work: Promise<unknown>) {
+/** Registers async render work, releasing print waits if its owning render is cancelled. */
+export function trackPendingRender(container: Node, work: Promise<unknown>, signal?: AbortSignal) {
     // Failures are the tracked work's own business: a transform that throws still finishes, and a
     // caller waiting for a settled DOM should proceed rather than inherit the rejection.
-    const entry: PendingRender = { container, work: work.catch(() => undefined) };
+    const settled = work.catch(() => undefined);
+    if (signal?.aborted) return;
+    const entry: PendingRender = { container, work: settled };
+    if (signal) {
+        const cancelled = new Promise<void>(resolve => {
+            const onAbort = () => resolve();
+            signal.addEventListener("abort", onAbort, { once: true });
+            void settled.then(() => signal.removeEventListener("abort", onAbort));
+        });
+        entry.work = Promise.race([ settled, cancelled ]);
+    }
     pending.add(entry);
     void entry.work.then(() => pending.delete(entry));
 }

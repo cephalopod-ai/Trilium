@@ -78,16 +78,35 @@ export interface StreamCallbacks {
  * {@link StreamCallbacks} and the promise settles when it is over, rejecting with
  * an `AbortError` if `abortSignal` fired. Which transport is used depends on what
  * the backend can be reached over — see {@link streamChatOverMessages}.
+ * Both transports report `onDone` or `onError` before resolving, except when aborted.
  */
-export function streamChatCompletion(
+export async function streamChatCompletion(
     messages: LlmMessage[],
     config: LlmChatConfig,
     callbacks: StreamCallbacks,
     abortSignal?: AbortSignal
 ): Promise<void> {
-    return isStandalone
-        ? streamChatOverMessages(messages, config, callbacks, abortSignal)
-        : streamChatOverSse(messages, config, callbacks, abortSignal);
+    let completed = false;
+    const tracked: StreamCallbacks = {
+        ...callbacks,
+        onError: (...args) => {
+            completed = true;
+            callbacks.onError(...args);
+        },
+        onDone: () => {
+            completed = true;
+            callbacks.onDone();
+        }
+    };
+
+    await (isStandalone
+        ? streamChatOverMessages(messages, config, tracked, abortSignal)
+        : streamChatOverSse(messages, config, tracked, abortSignal));
+
+    // A transport end marker alone does not confirm that the model completed the turn.
+    if (!completed && !abortSignal?.aborted) {
+        callbacks.onError("The chat stream ended before the turn completed.");
+    }
 }
 
 /**
@@ -199,10 +218,16 @@ async function streamChatOverMessages(
     // Handlers are dispatched without being awaited, so nothing else keeps the
     // chunks in order: each is chained onto the one before it.
     let handled: Promise<void> = Promise.resolve();
+    let terminal = false;
 
     const onMessage = (message: WebSocketMessage) => {
         if (message.type === "llm-stream" && message.streamId === streamId) {
-            handled = handled.then(() => handleChunk(message.chunk, callbacks));
+            handled = handled.then(async () => {
+                if (terminal) return;
+                const { chunk } = message;
+                terminal = chunk.type === "done" || chunk.type === "error";
+                await handleChunk(chunk, callbacks);
+            });
             // Marks the link handled the moment it is made. `await handled` below
             // still rethrows, but without this a chunk handler that threw would sit
             // as an unhandled rejection until the stream ends — and in the

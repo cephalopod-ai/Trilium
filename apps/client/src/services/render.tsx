@@ -3,7 +3,7 @@ import { Component, h, VNode } from "preact";
 import type AppComponent from "../components/component.js";
 
 import type FNote from "../entities/fnote.js";
-import { renderReactWidgetAtElement } from "../widgets/react/react_utils.jsx";
+import { disposeReactWidget, renderReactWidgetAtElement } from "../widgets/react/react_utils.jsx";
 import { type Bundle, executeBundleWithoutErrorHandling } from "./bundle.js";
 import froca from "./froca.js";
 import { trackPendingRender } from "./pending_renders.js";
@@ -18,10 +18,12 @@ type ErrorHandler = (e: unknown, noteId?: string) => void;
  * @param parentComponent the component a JSX render note's element is mounted under, by default the
  *                        one of the closest `.component` element.
  */
-export async function render(note: FNote, $el: JQuery<HTMLElement>, onError?: ErrorHandler, parentComponent?: AppComponent) {
+export async function render(note: FNote, $el: JQuery<HTMLElement>, onError?: ErrorHandler, parentComponent?: AppComponent, signal?: AbortSignal) {
+    if (signal?.aborted) return;
     const relations = note.getRelations("renderNote");
     const renderNoteIds = relations.map((rel) => rel.value).filter((noteId) => noteId);
 
+    disposeReactWidget($el[0]);
     $el.empty().toggle(renderNoteIds.length > 0);
 
     let currentRenderNoteId: string | undefined;
@@ -29,6 +31,7 @@ export async function render(note: FNote, $el: JQuery<HTMLElement>, onError?: Er
         for (const renderNoteId of renderNoteIds) {
             currentRenderNoteId = renderNoteId;
             const bundle = await froca.getScriptBundle(renderNoteId);
+            if (signal?.aborted) return;
 
             if (!bundle) {
                 throw new Error(`Script note '${renderNoteId}' could not be loaded. It may be protected and require an active protected session.`);
@@ -43,17 +46,20 @@ export async function render(note: FNote, $el: JQuery<HTMLElement>, onError?: Er
             // Not awaited, so that a script cannot block Trilium. `trackPendingRender` lets printing
             // wait for the script and its JSX mount before it captures the page.
             const work = executeBundleWithoutErrorHandling(bundle, note, $scriptContainer)
-                .catch((e) => onError?.(e, renderNoteId))
+                .catch((e) => { if (!signal?.aborted) onError?.(e, renderNoteId); })
                 .then(async (result) => {
+                    if (signal?.aborted) return;
                     if (bundle.html === "") {
-                        await renderIfJsx(bundle, result, $el, onError, parentComponent).catch((e) => onError?.(e, bundle.noteId));
+                        await renderIfJsx(bundle, result, $el, onError, parentComponent, signal)
+                            .catch((e) => { if (!signal?.aborted) onError?.(e, bundle.noteId); });
                     }
                 });
-            trackPendingRender($el[0], work);
+            trackPendingRender($el[0], work, signal);
         }
 
         return renderNoteIds.length > 0;
     } catch (e) {
+        if (signal?.aborted) return;
         if (typeof e === "string" && e.startsWith("{") && e.endsWith("}")) {
             try {
                 onError?.(JSON.parse(e), currentRenderNoteId);
@@ -66,9 +72,10 @@ export async function render(note: FNote, $el: JQuery<HTMLElement>, onError?: Er
     }
 }
 
-export async function renderIfJsx(bundle: Bundle, result: unknown, $el: JQuery<HTMLElement>, onError?: ErrorHandler, parentComponent?: AppComponent) {
+export async function renderIfJsx(bundle: Bundle, result: unknown, $el: JQuery<HTMLElement>, onError?: ErrorHandler, parentComponent?: AppComponent, signal?: AbortSignal) {
     // Ensure the root script note is actually a JSX.
     const rootScriptNoteId = await froca.getNote(bundle.noteId);
+    if (signal?.aborted) return;
     if (rootScriptNoteId?.mime !== "text/jsx") return;
 
     // Ensure the output is a valid el.
