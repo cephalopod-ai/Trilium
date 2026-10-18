@@ -22,15 +22,19 @@ vi.mock("../services/open_id.js", () => ({
 }));
 vi.mock("../services/totp.js", () => ({ default: { isTotpEnabled: () => false } }));
 
+const core = vi.hoisted(() => ({
+    getIconPacks: vi.fn(() => []),
+    getSharedBootstrapItems: vi.fn((): Record<string, unknown> => ({}))
+}));
+
 vi.mock("@triliumnext/core", () => ({
     attributes: {},
     BNote: class {},
-    getSharedBootstrapItems: () => ({}),
-    icon_packs: { getIconPacks: () => [], generateCss: () => "", MIME_TO_EXTENSION_MAPPINGS: {} },
+    getSharedBootstrapItems: core.getSharedBootstrapItems,
+    icon_packs: { getIconPacks: core.getIconPacks },
     options: { getOptionMap: () => ({}) },
     password: { isPasswordSet: () => true },
     sql_init: { isDbInitialized: () => true },
-    task_states: { generateTaskStateCss: () => "" },
     getLog: () => ({ info: () => {}, error: () => {} })
 }));
 
@@ -96,6 +100,19 @@ describe("bootstrap auth gating (desktop build, #10589)", () => {
         // absolute renderer-only URLs it can't derive from trilium-app://.
         expect(body().isElectron).toBe(true);
         expect(body().wsBaseUrl).toBeTruthy();
+    });
+});
+
+describe("bootstrap icon packs", () => {
+    it("serves the icon CSS of the shared items without loading the icon packs again", () => {
+        core.getIconPacks.mockClear();
+        core.getSharedBootstrapItems.mockReturnValueOnce({ iconPackCss: "shared-icon-css" });
+
+        const { res, body } = makeRes();
+        bootstrap(makeReq({ loggedIn: true }), res);
+
+        expect(body().iconPackCss).toBe("shared-icon-css");
+        expect(core.getIconPacks).not.toHaveBeenCalled();
     });
 });
 
