@@ -2,6 +2,7 @@ import type { AttributeRow } from "@triliumnext/commons";
 import { beforeAll, describe, expect, it } from "vitest";
 
 import becca from "../becca/becca.js";
+import type BNote from "../becca/entities/bnote.js";
 import { init as clsInit } from "./context.js";
 import noteService from "./notes.js";
 import attributeService from "./attributes.js";
@@ -9,6 +10,7 @@ import attributeService from "./attributes.js";
 const {
     getNotesWithLabel,
     getNoteWithLabel,
+    someNoteWithLabel,
     createLabel,
     createRelation,
     createAttribute,
@@ -182,6 +184,95 @@ describe("attributes service", () => {
 
         it("returns an empty array when no note carries the label", () => {
             expect(getNotesWithLabel("yetAnotherMissingLabel")).toEqual([]);
+        });
+    });
+
+    describe("someNoteWithLabel (real DB, must agree with the search)", () => {
+        const BACKEND_MIME = "application/javascript;env=backend";
+        const isBackendScript = (note: BNote) => note.mime === BACKEND_MIME;
+
+        function makeScript(title: string, parentNoteId = "root", mime = BACKEND_MIME): string {
+            return clsInit(() =>
+                noteService.createNewNote({
+                    parentNoteId,
+                    title,
+                    content: "",
+                    type: "code",
+                    mime,
+                    ignoreForbiddenParents: true
+                }).note.noteId
+            );
+        }
+
+        function makeInheritableLabel(noteId: string, name: string) {
+            clsInit(() => createAttribute({
+                noteId, type: "label", name, value: "", isInheritable: true
+            }));
+        }
+
+        /** Both ways of asking must give the expected answer, so a shared mistake cannot hide. */
+        function expectAgreement(label: string, expected: boolean) {
+            expect(getNotesWithLabel(label).some(isBackendScript), "search").toBe(expected);
+            expect(someNoteWithLabel(label, isBackendScript), "attribute index").toBe(expected);
+        }
+
+        it("is false when no note, or only a note failing the predicate, carries it", () => {
+            expectAgreement("oracleNobody", false);
+
+            const frontend = makeScript(
+                "frontend only", "root", "application/javascript;env=frontend"
+            );
+            clsInit(() => createLabel(frontend, "oracleFrontendOnly"));
+            expectAgreement("oracleFrontendOnly", false);
+        });
+
+        it("finds a note carrying the label itself, whatever the case of the name", () => {
+            const script = makeScript("own label");
+            clsInit(() => createLabel(script, "oracleOwn"));
+
+            expectAgreement("oracleOwn", true);
+            expectAgreement("ORACLEOWN", true);
+        });
+
+        it("follows an inheritable label into the subtree but not a plain one", () => {
+            const inheritingParent = makeNote("inheriting parent");
+            makeInheritableLabel(inheritingParent, "oracleInheritable");
+            makeScript("inheriting child", inheritingParent);
+            expectAgreement("oracleInheritable", true);
+
+            const plainParent = makeNote("plain parent");
+            clsInit(() => createLabel(plainParent, "oracleNonInheritable"));
+            makeScript("plain child", plainParent);
+            expectAgreement("oracleNonInheritable", false);
+        });
+
+        it("follows an inheritable label of a template to the notes using it", () => {
+            // A note takes the type and mime of its template, so the template must be a script too.
+            const template = makeScript("template script");
+            makeInheritableLabel(template, "oracleTemplated");
+            const script = makeScript("templated script");
+            clsInit(() => createRelation(script, "template", template));
+            // Without the backend mime, only the templated note can satisfy the predicate.
+            clsInit(() => {
+                const templateNote = becca.getNoteOrThrow(template);
+                templateNote.mime = "application/javascript;env=frontend";
+                templateNote.save();
+            });
+
+            expectAgreement("oracleTemplated", true);
+        });
+
+        it("counts archived notes but not notes that live only in the hidden subtree", () => {
+            const archived = makeScript("archived script");
+            clsInit(() => {
+                createLabel(archived, "archived");
+                createLabel(archived, "oracleArchived");
+            });
+            expectAgreement("oracleArchived", true);
+
+            const hidden = makeScript("hidden script", "_hidden");
+            clsInit(() => createLabel(hidden, "oracleHidden"));
+            expectAgreement("oracleHidden", false);
         });
     });
 

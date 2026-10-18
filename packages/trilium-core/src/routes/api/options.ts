@@ -202,8 +202,10 @@ function getOptions() {
 
     // Detect if the user has any backend scripts with #run labels (backendStartup, hourly, daily).
     // Filter by MIME type since #run can also appear on frontend scripts.
-    const hasUserBackendScripts = attributeService.getNotesWithLabel("run")
-        .some((note) => note.mime === "application/javascript;env=backend");
+    const hasUserBackendScripts = attributeService.someNoteWithLabel(
+        "run",
+        (note) => note.mime === "application/javascript;env=backend"
+    );
     resultMap["hasUserBackendScripts"] = hasUserBackendScripts ? "true" : "false";
 
     // if database is read-only, disable editing in UI by setting 0 here

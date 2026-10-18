@@ -3,6 +3,7 @@ import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 
 import * as i18n from "../../services/i18n";
 import optionService from "../../services/options";
+import searchService from "../../services/search/services/search";
 import { getConfig, initConfig } from "../../services/config";
 import { getSql } from "../../services/sql/index";
 import { CoreApiTester } from "../../test/api_tester";
@@ -193,6 +194,16 @@ describe("Options API (core)", () => {
 
         await createCodeNote("Backend script", "application/javascript;env=backend");
         expect((await api.get<Record<string, string>>("/api/options")).body.hasUserBackendScripts).toBe("true");
+    });
+
+    it("reads the backend-script flag from the attribute index, not a search", async () => {
+        await createCodeNote("Indexed backend script", "application/javascript;env=backend");
+        const search = vi.spyOn(searchService, "searchNotes");
+
+        const res = await api.get<Record<string, string>>("/api/options");
+
+        expect(res.body.hasUserBackendScripts).toBe("true");
+        expect(search).not.toHaveBeenCalled();
     });
 
     it("accepts write-only secrets but reports them only as a boolean flag", async () => {

@@ -1,5 +1,6 @@
 import { type AttributeRow, BUILTIN_ATTRIBUTES } from "@triliumnext/commons";
 
+import { getNotesWithAttribute } from "./search/expressions/attribute_exists.js";
 import searchService from "./search/services/search.js";
 import becca from "../becca/becca.js";
 import BAttribute from "../becca/entities/battribute.js";
@@ -35,6 +36,21 @@ function getNoteWithLabel(name: string, value?: string): BNote | null {
     }
 
     return null;
+}
+
+/**
+ * Whether a note that {@link getNotesWithLabel} finds for `name` satisfies `predicate`. The notes
+ * come from the attribute index instead of a search, which would build a result for each of them;
+ * the search's rule on notes that exist only in the hidden subtree is applied to the matches alone.
+ */
+function someNoteWithLabel(name: string, predicate: (note: BNote) => boolean): boolean {
+    for (const note of getNotesWithAttribute("label", name, false).notes) {
+        if (predicate(note) && !note.isHiddenCompletely()) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function createLabel(noteId: string, name: string, value: string = "") {
@@ -114,6 +130,7 @@ function isAttributeDangerous(type: string, name: string): boolean {
 export default {
     getNotesWithLabel,
     getNoteWithLabel,
+    someNoteWithLabel,
     createLabel,
     createRelation,
     createAttribute,
